@@ -1,0 +1,32 @@
+package proceslayer;
+
+import domainlayer.skeleton.IDobbelsteenWorp;
+
+public class DobbelsteenWorpController {
+
+	private IDobbelsteenWorp model;
+
+	public DobbelsteenWorpController(IDobbelsteenWorp model) {
+		this.model = model;
+	}
+
+	public void register(IDobbelsteenWorpPane view) {
+		views.add(view);
+	}
+
+	public void updateModel() throws RemoteException {
+		for (IDobbelsteenWorpPane view : views) {
+			view.updateModel(model);
+		}
+	}
+
+	public void onDobbelsteenWerp() throws RemoteException {
+		model.werp((int) (Math.random() * 10) + 1);
+		updateModel();
+}
+
+	public DobbelsteenWorpController(IDobbelsteenWorp dobbelsteenWorp) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,24 @@
+package presentationlayer;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+/**
+ * SpeelbordPane.java
+ * De view van het speelbord.
+ * 
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
+public class SpeelbordPane extends Pane {
+
+	/** Hier wordt het speelbord geinitialiseerd */
+	public SpeelbordPane() {
+		Image image = new Image("file:assets/speelbord.jpg");
+		ImageView imageView = new ImageView(image);
+
+		this.getChildren().add(imageView);
+	}
+
+}

@@ -1,0 +1,13 @@
+package domainlayer.skeleton;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import presentationlayer.skeleton.IDobbelsteenWorpPane;
+
+public interface IDobbelsteenWorp extends Remote {
+	public void addObserver(IDobbelsteenWorpPane view) throws RemoteException;
+	public void notifyObservers() throws RemoteException;
+	public void werp(int aantal) throws RemoteException;
+	public IDobbelsteen[] getDobbelstenen() throws RemoteException;
+}

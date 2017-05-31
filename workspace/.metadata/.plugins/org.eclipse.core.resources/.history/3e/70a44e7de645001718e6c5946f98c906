@@ -1,0 +1,15 @@
+package proceslayer;
+
+import domainlayer.skeleton.IDobbelsteenWorp;
+
+public class DobbelsteenWorpController {
+
+	private IDobbelsteenWorp model;
+
+	public DobbelsteenWorpController(IDobbelsteenWorp model) {
+		this.model = model;
+	}
+
+	public void onDobbelsteenWerp() {
+		model.werp((int) (Math.random() * 10) + 1);
+}

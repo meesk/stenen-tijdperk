@@ -1,0 +1,17 @@
+package presentationlayer.skeleton;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import domainlayer.skeleton.IDobbelsteenWorp;
+
+/**
+ * IDobbelsteenWorpPane.java
+ * De view voor de losse dobbelstenen.
+ * 
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
+public interface IDobbelsteenWorpPane extends Remote {
+	public void modelChanged(IDobbelsteenWorp model) throws RemoteException;
+}

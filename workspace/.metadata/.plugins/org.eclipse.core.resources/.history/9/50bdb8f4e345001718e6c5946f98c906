@@ -1,0 +1,18 @@
+package presentationlayer;
+
+import domainlayer.skeleton.IDobbelsteen;
+import domainlayer.skeleton.IDobbelsteenWorp;
+import presentationlayer.skeleton.IDobbelsteenWorpPane;
+
+public class DobbelsteenWorpPane implements IDobbelsteenWorpPane {
+
+	private DobbelsteenPane[] dobbelstenen;
+	
+	public void modelChanged(IDobbelsteenWorp model) {
+		IDobbelsteen[] models = model.getDobbelstenen();
+		for (int i = 0; i < 10; i++) {
+			dobbelstenen[i].modelChanged(models[i]);
+		}
+	}
+
+}

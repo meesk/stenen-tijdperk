@@ -1,0 +1,22 @@
+package proceslayer;
+
+import java.rmi.RemoteException;
+
+import domainlayer.skeleton.IDobbelsteenWorp;
+
+public class DobbelsteenWorpController {
+
+	private IDobbelsteenWorp model;
+
+	public DobbelsteenWorpController(IDobbelsteenWorp model) {
+		this.model = model;
+	}
+
+	public void onDobbelsteenWerp() {
+		try {
+			model.werp((int) (Math.random() * 10) + 1);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+}

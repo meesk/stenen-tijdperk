@@ -1,0 +1,26 @@
+package presentationlayer;
+
+public class DobbelsteenPane extends Pane implements IDobbelsteenPane {
+
+	private ImageView imageView;
+	private final String RESOURCE = "file:assets/dobbelstenen/%d.png";
+
+	public DobbelsteenPane() throws RemoteException {
+		UnicastRemoteObject.exportObject(this, 0);
+
+		Image image = new Image(String.format(RESOURCE, 0));
+		imageView = new ImageView(image);
+
+		this.getChildren().add(imageView);
+	}
+
+	public void modelChanged(IDobbelsteen model) {
+		Platform.runLater(() -> {
+			try {
+				Image image = new Image(String.format(RESOURCE, model.getOgen()));
+				imageView.setImage(image);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		});
+}

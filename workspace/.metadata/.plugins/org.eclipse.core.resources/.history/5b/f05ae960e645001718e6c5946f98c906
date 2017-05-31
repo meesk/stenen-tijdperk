@@ -1,0 +1,49 @@
+package domainlayer;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
+
+import domainlayer.skeleton.IDobbelsteen;
+import domainlayer.skeleton.IDobbelsteenWorp;
+import presentationlayer.skeleton.IDobbelsteenWorpPane;
+
+public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteenWorp {
+	private static final long serialVersionUID = 1L;
+
+	private IDobbelsteen[] dobbelstenen;
+	private List<IDobbelsteenWorpPane> views;
+
+	public DobbelsteenWorp() throws RemoteException {
+		dobbelstenen = new IDobbelsteen[10];
+		for (int i = 0; i < 10; i++) {
+			dobbelstenen[i] = new Dobbelsteen();
+		}
+		
+		views = new ArrayList<>();
+	}
+
+	public void werp(int aantal) throws RemoteException {
+		for (int i = 0; i < aantal; i++) {
+			dobbelstenen[i].werp();
+		}
+		for (int i = aantal; i < 10; i++) {
+			dobbelstenen[i].reset();
+		}
+	}
+	
+	public void addObserver(IDobbelsteenWorpPane view) throws RemoteException {
+		views.add(view);
+	}
+	
+	public void notifyObservers() throws RemoteException {
+		for (IDobbelsteenWorpPane view : views) {
+			view.modelChanged(this);
+		}
+	}
+
+	public IDobbelsteen[] getDobbelstenen() {
+		return dobbelstenen;
+	}
+}

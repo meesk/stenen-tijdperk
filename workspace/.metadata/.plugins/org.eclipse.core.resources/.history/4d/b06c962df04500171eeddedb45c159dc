@@ -1,0 +1,10 @@
+package presentationlayer.skeleton;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import domainlayer.skeleton.IDobbelsteen;
+
+public interface IDobbelsteenPane extends Remote {
+	public void modelChanged(IDobbelsteen model) throws RemoteException;
+}
