@@ -1,0 +1,30 @@
+package presentationlayer;
+
+import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+public class HandleidingPane extends Stage {
+	public HandleidingPane() {
+		ScrollPane scroll = new ScrollPane();
+		
+		Image image = new Image("file:assets/manual.jpeg");
+		ImageView view = new ImageView(image);
+
+		view.setFitWidth(image.getWidth() / 2.25);
+		view.setFitHeight(image.getHeight() / 3);
+
+		Pane viewCarrier = new Pane(view);
+
+		scroll.setContent(viewCarrier);
+
+		Scene scene = new Scene(scroll, 800, 800);
+		
+		this.setTitle("Handleiding");
+		this.setAlwaysOnTop(true);
+		this.setScene(scene);
+	}
+}

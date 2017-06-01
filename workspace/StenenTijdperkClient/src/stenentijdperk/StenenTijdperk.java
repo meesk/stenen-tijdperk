@@ -5,11 +5,14 @@ import java.rmi.Naming;
 import domainlayer.skeleton.IDobbelsteenWorp;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import presentationlayer.DobbelsteenWorpPane;
+import presentationlayer.HandleidingPane;
 import presentationlayer.SpeelbordPane;
 import proceslayer.DobbelsteenWorpController;
+import proceslayer.HandleidingController;
 
 /**
  * StenenTijdperk.java
@@ -32,8 +35,17 @@ public class StenenTijdperk extends Application {
 		// Het ontvangen van het model dat dobbelsteen worpen beheert.
 		IDobbelsteenWorp dobbelsteenWorp = (IDobbelsteenWorp) Naming.lookup("rmi://localhost/DobbelsteenWorp");
 
+		
+
+		// dobbelsteenworppane hierzo
+		HandleidingPane handleidingPane = new HandleidingPane();
+		
+		
 		// Het aanmaken van een controller die dobbelsteen worpen beheert.
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(dobbelsteenWorp);
+		HandleidingController handleidingController = new HandleidingController(handleidingPane);
+		
+		
 		
 		// De grid waarop de visuele objecten geplaatst worden.
 		GridPane grid = new GridPane();
@@ -53,7 +65,11 @@ public class StenenTijdperk extends Application {
 
 		// Het plaatsen van de buttons.
 		// grid.add(new Button("Vorige Beurt"), 1, 3);
-		// grid.add(new Button("Handleiding"), 2, 3);
+		
+		// De knop en de knop action voor de handleiding.
+		Button button = new Button("Handleiding");
+		button.setOnAction(e -> handleidingController.onButtonClick());
+		grid.add(button, 2, 3);
 		// grid.add(new Button("Afsluiten"), 3, 3);
 
 		// Het voorbereiden en tonen van de stage.
