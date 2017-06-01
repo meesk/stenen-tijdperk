@@ -49,7 +49,6 @@ public class StenenTijdperk extends Application {
 		
 		// De grid waarop de visuele objecten geplaatst worden.
 		GridPane grid = new GridPane();
-		grid.setStyle("-fx-background-color: #6a5b34");
 
 		// Het plaatsen van de views voor het speelbord en spelerstableau.
 		grid.add(new SpeelbordPane(), 0, 0, 4, 1);
