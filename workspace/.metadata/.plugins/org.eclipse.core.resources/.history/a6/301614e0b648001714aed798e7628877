@@ -1,0 +1,11 @@
+package domainlayer;
+
+public class Spel {
+
+	private DobbelsteenWorp dobbelsteenWorp;
+	
+	public Spel() {
+		this.dobbelsteenWorp = new DobbelsteenWorp();
+	}
+	
+}

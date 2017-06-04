@@ -1,0 +1,18 @@
+package domainlayer;
+
+import java.rmi.RemoteException;
+
+public class Spel {
+
+	private DobbelsteenWorp dobbelsteenWorp;
+	private Speelbord speelbord;
+	
+	public Spel() throws RemoteException {
+		this.dobbelsteenWorp = new DobbelsteenWorp();
+	}
+	
+	public DobbelsteenWorp getDobbelsteenWorp() {
+		return dobbelsteenWorp;
+	}
+	
+}

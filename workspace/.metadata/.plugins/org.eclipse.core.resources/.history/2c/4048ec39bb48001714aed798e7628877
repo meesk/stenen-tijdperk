@@ -1,0 +1,13 @@
+package domainlayer;
+
+public class Stamlid {
+	private Speler speler;
+	
+	public Stamlid(Speler speler) {
+		this.speler = speler;
+	}
+	
+	public Speler getSpeler() {
+		return speler;
+	}
+}

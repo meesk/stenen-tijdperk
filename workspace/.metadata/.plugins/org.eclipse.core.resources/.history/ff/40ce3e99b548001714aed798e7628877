@@ -1,0 +1,20 @@
+package domainlayer.skeleton.locaties;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+/**
+ * ILocatie.java
+ * De interface van de locaties.
+ * 
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
+public interface ILocatie extends Remote {
+	/** Wis de waarde van de dobbelsteen. */
+	public void reset() throws RemoteException;
+	/** Werp de dobbelsteen */
+	public void werp() throws RemoteException;
+	/** @return	Het geworpen aantal ogen. */
+	public int getOgen() throws RemoteException;
+}

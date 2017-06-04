@@ -1,0 +1,15 @@
+package domainlayer;
+
+public enum MiddelEnum {
+	  VOEDSEL(2);
+
+	  private int waarde;    
+
+	  private MiddelEnum(int waarde) {
+	    this.waarde = waarde;
+	  }
+
+	  public int getValue() {
+	    return waarde;
+	  }
+}

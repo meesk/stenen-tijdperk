@@ -1,0 +1,8 @@
+package domainlayer;
+
+public class Kleur {
+	ROOD,
+	GEEL,
+	GROEN,
+	BLAUW
+}

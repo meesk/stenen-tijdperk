@@ -1,0 +1,9 @@
+package domainlayer.locaties;
+
+/**
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
+public class Hut extends Locatie {
+
+}

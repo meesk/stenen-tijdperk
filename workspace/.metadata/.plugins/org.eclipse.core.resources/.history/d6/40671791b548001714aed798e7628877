@@ -1,0 +1,5 @@
+package domainlayer.skeleton.locaties;
+
+public class Locatie {
+
+}

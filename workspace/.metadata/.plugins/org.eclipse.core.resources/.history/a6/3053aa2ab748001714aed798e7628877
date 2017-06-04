@@ -1,0 +1,13 @@
+package domainlayer;
+
+import java.util.List;
+
+public class Speelbord {
+	
+	private List<Locatie> locaties;
+	
+	public Speelbord() {
+		locaties = new ArrayList<>();
+	}
+	
+}

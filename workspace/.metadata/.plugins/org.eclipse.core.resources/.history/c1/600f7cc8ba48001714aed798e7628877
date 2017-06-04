@@ -1,0 +1,34 @@
+package domainlayer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Speler {
+	
+	private Spel spel;
+	private List<Stamlid> stamleden;
+	private Map<MiddelEnum, Int> middelen;
+	
+	public Speler(Spel spel) {
+		this.spel = spel;
+		stamleden = new ArrayList<>();
+	}
+	
+	public void ontvangStamlid(Stamlid stamlid) {
+		stamleden.add(stamlid);
+	}
+	
+	public void gebruikStamlid(Stamlid stamlid) {
+		stamleden.remove(stamlid);
+	}
+	
+	public Spel getSpel() {
+		return spel;
+	}
+
+	public void ontvangMiddelen(MiddelEnum middel, int i) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

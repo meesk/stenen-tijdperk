@@ -1,0 +1,30 @@
+package domainlayer.locaties;
+
+import domainlayer.MiddelEnum;
+import domainlayer.Speler;
+
+/**
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
+public class MiddelLocatie extends Locatie {
+
+	// Het type middel dat deze locatie bevat.
+	private MiddelEnum middel;
+	
+	public MiddelLocatie(MiddelEnum middel) {
+		super(Integer.MAX_VALUE);
+	}
+	
+	public MiddelLocatie(int cirkels, MiddelEnum middel) {
+		super(cirkels);
+		this.middel = middel;
+	}
+
+	@Override
+	public void uitvoerenActie(Speler speler) {
+		super.uitvoerenActie(speler);
+		speler.ontvangMiddelen(middel, speler.getSpel().getDobbelsteenWorp().getTotaal() / middel.getWaarde());
+	}
+
+}

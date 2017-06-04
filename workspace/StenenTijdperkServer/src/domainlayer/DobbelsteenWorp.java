@@ -14,7 +14,7 @@ import presentationlayer.skeleton.IDobbelsteenWorpPane;
  * Het model van de DobbelsteenWorp.
  * 
  * @author Erwin Olie, s1103026
- * @version 0.3
+ * @version 0.4
  */
 public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteenWorp {
 	private static final long serialVersionUID = 1L;
@@ -66,5 +66,13 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	/** {@inheritDoc} */
 	public IDobbelsteen[] getDobbelstenen() {
 		return dobbelstenen;
+	}
+	
+	public int getTotaal() throws RemoteException {
+		int totaal = 0;
+		for (IDobbelsteen dobbelsteen : dobbelstenen) {
+			totaal += dobbelsteen.getOgen();
+		}
+		return totaal;
 	}
 }

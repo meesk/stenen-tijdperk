@@ -1,0 +1,9 @@
+package domainlayer.locaties;
+
+public class MiddelLocatie extends Locatie {
+
+	public MiddelLocatie(int cirkels, MiddelEnum middel) {
+		super(cirkels);
+	}
+
+}

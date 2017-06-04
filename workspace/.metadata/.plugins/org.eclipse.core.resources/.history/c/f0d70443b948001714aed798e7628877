@@ -1,0 +1,18 @@
+package domainlayer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Speler {
+	
+	private List<Stamlid> stamleden;
+	
+	public Speler(int cirkels) {
+		stamleden = new ArrayList<>();
+	}
+	
+	public void gebruikStamlid(Stamlid stamlid) {
+		
+	}
+	
+}

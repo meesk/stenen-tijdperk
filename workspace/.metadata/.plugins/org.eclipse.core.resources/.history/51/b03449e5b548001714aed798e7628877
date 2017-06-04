@@ -1,0 +1,5 @@
+package domainlayer.locaties;
+
+public class MiddelLocatie extends Locatie {
+
+}

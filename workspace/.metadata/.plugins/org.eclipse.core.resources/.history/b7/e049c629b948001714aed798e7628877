@@ -1,0 +1,13 @@
+package domainlayer;
+
+public class Stamlid {
+	private KleurEnum kleur;
+	
+	public Stamlid(KleurEnum kleur) {
+		this.kleur = kleur;
+	}
+	
+	public KleurEnum getKleur() {
+		return kleur;
+	}
+}

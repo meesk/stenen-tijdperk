@@ -1,0 +1,20 @@
+package domainlayer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import domainlayer.locaties.Locatie;
+
+/**
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
+public class Speelbord {
+	
+	private List<Locatie> locaties;
+	
+	public Speelbord() {
+		locaties = new ArrayList<>();
+	}
+	
+}
