@@ -2,7 +2,7 @@ package domainlayer.locaties;
 
 import java.rmi.RemoteException;
 
-import domainlayer.MiddelEnum;
+import domainlayer.Middelen;
 import domainlayer.Speler;
 
 /**
@@ -12,13 +12,13 @@ import domainlayer.Speler;
 public class MiddelLocatie extends Locatie {
 
 	// Het type middel dat deze locatie bevat.
-	private MiddelEnum middel;
+	private Middelen middel;
 	
-	public MiddelLocatie(MiddelEnum middel) {
+	public MiddelLocatie(Middelen middel) {
 		super(Integer.MAX_VALUE);
 	}
 	
-	public MiddelLocatie(int cirkels, MiddelEnum middel) {
+	public MiddelLocatie(int cirkels, Middelen middel) {
 		super(cirkels);
 		this.middel = middel;
 	}
