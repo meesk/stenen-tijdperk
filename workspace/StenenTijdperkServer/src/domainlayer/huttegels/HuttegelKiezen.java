@@ -1,8 +1,13 @@
 package domainlayer.huttegels;
 
-import domainlayer.Middelen;
+import domainlayer.Middel;
 import domainlayer.Speler;
+import domainlayer.skeleton.huttegels.IHuttegel;
 
+/**
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
 public class HuttegelKiezen implements IHuttegel {
 
 	private int aantal;

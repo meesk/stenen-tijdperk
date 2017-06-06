@@ -21,11 +21,11 @@ public class Speelbord {
 	public Speelbord(Spel spel) {
 		this.spel = spel;
 		locaties = new ArrayList<>();
-		locaties.add(new MiddelLocatie(7, Middelen.HOUT));
-		locaties.add(new MiddelLocatie(7, Middelen.LEEM));
-		locaties.add(new MiddelLocatie(7, Middelen.STEEN));
-		locaties.add(new MiddelLocatie(7, Middelen.GOUD));
-		locaties.add(new MiddelLocatie(Middelen.VOEDSEL));
+		locaties.add(new MiddelLocatie(7, Middel.HOUT));
+		locaties.add(new MiddelLocatie(7, Middel.LEEM));
+		locaties.add(new MiddelLocatie(7, Middel.STEEN));
+		locaties.add(new MiddelLocatie(7, Middel.GOUD));
+		locaties.add(new MiddelLocatie(Middel.VOEDSEL));
 		locaties.add(new Akker());
 		locaties.add(new Hut());
 		locaties.add(new Gereedschapmaker());

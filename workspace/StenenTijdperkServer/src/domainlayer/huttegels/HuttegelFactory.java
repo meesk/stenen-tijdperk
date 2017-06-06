@@ -3,8 +3,13 @@ package domainlayer.huttegels;
 import java.util.ArrayList;
 import java.util.List;
 
-import domainlayer.Middelen;
+import domainlayer.Middel;
+import domainlayer.skeleton.huttegels.IHuttegel;
 
+/**
+ * @author	Erwin Olie, s1103026
+ * @version	0.1
+ */
 public class HuttegelFactory {
 
 	private HuttegelFactory instance;
@@ -22,23 +27,23 @@ public class HuttegelFactory {
 			add(new HuttegelKiezen(5, 2));
 			add(new HuttegelKiezen(5, 1));
 			add(new HuttegelKiezen(4, 4));
-			add(new HuttegelStandaard(Middelen.LEEM, Middelen.LEEM, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.HOUT, Middelen.STEEN));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.STEEN, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.LEEM, Middelen.STEEN, Middelen.STEEN));
-			add(new HuttegelStandaard(Middelen.STEEN, Middelen.STEEN, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.LEEM, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.LEEM, Middelen.STEEN, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.HOUT, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.LEEM, Middelen.STEEN, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.LEEM, Middelen.LEEM, Middelen.STEEN));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.STEEN, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.LEEM, Middelen.STEEN));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.LEEM, Middelen.STEEN));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.STEEN, Middelen.STEEN));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.LEEM, Middelen.LEEM));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.LEEM, Middelen.GOUD));
-			add(new HuttegelStandaard(Middelen.HOUT, Middelen.HOUT, Middelen.LEEM));
+			add(new HuttegelStandaard(Middel.LEEM, Middel.LEEM, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.HOUT, Middel.STEEN));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.STEEN, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.LEEM, Middel.STEEN, Middel.STEEN));
+			add(new HuttegelStandaard(Middel.STEEN, Middel.STEEN, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.LEEM, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.LEEM, Middel.STEEN, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.HOUT, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.LEEM, Middel.STEEN, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.LEEM, Middel.LEEM, Middel.STEEN));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.STEEN, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.LEEM, Middel.STEEN));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.LEEM, Middel.STEEN));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.STEEN, Middel.STEEN));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.LEEM, Middel.LEEM));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.LEEM, Middel.GOUD));
+			add(new HuttegelStandaard(Middel.HOUT, Middel.HOUT, Middel.LEEM));
 		}};
 	}
 

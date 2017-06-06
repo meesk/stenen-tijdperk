@@ -13,24 +13,24 @@ public class Speler {
 
 	private Spel spel;
 	private List<Stamlid> stamleden;
-	private Map<Middelen, Integer> middelen;
+	private Map<Middel, Integer> middelen;
 
 	public Speler(Spel spel) {
 		this.spel = spel;
 		stamleden = new ArrayList<>();
 		middelen = new HashMap<>();
-		middelen.put(Middelen.VOEDSEL, 0);
-		middelen.put(Middelen.HOUT, 0);
-		middelen.put(Middelen.LEEM, 0);
-		middelen.put(Middelen.STEEN, 0);
-		middelen.put(Middelen.GOUD, 0);
+		middelen.put(Middel.VOEDSEL, 0);
+		middelen.put(Middel.HOUT, 0);
+		middelen.put(Middel.LEEM, 0);
+		middelen.put(Middel.STEEN, 0);
+		middelen.put(Middel.GOUD, 0);
 	}
 	
-	public void ontvangMiddel(Middelen middel) {
+	public void ontvangMiddel(Middel middel) {
 		ontvangMiddelen(middel, 1);
 	}
 	
-	public void ontvangMiddelen(Middelen middel, int aantal) {
+	public void ontvangMiddelen(Middel middel, int aantal) {
 		middelen.put(middel, middelen.get(middel) + aantal);
 	}
 

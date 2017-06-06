@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
+import domainlayer.dobbelstenen.DobbelsteenWorp;
+
 /**
  * @author Erwin Olie, s1103026
  * @version 0.2

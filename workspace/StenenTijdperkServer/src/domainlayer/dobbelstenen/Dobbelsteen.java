@@ -1,4 +1,4 @@
-package domainlayer;
+package domainlayer.dobbelstenen;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
