@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import presentationlayer.DobbelsteenWorpPane;
 import presentationlayer.HandleidingPane;
+import presentationlayer.LobbyView;
 import presentationlayer.SpeelbordPane;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.HandleidingController;
@@ -45,6 +46,7 @@ public class StenenTijdperk extends Application {
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(dobbelsteenWorp);
 		HandleidingController handleidingController = new HandleidingController(handleidingPane);
 		
+		LobbyView lobbyView = new LobbyView(primaryStage);
 		
 		
 		// De grid waarop de visuele objecten geplaatst worden.
@@ -74,7 +76,7 @@ public class StenenTijdperk extends Application {
 		// grid.add(new Button("Afsluiten"), 3, 3);
 
 		// Het voorbereiden en tonen van de stage.
-		Scene scene = new Scene(grid);
+		Scene scene = new Scene(lobbyView, 1000, 800);
 		primaryStage.setTitle("Het Stenen Tijdperk");
 		primaryStage.setScene(scene);
 		primaryStage.show();
