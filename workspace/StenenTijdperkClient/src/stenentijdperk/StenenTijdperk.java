@@ -13,7 +13,7 @@ import presentationlayer.HandleidingPane;
 import presentationlayer.LobbyView;
 import presentationlayer.SpeelbordPane;
 import proceslayer.DobbelsteenWorpController;
-import proceslayer.HandleidingController;
+import proceslayer.SpelController;
 
 /**
  * StenenTijdperk.java
@@ -44,7 +44,8 @@ public class StenenTijdperk extends Application {
 		
 		// Het aanmaken van een controller die dobbelsteen worpen beheert.
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(dobbelsteenWorp);
-		HandleidingController handleidingController = new HandleidingController(handleidingPane);
+		
+		SpelController spelController = new SpelController(handleidingPane);
 		
 		LobbyView lobbyView = new LobbyView(primaryStage);
 		
@@ -71,7 +72,7 @@ public class StenenTijdperk extends Application {
 		
 		// De knop en de knop action voor de handleiding.
 		Button button = new Button("Handleiding");
-		button.setOnAction(e -> handleidingController.onButtonClick());
+		button.setOnAction(e -> spelController.onButtonClick());
 		grid.add(button, 2, 3);
 		// grid.add(new Button("Afsluiten"), 3, 3);
 

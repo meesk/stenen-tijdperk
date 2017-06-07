@@ -12,12 +12,47 @@
 	<atom:link href="https://www.genuitec.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.genuitec.com</link>
 	<description>The Cloud Control Company</description>
-	<lastBuildDate>Thu, 01 Jun 2017 12:53:43 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 06 Jun 2017 22:09:28 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 	<item>
+		<title>Creating Icons for Darkest Dark Theme.</title>
+		<link>https://www.genuitec.com/creating-icons-for-darkest-dark-theme/</link>
+		<pubDate>Mon, 05 Jun 2017 14:05:23 +0000</pubDate>
+		<dc:creator><![CDATA[Wanda Muriy]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[How-to's]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Programming Tips]]></category>
+		<category><![CDATA[Webclipse]]></category>
+		<category><![CDATA[darkest dark theme]]></category>
+		<category><![CDATA[icons]]></category>
+		<category><![CDATA[tutorial]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=525279</guid>
+		<description><![CDATA[<p>So you have come over to the dark side and now you are ready to make your development environment look even cooler. No matter if you are working with Angular, MyEclipse, Webclipse or Eclipse itself, you can create your own icons to fit your taste. Not only that, you can share your wealth with the [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/creating-icons-for-darkest-dark-theme/">Creating Icons for Darkest Dark Theme.</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
+		<title>Angular 4 is Ready to Crack the Toughest Cookies.</title>
+		<link>https://www.genuitec.com/angular-4-is-ready-to-crack-the-toughest-cookies/</link>
+		<pubDate>Thu, 01 Jun 2017 14:01:32 +0000</pubDate>
+		<dc:creator><![CDATA[Wanda Muriy]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[Angular]]></category>
+		<category><![CDATA[Angular 4]]></category>
+		<category><![CDATA[typescript]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=524274</guid>
+		<description><![CDATA[<p>For all those who might have continued to resist its charms, Angular 4 is worth your while!  A wide range of companies have put their trust in it when it comes to their apps.  More and more developers are also excited about working with this IDE.  You might wonder why.Simple!  For a business or an [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/angular-4-is-ready-to-crack-the-toughest-cookies/">Angular 4 is Ready to Crack the Toughest Cookies.</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
 		<title>Creating Your First Angular App.</title>
 		<link>https://www.genuitec.com/creating-first-angular-app/</link>
 		<pubDate>Thu, 25 May 2017 16:28:47 +0000</pubDate>
@@ -236,49 +271,14 @@
 <p>The post <a rel="nofollow" href="https://www.genuitec.com/upgrade-angular-4/">Upgrade to Angular 4 &#8211; Lost in Angular Migration?</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
 ]]></description>
 		</item>
-		<item>
-		<title>Angular 4, TypeScript 2.2 &#038; More, now in Webclipse CI 4!</title>
-		<link>https://www.genuitec.com/angular-4-typescript-2-2-now-webclipse-ci-4/</link>
-		<pubDate>Mon, 03 Apr 2017 18:53:26 +0000</pubDate>
-		<dc:creator><![CDATA[Anabella]]></dc:creator>
-				<category><![CDATA[Webclipse]]></category>
-		<category><![CDATA[Angular]]></category>
-		<category><![CDATA[Angular 4]]></category>
-		<category><![CDATA[darkest dark]]></category>
-		<category><![CDATA[typescript]]></category>
-		<category><![CDATA[webclipse]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=518411</guid>
-		<description><![CDATA[<p>The day is finally here, and we are not just talking about our release &#8212; Angular 4 is out! Earlier this year we were discussing some of the advantages of Angular 4 like the fact that it comes with better tools, requires 25% less code due to a better compilation, will get updates every 6 [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/angular-4-typescript-2-2-now-webclipse-ci-4/">Angular 4, TypeScript 2.2 &amp; More, now in Webclipse CI 4!</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
-		<item>
-		<title>Darkest Dark – Making it to the 4th most popular plugin in 30 Days</title>
-		<link>https://www.genuitec.com/darkest-dark-popular-plugin/</link>
-		<pubDate>Tue, 07 Mar 2017 15:27:10 +0000</pubDate>
-		<dc:creator><![CDATA[timwebb]]></dc:creator>
-				<category><![CDATA[Eclipse]]></category>
-		<category><![CDATA[General]]></category>
-		<category><![CDATA[Genuitec]]></category>
-		<category><![CDATA[Planet Eclipse]]></category>
-		<category><![CDATA[color]]></category>
-		<category><![CDATA[dark theme]]></category>
-		<category><![CDATA[darkest dark]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=514615</guid>
-		<description><![CDATA[<p>TL;DR Hit the market need, engage with users, and a lot of blood + sweat.The genesis.In short, we were tired of Eclipse looking stagnant. While other “cool” IDEs and Editors have built up their markets, Eclipse has looked about the same for the last decade. Many love that stability, but many others are ready for change. [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/darkest-dark-popular-plugin/">Darkest Dark – Making it to the 4th most popular plugin in 30 Days</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
 	</channel>
 </rss>
 
 <!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
 
-Object Caching 9189/9308 objects using disk
+Object Caching 9196/9317 objects using disk
 Page Caching using disk: enhanced (Requested URI is rejected)
 Content Delivery Network via resources.cloud.genuitec.com
-Database Caching 41/43 queries in 0.006 seconds using disk
+Database Caching 10/44 queries in 0.034 seconds using disk
 
- Served from: www.genuitec.com @ 2017-06-01 08:03:20 by W3 Total Cache -->
+ Served from: www.genuitec.com @ 2017-06-07 03:29:27 by W3 Total Cache -->
