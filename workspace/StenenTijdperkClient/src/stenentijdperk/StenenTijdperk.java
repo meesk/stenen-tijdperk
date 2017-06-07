@@ -3,6 +3,7 @@ package stenentijdperk;
 import java.rmi.Naming;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
+import domainlayer.skeleton.ISpel;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import presentationlayer.HandleidingPane;
 import presentationlayer.LobbyView;
 import presentationlayer.SpeelbordPane;
 import proceslayer.DobbelsteenWorpController;
+import proceslayer.LobbyController;
 import proceslayer.SpelController;
 
 /**
@@ -35,9 +37,7 @@ public class StenenTijdperk extends Application {
 
 		// Het ontvangen van het model dat dobbelsteen worpen beheert.
 		IDobbelsteenWorp dobbelsteenWorp = (IDobbelsteenWorp) Naming.lookup("rmi://localhost/DobbelsteenWorp");
-
-		
-
+		ISpel spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 		// dobbelsteenworppane hierzo
 		HandleidingPane handleidingPane = new HandleidingPane();
 		
@@ -47,7 +47,9 @@ public class StenenTijdperk extends Application {
 		
 		SpelController spelController = new SpelController(handleidingPane);
 		
-		LobbyView lobbyView = new LobbyView(primaryStage);
+		LobbyController lobbyController = new LobbyController(spel);
+		
+		LobbyView lobbyView = new LobbyView(primaryStage, lobbyController);
 		
 		
 		// De grid waarop de visuele objecten geplaatst worden.

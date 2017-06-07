@@ -1,0 +1,29 @@
+package proceslayer;
+
+import java.rmi.RemoteException;
+
+import domainlayer.Spel;
+import domainlayer.skeleton.ISpeler;
+import presentationlayer.LobbyView;
+
+public class LobbyController {
+	
+	private LobbyView lobbyView;
+	private Spel spel;
+	
+	public LobbyController(LobbyView lobbyView){
+		this.lobbyView = lobbyView;
+	}
+	
+	public void OnButtonClick() {
+		ISpeler s;
+		try {
+			s = spel.maakSpeler("Mees");
+			s.getNaam();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

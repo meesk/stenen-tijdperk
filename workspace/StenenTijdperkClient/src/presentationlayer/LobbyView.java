@@ -16,10 +16,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import proceslayer.LobbyController;
 
 public class LobbyView extends BorderPane {
 
-	public LobbyView(Stage primaryStage){
+	public LobbyView(Stage primaryStage, LobbyController controller){
 		
 		StackPane stackPane = new StackPane();
 		
@@ -81,6 +82,8 @@ public class LobbyView extends BorderPane {
 	    klaar.maxWidth(200);
 	    klaar.maxHeight(200);
 	    gridPaneForm.add(klaar, 1 , 12);
+	    
+	    klaar.setOnAction(e -> controller.OnButtonClick());
 	    
 	    //Progessie bar
 	    ProgressBar pb = new ProgressBar(0.25);

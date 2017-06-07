@@ -6,21 +6,27 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 import domainlayer.dobbelstenen.DobbelsteenWorp;
+import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.ISpeler;
 
 /**
  * @author Erwin Olie, s1103026
  * @version 0.2
  */
-public class Spel implements Serializable {
+public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private Speelbord speelbord;
 	private DobbelsteenWorp dobbelsteenWorp;
+	private List<ISpeler> spelers;
 
 	public Spel() throws RemoteException {
+		spelers = new ArrayList<ISpeler>();
 		speelbord = new Speelbord(this);
 		dobbelsteenWorp = new DobbelsteenWorp();
 	}
@@ -41,6 +47,17 @@ public class Spel implements Serializable {
 		Spel spel = (Spel) ois.readObject();
 		ois.close();
 		//
+	}
+	
+	@Override
+	public ISpeler maakSpeler(String naam) throws RemoteException {
+		Speler speler = new Speler(this, naam);
+		
+		synchronized(spelers) {
+			spelers.add(speler);
+		}
+		
+		return speler;
 	}
 
 }

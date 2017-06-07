@@ -1,0 +1,7 @@
+package domainlayer.skeleton;
+
+public interface ISpeler {
+	
+	public void getNaam();
+
+}

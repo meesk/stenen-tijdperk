@@ -1,0 +1,5 @@
+package domainlayer.skeleton;
+
+public interface ISpel extends Remote {
+
+}
