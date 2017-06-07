@@ -2,6 +2,7 @@ package domainlayer;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +12,8 @@ import domainlayer.skeleton.ISpeler;
 
 /**
  * @author	Erwin Olie, s1103026
- * @version	0.1
+ * Enzo Campfens, s1102421 
+ * @version	0.2
  */
 public class Speler extends UnicastRemoteObject implements ISpeler {
 
@@ -19,9 +21,14 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	private List<Stamlid> stamleden;
 	private Map<Middel, Integer> middelen;
 	private String naam;
+	private LocalDate geboorteDatum;
+	private boolean isSpastisch;
 
-	public Speler(Spel spel, String naam) throws RemoteException {
+	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
 		this.naam = naam;
+		this.geboorteDatum = geboorteDatum;
+		this.isSpastisch = isSpastisch;
+		
 		this.spel = spel;
 		stamleden = new ArrayList<>();
 		middelen = new HashMap<>();
@@ -35,6 +42,15 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	public void getNaam() {
 		System.out.println(naam);
 	}
+	
+	public void getGeboorteDatum() {
+		System.out.println(geboorteDatum);
+	}
+	
+	public void getSpasme() {
+		System.out.println(isSpastisch);
+	}
+	
 	
 	public void ontvangMiddel(Middel middel) {
 		ontvangMiddelen(middel, 1);

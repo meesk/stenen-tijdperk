@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +51,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 	
 	@Override
-	public ISpeler maakSpeler(String naam) throws RemoteException {
-		Speler speler = new Speler(this, naam);
+	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
+		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 		
 		synchronized(spelers) {
 			spelers.add(speler);

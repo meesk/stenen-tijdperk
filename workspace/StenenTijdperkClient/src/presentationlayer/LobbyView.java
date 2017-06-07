@@ -1,8 +1,11 @@
 package presentationlayer;
 
+import java.time.LocalDate;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -14,13 +17,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import proceslayer.LobbyController;
 
 public class LobbyView extends BorderPane {
+	
+	private TextField voorNaamField;
+	private DatePicker geboorteDatumPicker;
+	private RadioButton radRood, radGroen, radBlauw, radGeel;
+	private CheckBox isSpastisch;
+	private final ToggleGroup group;
+	private LocalDate localDate;
 
 	public LobbyView(Stage primaryStage, LobbyController controller){
+		
+		controller.registerView(this);
 		
 		StackPane stackPane = new StackPane();
 		
@@ -34,14 +47,14 @@ public class LobbyView extends BorderPane {
 	    Label voornaam = new Label("Voornaam:");
 	    voornaam.setTextFill(Color.WHITE);
 	    gridPaneForm.add(voornaam, 0, 1);
-	    TextField voorNaamField = new TextField();
+	    voorNaamField = new TextField();
 	    gridPaneForm.add(voorNaamField, 1, 1);
 	    
 	    // Date picker input
 	    Label geboorteDatum = new Label("Geboorte datum:");
 	    geboorteDatum.setTextFill(Color.WHITE);
 	    gridPaneForm.add(geboorteDatum, 0, 2);
-	    DatePicker geboorteDatumPicker = new DatePicker();
+	    geboorteDatumPicker = new DatePicker();
 	    gridPaneForm.add(geboorteDatumPicker, 1, 2);
 	    
 	    // Kies kleur input
@@ -50,7 +63,7 @@ public class LobbyView extends BorderPane {
 	    gridPaneForm.add(kiesKleur, 0, 4);
 	    
 	    // Radio buttons kleuren
-	    final ToggleGroup group = new ToggleGroup();
+	    group = new ToggleGroup();
 	    RadioButton radRood = new RadioButton("Rood");
 	    radRood.setTextFill(Color.WHITE);
 	    gridPaneForm.add(radRood, 1, 3);
@@ -74,8 +87,15 @@ public class LobbyView extends BorderPane {
 	    Label spastischLabel = new Label("Ja, ik heb last van spasticiteit");
 	    spastischLabel.setTextFill(Color.WHITE);
 	    gridPaneForm.add(spastischLabel, 0, 10);
-	    RadioButton spastischRad = new RadioButton();
-	    gridPaneForm.add(spastischRad, 1, 10);
+	    isSpastisch = new CheckBox();
+	    isSpastisch.setOnMouseEntered(e -> isSpastisch.setSelected(!isSpastisch.isSelected()));
+	    
+        isSpastisch.getStyleClass().add("big-check-box");
+        VBox root = new VBox(5, isSpastisch);
+        root.setPadding(new Insets(15));
+	    
+	    gridPaneForm.add(root, 1, 10);
+	    this.getStylesheets().add("checkbox.css");
 	    
 	    // Button ik ben klaar
 	    Button klaar = new Button("Ik ben klaar");
@@ -105,5 +125,22 @@ public class LobbyView extends BorderPane {
 		
 		this.getChildren().add(stackPane);
 		this.setCenter(gridPaneForm);
+	}
+
+	public String getNaam() {
+		return voorNaamField.getText();
+	}
+
+	public LocalDate getGeboorteDatum() {
+		localDate = geboorteDatumPicker.getValue();
+		return localDate;
+	}
+
+	public boolean getIsSpastisch() {
+		return isSpastisch.isSelected();
+	}
+
+	public ToggleGroup getGroup() {
+		return group;
 	}
 }
