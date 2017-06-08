@@ -17,9 +17,6 @@ import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 
 /**
- * Spel.java
- * De klasse waar alle elementen tot 1 spel worden gevoegd.
- * 
  * @author Erwin Olie, s1103026
  * Enzo Campfens s1102421
  * Mees Kluivers s1102358

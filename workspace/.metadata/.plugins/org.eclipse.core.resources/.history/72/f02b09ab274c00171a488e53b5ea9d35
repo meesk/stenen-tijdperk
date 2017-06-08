@@ -4,8 +4,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- * ISpeler.java
- * Een interface voor de klasse Speler.java aan de server kant
+ * StenenTijdperk.java
+ * Een simpele Main-klasse waar de RMI server word opgezet.
  * 
  * @author Erwin Olie, s1103026
  * Enzo Campfens s1102421

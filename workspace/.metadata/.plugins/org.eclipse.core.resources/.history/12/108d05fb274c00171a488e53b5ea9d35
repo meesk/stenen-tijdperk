@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 
 /**
  * ISpeler.java
- * Een interface voor de klasse Speler.java aan de server kant
+ * Een interface voor de klasse Speler.java
  * 
  * @author Erwin Olie, s1103026
  * Enzo Campfens s1102421

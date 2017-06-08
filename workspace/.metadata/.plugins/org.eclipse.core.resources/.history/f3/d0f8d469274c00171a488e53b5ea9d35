@@ -3,8 +3,8 @@ package proceslayer;
 import presentationlayer.HandleidingPane;
 
 /**
- * SpelController.java
- * Een controller klasse voor het spel.
+ * StenenTijdperk.java
+ * Een simpele Main-klasse waar de RMI server word opgezet.
  * 
  * @author Enzo Campfens s1102421
  * @version 0.1

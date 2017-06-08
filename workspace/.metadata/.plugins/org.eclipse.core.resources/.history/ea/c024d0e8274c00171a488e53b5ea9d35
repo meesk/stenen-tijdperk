@@ -7,8 +7,8 @@ import domainlayer.skeleton.ISpeler;
 import presentationlayer.LobbyView;
 
 /**
- * LobbyController.java
- * De controller voor de lobby.
+ * StenenTijdperk.java
+ * Een simpele Main-klasse waar de RMI server word opgezet.
  * 
  * @author Erwin Olie, s1103026
  * Enzo Campfens s1102421

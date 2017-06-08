@@ -13,8 +13,6 @@ import domainlayer.Speler;
  * Een simpele Main-klasse waar de RMI server word opgezet.
  * 
  * @author Erwin Olie, s1103026
- * Enzo Campfens s1102421
- * Mees Kluivers s1102358
  * @version 0.4
  */
 public class StenenTijdperk  {

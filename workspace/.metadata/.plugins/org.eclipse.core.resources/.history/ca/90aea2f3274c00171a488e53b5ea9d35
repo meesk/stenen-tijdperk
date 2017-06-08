@@ -5,8 +5,8 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 /**
- * ISpel.java
- * Een interface voor het spel aan de server kant.
+ * StenenTijdperk.java
+ * Een simpele Main-klasse waar de RMI server word opgezet.
  * 
  * @author Enzo Campfens s1102421
  * Mees Kluivers s1102358

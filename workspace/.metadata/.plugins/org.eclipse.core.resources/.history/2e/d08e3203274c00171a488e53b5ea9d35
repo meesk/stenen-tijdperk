@@ -6,16 +6,6 @@ import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import presentationlayer.LobbyView;
 
-/**
- * LobbyController.java
- * De controller voor de lobby.
- * 
- * @author Erwin Olie, s1103026
- * Enzo Campfens s1102421
- * Mees Kluivers s1102358
- * @version 0.1
- */
-
 public class LobbyController {
 	
 	private ISpel spel;
