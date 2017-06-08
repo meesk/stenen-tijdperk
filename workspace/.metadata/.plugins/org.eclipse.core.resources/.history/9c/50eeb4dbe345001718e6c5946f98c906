@@ -1,5 +1,0 @@
-package presentationlayer.skeleton;
-
-public interface IDobbelsteenPane {
-
-}
