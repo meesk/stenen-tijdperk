@@ -21,6 +21,7 @@ markupColor=207,191,173
 numberColor=196,140,255
 operatorColor=255,0,127
 othersIndicationColor=207,191,173
+overriddenByCSS=,AbstractTextEditor.Color.Background.SystemDefault,errorIndicationColorBold,AbstractTextEditor.Color.Foreground.SystemDefault,
 printMarginColor=153,153,153
 searchResultIndicationColor=216,216,216
 taskIndicationColor=255,255,255

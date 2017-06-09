@@ -1,7 +1,7 @@
 #org-eclipse-ui-splash-progressText {
-  color: #9c9696;
+  color: #51f544;
 }
 
 #org-eclipse-ui-splash-progressPart {
-  background-image: url('me-custom:/platform:/plugin/org.eclipse.epp.package.committers/splash.bmp');
+  background-image: url('me-custom:/platform:/plugin/org.eclipse.sdk/splash.bmp');
 }

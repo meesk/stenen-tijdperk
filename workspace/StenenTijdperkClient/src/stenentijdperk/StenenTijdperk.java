@@ -76,7 +76,7 @@ public class StenenTijdperk extends Application {
 		
 		// De knop en de knop action voor de handleiding.
 		Button button = new Button("Handleiding");
-		button.setOnAction(e -> spelController.onButtonClick());
+		button.setOnAction(e -> spelController.onHandleidingButtonClick());
 		grid.add(button, 2, 3);
 		// grid.add(new Button("Afsluiten"), 3, 3);
 

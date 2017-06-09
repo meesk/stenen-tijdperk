@@ -11,3 +11,4 @@ Single-line=comment\=0,0,0,0,0,255,255,255
 Single-line\ comment=0,0,0,0,0,199,221,12
 Type=0,0,0,0,0,82,227,246
 eclipse.preferences.version=1
+overriddenByCSS=,Multi-line comment,Double quoted string,Single-line comment,Single quoted string,

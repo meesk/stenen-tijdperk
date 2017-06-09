@@ -18,7 +18,7 @@ public class SpelController {
 		handleiding = HandleidingPane;
 	}
 	
-	public void onButtonClick() {
+	public void onHandleidingButtonClick() {
 		handleiding.show();
 	}
 
