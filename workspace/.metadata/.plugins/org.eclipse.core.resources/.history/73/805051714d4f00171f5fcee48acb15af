@@ -14,10 +14,9 @@ import presentationlayer.HandleidingPane;
 public class SpelController {
 	
 	// Handleiding View aangemaakt hier.
-	private HandleidingPane handleiding;
+	private HandleidingPane handleiding = new HandleidingPane();
 	
-	public SpelController(HandleidingPane handleiding) {
-		handleiding = handleiding;
+	public SpelController() {
 	}
 	
 	// Toont de handleiding als er op de knop is gedrukt.

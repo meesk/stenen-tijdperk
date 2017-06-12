@@ -17,7 +17,7 @@ public class SpelController {
 	private HandleidingPane handleiding;
 	
 	public SpelController(HandleidingPane handleiding) {
-		handleiding = handleiding;
+		handleiding = handleiding();
 	}
 	
 	// Toont de handleiding als er op de knop is gedrukt.

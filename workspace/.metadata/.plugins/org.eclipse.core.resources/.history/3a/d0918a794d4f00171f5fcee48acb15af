@@ -47,7 +47,7 @@ public class StenenTijdperk extends Application {
 		// Het aanmaken van een controller die dobbelsteen worpen beheert.
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(dobbelsteenWorp);
 		
-		SpelController spelController = new SpelController(handleidingPane);
+		SpelController spelController = new SpelController();
 		
 		LobbyController lobbyController = new LobbyController(spel);
 		
