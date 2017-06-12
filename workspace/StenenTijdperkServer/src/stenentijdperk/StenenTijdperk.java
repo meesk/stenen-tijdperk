@@ -11,10 +11,11 @@ import domainlayer.Speler;
 /**
  * StenenTijdperk.java
  * Een simpele Main-klasse waar de RMI server word opgezet.
- * 
+ *
  * @author Erwin Olie, s1103026
  * Enzo Campfens s1102421
  * Mees Kluivers s1102358
+ * Tristan Caspers s1102755
  * @version 0.4
  */
 public class StenenTijdperk  {
@@ -30,5 +31,5 @@ public class StenenTijdperk  {
 		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
 	}
-	
+
 }

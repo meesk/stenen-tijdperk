@@ -16,8 +16,8 @@ public class SpelController {
 	// Handleiding View aangemaakt hier.
 	private HandleidingPane handleiding;
 	
-	public SpelController(HandleidingPane handleidingPane) {
-		handleiding = handleidingPane;
+	public SpelController(HandleidingPane handleiding) {
+		handleiding = handleiding;
 	}
 	
 	// Toont de handleiding als er op de knop is gedrukt.
