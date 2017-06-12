@@ -19,7 +19,6 @@ public class SpelController {
 	public SpelController() {
 	}
 	
-	// Toont de handleiding als er op de knop is gedrukt.
 	public void onHandleidingButtonClick() {
 		handleiding.show();
 	}
