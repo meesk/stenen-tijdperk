@@ -1,5 +1,6 @@
 package presentationlayer;
 
+<<<<<<< HEAD
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import proceslayer.TableauController;
@@ -22,3 +23,14 @@ public class TableauView extends StackPane {
 		//this.getChildren().addAll();
 	}
 }
+=======
+import domainlayer.skeleton.ITableau;
+
+public class TableauView {
+
+	public void modelChanged(ITableau tableau) {
+		//
+	}
+
+}
+>>>>>>> 02428e714a0cc4023c621104c5265cf7013645ea

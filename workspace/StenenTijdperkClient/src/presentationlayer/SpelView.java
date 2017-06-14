@@ -3,10 +3,11 @@ package presentationlayer;
 import domainlayer.skeleton.IDobbelsteenWorp;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
 
-public class SpelView {
+public class SpelView extends Pane{
 	
 	public SpelView(SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp) throws Exception {
 		// De grid waarop de visuele objecten geplaatst worden.
@@ -34,6 +35,7 @@ public class SpelView {
 		button.setOnAction(e -> spelController.onHandleidingButtonClick());
 		grid.add(button, 2, 3);
 		// grid.add(new Button("Afsluiten"), 3, 3);
+		this.getChildren().add(grid);
 	}
 
 }

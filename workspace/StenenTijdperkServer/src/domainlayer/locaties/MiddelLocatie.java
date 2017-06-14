@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import domainlayer.Middel;
 import domainlayer.Speler;
+import domainlayer.skeleton.ISpeler;
 
 /**
  * @author	Erwin Olie, s1103026
@@ -23,7 +24,7 @@ public class MiddelLocatie extends Locatie {
 		this.middel = middel;
 	}
 
-	@Override
+	/*@Override
 	public void uitvoerenActie(Speler speler) {
 		super.uitvoerenActie(speler);
 		try {
@@ -31,6 +32,12 @@ public class MiddelLocatie extends Locatie {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}*/
+
+	@Override
+	public void uitvoerenActie(ISpeler speler) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

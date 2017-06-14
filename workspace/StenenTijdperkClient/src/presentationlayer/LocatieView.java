@@ -1,5 +1,6 @@
 package presentationlayer;
 
+import domainlayer.skeleton.locaties.ILocatie;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import proceslayer.LocatieController;
@@ -20,5 +21,9 @@ public class LocatieView extends StackPane {
 
 		// View nog opbouwen!
 		//this.getChildren().addAll(selectie-overlay,pane-met-stamleden);
+	}
+
+	public void modelChanged(ILocatie locatie) {
+		//
 	}
 }
