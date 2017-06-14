@@ -1,6 +1,5 @@
 package domainlayer;
 
-<<<<<<< HEAD
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import domainlayer.skeleton.ITableau;
+import presentationlayer.TableauView;
 
 /**
  * @author Tristan Caspers s1102755
@@ -19,7 +19,9 @@ import domainlayer.skeleton.ITableau;
 public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	private List<Stamlid> stamleden;
+	private Speler speler;
 	private Map<Middel, Integer> middelen;
+	private List<TableauView> observers;
 
 	public Tableau() throws RemoteException {
 		stamleden = new ArrayList<>();
@@ -46,39 +48,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void gebruikStamlid(Stamlid stamlid) {
 		stamleden.remove(stamlid);
 	}
-=======
-import java.util.ArrayList;
-import java.util.List;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
-import domainlayer.skeleton.ISpeler;
-import domainlayer.skeleton.ITableau;
-import presentationlayer.TableauView;
-import domainlayer.skeleton.IStamlid;
-
-/**
- * Tableau.java
- * De model klassen voor het Tableau
- * @author Mees Kluivers, s1102358
- * @version 0.1
- *
- */
-
-public class Tableau extends UnicastRemoteObject implements ITableau{
 	
-	private int gereedschap;
-	private ISpeler speler;
-	private List<IStamlid> stamleden;
-	private Middel middelen;
-	private List<TableauView> observers;
-
-	protected Tableau() throws RemoteException {
-		observers = new ArrayList<>();
-	}
-
-	public void addObserver(TableauView observer) {
-		observers.add(observer);
+	public List<Stamlid> getStamleden(){
+		return stamleden;
 	}
 	
 	public void notifyObservers() {
@@ -86,11 +58,13 @@ public class Tableau extends UnicastRemoteObject implements ITableau{
 			observer.modelChanged(this);
 		}
 	}
-
-	public void ontvangStamleden(List<Stamlid> stamleden2) {
-		// TODO Auto-generated method stub
-		
+	
+	public void krijgStamlid(){
+		Stamlid s = new Stamlid(speler);
+		stamleden.add(s);		
 	}
+	
+	public void ontvangStamleden(List<Stamlid> stamleden2) {
 
->>>>>>> 02428e714a0cc4023c621104c5265cf7013645ea
+	}
 }
