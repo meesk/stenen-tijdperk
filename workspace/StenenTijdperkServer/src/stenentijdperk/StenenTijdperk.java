@@ -24,6 +24,8 @@ public class StenenTijdperk  {
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		// Het initialiseren van een nieuw spel.
 		Spel spel = new Spel();
+		spel.initAantalSpelSpelers();
+		
 		// Het opzetten van het RMI register
 		LocateRegistry.createRegistry(1099);
 		// Het registreren van het dobbelsteenworp-model in het register.

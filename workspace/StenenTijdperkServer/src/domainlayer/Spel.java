@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
@@ -31,6 +32,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private Speelbord speelbord;
 	private DobbelsteenWorp dobbelsteenWorp;
 	private List<ISpeler> spelers;
+	private int aangegevenSpelers;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
@@ -65,6 +67,19 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 
 		return speler;
+	}
+	
+	@Override
+	public int getAangegevenSpelers() {
+		return aangegevenSpelers;
+	}
+	
+	public void initAantalSpelSpelers() {
+		Scanner input = new Scanner(System.in); 
+		System.out.println("Met hoeveel spelers wilt u speler? 2 - 4");
+		
+		aangegevenSpelers = input.nextInt();
+		input.close();
 	}
 
 }
