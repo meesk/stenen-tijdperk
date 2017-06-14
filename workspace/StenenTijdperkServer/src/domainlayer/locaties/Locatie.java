@@ -15,12 +15,12 @@ public class Locatie implements ILocatie {
 
 	private int cirkels;
 	private List<Stamlid> stamleden;
-	
+
 	public Locatie(int cirkels) {
 		this.cirkels = cirkels;
 		stamleden = new ArrayList<>();
 	}
-	
+
 	public boolean plaatsStamlid(Stamlid stamlid) {
 		if (stamleden.size() + 1 > cirkels) {
 			return false;
@@ -29,7 +29,7 @@ public class Locatie implements ILocatie {
 		stamlid.getSpeler().gebruikStamlid(stamlid);
 		return true;
 	}
-	
+
 	public void uitvoerenActie(Speler speler) {
 		for (Stamlid stamlid : stamleden) {
 			if (stamlid.getSpeler() != speler) {
@@ -39,5 +39,5 @@ public class Locatie implements ILocatie {
 		}
 		stamleden.removeIf(stamlid -> stamlid.getSpeler() == speler);
 	}
-	
+
 }

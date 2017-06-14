@@ -13,7 +13,7 @@ import presentationlayer.skeleton.IDobbelsteenPane;
 /**
  * DobbelstenPane.java
  * De view van enkele dobbelstenen.
- * 
+ *
  * @author	Erwin Olie, s1103026
  * @version	0.3
  */

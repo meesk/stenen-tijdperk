@@ -11,8 +11,8 @@ import presentationlayer.LobbyView;
  * De controller voor de lobby.
  * 
  * @author Erwin Olie, s1103026
- * Enzo Campfens s1102421
- * Mees Kluivers s1102358
+ * Enzo Campfens, s1102421
+ * Mees Kluivers, s1102358
  * @version 0.1
  */
 

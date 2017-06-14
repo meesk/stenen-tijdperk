@@ -21,15 +21,15 @@ import proceslayer.SpelController;
  * StenenTijdperk.java
  * Een simpele Main-klasse waar de client word opgezet.
  *
- * @author	Erwin Olie, s1103026
- * Enzo Campfens s1102421
- * Mees Kluivers s1102358
+ * @author	Erwin Olie s1103026,
+ * Enzo Campfens s1102421,
+ * Mees Kluivers s1102358,
  * Tristan Caspers s1102755
  * @version	0.5
  */
 public class StenenTijdperk extends Application {
 
-	/** De main method die de javafx applicatie opstart. */
+	/** De main method die de JavaFX applicatie opstart. */
 	public static void main(String[] args) {
 		launch(args);
 	}

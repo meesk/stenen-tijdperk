@@ -13,9 +13,9 @@ import domainlayer.skeleton.ISpeler;
 /**
  * Speler.java
  * Een klasse waar de spelers worden aangemaakt.
- * 
+ *
  * @author	Erwin Olie, s1103026
- * Enzo Campfens, s1102421 
+ * Enzo Campfens, s1102421
  * Mees Kluivers s1102358
  * @version	0.2
  */
@@ -32,7 +32,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.naam = naam;
 		this.geboorteDatum = geboorteDatum;
 		this.isSpastisch = isSpastisch;
-		
+
 		this.spel = spel;
 		stamleden = new ArrayList<>();
 		middelen = new HashMap<>();
@@ -42,24 +42,24 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		middelen.put(Middel.STEEN, 0);
 		middelen.put(Middel.GOUD, 0);
 	}
-	
+
 	public void getNaam() {
 		System.out.println(naam);
 	}
-	
+
 	public void getGeboorteDatum() {
 		System.out.println(geboorteDatum);
 	}
-	
+
 	public void getSpasme() {
 		System.out.println(isSpastisch);
 	}
-	
-	
+
+
 	public void ontvangMiddel(Middel middel) {
 		ontvangMiddelen(middel, 1);
 	}
-	
+
 	public void ontvangMiddelen(Middel middel, int aantal) {
 		middelen.put(middel, middelen.get(middel) + aantal);
 	}

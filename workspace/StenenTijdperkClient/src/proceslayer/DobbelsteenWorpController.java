@@ -7,7 +7,7 @@ import domainlayer.skeleton.IDobbelsteenWorp;
 /**
  * DobbelsteenWorpController.java
  * De controller om de acties uitgevoerd in de view op te vangen.
- * 
+ *
  * @author	Erwin Olie, s1103026
  * @version	0.2
  */
