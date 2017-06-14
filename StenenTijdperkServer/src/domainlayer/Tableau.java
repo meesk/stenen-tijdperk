@@ -27,12 +27,13 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public Tableau() throws RemoteException {
 		stamleden = new ArrayList<>();
-		middelen = new HashMap<>();
-		middelen.put(Middel.VOEDSEL, 0);
-		middelen.put(Middel.HOUT, 0);
-		middelen.put(Middel.LEEM, 0);
-		middelen.put(Middel.STEEN, 0);
-		middelen.put(Middel.GOUD, 0);
+		middelen = new HashMap<Middel, Integer>() {{
+			put(Middel.VOEDSEL, 0);
+			put(Middel.HOUT, 0);
+			put(Middel.LEEM, 0);
+			put(Middel.STEEN, 0);
+			put(Middel.GOUD, 0);
+		}};
 	}
 
 	public void ontvangMiddel(Middel middel) {

@@ -31,7 +31,7 @@ public abstract class Locatie implements ILocatie {
 			return false;
 		}
 		stamleden.add(stamlid);
-		stamlid.getSpeler().gebruikStamlid(stamlid);
+		stamlid.getSpeler().getTableau().gebruikStamlid(stamlid);
 		return true;
 	}
 

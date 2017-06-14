@@ -28,7 +28,7 @@ public class HuttegelStandaard implements IHuttegel {
 	@Override
 	public void uitvoerenActie(Speler speler) {
 		for (Middel middel : middelen) {
-			speler.ontvangMiddel(middel);
+			speler.getTableau().ontvangMiddel(middel);
 		}
 		berekenWaarde();
 		//@@TODO: toevoegen waarde aan puntenspoor
