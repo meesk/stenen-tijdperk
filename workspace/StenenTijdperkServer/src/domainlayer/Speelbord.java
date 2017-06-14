@@ -30,5 +30,10 @@ public class Speelbord {
 		locaties.add(new Hut());
 		locaties.add(new Gereedschapmaker());
 	}
+
+	public Voedselspoor getVoedselspoor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
