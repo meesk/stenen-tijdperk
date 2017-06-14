@@ -1,7 +1,0 @@
-package domainlayer.skeleton;
-
-import java.rmi.Remote;
-
-public interface ISpel extends Remote {
-
-}

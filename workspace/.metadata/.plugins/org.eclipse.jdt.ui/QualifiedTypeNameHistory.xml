@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javafx.scene.control.ScrollPane"/>
-<fullyQualifiedTypeName name="javafx.scene.image.Image"/>
 <fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
 <fullyQualifiedTypeName name="java.rmi.Remote"/>
 <fullyQualifiedTypeName name="domainlayer.skeleton.IDobbelsteen"/>
@@ -34,7 +33,6 @@
 <fullyQualifiedTypeName name="domainlayer.locaties.Akker"/>
 <fullyQualifiedTypeName name="domainlayer.locaties.Gereedschapmaker"/>
 <fullyQualifiedTypeName name="domainlayer.locaties.Hut"/>
-<fullyQualifiedTypeName name="domainlayer.Speler"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
@@ -43,4 +41,7 @@
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="domainlayer.locaties.Beschavingskaart"/>
+<fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+<fullyQualifiedTypeName name="domainlayer.Speler"/>
 </qualifiedTypeNameHistroy>

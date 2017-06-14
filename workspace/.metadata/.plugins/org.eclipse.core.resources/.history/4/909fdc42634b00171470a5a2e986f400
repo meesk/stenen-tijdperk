@@ -1,5 +1,0 @@
-package domainlayer.skeleton;
-
-public interface ISpel {
-
-}

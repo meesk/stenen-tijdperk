@@ -1,8 +1,0 @@
-package domainlayer;
-
-public enum Kleur {
-	ROOD,
-	GEEL,
-	GROEN,
-	BLAUW
-}

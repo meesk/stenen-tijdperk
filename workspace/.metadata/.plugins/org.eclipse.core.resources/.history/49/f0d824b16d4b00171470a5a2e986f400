@@ -1,6 +1,0 @@
-.big-check-box > .box {
-    -fx-padding: 1em 1em 2em 2em ;
-}
-.big-check-box > .box > .mark {
-    -fx-padding: 4em 4em 5em 5em; 
-}
