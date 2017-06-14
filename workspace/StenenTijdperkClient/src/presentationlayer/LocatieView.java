@@ -18,6 +18,7 @@ public class LocatieView extends StackPane {
 
 		controller.registerView(this);
 
+		// View nog opbouwen!
 		//this.getChildren().addAll(selectie-overlay,pane-met-stamleden);
 	}
 }

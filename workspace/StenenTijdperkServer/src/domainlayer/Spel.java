@@ -19,10 +19,11 @@ import domainlayer.skeleton.ISpeler;
 /**
  * Spel.java
  * De klasse waar alle elementen tot 1 spel worden gevoegd.
- * 
+ *
  * @author Erwin Olie, s1103026
  * Enzo Campfens s1102421
  * Mees Kluivers s1102358
+ * Tristan Caspers s1102755
  * @version 0.3
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
@@ -54,15 +55,15 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		ois.close();
 		//
 	}
-	
+
 	@Override
 	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
 		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
-		
+
 		synchronized(spelers) {
 			spelers.add(speler);
 		}
-		
+
 		return speler;
 	}
 

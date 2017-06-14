@@ -20,7 +20,6 @@ public class LocatieController {
 		this.model = model;
 	}
 
-
 	public void registerView(LocatieView view) {
 		this.view = view;
 	}
