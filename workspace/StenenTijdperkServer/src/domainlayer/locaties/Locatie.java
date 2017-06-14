@@ -3,22 +3,27 @@ package domainlayer.locaties;
 import java.util.List;
 import java.util.ArrayList;
 
-import domainlayer.Speler;
+import domainlayer.Speelbord;
 import domainlayer.Stamlid;
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.locaties.ILocatie;
+import presentationlayer.LocatieView;
 
 /**
  * @author	Erwin Olie, s1103026
  * @version	0.1
  */
-public class Locatie implements ILocatie {
+public abstract class Locatie implements ILocatie {
 
 	private int cirkels;
-	private List<Stamlid> stamleden;
+	protected List<Stamlid> stamleden;
+	private List<LocatieView> observers;
+	protected Speelbord speelbord;
 
 	public Locatie(int cirkels) {
 		this.cirkels = cirkels;
 		stamleden = new ArrayList<>();
+		observers = new ArrayList<>();
 	}
 
 	public boolean plaatsStamlid(Stamlid stamlid) {
@@ -30,14 +35,22 @@ public class Locatie implements ILocatie {
 		return true;
 	}
 
-	public void uitvoerenActie(Speler speler) {
-		for (Stamlid stamlid : stamleden) {
-			if (stamlid.getSpeler() != speler) {
-				continue;
-			}
-			stamlid.getSpeler().ontvangStamlid(stamlid);
+	public abstract void uitvoerenActie(ISpeler speler);
+
+	public void addObserver(LocatieView observer) {
+		observers.add(observer);
+	}
+	
+	public void notifyObservers() {
+		for (LocatieView observer : observers) {
+			observer.modelChanged(this);
 		}
-		stamleden.removeIf(stamlid -> stamlid.getSpeler() == speler);
+	}
+
+	public void verwijderStamleden(List<Stamlid> stamleden) {
+		for (Stamlid stamlid : stamleden) {
+			this.stamleden.remove(stamlid);
+		}
 	}
 
 }

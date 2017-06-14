@@ -3,6 +3,8 @@ package domainlayer.skeleton;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import domainlayer.Tableau;
+
 /**
  * ISpeler.java
  * Een interface voor de klasse Speler.java aan de server kant
@@ -20,5 +22,7 @@ public interface ISpeler extends Remote{
 	public void getGeboorteDatum() throws RemoteException;
 	
 	public void getSpasme() throws RemoteException;
+
+	public Tableau getTableau();
 
 }
