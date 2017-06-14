@@ -21,8 +21,8 @@ import domainlayer.skeleton.IStamlid;
 public class Tableau extends UnicastRemoteObject implements ITableau{
 	
 	private int gereedschap;
-	private ISpeler speler;
-	private List<IStamlid> stamleden;
+	private Speler speler;
+	private List<Stamlid> stamleden;
 	private Middel middelen;
 	private List<TableauView> observers;
 
@@ -38,6 +38,15 @@ public class Tableau extends UnicastRemoteObject implements ITableau{
 		for (TableauView observer : observers) {
 			observer.modelChanged(this);
 		}
+	}
+	
+	public List<Stamlid> getStamleden(){
+		return stamleden;
+	}
+	
+	public void krijgStamlid(){
+		Stamlid s = new Stamlid(speler);
+		stamleden.add(s);
 	}
 
 	public void ontvangStamleden(List<Stamlid> stamleden2) {
