@@ -1,6 +1,6 @@
 package proceslayer;
 
-import presentationlayer.HandleidingPane;
+import presentationlayer.HandleidingView;
 
 /**
  * SpelController.java
@@ -14,9 +14,9 @@ import presentationlayer.HandleidingPane;
 public class SpelController {
 	
 	// Handleiding View aangemaakt hier.
-	private HandleidingPane handleiding;
+	private HandleidingView handleiding;
 	
-	public SpelController(HandleidingPane handleidingPane) {
+	public SpelController(HandleidingView handleidingPane) {
 		handleiding = handleidingPane;
 	}
 	
