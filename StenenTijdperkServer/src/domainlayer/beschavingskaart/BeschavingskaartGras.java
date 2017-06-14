@@ -1,10 +1,6 @@
 package domainlayer.beschavingskaart;
 
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
-*/
-
-import domainlayer.Symbool;
+import domainlayer.enums.Symbool;
 
 public class BeschavingskaartGras implements IBeschavingskaartAchtergrond {
 

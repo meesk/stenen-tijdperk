@@ -1,11 +1,7 @@
 package domainlayer.beschavingskaart;
 
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
-*/
-
-import domainlayer.Middel;
 import domainlayer.Speler;
+import domainlayer.enums.Middel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

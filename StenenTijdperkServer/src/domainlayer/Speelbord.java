@@ -3,6 +3,7 @@ package domainlayer;
 import java.util.ArrayList;
 import java.util.List;
 
+import domainlayer.enums.Middel;
 import domainlayer.locaties.Akker;
 import domainlayer.locaties.Gereedschapmaker;
 import domainlayer.locaties.Hut;

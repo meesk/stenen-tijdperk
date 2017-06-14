@@ -1,10 +1,6 @@
 package domainlayer.beschavingskaart;
 
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
-*/
-
-import domainlayer.Beschaving;
+import domainlayer.enums.Beschaving;
 
 public class BeschavingskaartZand implements IBeschavingskaartAchtergrond{
 

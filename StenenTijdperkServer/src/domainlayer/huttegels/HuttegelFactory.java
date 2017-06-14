@@ -3,7 +3,7 @@ package domainlayer.huttegels;
 import java.util.ArrayList;
 import java.util.List;
 
-import domainlayer.Middel;
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.huttegels.IHuttegel;
 
 /**

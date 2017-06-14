@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import presentationlayer.TableauView;
 
