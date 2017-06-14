@@ -25,7 +25,7 @@ import domainlayer.skeleton.ISpeler;
  * Enzo Campfens s1102421
  * Mees Kluivers s1102358
  * Tristan Caspers s1102755
- * @version 0.3
+ * @version 0.4
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 
@@ -75,11 +75,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 	
 	public void initAantalSpelSpelers() {
-		Scanner input = new Scanner(System.in); 
-		System.out.println("Met hoeveel spelers wilt u speler? 2 - 4");
-		
-		aangegevenSpelers = input.nextInt();
-		input.close();
+		// hier moet een popup komen.
+	}
+
+	@Override
+	public List<ISpeler> getSpelerLijst() throws RemoteException {
+		return spelers;
 	}
 
 }

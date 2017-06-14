@@ -3,6 +3,7 @@ package domainlayer.skeleton;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.util.List;
 
 import domainlayer.Tableau;
 
@@ -13,7 +14,7 @@ import domainlayer.Tableau;
  * @author Enzo Campfens s1102421
  * Mees Kluivers s1102358
  * Tristan Caspers s1102755
- * @version 0.1
+ * @version 0.2
  */
 
 public interface ISpel extends Remote {
@@ -21,5 +22,7 @@ public interface ISpel extends Remote {
 	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException;
 	
 	public int getAangegevenSpelers() throws RemoteException;
+	
+	public List<ISpeler> getSpelerLijst() throws RemoteException;
 
 }

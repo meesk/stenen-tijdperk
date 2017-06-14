@@ -1,11 +1,20 @@
 package presentationlayer;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
+
+/**
+ * SpelView.java - Het bestand met alle informatie om het spelbord te tekenen.
+ * 
+ * @author Enzo Campfens s1102421
+ * @versie 0.1
+ *
+ */
 
 public class SpelView extends Pane{
 	
