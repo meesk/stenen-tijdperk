@@ -15,7 +15,7 @@ import domainlayer.Tableau;
  * @version 0.1
  */
 
-public interface ISpeler extends Remote{
+public interface ISpeler extends Remote {
 	
 	public void getNaam() throws RemoteException;
 	

@@ -14,11 +14,11 @@ public class MiddelLocatie extends Locatie {
 
 	// Het type middel dat deze locatie bevat.
 	private Middel middel;
-	
+
 	public MiddelLocatie(Middel middel) {
 		super(Integer.MAX_VALUE);
 	}
-	
+
 	public MiddelLocatie(int cirkels, Middel middel) {
 		super(cirkels);
 		this.middel = middel;
