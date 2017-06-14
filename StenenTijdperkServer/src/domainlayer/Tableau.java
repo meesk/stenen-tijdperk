@@ -13,7 +13,8 @@ import presentationlayer.TableauView;
 
 /**
  * @author Tristan Caspers s1102755
- * @version 0.1
+ * @author Erwin Olie s1103026
+ * @version 0.2
  */
 
 // MOET NOG AANGEPAST WORDEN IN VERBAND MET SPELER.JAVA ANDERS ONTSTAAT DUBBELE CODE
@@ -71,5 +72,19 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public void ontvangStamleden(List<Stamlid> stamleden2) {
 
+	}
+
+	public int getTotaalGereedschap() {
+		//
+		return 0;
+	}
+
+	public void verhoogGereedschap() {
+		//
+	}
+
+	public void geefGereedschapFiche() {
+		//
+		verhoogGereedschap();
 	}
 }
