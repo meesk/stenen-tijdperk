@@ -8,6 +8,7 @@ import domainlayer.Speler;
 import domainlayer.enums.Beschaving;
 import domainlayer.enums.Middel;
 import domainlayer.enums.Symbool;
+import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -33,10 +34,10 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 	@Override
-	public void uitvoerenActie(Speler ISpeler) {
+	public void uitvoerenActie(ISpeler speler) {
 		// TODO Auto-generated method stub
-
+		
 	}
 }

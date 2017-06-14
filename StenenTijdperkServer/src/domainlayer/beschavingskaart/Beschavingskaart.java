@@ -2,6 +2,8 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.Speler;
 import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.locaties.Locatie;
+import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 
 /*@Author Alex de Bruin, s1103096
@@ -9,7 +11,11 @@ import javafx.scene.image.Image;
 */
 
 
-public abstract class Beschavingskaart {
+public abstract class Beschavingskaart extends Locatie {
+	public Beschavingskaart() {
+		super(1);
+	}
+
 	private Image asset;
 	private IBeschavingskaartAchtergrond achtergrond;
 	private BeschavingskaartStatus status;
@@ -29,7 +35,7 @@ public abstract class Beschavingskaart {
 
 	public abstract int getKosten();
 
-	public abstract void uitvoerenActie(Speler ISpeler);
+	public abstract void uitvoerenActie(ISpeler speler);
 
 	public void betaalMiddelen(){
 

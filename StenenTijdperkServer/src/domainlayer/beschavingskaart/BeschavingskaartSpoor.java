@@ -1,6 +1,7 @@
 package domainlayer.beschavingskaart;
 
 import domainlayer.Speler;
+import domainlayer.skeleton.ISpeler;
 
 /*@Author Alex de Bruin, s1103096
 *@Version 0.1
@@ -29,7 +30,7 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 	}
 
 	@Override
-	public void uitvoerenActie(Speler ISpeler) {
+	public void uitvoerenActie(ISpeler speler) {
 		// TODO Auto-generated method stub
 
 	}

@@ -2,6 +2,7 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.Speler;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -26,7 +27,7 @@ public class BeschavingskaartMiddel extends Beschavingskaart {
 	}
 
 	@Override
-	public void uitvoerenActie(Speler ISpeler) {
+	public void uitvoerenActie(ISpeler speler) {
 
 
 	}

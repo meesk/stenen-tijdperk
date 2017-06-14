@@ -1,28 +1,40 @@
 package domainlayer.spoor;
 
-/*	author Alex de Bruin, s1103096
- * 	Version 0.1
- */
+import java.util.HashMap;
+import java.util.Map;
 
-import java.rmi.RemoteException;
-
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
 
-public class Voedselspoor implements ISpoor{
+/**
+ * @author Erwin Olie s1103026
+ * @version 0.2
+ */
+public class Voedselspoor implements ISpoor {
 
-	private int markeersteen;
+	private Map<ISpeler, Integer> markeerstenen;
 
-
-	public Voedselspoor(int markeersteen) throws RemoteException {
-		this.markeersteen = markeersteen;
+	public Voedselspoor() {
+		markeerstenen = new HashMap<ISpeler, Integer>();
 	}
 
-	public int getMarkeersteen() {
-		return markeersteen;
+	public Map<ISpeler, Integer> getMarkeerstenen() {
+		return markeerstenen;
 	}
 
-	public void setMarkeersteen(int markeersteen) {
-		this.markeersteen = markeersteen;
+	public int getProductie(ISpeler speler) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void verhoogProductie(ISpeler speler) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

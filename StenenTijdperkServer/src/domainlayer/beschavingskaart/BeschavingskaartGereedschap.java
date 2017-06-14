@@ -7,6 +7,7 @@ package domainlayer.beschavingskaart;
 import java.rmi.RemoteException;
 
 import domainlayer.Speler;
+import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -37,7 +38,7 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 	}
 
 	@Override
-	public void uitvoerenActie(Speler ISpeler) {
+	public void uitvoerenActie(ISpeler speler) {
 		// TODO Auto-generated method stub
 
 	}

@@ -24,11 +24,13 @@ public class BeschavingskaartFactory {
 
 	public BeschavingskaartFactory() throws RemoteException{
 		beschavingskaarten = new ArrayList<Beschavingskaart>() {{
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/01.png"), new Puntenspoor(3), new BeschavingskaartGras(Symbool.MUZIEK)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/02.png"), new Puntenspoor(3), new BeschavingskaartGras(Symbool.MUZIEK)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/03.png"), new Puntenspoor(3), new BeschavingskaartZand(3, Beschaving.HUTTENBOUWERS)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/02.png"), new Voedselspoor(1), new BeschavingskaartZand(1, Beschaving.BOEREN)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/01.png"), new Voedselspoor(1), new BeschavingskaartGras(Symbool.ZONNEWIJZER)));
+			//@@TODO voor alex:
+			//new Puntenspoor(..) vervangen door iets anders
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/01.png"), /*new Puntenspoor(3)*/null, new BeschavingskaartGras(Symbool.MUZIEK)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/02.png"), /*new Puntenspoor(3)*/null, new BeschavingskaartGras(Symbool.MUZIEK)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/03.png"), /*new Puntenspoor(3)*/null, new BeschavingskaartZand(3, Beschaving.HUTTENBOUWERS)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/02.png"), /*new Puntenspoor(1)*/null, new BeschavingskaartZand(1, Beschaving.BOEREN)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/01.png"), /*new Puntenspoor(1)*/null, new BeschavingskaartGras(Symbool.ZONNEWIJZER)));
 			add(new BeschavingskaartMiddel(new Image("file:assets/Beschavingskaarten/Grondstof/01.png"), 1, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), Middel.GOUD));
 			add(new BeschavingskaartMiddel(new Image("file:assets/Beschavingskaarten/Grondstof/02.png"), 1, new BeschavingskaartZand(1, Beschaving.BOEREN), Middel.STEEN));
 			add(new BeschavingskaartMiddel(new Image("file:assets/Beschavingskaarten/Grondstof/03.png"), 1, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), Middel.STEEN));

@@ -24,7 +24,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
 	private List<TableauView> observers;
-
+	private int gereedschap;
+	
 	public Tableau() throws RemoteException {
 		stamleden = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{
@@ -34,6 +35,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			put(Middel.STEEN, 0);
 			put(Middel.GOUD, 0);
 		}};
+		gereedschap = 0;
 	}
 
 	public void ontvangMiddel(Middel middel) {
@@ -49,7 +51,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public void voedenStamleden(Map<Middel, Integer> middelen){
-		middelen.keySet();
+		//
 	}
 
 	public void gebruikStamlid(Stamlid stamlid) {
@@ -71,17 +73,16 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden.add(s);
 	}
 
-	public void ontvangStamleden(List<Stamlid> stamleden2) {
-
+	public void ontvangStamleden(List<Stamlid> stamleden) {
+		this.stamleden.addAll(stamleden);
 	}
 
 	public int getTotaalGereedschap() {
-		//
-		return 0;
+		return gereedschap;
 	}
 
 	public void verhoogGereedschap() {
-		//
+		gereedschap += 1;
 	}
 
 	public void geefGereedschapFiche() {

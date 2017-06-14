@@ -1,27 +1,24 @@
 package domainlayer.spoor;
 
-/*
- * Author Alex de Bruin, s1103096
- * Version 0.1
- */
+import java.util.HashMap;
+import java.util.Map;
 
-import java.rmi.RemoteException;
-
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
 
+/**
+ * @author Erwin Olie s1103026
+ * @version 0.2
+ */
 public class Puntenspoor implements ISpoor {
 
-	private int markeersteen;
+	private Map<ISpeler, Integer> markeerstenen;
 
-	public Puntenspoor(int markeersteen) throws RemoteException {
-		this.markeersteen = markeersteen;
+	public Puntenspoor() {
+		markeerstenen = new HashMap<ISpeler, Integer>();
 	}
 
-	public int getMarkeersteen() {
-		return markeersteen;
-	}
-
-	public void setMarkeersteen(int markeersteen) {
-		this.markeersteen = markeersteen;
+	public Map<ISpeler, Integer> getMarkeerstenen() {
+		return markeerstenen;
 	}
 }

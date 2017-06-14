@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import domainlayer.Speelbord;
 import domainlayer.Stamlid;
 import domainlayer.Tableau;
-import domainlayer.Voedselspoor;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.spoor.Voedselspoor;
 
 /**
  * @author	Erwin Olie, s1103026
