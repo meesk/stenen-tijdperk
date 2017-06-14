@@ -1,7 +1,7 @@
 package domainlayer.huttegels;
 
-import domainlayer.Middel;
 import domainlayer.Speler;
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.huttegels.IHuttegel;
 
 /**

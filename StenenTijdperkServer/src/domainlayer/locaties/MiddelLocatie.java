@@ -2,8 +2,8 @@ package domainlayer.locaties;
 
 import java.rmi.RemoteException;
 
-import domainlayer.Middel;
 import domainlayer.Speler;
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 
 /**

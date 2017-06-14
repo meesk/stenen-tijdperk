@@ -1,4 +1,4 @@
-package domainlayer;
+package domainlayer.enums;
 
 /*@Author Alex de Bruin, s1103096
 *@Version 0.1

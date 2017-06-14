@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import presentationlayer.TableauView;
 
@@ -15,7 +16,7 @@ import presentationlayer.TableauView;
  * @version 0.1
  */
 
-// MOET NOG AANGEPAST WORDEN SAMEN MET SPELER.JAVA
+// MOET NOG AANGEPAST WORDEN IN VERBAND MET SPELER.JAVA ANDERS ONTSTAAT DUBBELE CODE
 public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	private List<Stamlid> stamleden;
@@ -44,7 +45,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void ontvangStamlid(Stamlid stamlid) {
 		stamleden.add(stamlid);
 	}
-	
+
 	public void voedenStamleden(Map<Middel, Integer> middelen){
 		middelen.keySet();
 	}
@@ -52,22 +53,22 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void gebruikStamlid(Stamlid stamlid) {
 		stamleden.remove(stamlid);
 	}
-	
+
 	public List<Stamlid> getStamleden(){
 		return stamleden;
 	}
-	
+
 	public void notifyObservers() {
 		for (TableauView observer : observers) {
 			observer.modelChanged(this);
 		}
 	}
-	
+
 	public void krijgStamlid(){
 		Stamlid s = new Stamlid(speler);
-		stamleden.add(s);		
+		stamleden.add(s);
 	}
-	
+
 	public void ontvangStamleden(List<Stamlid> stamleden2) {
 
 	}

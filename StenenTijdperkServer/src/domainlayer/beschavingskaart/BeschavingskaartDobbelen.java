@@ -4,10 +4,10 @@ package domainlayer.beschavingskaart;
  *Versie 0.1*/
 import java.rmi.RemoteException;
 
-import domainlayer.Beschaving;
-import domainlayer.Middel;
 import domainlayer.Speler;
-import domainlayer.Symbool;
+import domainlayer.enums.Beschaving;
+import domainlayer.enums.Middel;
+import domainlayer.enums.Symbool;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

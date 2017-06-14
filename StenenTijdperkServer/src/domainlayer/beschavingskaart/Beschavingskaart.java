@@ -1,7 +1,7 @@
 package domainlayer.beschavingskaart;
 
-import domainlayer.BeschavingskaartStatus;
 import domainlayer.Speler;
+import domainlayer.enums.BeschavingskaartStatus;
 import javafx.scene.image.Image;
 
 /*@Author Alex de Bruin, s1103096

@@ -1,4 +1,4 @@
-package domainlayer;
+package domainlayer.enums;
 
 /**
  * MiddelEnum.java

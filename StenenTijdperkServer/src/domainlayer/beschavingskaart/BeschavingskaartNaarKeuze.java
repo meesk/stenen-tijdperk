@@ -5,8 +5,8 @@ package domainlayer.beschavingskaart;
 */
 import java.rmi.RemoteException;
 
-import domainlayer.Middel;
 import domainlayer.Speler;
+import domainlayer.enums.Middel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

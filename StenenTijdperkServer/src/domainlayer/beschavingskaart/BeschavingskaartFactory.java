@@ -12,9 +12,9 @@ import javafx.scene.image.Image;
 import java.util.List;
 import java.rmi.RemoteException;
 
-import domainlayer.Beschaving;
-import domainlayer.Middel;
-import domainlayer.Symbool;
+import domainlayer.enums.Beschaving;
+import domainlayer.enums.Middel;
+import domainlayer.enums.Symbool;
 
 public class BeschavingskaartFactory {
 
