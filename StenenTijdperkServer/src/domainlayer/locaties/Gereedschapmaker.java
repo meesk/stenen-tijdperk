@@ -14,7 +14,7 @@ import domainlayer.skeleton.ISpeler;
  */
 public class Gereedschapmaker extends Locatie {
 
-	public Gereedschapmaker() {
+	public Gereedschapmaker() throws RemoteException {
 		super(1);
 	}
 

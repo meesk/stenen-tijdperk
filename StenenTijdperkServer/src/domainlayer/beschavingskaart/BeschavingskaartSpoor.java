@@ -13,6 +13,9 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.spoor.Puntenspoor;
 import domainlayer.spoor.Voedselspoor;
+
+import java.rmi.RemoteException;
+
 import domainlayer.Speelbord;
 import domainlayer.Speler;
 import javafx.scene.image.Image;
@@ -28,7 +31,7 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 
 	ImageView imageView = new ImageView(asset);
 
-	BeschavingskaartSpoor(Image asset, int waarde, IBeschavingskaartAchtergrond achtergrond){
+	BeschavingskaartSpoor(Image asset, int waarde, IBeschavingskaartAchtergrond achtergrond) throws RemoteException{
 		this.waarde = waarde;
 		this.achtergrond = achtergrond;
 	}

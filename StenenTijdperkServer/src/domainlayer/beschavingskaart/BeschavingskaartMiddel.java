@@ -1,5 +1,7 @@
 package domainlayer.beschavingskaart;
 
+import java.rmi.RemoteException;
+
 /**
  * @author Alex de Bruin, s1103096
  * @version 0.1
@@ -26,7 +28,7 @@ public class BeschavingskaartMiddel extends Beschavingskaart {
 	private Middel[] middel;
 	ImageView imageView = new ImageView(asset);
 
-	public BeschavingskaartMiddel(Image asset, int Waarde, IBeschavingskaartAchtergrond achtergrond, Middel... middel) {
+	public BeschavingskaartMiddel(Image asset, int Waarde, IBeschavingskaartAchtergrond achtergrond, Middel... middel) throws RemoteException {
 		this.middel = middel;
 		this.Waarde = Waarde;
 		this.achtergrond = achtergrond;
