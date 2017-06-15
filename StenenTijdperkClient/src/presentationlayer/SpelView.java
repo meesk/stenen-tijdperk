@@ -1,7 +1,9 @@
 package presentationlayer;
 
-import domainlayer.skeleton.IDobbelsteenWorp;
+import java.io.IOException;
 
+import domainlayer.skeleton.IDobbelsteenWorp;
+import domainlayer.skeleton.ISpel;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -11,7 +13,8 @@ import proceslayer.SpelController;
 /**
  * SpelView.java - Het bestand met alle informatie om het spelbord te tekenen.
  * 
- * @author Enzo Campfens s1102421
+ * @author Erwin Olie s1103026
+ * Enzo Campfens s1102421
  * @versie 0.1
  *
  */
@@ -40,10 +43,20 @@ public class SpelView extends Pane{
 		// grid.add(new Button("Vorige Beurt"), 1, 3);
 
 		// De knop en de knop action voor de handleiding.
-		Button button = new Button("Handleiding");
-		button.setOnAction(e -> spelController.onHandleidingButtonClick());
-		grid.add(button, 2, 3);
-		// grid.add(new Button("Afsluiten"), 3, 3);
+		Button handleidingButton = new Button("Handleiding");
+		handleidingButton.setOnAction(e -> spelController.onHandleidingButtonClick());
+		grid.add(handleidingButton, 2, 3);
+		
+		Button opslaan = new Button("Opslaan");
+		opslaan.setOnAction(e -> {
+			try {
+				spelController.onOpslaanButtonClick();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
+		grid.add(opslaan, 3, 3);
+		
 		this.getChildren().add(grid);
 	}
 

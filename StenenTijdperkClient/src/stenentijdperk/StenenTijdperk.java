@@ -74,7 +74,7 @@ public class StenenTijdperk extends Application {
 
 		// Het definieren van de controllers
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(dobbelsteenWorp);
-		SpelController spelController = new SpelController(handleidingPane);
+		SpelController spelController = new SpelController(handleidingPane, spel);
 		LobbyController lobbyController = new LobbyController(spel);
 
 		// Het definieren van de views
@@ -82,7 +82,7 @@ public class StenenTijdperk extends Application {
 		SpelView spelView = new SpelView(spelController, dobbelsteenWorpController, dobbelsteenWorp);
 		
 		// Het voorbereiden en tonen van de stage.
-		Scene scene = new Scene(spelView, 884, 780);
+		Scene scene = new Scene(lobbyView, 884, 780);
 		primaryStage.setTitle("Het Stenen Tijdperk");
 		primaryStage.setScene(scene);
 		primaryStage.show();

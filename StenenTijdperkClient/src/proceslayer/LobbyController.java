@@ -34,8 +34,10 @@ public class LobbyController {
 		
 		try {	
 			
-			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
+			System.out.println(spel.getSpelerLijst().size() + " van de " + spel.getAangegevenSpelers() + " zijn geregistreerd!");
 			
+			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
+						
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
