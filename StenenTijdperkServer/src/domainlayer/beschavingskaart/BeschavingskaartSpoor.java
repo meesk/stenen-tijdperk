@@ -11,6 +11,9 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.spoor.Puntenspoor;
+import domainlayer.spoor.Voedselspoor;
+import domainlayer.Speelbord;
 import domainlayer.Speler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,6 +40,18 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
+		if(waarde == 1){
+			Speelbord speelbord = super.speelbord;
+			Voedselspoor voedselspoor = speelbord.getVoedselspoor();
+			int productie = voedselspoor.getProductie(speler);
+			if(productie < 10){
+				voedselspoor.verhoogProductie(speler);
+			}
+		} else {
+			Speelbord speelbord = super.speelbord;
+			Puntenspoor puntenspoor = speelbord.getPuntenspoor();
+			puntenspoor.verhoogProductie(speler, waarde);
+		}
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
 
 /**	@author Alex de Bruin, s1103096
- *  @ Erwin olie. s1103026
+ *  <br>Erwin olie. s1103026
  * 	@Version 0.1
  *
  * <br>
