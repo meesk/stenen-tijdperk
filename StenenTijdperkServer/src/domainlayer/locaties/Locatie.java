@@ -1,6 +1,7 @@
 package domainlayer.locaties;
 
 import java.util.List;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import domainlayer.Speelbord;
@@ -35,7 +36,7 @@ public abstract class Locatie implements ILocatie {
 		return true;
 	}
 
-	public abstract void uitvoerenActie(ISpeler speler);
+	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
 
 	public void addObserver(LocatieView observer) {
 		observers.add(observer);

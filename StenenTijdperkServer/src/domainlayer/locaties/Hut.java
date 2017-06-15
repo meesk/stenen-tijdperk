@@ -1,5 +1,6 @@
 package domainlayer.locaties;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,7 @@ import domainlayer.skeleton.ISpeler;
 
 /**
  * @author	Erwin Olie, s1103026
- * Mees Kluivers, s1102358
+ * @author Mees Kluivers, s1102358
  *
  * @version	0.1
  */
@@ -20,7 +21,7 @@ public class Hut extends Locatie {
 	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen aantal stamleden
 		Tableau tableau = speler.getTableau();
 		int aantalStamleden = tableau.getStamleden().size();

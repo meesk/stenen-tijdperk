@@ -1,5 +1,6 @@
 package domainlayer.locaties;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class Akker extends Locatie {
 	
 	@Override
 	/** @see Sequentie Diagram: 10 Gebruiken Akker **/
-	public void uitvoerenActie(ISpeler speler) {
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen Voedselspoor
 		Speelbord speelbord = super.speelbord;
 		Voedselspoor voedselspoor = speelbord.getVoedselspoor();
