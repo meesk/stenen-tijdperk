@@ -1,12 +1,16 @@
 package domainlayer.beschavingskaart;
 
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
+/**
+* @Author Alex de Bruin, s1103096
+* @Version 0.1
+*
+* <br>
+* <br>
+* Dit is de constructor voor de gereedschapskaart die naast het tableau komt te liggen.
 */
 
-import java.rmi.RemoteException;
 
-import domainlayer.Speler;
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,33 +18,59 @@ import javafx.scene.image.ImageView;
 public class BeschavingskaartGereedschap extends Beschavingskaart {
 
 	private Image asset;
+	private int kosten;
+	private BeschavingskaartStatus status;
 	private int waarde;
 	private IBeschavingskaartAchtergrond achtergrond;
-	private boolean isNaastTableau = false;
+	private boolean naastTableau = false;
 	ImageView imageView = new ImageView(asset);
-	//private Gereedschap gereedschap;
-	BeschavingskaartGereedschap(Image asset, int waarde, IBeschavingskaartAchtergrond achtergrond, boolean isNaastTableau){
+
+
+	BeschavingskaartGereedschap(Image asset, int waarde, IBeschavingskaartAchtergrond achtergrond, boolean naastTableau){
 		this.waarde = waarde;
 		this.achtergrond = achtergrond;
-		this.isNaastTableau = isNaastTableau;
+		this.naastTableau = naastTableau;
 		this.asset = asset;
 	}
 
-	public void setIsNaastTableau(boolean change){
-		isNaastTableau = change;
+	public boolean isNaastTableau() {
+		return naastTableau;
+	}
+	public void setNaastTableau(boolean naastTableau){
+		this.naastTableau = naastTableau;
 
 	}
 
 	@Override
 	public int getKosten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return kosten;
 	}
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public BeschavingskaartStatus getStatus() {
+		return status;
+	}
+
+	@Override
+	public void setStatus(BeschavingskaartStatus status) {
+		this.status = status;
+	}
+
+	public Image getAsset() {
+		return asset;
+	}
+
+	public int getWaarde() {
+		return waarde;
+	}
+
+	public IBeschavingskaartAchtergrond getAchtergrond() {
+		return achtergrond;
 	}
 
 }

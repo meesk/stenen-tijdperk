@@ -1,38 +1,64 @@
 package domainlayer.beschavingskaart;
 
-import domainlayer.Speler;
-import domainlayer.skeleton.ISpeler;
-
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
+/**
+* @Author Alex de Bruin, s1103096
+* @Version 0.1
+*
+* <br>
+* <br>
+* Dit is de constructor die de kaarten die Voedselspoor punten dragen en kaarten die puntenSpoor puntendragen aanmaakt.
 */
 
-import domainlayer.skeleton.spoor.ISpoor;
+import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.skeleton.ISpeler;
+import domainlayer.Speler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class BeschavingskaartSpoor extends Beschavingskaart{
 
 	private Image asset;
-	private ISpoor spoor;
+	private int waarde;
+	private int kosten;
+	private BeschavingskaartStatus status;
 	private IBeschavingskaartAchtergrond achtergrond;
+
 	ImageView imageView = new ImageView(asset);
 
-	BeschavingskaartSpoor(Image asset, ISpoor spoor, IBeschavingskaartAchtergrond achtergrond){
-		this.spoor = spoor;
+	BeschavingskaartSpoor(Image asset, int waarde, IBeschavingskaartAchtergrond achtergrond){
+		this.waarde = waarde;
 		this.achtergrond = achtergrond;
 	}
 
 	@Override
 	public int getKosten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return kosten;
 	}
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public BeschavingskaartStatus getStatus() {
+		return status;
+	}
+
+	@Override
+	public void setStatus(BeschavingskaartStatus status) {
+		this.status = status;
+	}
+
+	public Image getAsset() {
+		return asset;
+	}
+
+	public IBeschavingskaartAchtergrond getAchtergrond() {
+		return achtergrond;
+	}
+
+	public int getWaarde() {
+		return waarde;
 	}
 
 

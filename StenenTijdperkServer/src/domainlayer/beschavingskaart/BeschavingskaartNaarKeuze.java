@@ -1,11 +1,14 @@
 package domainlayer.beschavingskaart;
 
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
-*/
-import java.rmi.RemoteException;
-
-import domainlayer.Speler;
+/**
+ * @author Alex de Bruin
+ * @version 0.1
+ *
+ * <br>
+* <br>
+* Dit is de kaart die de speler naast zijn tableau legt en later kan in wisselen voor grondstoffen.
+ */
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
@@ -14,6 +17,8 @@ import javafx.scene.image.ImageView;
 public class BeschavingskaartNaarKeuze extends Beschavingskaart {
 
 	private Image asset;
+	private int kosten;
+	private BeschavingskaartStatus status;
 	private IBeschavingskaartAchtergrond achtergrond;
 	private boolean isNaastTableau;
 	private Middel middelen;
@@ -28,12 +33,42 @@ public class BeschavingskaartNaarKeuze extends Beschavingskaart {
 	@Override
 	public int getKosten() {
 		// TODO Auto-generated method stub
-		return 0;
+		return kosten;
 	}
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
-
 	}
+
+	@Override
+	public BeschavingskaartStatus getStatus() {
+		// TODO Auto-generated method stub
+		return status;
+	}
+
+	@Override
+	public void setStatus(BeschavingskaartStatus status) {
+		this.status = status;
+	}
+	public boolean isNaastTableau() {
+		return isNaastTableau;
+	}
+
+	public void setNaastTableau(boolean isNaastTableau) {
+		this.isNaastTableau = isNaastTableau;
+	}
+
+	public Image getAsset() {
+		return asset;
+	}
+
+	public IBeschavingskaartAchtergrond getAchtergrond() {
+		return achtergrond;
+	}
+
+	public Middel getMiddelen() {
+		return middelen;
+	}
+
+
 }

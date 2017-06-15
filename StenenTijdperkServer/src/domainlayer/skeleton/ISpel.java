@@ -1,5 +1,6 @@
 package domainlayer.skeleton;
 
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
@@ -24,5 +25,7 @@ public interface ISpel extends Remote {
 	public int getAangegevenSpelers() throws RemoteException;
 	
 	public List<ISpeler> getSpelerLijst() throws RemoteException;
+	
+	public void opslaan() throws IOException;
 
 }

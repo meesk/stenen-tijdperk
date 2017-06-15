@@ -11,11 +11,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Optional;
 
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
+import javafx.scene.control.TextInputDialog;
 
 /**
  * Spel.java
@@ -25,7 +26,7 @@ import domainlayer.skeleton.ISpeler;
  * Enzo Campfens s1102421
  * Mees Kluivers s1102358
  * Tristan Caspers s1102755
- * @version 0.4
+ * @version 0.6
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 
@@ -75,7 +76,15 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 	
 	public void initAantalSpelSpelers() {
-		// hier moet een popup komen.
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle("Server");
+		dialog.setHeaderText("Aantal speel personen, 2 tot 4");
+		dialog.setContentText("Aantal personen :");
+
+		Optional<String> result = dialog.showAndWait();
+		if (result.isPresent()){
+			aangegevenSpelers = Integer.parseInt(result.get());
+		}
 	}
 
 	@Override

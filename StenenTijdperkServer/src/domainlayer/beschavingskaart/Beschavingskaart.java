@@ -6,8 +6,12 @@ import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
+/**
+* @Author Alex de Bruin, s1103096
+* @Version 0.1
+*<br>
+* <br>
+* Dit is een abstracte klasse waar alle beschavingskaarten van overerven.
 */
 
 
@@ -29,13 +33,10 @@ public abstract class Beschavingskaart extends Locatie {
 		return asset;
 	}
 
-	public BeschavingskaartStatus getStatus(){
-		return status;
-	}
-
-	public abstract int getKosten();
-
+	public abstract BeschavingskaartStatus getStatus();
+	public abstract void setStatus(BeschavingskaartStatus status);
 	public abstract void uitvoerenActie(ISpeler speler);
+	public abstract int getKosten();
 
 	public void betaalMiddelen(){
 
@@ -44,5 +45,7 @@ public abstract class Beschavingskaart extends Locatie {
 	public void betalling(){
 
 	}
+
+
 }
 
