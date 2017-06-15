@@ -10,7 +10,6 @@ import java.util.Map.Entry;
 
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
-import domainlayer.spoor.Voedselspoor;
 import presentationlayer.TableauView;
 
 /**
@@ -29,8 +28,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
-		stamleden = new ArrayList<>();
 		// Klaarzetten Spel moet nog 5 stamleden hieraan toevoegen!
+		stamleden = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{
 			put(Middel.VOEDSEL, 12);
 			put(Middel.HOUT, 0);
