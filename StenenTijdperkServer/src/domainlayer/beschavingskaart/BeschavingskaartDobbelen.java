@@ -1,5 +1,6 @@
 package domainlayer.beschavingskaart;
 
+<<<<<<< HEAD
 /**
  * @author Alex de Bruin, s1103096
  * @version 0.1
@@ -10,6 +11,13 @@ package domainlayer.beschavingskaart;
 import domainlayer.BeschavingskaartStatus;
 import domainlayer.Middel;
 import domainlayer.Speler;
+=======
+import domainlayer.Speler;
+import domainlayer.enums.Beschaving;
+import domainlayer.enums.Middel;
+import domainlayer.enums.Symbool;
+import domainlayer.skeleton.ISpeler;
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -37,8 +45,9 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 	public int getKosten() {
 		return kosten;
 	}
-
+	
 	@Override
+<<<<<<< HEAD
 	public void uitvoerenActie(Speler ISpeler) {
 	}
 
@@ -65,6 +74,11 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 
 	public Middel[] getMiddel() {
 		return middel;
+=======
+	public void uitvoerenActie(ISpeler speler) {
+		// TODO Auto-generated method stub
+		
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 	}
 
 }

@@ -3,8 +3,8 @@ package proceslayer;
 
 import java.util.Map;
 
-import domainlayer.Middel;
 import domainlayer.Tableau;
+import domainlayer.enums.Middel;
 import presentationlayer.BetaalView;
 
 /**

@@ -1,5 +1,6 @@
 package domainlayer.beschavingskaart;
 
+<<<<<<< HEAD
 /**
  * @author Alex de Bruin, s1103096
  * @version 0.1
@@ -16,7 +17,11 @@ import domainlayer.BeschavingskaartStatus;
 */
 
 import domainlayer.Middel;
+=======
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 import domainlayer.Speler;
+import domainlayer.enums.Middel;
+import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -43,7 +48,7 @@ public class BeschavingskaartMiddel extends Beschavingskaart {
 	}
 
 	@Override
-	public void uitvoerenActie(Speler ISpeler) {
+	public void uitvoerenActie(ISpeler speler) {
 
 	}
 

@@ -23,7 +23,7 @@ public class TableauView extends StackPane {
 		
 		//this.getChildren().addAll();
 	}
-	
+
 	public void modelChanged(ITableau tableau) {
 		//
 	}

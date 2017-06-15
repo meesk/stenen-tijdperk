@@ -1,6 +1,7 @@
 package domainlayer.spoor;
 
 import java.util.HashMap;
+<<<<<<< HEAD
 
 /**	@author Alex de Bruin, s1103096
  * 	@Version 0.1
@@ -10,13 +11,22 @@ import java.util.HashMap;
 * Dit is de klasse die het Voedselspoor aanmaakt en bijhoudt.
  */
 
+=======
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 import java.util.Map;
 
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
 
-public class Voedselspoor implements ISpoor{
+/**
+ * @author Erwin Olie s1103026
+ * @version 0.3
+ */
+public class Voedselspoor implements ISpoor {
 
+	private Map<ISpeler, Integer> markeerstenen;
+
+<<<<<<< HEAD
 	Map<ISpeler, Integer> markeerstenen;
 
 	Voedselspoor(ISpeler speler, int aantal){
@@ -48,6 +58,27 @@ public class Voedselspoor implements ISpoor{
 	}
 
 	public void verhoogProductie(int aantal) {
+=======
+	public Voedselspoor() {
+		markeerstenen = new HashMap<ISpeler, Integer>();
+	}
+
+	public Map<ISpeler, Integer> getMarkeerstenen() {
+		return markeerstenen;
+	}
+
+	public int getProductie(ISpeler speler) {
+		return markeerstenen.get(speler);
+	}
+
+	public void verhoogProductie(ISpeler speler) {
+		markeerstenen.put(speler, markeerstenen.get(speler) + 1);
+
+	}
+
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 
 	}
 

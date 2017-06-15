@@ -35,7 +35,6 @@ public class LobbyView extends BorderPane {
 
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
-	private RadioButton radRood, radGroen, radBlauw, radGeel;
 	private CheckBox isSpastisch;
 	private final ToggleGroup group;
 	private LocalDate localDate;

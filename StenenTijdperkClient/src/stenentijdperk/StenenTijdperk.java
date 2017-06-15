@@ -64,25 +64,25 @@ public class StenenTijdperk extends Application {
 		//A buddha statue to bless your code to be bug free.
 		//
 
-		// Het ontvangen van het model dat dobbelsteen worpen beheert.
+		// Het definieren van de modellen
 		IDobbelsteenWorp dobbelsteenWorp = (IDobbelsteenWorp) Naming.lookup("rmi://localhost/DobbelsteenWorp");
 		ISpel spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
-		// dobbelsteenworppane hierzo
+		
+		// ...
 		HandleidingView handleidingPane = new HandleidingView();
 
 
-		// Het aanmaken van een controller die dobbelsteen worpen beheert.
+		// Het definieren van de controllers
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(dobbelsteenWorp);
-
 		SpelController spelController = new SpelController(handleidingPane);
-
 		LobbyController lobbyController = new LobbyController(spel);
 
+		// Het definieren van de views
 		LobbyView lobbyView = new LobbyView(primaryStage, lobbyController);
 		SpelView spelView = new SpelView(spelController, dobbelsteenWorpController, dobbelsteenWorp);
-
+		
 		// Het voorbereiden en tonen van de stage.
-		Scene scene = new Scene(lobbyView, 1000, 800);
+		Scene scene = new Scene(spelView, 884, 780);
 		primaryStage.setTitle("Het Stenen Tijdperk");
 		primaryStage.setScene(scene);
 		primaryStage.show();

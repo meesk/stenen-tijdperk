@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import domainlayer.Speelbord;
 import domainlayer.Stamlid;
 import domainlayer.Tableau;
-import domainlayer.Voedselspoor;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.spoor.Voedselspoor;
 
 /**
  * @author	Erwin Olie, s1103026
@@ -20,6 +20,7 @@ public class Akker extends Locatie {
 	}
 	
 	@Override
+	/** @see Sequentie Diagram: 10 Gebruiken Akker **/
 	public void uitvoerenActie(ISpeler speler) {
 		// Verhogen Voedselspoor
 		Speelbord speelbord = super.speelbord;

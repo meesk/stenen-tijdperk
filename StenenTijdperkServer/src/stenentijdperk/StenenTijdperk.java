@@ -16,7 +16,7 @@ import domainlayer.Speler;
  * Enzo Campfens s1102421,
  * Mees Kluivers s1102358,
  * Tristan Caspers s1102755
- * @version 0.4
+ * @version 0.5
  */
 public class StenenTijdperk  {
 
@@ -24,9 +24,10 @@ public class StenenTijdperk  {
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		// Het initialiseren van een nieuw spel.
 		Spel spel = new Spel();
+		// Het vragen met hoeveel spelers het spel wordt gespeelt.
 		spel.initAantalSpelSpelers();
 		
-		// Het opzetten van het RMI register
+		// Het opzetten van het RMI register.
 		LocateRegistry.createRegistry(1099);
 		// Het registreren van het dobbelsteenworp-model in het register.
 		Naming.rebind("DobbelsteenWorp", spel.getDobbelsteenWorp());

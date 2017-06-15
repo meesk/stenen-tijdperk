@@ -1,5 +1,10 @@
 package domainlayer.beschavingskaart;
 
+<<<<<<< HEAD
+=======
+import domainlayer.Speler;
+import domainlayer.skeleton.ISpeler;
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 
 /**
 * @Author Alex de Bruin, s1103096
@@ -36,6 +41,7 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void uitvoerenActie(Speler ISpeler) {
 	}
 
@@ -56,6 +62,10 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}
+=======
+	public void uitvoerenActie(ISpeler speler) {
+		// TODO Auto-generated method stub
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 
 	public int getWaarde() {
 		return waarde;

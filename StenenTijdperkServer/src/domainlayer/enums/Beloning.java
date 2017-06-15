@@ -1,3 +1,4 @@
+<<<<<<< HEAD:StenenTijdperkServer/src/domainlayer/Beloning.java
 package domainlayer;
 
 /**
@@ -5,7 +6,14 @@ package domainlayer;
  * @version 0.2
  */
 
+=======
+package domainlayer.enums;
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438:StenenTijdperkServer/src/domainlayer/enums/Beloning.java
 
+/**
+ * @author Erwin Olie s1103026
+ * @version 0.1
+ */
 public enum Beloning {
 	HOUT(1), LEEM(2), STEEN(3), GOUD(4), GEREEDSCHAP(5), VOEDSELS(6);
 

@@ -1,4 +1,4 @@
-package domainlayer;
+package domainlayer.enums;
 
 /**
  * @author	Erwin Olie, s1103026

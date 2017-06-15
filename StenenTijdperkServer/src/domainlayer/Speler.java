@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 
 /**
@@ -22,8 +23,6 @@ import domainlayer.skeleton.ISpeler;
 public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	private Spel spel;
-	private List<Stamlid> stamleden;
-	private Map<Middel, Integer> middelen;
 	private String naam;
 	private LocalDate geboorteDatum;
 	private boolean isSpastisch;
@@ -35,42 +34,18 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.isSpastisch = isSpastisch;
 
 		this.spel = spel;
-		stamleden = new ArrayList<>();
-		middelen = new HashMap<>();
-		middelen.put(Middel.VOEDSEL, 0);
-		middelen.put(Middel.HOUT, 0);
-		middelen.put(Middel.LEEM, 0);
-		middelen.put(Middel.STEEN, 0);
-		middelen.put(Middel.GOUD, 0);
 	}
 
-	public void getNaam() {
-		System.out.println(naam);
+	public String getNaam() {
+		return naam;
 	}
 
-	public void getGeboorteDatum() {
-		System.out.println(geboorteDatum);
+	public LocalDate getGeboorteDatum() {
+		return geboorteDatum;
 	}
 
-	public void getSpasme() {
-		System.out.println(isSpastisch);
-	}
-
-
-	public void ontvangMiddel(Middel middel) {
-		ontvangMiddelen(middel, 1);
-	}
-
-	public void ontvangMiddelen(Middel middel, int aantal) {
-		middelen.put(middel, middelen.get(middel) + aantal);
-	}
-
-	public void ontvangStamlid(Stamlid stamlid) {
-		stamleden.add(stamlid);
-	}
-
-	public void gebruikStamlid(Stamlid stamlid) {
-		stamleden.remove(stamlid);
+	public boolean getSpasme() {
+		return isSpastisch;
 	}
 
 	public Spel getSpel() {

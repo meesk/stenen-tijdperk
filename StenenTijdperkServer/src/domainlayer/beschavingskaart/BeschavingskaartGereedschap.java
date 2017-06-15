@@ -12,6 +12,7 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.BeschavingskaartStatus;
 import domainlayer.Speler;
+import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -47,7 +48,12 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void uitvoerenActie(Speler ISpeler) {
+=======
+	public void uitvoerenActie(ISpeler speler) {
+		// TODO Auto-generated method stub
+>>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 
 	}
 

@@ -33,11 +33,8 @@ public class LobbyController {
 		ISpeler s;
 		
 		try {	
-			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
-			s.getNaam();
-			s.getGeboorteDatum();
-			s.getSpasme();
 			
+			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();

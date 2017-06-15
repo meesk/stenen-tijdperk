@@ -1,7 +1,7 @@
 package domainlayer.huttegels;
 
-import domainlayer.Middel;
 import domainlayer.Speler;
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.huttegels.IHuttegel;
 
 /**
@@ -28,7 +28,7 @@ public class HuttegelStandaard implements IHuttegel {
 	@Override
 	public void uitvoerenActie(Speler speler) {
 		for (Middel middel : middelen) {
-			speler.ontvangMiddel(middel);
+			speler.getTableau().ontvangMiddel(middel);
 		}
 		berekenWaarde();
 		//@@TODO: toevoegen waarde aan puntenspoor
