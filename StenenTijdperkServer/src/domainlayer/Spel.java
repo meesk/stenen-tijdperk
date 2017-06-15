@@ -17,6 +17,7 @@ import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.paint.Color;
 
 /**
  * Spel.java
@@ -56,25 +57,22 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		Spel spel = (Spel) ois.readObject();
 		ois.close();
-		//
 	}
 
 	@Override
 	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
-		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 
-		synchronized(spelers) {
-			spelers.add(speler);
+		if(this.spelers.size() < 4) {
+			Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 		}
-
 		return speler;
 	}
-	
+
 	@Override
 	public int getAangegevenSpelers() {
 		return aangegevenSpelers;
 	}
-	
+
 	public void initAantalSpelSpelers() {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Server");
@@ -84,12 +82,19 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent()){
 			aangegevenSpelers = Integer.parseInt(result.get());
+			synchronized(spelers) {
+				spelers.add(speler);
+			}
 		}
+	}
+
+	public boolean checkSpelers() {
+		return true;
 	}
 
 	@Override
 	public List<ISpeler> getSpelerLijst() throws RemoteException {
-		return spelers;
+		// TODO Auto-generated method stub
+		return null;
 	}
-
 }

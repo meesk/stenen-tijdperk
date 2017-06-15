@@ -1,5 +1,7 @@
 package domainlayer.huttegels;
 
+import java.rmi.RemoteException;
+
 import domainlayer.Speler;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.huttegels.IHuttegel;
@@ -28,10 +30,13 @@ public class HuttegelStandaard implements IHuttegel {
 	@Override
 	public void uitvoerenActie(Speler speler) {
 		for (Middel middel : middelen) {
-			speler.getTableau().ontvangMiddel(middel);
+			try {
+				speler.getTableau().ontvangMiddel(middel);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		berekenWaarde();
 		//@@TODO: toevoegen waarde aan puntenspoor
 	}
-
 }

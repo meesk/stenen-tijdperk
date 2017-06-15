@@ -27,10 +27,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private List<TableauView> observers;
 	private int[] gereedschap;
 
-	public Tableau() throws RemoteException {
+	public Tableau(Speler speler) throws RemoteException {
+		this.speler = speler;
 		stamleden = new ArrayList<>();
+		// Klaarzetten Spel moet nog 5 stamleden hieraan toevoegen!
 		middelen = new HashMap<Middel, Integer>() {{
-			put(Middel.VOEDSEL, 0);
+			put(Middel.VOEDSEL, 12);
 			put(Middel.HOUT, 0);
 			put(Middel.LEEM, 0);
 			put(Middel.STEEN, 0);
@@ -101,7 +103,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		//
 		verhoogGereedschap();
 	}
-	
+
 	public void verwijderMiddelen(Map<Middel, Integer> middelen){
 		for (Entry<Middel, Integer> entry : middelen.entrySet()) {
 			// Verwijder de middelen uit de lijst van middelen van het tableau
@@ -109,57 +111,57 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		    System.out.println(entry.getKey() + " " + entry.getValue());
 		}
 	}
-	
+
 	/**
 	 * Kijkt of middelen genoeg zijn, en of het tableau deze middelen heeft
 	 * @author Mees Kluivers, s1102358
 	 * @param middelen
 	 * @return boolean true (stamleden gevoed), false (stamleden niet gevoed)
-	 * @throws RemoteException 
+	 * @throws RemoteException
 	 */
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException{
-		
+
 	    List<Integer> valuesVanSpeler = new ArrayList<Integer>(middelen.values());
 	    List<Integer> ingevoerdeValues = new ArrayList<Integer>(this.middelen.values());
 	    Integer aantalMiddelen = 0;
-	    for (int i = 0; i < valuesVanSpeler.size(); i++) { 
+	    for (int i = 0; i < valuesVanSpeler.size(); i++) {
 		    // Check of er niet teveel middelen zijn ingevult
 	    	if (!(valuesVanSpeler.get(i) <= ingevoerdeValues.get(i)))
 	    		return false;
 
-    		aantalMiddelen = valuesVanSpeler.get(i);	
+    		aantalMiddelen = valuesVanSpeler.get(i);
 	    }
-	    
+
 
 	    // Check of er genoeg middelen zijn ingevult
 	    if (stamleden.size() != aantalMiddelen)
 	    	return false;
-	    	
+
 	    verwijderMiddelen(middelen);
 		return true;
 	}
-	
+
 	/**
 	 * @author Mees Kluivers, s1102358
 	 * @param middelen
 	 * @return true (betaald), false (niet betaald)
 	 */
 	public boolean betalen(Map<Middel, Integer> middelen){
-		
+
 	    List<Integer> values = new ArrayList<Integer>(middelen.values());
 	    List<Integer> values1 = new ArrayList<Integer>(this.middelen.values());
 	    Integer aantalMiddelen = 0;
-	    for (int i = 0; i < values.size(); i++) { 
+	    for (int i = 0; i < values.size(); i++) {
 		    // Check of er niet teveel middelen zijn ingevult
 	    	if (!(values.get(i) <= values1.get(i)))
 	    		return false;
-	    				
-    		aantalMiddelen = values.get(i);	
+
+    		aantalMiddelen = values.get(i);
 	    }
-	    
+
 	    if (stamleden.size() != aantalMiddelen)
 	    	return false;
-	  
+
 		return true;
 	}
 }
