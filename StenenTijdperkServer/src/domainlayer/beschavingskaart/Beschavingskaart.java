@@ -1,5 +1,7 @@
 package domainlayer.beschavingskaart;
 
+import java.rmi.RemoteException;
+
 import domainlayer.Speler;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.locaties.Locatie;
@@ -16,7 +18,7 @@ import javafx.scene.image.Image;
 
 
 public abstract class Beschavingskaart extends Locatie {
-	public Beschavingskaart() {
+	public Beschavingskaart() throws RemoteException {
 		super(1);
 	}
 

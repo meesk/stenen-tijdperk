@@ -16,7 +16,7 @@ import domainlayer.skeleton.ISpeler;
  */
 public class Hut extends Locatie {
 
-	public Hut() {
+	public Hut() throws RemoteException {
 		super(2);
 	}
 

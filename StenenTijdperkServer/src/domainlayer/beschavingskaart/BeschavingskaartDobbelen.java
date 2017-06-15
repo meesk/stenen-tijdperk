@@ -1,5 +1,7 @@
 package domainlayer.beschavingskaart;
 
+import java.rmi.RemoteException;
+
 import domainlayer.Speelbord;
 /**
  * @author Alex de Bruin, s1103096
@@ -26,7 +28,7 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 	private BeschavingskaartStatus status;
 	ImageView imageView = new ImageView(asset);
 
-	public BeschavingskaartDobbelen(Image asset, int waarde, Middel[] middel, IBeschavingskaartAchtergrond achtergrond) {
+	public BeschavingskaartDobbelen(Image asset, int waarde, Middel[] middel, IBeschavingskaartAchtergrond achtergrond) throws RemoteException {
 		this.asset = asset;
 		this.waarde = waarde;
 		this.middel = middel;

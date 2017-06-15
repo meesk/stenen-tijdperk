@@ -1,5 +1,7 @@
 package domainlayer.beschavingskaart;
 
+import java.rmi.RemoteException;
+
 /**
  * @author Alex de Bruin
  * @version 0.1
@@ -24,7 +26,7 @@ public class BeschavingskaartNaarKeuze extends Beschavingskaart {
 	private Middel middelen;
 	ImageView imageView = new ImageView(asset);
 
-	public BeschavingskaartNaarKeuze(Image asset, IBeschavingskaartAchtergrond achtergrond, boolean isNaastTableau, Middel middelen){
+	public BeschavingskaartNaarKeuze(Image asset, IBeschavingskaartAchtergrond achtergrond, boolean isNaastTableau, Middel middelen) throws RemoteException{
 		this.achtergrond = achtergrond;
 		this.isNaastTableau = isNaastTableau;
 		this.middelen = middelen;

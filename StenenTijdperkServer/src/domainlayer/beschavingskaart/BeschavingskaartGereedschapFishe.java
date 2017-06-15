@@ -1,5 +1,7 @@
 package domainlayer.beschavingskaart;
 
+import java.rmi.RemoteException;
+
 /**
 * @Author Alex de Bruin, s1103096
 * @Version 0.1
@@ -22,7 +24,7 @@ public class BeschavingskaartGereedschapFishe extends Beschavingskaart {
 	private BeschavingskaartStatus status;
 	private IBeschavingskaartAchtergrond achtergrond;
 	ImageView imageView = new ImageView(asset);
-	BeschavingskaartGereedschapFishe(Image asset, IBeschavingskaartAchtergrond achtergrond){
+	BeschavingskaartGereedschapFishe(Image asset, IBeschavingskaartAchtergrond achtergrond) throws RemoteException{
 		this.achtergrond = achtergrond;
 	}
 	@Override

@@ -1,5 +1,7 @@
 package domainlayer;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +19,13 @@ import domainlayer.spoor.Voedselspoor;
  * @author	Erwin Olie, s1103026
  * @version	0.2
  */
-public class Speelbord {
+public class Speelbord extends UnicastRemoteObject {
 
 	private Spel spel;
 	private List<Locatie> locaties;
 	private ISpoor[] sporen;
 
-	public Speelbord(Spel spel) {
+	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
 		locaties = new ArrayList<Locatie>() {{
 			add(new MiddelLocatie(7, Middel.HOUT)); //Bos

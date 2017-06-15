@@ -20,11 +20,11 @@ public class MiddelLocatie extends Locatie {
 	// Het type middel dat deze locatie bevat.
 	private Middel middel;
 
-	public MiddelLocatie(Middel middel) {
+	public MiddelLocatie(Middel middel) throws RemoteException {
 		super(Integer.MAX_VALUE);
 	}
 
-	public MiddelLocatie(int cirkels, Middel middel) {
+	public MiddelLocatie(int cirkels, Middel middel) throws RemoteException {
 		super(cirkels);
 		this.middel = middel;
 	}

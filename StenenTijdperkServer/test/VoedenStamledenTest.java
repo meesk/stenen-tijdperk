@@ -25,7 +25,7 @@ public class VoedenStamledenTest {
 	
 	@Before
 	public void setUp() throws RemoteException{
-		tableau = new Tableau();
+		tableau = new Tableau(null);
 		stamleden = new ArrayList<Stamlid>();
 		// voeg 5 stamleden toe
 		for(int i = 0; i < 5; i++){
