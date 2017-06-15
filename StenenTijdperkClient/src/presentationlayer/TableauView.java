@@ -20,6 +20,7 @@ public class TableauView extends StackPane {
 		controller.registerView(this);
 
 		// View nog opbouwen!
+		
 		//this.getChildren().addAll();
 	}
 	

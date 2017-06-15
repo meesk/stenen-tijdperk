@@ -1,28 +1,54 @@
 package domainlayer.spoor;
 
-/*	author Alex de Bruin, s1103096
- * 	Version 0.1
+import java.util.HashMap;
+
+/**	@author Alex de Bruin, s1103096
+ * 	@Version 0.1
+ *
+ *<br>
+* <br>
+* Dit is de klasse die het Voedselspoor aanmaakt en bijhoudt.
  */
 
-import java.rmi.RemoteException;
+import java.util.Map;
 
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
 
 public class Voedselspoor implements ISpoor{
 
-	private int markeersteen;
+	Map<ISpeler, Integer> markeerstenen;
 
-
-	public Voedselspoor(int markeersteen) throws RemoteException {
-		this.markeersteen = markeersteen;
+	Voedselspoor(ISpeler speler, int aantal){
+		markeerstenen = new HashMap<>();
+		markeerstenen.put(speler, 0);
 	}
 
-	public int getMarkeersteen() {
-		return markeersteen;
+	@Override
+	public void verwijderPunten(ISpeler speler, int aantal) {
+		markeerstenen.put(speler, markeerstenen.get(speler) - aantal);
 	}
 
-	public void setMarkeersteen(int markeersteen) {
-		this.markeersteen = markeersteen;
+	@Override
+	public void verhoogPunten(ISpeler speler, int aantal) {
+		markeerstenen.put(speler, markeerstenen.get(speler) + aantal);
+	}
+
+	@Override
+	public Map<ISpeler, Integer> getMarkeerstenen() {
+		return null;
+		// moet nog veranderd worden maar hoe??
+	}
+
+
+	// doet dit niet precies het zelfde als die andere methode
+	public Map<ISpeler, Integer> getProductie(int aantal) {
+		return null;
+
+	}
+
+	public void verhoogProductie(int aantal) {
+
 	}
 
 }

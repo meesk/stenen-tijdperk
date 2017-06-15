@@ -1,0 +1,14 @@
+package domainlayer;
+
+/**
+ *
+ * @author Alex
+ *@version 0.1
+ *
+ *Deze enum bevat alle beschavingen die voor kunnen komen op een beschavingskaar.
+ */
+
+public enum BeschavingskaartStatus {
+	VRIJ, BEZET, BETALEN, ONTVANGEN;
+
+}

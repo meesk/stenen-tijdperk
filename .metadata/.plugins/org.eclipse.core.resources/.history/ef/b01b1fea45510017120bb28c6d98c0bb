@@ -1,0 +1,12 @@
+package domainlayer;
+
+/**
+ * 
+ * @author Alex
+ *@version 0.1
+ */
+
+public enum BeschavingskaartStatus {
+	VRIJ, BEZET, BETALEN, ONTVANGEN;
+
+}

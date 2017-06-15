@@ -1,12 +1,13 @@
 package domainlayer;
 
+
 import domainlayer.skeleton.ISpeler;
 
 public class Voedselspoor {
 
 	public void verhoogProductie(ISpeler speler) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int getProductie(ISpeler speler) {
@@ -16,7 +17,7 @@ public class Voedselspoor {
 
 	public void notifyObservers() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

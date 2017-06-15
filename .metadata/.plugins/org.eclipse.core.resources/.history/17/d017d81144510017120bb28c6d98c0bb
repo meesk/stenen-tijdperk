@@ -1,0 +1,19 @@
+package domainlayer.skeleton.spoor;
+
+/**
+* @Author Alex de Bruin, s1103096
+* @Version 0.1
+*/
+
+import java.rmi.Remote;
+import java.util.Map;
+
+import domainlayer.skeleton.ISpeler;
+public interface ISpoor extends Remote{
+
+	public void verwijderPunten(ISpeler speler, int aantal);
+	public void verhoogPunten(ISpeler speler, int aantal);
+	// ik krijg dit niet aan de praat!!
+	public Map<Integer, ISpeler> getMarkeerstenen();
+}
+

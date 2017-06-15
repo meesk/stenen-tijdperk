@@ -1,24 +1,29 @@
 package domainlayer.beschavingskaart;
-/*Author Alex de Bruin, s1103096
- * 		 Erwin Olie, s1103026
- *Versie 0.1*/
-import java.rmi.RemoteException;
 
-import domainlayer.Beschaving;
+/**
+ * @author Alex de Bruin, s1103096
+ * @version 0.1
+ * <br>
+* <br>
+ * Dit is de constructor voor de beschavingskaart <br> waar je met een dobbelsteen moet gooien om een aantal middelen te verkrijgen.
+ */
+import domainlayer.BeschavingskaartStatus;
 import domainlayer.Middel;
 import domainlayer.Speler;
-import domainlayer.Symbool;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class BeschavingskaartDobbelen extends Beschavingskaart {
 
 
-
 	private Image asset;
+	private int kosten;
 	private int Waarde;
 	private Middel[] middel;
+
+
 	private IBeschavingskaartAchtergrond achtergrond;
+	private BeschavingskaartStatus status;
 	ImageView imageView = new ImageView(asset);
 
 	public BeschavingskaartDobbelen(Image asset, int Waarde, Middel[] middel, IBeschavingskaartAchtergrond achtergrond) {
@@ -30,13 +35,36 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 
 	@Override
 	public int getKosten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return kosten;
 	}
 
 	@Override
 	public void uitvoerenActie(Speler ISpeler) {
-		// TODO Auto-generated method stub
-
 	}
+
+	@Override
+	public BeschavingskaartStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(BeschavingskaartStatus status){
+		this.status = status;
+	}
+
+	public Image getAsset() {
+		return asset;
+	}
+
+	public IBeschavingskaartAchtergrond getAchtergrond() {
+		return achtergrond;
+	}
+
+	public int getWaarde() {
+		return Waarde;
+	}
+
+	public Middel[] getMiddel() {
+		return middel;
+	}
+
 }

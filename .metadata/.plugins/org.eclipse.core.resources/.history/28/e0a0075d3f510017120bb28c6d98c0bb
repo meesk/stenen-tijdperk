@@ -1,0 +1,26 @@
+package domainlayer;
+
+/**
+ * @author Alex de Bruin, s1103096
+ * @version 0.1
+ */
+import domainlayer.skeleton.ISpeler;
+
+public class Puntenspoor {
+
+	public void verhoogProductie(ISpeler speler) {
+
+
+	}
+
+	public int getProductie(ISpeler speler) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

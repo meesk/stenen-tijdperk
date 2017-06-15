@@ -1,0 +1,46 @@
+package domainlayer.beschavingskaart;
+
+/*@Author Alex de Bruin, s1103096
+*@Version 0.1
+*/
+
+import domainlayer.BeschavingskaartStatus;
+import domainlayer.Speler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class BeschavingskaartDobbeltabel extends Beschavingskaart {
+
+	private Image asset;
+	privte BeschavingskaartStatus status;
+	private int kosten;
+	private IBeschavingskaartAchtergrond achtergrond;
+	ImageView imageView = new ImageView(asset);
+
+	BeschavingskaartDobbeltabel(Image asset, IBeschavingskaartAchtergrond achtergrond){
+		this.achtergrond = achtergrond;
+		this.asset = asset;
+	}
+
+	@Override
+	public int getKosten() {
+		return kosten;
+	}
+
+	@Override
+	public void uitvoerenActie(Speler ISpeler) {
+
+	}
+
+	@Override
+	public BeschavingskaartStatus getStatus() {
+		return status;
+	}
+
+	@Override
+	public void setStatus(BeschavingskaartStatus status) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

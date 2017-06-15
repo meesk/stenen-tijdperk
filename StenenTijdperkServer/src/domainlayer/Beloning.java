@@ -1,5 +1,10 @@
 package domainlayer;
 
+/**
+ * @author Alex
+ * @version 0.2
+ */
+
 
 public enum Beloning {
 	HOUT(1), LEEM(2), STEEN(3), GOUD(4), GEREEDSCHAP(5), VOEDSELS(6);

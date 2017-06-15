@@ -4,8 +4,12 @@ import domainlayer.BeschavingskaartStatus;
 import domainlayer.Speler;
 import javafx.scene.image.Image;
 
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
+/**
+* @Author Alex de Bruin, s1103096
+* @Version 0.1
+*<br>
+* <br>
+* Dit is een abstracte klasse waar alle beschavingskaarten van overerven.
 */
 
 
@@ -23,13 +27,9 @@ public abstract class Beschavingskaart {
 		return asset;
 	}
 
-	public BeschavingskaartStatus getStatus(){
-		return status;
-	}
+	public abstract BeschavingskaartStatus getStatus();
 
-	public abstract int getKosten();
-
-	public abstract void uitvoerenActie(Speler ISpeler);
+	public abstract void setStatus(BeschavingskaartStatus status);
 
 	public void betaalMiddelen(){
 
@@ -38,5 +38,9 @@ public abstract class Beschavingskaart {
 	public void betalling(){
 
 	}
+
+	public abstract int getKosten();
+
+	public abstract void uitvoerenActie(Speler ISpeler);
 }
 

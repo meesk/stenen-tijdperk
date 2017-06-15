@@ -1,7 +1,12 @@
 package domainlayer.beschavingskaart;
 
-/*@author Alex de Bruin, s1103096
- *@version 0.1
+/**
+ * @author Alex de Bruin, s1103096
+ * @version 0.1
+ *
+ * <br>
+* <br>
+* Dit is de factory die alle kaarten aan maakt en waar de kaarten hun specifieke eigenschappen krijgen.
  */
 
 import java.util.ArrayList;
@@ -24,11 +29,11 @@ public class BeschavingskaartFactory {
 
 	public BeschavingskaartFactory() throws RemoteException{
 		beschavingskaarten = new ArrayList<Beschavingskaart>() {{
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/01.png"), new Puntenspoor(3), new BeschavingskaartGras(Symbool.MUZIEK)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/02.png"), new Puntenspoor(3), new BeschavingskaartGras(Symbool.MUZIEK)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/03.png"), new Puntenspoor(3), new BeschavingskaartZand(3, Beschaving.HUTTENBOUWERS)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/02.png"), new Voedselspoor(1), new BeschavingskaartZand(1, Beschaving.BOEREN)));
-			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/01.png"), new Voedselspoor(1), new BeschavingskaartGras(Symbool.ZONNEWIJZER)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/01.png"),3, new BeschavingskaartGras(Symbool.MUZIEK)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/02.png"),3, new BeschavingskaartGras(Symbool.MUZIEK)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Punten/03.png"),3, new BeschavingskaartZand(3, Beschaving.HUTTENBOUWERS)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/02.png"),1, new BeschavingskaartZand(1, Beschaving.BOEREN)));
+			add(new BeschavingskaartSpoor(new Image("file:assets/Beschavingskaarten/Productie/01.png"),1, new BeschavingskaartGras(Symbool.ZONNEWIJZER)));
 			add(new BeschavingskaartMiddel(new Image("file:assets/Beschavingskaarten/Grondstof/01.png"), 1, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), Middel.GOUD));
 			add(new BeschavingskaartMiddel(new Image("file:assets/Beschavingskaarten/Grondstof/02.png"), 1, new BeschavingskaartZand(1, Beschaving.BOEREN), Middel.STEEN));
 			add(new BeschavingskaartMiddel(new Image("file:assets/Beschavingskaarten/Grondstof/03.png"), 1, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), Middel.STEEN));
