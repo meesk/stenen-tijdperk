@@ -56,6 +56,4 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	public Tableau getTableau() {
 		return tableau;
 	}
-
-
 }

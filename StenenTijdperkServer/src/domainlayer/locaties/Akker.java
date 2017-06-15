@@ -18,7 +18,7 @@ public class Akker extends Locatie {
 	public Akker() {
 		super(1);
 	}
-	
+
 	@Override
 	/** @see Sequentie Diagram: 10 Gebruiken Akker **/
 	public void uitvoerenActie(ISpeler speler) {
@@ -29,21 +29,20 @@ public class Akker extends Locatie {
 		if (productie < 10) {
 			voedselspoor.verhoogProductie(speler);
 		}
-		
+
 		// Teruggeven Stamleden
 		Tableau tableau = speler.getTableau();
 		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
 		super.verwijderStamleden(stamleden);
-		
+
 		// Update Views (locatie)
 		super.notifyObservers();
 
 		// Update Views (tableau)
 		tableau.notifyObservers();
-		
+
 		// Update Views (voedselspoor)
 		voedselspoor.notifyObservers();
-		
 	}
 }

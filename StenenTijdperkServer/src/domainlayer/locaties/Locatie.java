@@ -10,8 +10,8 @@ import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 
 /**
- * @author	Erwin Olie, s1103026
- * @version	0.1
+ * @author Erwin Olie s1103026
+ * @version	0.2
  */
 public abstract class Locatie implements ILocatie {
 
@@ -40,7 +40,7 @@ public abstract class Locatie implements ILocatie {
 	public void addObserver(LocatieView observer) {
 		observers.add(observer);
 	}
-	
+
 	public void notifyObservers() {
 		for (LocatieView observer : observers) {
 			observer.modelChanged(this);
@@ -53,4 +53,8 @@ public abstract class Locatie implements ILocatie {
 		}
 	}
 
+	// Nog speler specifiek maken
+	public int getStamleden(List<Stamlid> stamleden) {
+		return stamleden.size();
+	}
 }
