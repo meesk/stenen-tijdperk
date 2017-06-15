@@ -3,6 +3,7 @@ package proceslayer;
 import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
 import presentationlayer.LocatieView;
+import presentationlayer.SpelView;
 
 /**
  * SpelController.java

@@ -16,7 +16,7 @@ import proceslayer.SpelController;
  *
  */
 
-public class SpelView extends Pane{
+public class SpelView extends Pane {
 	
 	public SpelView(SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp) throws Exception {
 		// De grid waarop de visuele objecten geplaatst worden.
