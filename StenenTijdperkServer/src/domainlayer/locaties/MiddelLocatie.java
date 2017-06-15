@@ -29,7 +29,7 @@ public class MiddelLocatie extends Locatie {
 		this.middel = middel;
 	}
 
-	// ISpeler of Speler in uitvoerenActie parameters?
+	// ISpeler of Speler in uitvoerenActie() parameters?
 	/** 14 Verzamelen Middelen **/
 	public void uitvoerenActie(Speler speler) {
 		// Teruggeven Stamleden
