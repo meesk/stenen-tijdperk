@@ -49,6 +49,13 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		middelen.put(middel, middelen.get(middel) + aantal);
 	}
 
+
+	public void werpenDobbeltabel() {
+		switch() {
+		case :
+		}
+	}
+
 	public void ontvangStamlid(Stamlid stamlid) {
 		stamleden.add(stamlid);
 	}
