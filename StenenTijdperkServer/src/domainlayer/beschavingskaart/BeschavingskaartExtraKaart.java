@@ -9,8 +9,7 @@ package domainlayer.beschavingskaart;
 */
 
 
-import domainlayer.BeschavingskaartStatus;
-import domainlayer.Speler;
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,20 +26,18 @@ public class BeschavingskaartExtraKaart extends Beschavingskaart {
 		this.achtergrond = achtergrond;
 		this.asset = asset;
 	}
+
 	@Override
 	public int getKosten() {
 		// TODO Auto-generated method stub
 		return kosten;
 	}
+
 	@Override
-<<<<<<< HEAD
-	public void uitvoerenActie(Speler ISpeler) {
-=======
 	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
->>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 
 	}
+
 	@Override
 	public BeschavingskaartStatus getStatus() {
 		return status;
@@ -54,6 +51,7 @@ public class BeschavingskaartExtraKaart extends Beschavingskaart {
 	public Image getAsset() {
 		return asset;
 	}
+
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

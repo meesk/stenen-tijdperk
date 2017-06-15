@@ -1,6 +1,5 @@
 package domainlayer.beschavingskaart;
 
-<<<<<<< HEAD
 /**
  * @author Alex de Bruin
  * @version 0.1
@@ -9,16 +8,7 @@ package domainlayer.beschavingskaart;
 * <br>
 * Dit is de kaart die de speler naast zijn tableau legt en later kan in wisselen voor grondstoffen.
  */
-import domainlayer.BeschavingskaartStatus;
-import domainlayer.Middel;
-=======
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
-*/
-import java.rmi.RemoteException;
-
->>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
-import domainlayer.Speler;
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
@@ -48,8 +38,6 @@ public class BeschavingskaartNaarKeuze extends Beschavingskaart {
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

@@ -8,8 +8,7 @@ package domainlayer.beschavingskaart;
 * Dit is de contructor voor de dobbeltabel beschavingskaart waar een speler dobbelt en alle spelers een dobbelsteen kiezen.
 */
 
-import domainlayer.BeschavingskaartStatus;
-import domainlayer.Speler;
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,14 +34,9 @@ public class BeschavingskaartDobbeltabel extends Beschavingskaart {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public void uitvoerenActie(Speler ISpeler) {
-=======
 	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
->>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
-
 	}
+
 
 	@Override
 	public BeschavingskaartStatus getStatus() {

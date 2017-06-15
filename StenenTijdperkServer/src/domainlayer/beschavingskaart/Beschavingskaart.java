@@ -34,12 +34,9 @@ public abstract class Beschavingskaart extends Locatie {
 	}
 
 	public abstract BeschavingskaartStatus getStatus();
-
-<<<<<<< HEAD
 	public abstract void setStatus(BeschavingskaartStatus status);
-=======
 	public abstract void uitvoerenActie(ISpeler speler);
->>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
+	public abstract int getKosten();
 
 	public void betaalMiddelen(){
 
@@ -49,8 +46,6 @@ public abstract class Beschavingskaart extends Locatie {
 
 	}
 
-	public abstract int getKosten();
 
-	public abstract void uitvoerenActie(Speler ISpeler);
 }
 

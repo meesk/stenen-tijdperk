@@ -1,6 +1,5 @@
 package domainlayer.beschavingskaart;
 
-<<<<<<< HEAD
 /**
  * @author Alex de Bruin, s1103096
  * @version 0.1
@@ -8,16 +7,9 @@ package domainlayer.beschavingskaart;
 * <br>
  * Dit is de constructor voor de beschavingskaart <br> waar je met een dobbelsteen moet gooien om een aantal middelen te verkrijgen.
  */
-import domainlayer.BeschavingskaartStatus;
-import domainlayer.Middel;
-import domainlayer.Speler;
-=======
-import domainlayer.Speler;
-import domainlayer.enums.Beschaving;
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
-import domainlayer.enums.Symbool;
 import domainlayer.skeleton.ISpeler;
->>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -28,8 +20,6 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 	private int kosten;
 	private int Waarde;
 	private Middel[] middel;
-
-
 	private IBeschavingskaartAchtergrond achtergrond;
 	private BeschavingskaartStatus status;
 	ImageView imageView = new ImageView(asset);
@@ -45,14 +35,13 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 	public int getKosten() {
 		return kosten;
 	}
-	
+
 	@Override
-<<<<<<< HEAD
-	public void uitvoerenActie(Speler ISpeler) {
+	public void uitvoerenActie(ISpeler speler) {
 	}
 
 	@Override
-	public BeschavingskaartStatus getStatus() {
+	public domainlayer.enums.BeschavingskaartStatus getStatus() {
 		return status;
 	}
 
@@ -74,11 +63,6 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 
 	public Middel[] getMiddel() {
 		return middel;
-=======
-	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
-		
->>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
 	}
 
 }

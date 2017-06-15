@@ -10,8 +10,7 @@ package domainlayer.beschavingskaart;
 *
 */
 
-import domainlayer.BeschavingskaartStatus;
-import domainlayer.Speler;
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,27 +27,27 @@ public class BeschavingskaartGereedschapFishe extends Beschavingskaart {
 	}
 	@Override
 	public int getKosten() {
-		// TODO Auto-generated method stub
 		return kosten;
 	}
+
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
-		// TODO Auto-generated method stub
-
 	}
+
 	@Override
 	public BeschavingskaartStatus getStatus() {
-		// TODO Auto-generated method stub
 		return status;
 	}
+
 	@Override
 	public void setStatus(BeschavingskaartStatus status) {
 		this.status = status;
-
 	}
+
 	public Image getAsset() {
 		return asset;
 	}
+
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

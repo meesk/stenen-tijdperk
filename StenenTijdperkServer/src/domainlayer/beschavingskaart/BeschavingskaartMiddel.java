@@ -1,6 +1,5 @@
 package domainlayer.beschavingskaart;
 
-<<<<<<< HEAD
 /**
  * @author Alex de Bruin, s1103096
  * @version 0.1
@@ -10,16 +9,7 @@ package domainlayer.beschavingskaart;
 * dit is de veelvoudige klassen die voedsel en grondstoffen die op de kaart staan aan de speler geven.
  */
 
-import domainlayer.BeschavingskaartStatus;
-
-/*@Author Alex de Bruin, s1103096
-*@Version 0.1
-*/
-
-import domainlayer.Middel;
-=======
->>>>>>> 0a63da35e292d3a187c815cc361fe9be01eff438
-import domainlayer.Speler;
+import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.image.Image;
