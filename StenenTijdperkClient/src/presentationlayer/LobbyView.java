@@ -1,5 +1,6 @@
 package presentationlayer;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 import javafx.geometry.Insets;
@@ -38,7 +39,7 @@ public class LobbyView extends BorderPane {
 	private CheckBox isSpastisch;
 	private final ToggleGroup group;
 	private LocalDate localDate;
-	private Button klaar;
+	private Button klaarBtn;
 
 	public LobbyView(Stage primaryStage, LobbyController controller) {
 
@@ -107,12 +108,18 @@ public class LobbyView extends BorderPane {
 	    this.getStylesheets().add("checkbox.css");
 
 	    // Button ik ben klaar
-	    klaar = new Button("Maak speler!");
-	    klaar.maxWidth(200);
-	    klaar.maxHeight(200);
-	    gridPaneForm.add(klaar, 1 , 12);
-
-	    klaar.setOnAction(e -> controller.OnButtonClick());
+	    klaarBtn = new Button("Maak speler!");
+	    klaarBtn.maxWidth(200);
+	    klaarBtn.maxHeight(200);
+	    gridPaneForm.add(klaarBtn, 1 , 12);
+	    
+	    klaarBtn.setOnAction(e -> {
+			try {
+				controller.OnButtonClick();
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+		});
 
 	    //Progessie bar
 	    ProgressBar pb = new ProgressBar(0.50);
@@ -154,10 +161,10 @@ public class LobbyView extends BorderPane {
 	}
 	
 	public void disableButton() {
-		this.klaar.setDisable(true);
+		this.klaarBtn.setDisable(true);
 	}
 	
 	public void changeButton() {
-		this.klaar.setText("Beginnen!");
+		this.klaarBtn.setText("Beginnen!");
 	}
 }
