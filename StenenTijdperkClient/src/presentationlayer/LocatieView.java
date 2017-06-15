@@ -16,15 +16,16 @@ import javafx.scene.shape.Rectangle;
 
 public class LocatieView extends StackPane {
 
-	public LocatieView(Pane pane, int x, int y, int w, int h) {
-		Rectangle rectangle = new Rectangle(x, y, w, h);
+	public LocatieView(int x, int y, int w, int h) {
+		Rectangle rectangle = new Rectangle(w, h);
 		rectangle.setFill(Color.DARKGOLDENROD);
 		rectangle.setOpacity(0.2);
 		rectangle.setOnMouseMoved(e -> rectangle.setOpacity(0.85));
 		rectangle.setOnMouseExited(e -> rectangle.setOpacity(0.2));
 		rectangle.setOnMouseClicked(e -> System.out.println("geklikt op locatie!"));
-		// this.getChildren().add(rectangle);
-		pane.getChildren().add(rectangle);
+		this.getChildren().add(rectangle);
+		this.setLayoutX(x);
+		this.setLayoutY(y);
 
 		// controller.registerView(this);
 	}

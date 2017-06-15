@@ -31,11 +31,8 @@ public class HandleidingView extends Stage {
 		view.setFitWidth(image.getWidth() / 3);
 		view.setFitHeight(image.getHeight() / 3);
 
-		// Zet de ImageView in een aparte Pane
-		Pane viewCarrier = new Pane(view);
-
 		// Zet de Pane met de ImageView in een ScrollPane voor het scrollen.
-		scroll.setContent(viewCarrier);
+		scroll.setContent(view);
 
 		// Maakt een nieuwe Scene aan met de ScrollPane om de handleiding te tonen.
 		Scene scene = new Scene(scroll, 800, 800);

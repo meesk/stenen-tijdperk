@@ -8,7 +8,7 @@ import domainlayer.skeleton.spoor.ISpoor;
 
 /**
  * @author Erwin Olie s1103026
- * @version 0.2
+ * @version 0.3
  */
 public class Voedselspoor implements ISpoor {
 
@@ -23,12 +23,11 @@ public class Voedselspoor implements ISpoor {
 	}
 
 	public int getProductie(ISpeler speler) {
-		// TODO Auto-generated method stub
-		return 0;
+		return markeerstenen.get(speler);
 	}
 
 	public void verhoogProductie(ISpeler speler) {
-		// TODO Auto-generated method stub
+		markeerstenen.put(speler, markeerstenen.get(speler) + 1);
 
 	}
 
