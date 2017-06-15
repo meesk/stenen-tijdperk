@@ -34,10 +34,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			put(Middel.STEEN, 0);
 			put(Middel.GOUD, 0);
 		}};
-		gereedschap = new int[3];
-		for (int i = 0; i < gereedschap.length; i++) {
-			gereedschap[i] = 0;
-		}
+		gereedschap = new int[] { 0, 0, 0 };
 	}
 
 	public void ontvangMiddel(Middel middel) {
@@ -81,18 +78,25 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public int getTotaalGereedschap() {
 		int totaal = 0;
-		for (int i = 0; i < gereedschap.length; i++) {
-			totaal += gereedschap[i];
+		for (int aantal : gereedschap) {
+			totaal += aantal;
 		}
 		return totaal;
 	}
 
 	public void verhoogGereedschap() {
-		//if alle vakjes dezelfde waarde hebben voeg de waarde +1 toe aan het bovenste vakje = gereedschap[0]
-		// else verhoog één vakje met een waarde van +1
-		if (gereedschap[0] == gereedschap[1] && gereedschap[1] == gereedschap[2]) {
-			gereedschap[0] + 1;
+		int index = gereedschap.length - 1, totaal = 0;
+		for (int i = gereedschap.length - 1; i >= 0; i--) {
+			int aantal = gereedschap[i];
+			totaal += aantal;
+			if (gereedschap[index] >= aantal) {
+				index = i;
+			}
 		}
+		if (totaal % gereedschap.length == 0) {
+			index = 0;
+		}
+		gereedschap[index]++;
 	}
 
 	public void geefGereedschapFiche() {
