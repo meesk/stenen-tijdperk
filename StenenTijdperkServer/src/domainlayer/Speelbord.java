@@ -18,22 +18,22 @@ import domainlayer.spoor.Voedselspoor;
  * @version	0.2
  */
 public class Speelbord {
-	
+
 	private Spel spel;
 	private List<Locatie> locaties;
 	private ISpoor[] sporen;
-	
+
 	public Speelbord(Spel spel) {
 		this.spel = spel;
 		locaties = new ArrayList<Locatie>() {{
-			add(new MiddelLocatie(7, Middel.HOUT));
-			add(new MiddelLocatie(7, Middel.LEEM));
-			add(new MiddelLocatie(7, Middel.STEEN));
-			add(new MiddelLocatie(7, Middel.GOUD));
-			add(new MiddelLocatie(Middel.VOEDSEL));
-			add(new Akker());
-			add(new Hut());
-			add(new Gereedschapmaker());
+			add(new MiddelLocatie(7, Middel.HOUT)); //Bos
+			add(new MiddelLocatie(7, Middel.LEEM)); //Leemgroeve
+			add(new MiddelLocatie(7, Middel.STEEN)); // Steengroeve
+			add(new MiddelLocatie(7, Middel.GOUD)); //Rivier
+			add(new MiddelLocatie(Middel.VOEDSEL)); //jacht
+			add(new Akker()); //akker
+			add(new Hut()); //hut
+			add(new Gereedschapmaker()); //gereedschapsmaker
 		}};
 		sporen = new ISpoor[] {
 			new Voedselspoor(), new Puntenspoor()
@@ -57,5 +57,5 @@ public class Speelbord {
 		}
 		return null;
 	}
-	
+
 }
