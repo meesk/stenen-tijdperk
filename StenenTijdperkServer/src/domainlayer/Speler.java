@@ -27,6 +27,8 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	private LocalDate geboorteDatum;
 	private boolean isSpastisch;
 	private Tableau tableau;
+	
+	private boolean klaar;
 
 	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
 		this.naam = naam;
@@ -34,6 +36,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.isSpastisch = isSpastisch;
 
 		this.spel = spel;
+		this.klaar = false;
 	}
 
 	public String getNaam() {
@@ -55,5 +58,11 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	@Override
 	public Tableau getTableau() {
 		return tableau;
+	}
+
+	@Override
+	public void klaarVoorSpeler() throws RemoteException {
+		this.klaar = true;
+		
 	}
 }

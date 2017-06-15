@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import presentationlayer.LobbyView;
 
 /**
@@ -30,29 +32,30 @@ public class LobbyController {
 		this.view = view;
 	}
 
-	public void OnButtonClick() {
+	public void OnButtonClick() throws RemoteException {
 
 		int klikCounter = 0;
+		ISpeler s = null;
 
 		if(klikCounter == 0) {
-			if(view.getNaam() != "" && view.getGeboorteDatum() != null) {
-				
+			if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4) {
+
 				view.changeButton();
 				
-				ISpeler s;
+				// check voor correcte formaat
+				s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
+			} else {
 
-				try {	
-					// check voor correcte formaat
-					spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
-
-				} catch (RemoteException e) {
-					e.printStackTrace();
-				}
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("invul fout");
+				alert.setContentText("Alle gegevens moeten ingevult zijn!");
+				alert.showAndWait();
 			}
 		} else if (klikCounter == 1) {
-			System.out.println("Ben er klaar voor !");
+			s.klaarVoorSpeler();
+			view.disableButton();
 		}
-		
+
 		klikCounter++;
 	}
 

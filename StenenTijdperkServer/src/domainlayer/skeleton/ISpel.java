@@ -20,12 +20,13 @@ import domainlayer.Tableau;
 
 public interface ISpel extends Remote {
 
-	public void maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException;
+	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException;
 	
 	//public int getAangegevenSpelers() throws RemoteException;
 	
-	//public List<ISpeler> getSpelerLijst() throws RemoteException;
+	public List<ISpeler> getSpelerLijst() throws RemoteException;
 	
 	public void opslaan() throws IOException;
+
 
 }

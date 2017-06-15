@@ -59,15 +59,19 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
-	public void maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
+	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
 
-		if(this.spelers.size() < 4) {
 			Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 
 			synchronized(spelers) {
 				spelers.add(speler);
 			}
-		}
+			
+			return speler;
+	}
+	
+	public List<ISpeler> getSpelerLijst() {
+		return this.spelers;
 	}
 
 	public boolean checkSpelers() {

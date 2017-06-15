@@ -26,5 +26,7 @@ public interface ISpeler extends Remote {
 	public boolean getSpasme() throws RemoteException;
 
 	public Tableau getTableau() throws RemoteException;
+	
+	public void klaarVoorSpeler() throws RemoteException;
 
 }
