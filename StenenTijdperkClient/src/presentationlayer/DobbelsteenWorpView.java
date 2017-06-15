@@ -14,7 +14,7 @@ import proceslayer.DobbelsteenWorpController;
 /**
  * DobbelstenWorpPane.java
  * De view van alle dobbelstenen en wat omheen staat.
- * 
+ *
  * @author	Erwin Olie, s1103026
  * @version	0.3
  */
@@ -24,7 +24,7 @@ public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpPane {
 	private DobbelsteenView[] dobbelstenen;
 	/** De controller waar de acties naar worden gestuurd. */
 	private DobbelsteenWorpController controller;
-	
+
 	/**
 	 * Het initialiseren van de view van de dobbelsteenworp.
 	 * @param dobbelsteenWorp			Het model van de dobbelstenworp.
@@ -39,10 +39,10 @@ public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpPane {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
+
 		// Het onthouden van de controller.
 		controller = dobbelsteenWorpController;
-		
+
 		// De pane waar de dobbelstenen in geplaatst worden.
 		FlowPane flowPane = new FlowPane();
 
@@ -52,12 +52,12 @@ public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpPane {
 			dobbelstenen[i] = new DobbelsteenView();
 			flowPane.getChildren().add(dobbelstenen[i]);
 		}
-		
+
 		// Het aanmaken van de werp-button.
 		Button button = new Button("werp!");
-		// De button kopellen aan de controller.
-		button.setOnAction(e -> controller.onDobbelsteenWerp());
-		
+		// De button koppelen aan de controller.
+		button.setOnAction(e -> controller.onButtonPressed());
+
 		// Het samenvoegen van de views.
 		flowPane.getChildren().add(button);
 		this.getChildren().add(flowPane);
