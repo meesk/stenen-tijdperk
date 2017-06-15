@@ -24,9 +24,9 @@ import javafx.scene.paint.Color;
  * De klasse waar alle elementen tot 1 spel worden gevoegd.
  *
  * @author Erwin Olie, s1103026
- * Enzo Campfens s1102421
- * Mees Kluivers s1102358
- * Tristan Caspers s1102755
+ * Enzo Campfens, s1102421
+ * Mees Kluivers, s1102358
+ * Tristan Caspers, s1102755
  * @version 0.6
  */
 public class Spel extends UnicastRemoteObject implements ISpel {

@@ -10,7 +10,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * StenenTijdperk.java
+ * StenenTijdperk.java<br>
  * Een simpele Main-klasse waar de RMI server word opgezet.
  *
  * @author Erwin Olie s1103026,
