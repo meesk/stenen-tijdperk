@@ -26,6 +26,10 @@ public interface ISpel extends Remote {
 	
 	public List<ISpeler> getSpelerLijst() throws RemoteException;
 	
+	//public int getAangegevenSpelers() throws RemoteException;
+
+	//public List<ISpeler> getSpelerLijst() throws RemoteException;
+
 	public void opslaan() throws IOException;
 
 

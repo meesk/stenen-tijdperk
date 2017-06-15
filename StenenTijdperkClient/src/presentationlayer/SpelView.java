@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.locaties.ILocatie;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -12,15 +13,15 @@ import proceslayer.SpelController;
 
 /**
  * SpelView.java - Het bestand met alle informatie om het spelbord te tekenen.
- * 
+ *
  * @author Erwin Olie s1103026
  * Enzo Campfens s1102421
- * @versie 0.1
+ * @versie 0.3
  *
  */
 
 public class SpelView extends Pane {
-	
+
 	public SpelView(SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp) throws Exception {
 		// De grid waarop de visuele objecten geplaatst worden.
 		GridPane grid = new GridPane();
@@ -46,7 +47,7 @@ public class SpelView extends Pane {
 		Button handleidingButton = new Button("Handleiding");
 		handleidingButton.setOnAction(e -> spelController.onHandleidingButtonClick());
 		grid.add(handleidingButton, 2, 3);
-		
+
 		Button opslaan = new Button("Opslaan");
 		opslaan.setOnAction(e -> {
 			try {
@@ -56,8 +57,7 @@ public class SpelView extends Pane {
 			}
 		});
 		grid.add(opslaan, 3, 3);
-		
+
 		this.getChildren().add(grid);
 	}
-
 }

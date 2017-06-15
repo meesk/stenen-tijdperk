@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 /**
  * SpeelbordPane.java
  * De view van het speelbord.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @version 0.3
  */
@@ -16,9 +16,9 @@ public class SpeelbordView extends Pane {
 	public SpeelbordView() {
 		Image image = new Image("file:assets/speelbord.jpg");
 		ImageView imageView = new ImageView(image);
-		
+
 		this.getChildren().add(imageView);
-		
+
 		this.getChildren().addAll(
 			new LocatieView(280, 117, 100, 117), // bos
 			new LocatieView(412, 113, 143, 83), // leemgroeve
@@ -38,5 +38,4 @@ public class SpeelbordView extends Pane {
 			new LocatieView(418, 280, 125, 98) // gereedschapsmaker
 		);
 	}
-
 }

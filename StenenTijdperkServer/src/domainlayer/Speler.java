@@ -10,6 +10,7 @@ import java.util.Map;
 
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
+import javafx.scene.paint.Color;
 
 /**
  * Speler.java
@@ -17,26 +18,30 @@ import domainlayer.skeleton.ISpeler;
  *
  * @author	Erwin Olie, s1103026
  * Enzo Campfens, s1102421
- * Mees Kluivers s1102358
- * @version	0.2
+ * Mees Kluivers, s1102358
+ * Tristan Caspers, s1102755
+ * @version	0.4
  */
 public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	private Spel spel;
 	private String naam;
+	//private Color kleur;
 	private LocalDate geboorteDatum;
 	private boolean isSpastisch;
 	private Tableau tableau;
 	
 	private boolean klaar;
 
-	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
+	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch/*, Color kleur*/) throws RemoteException {
 		this.naam = naam;
 		this.geboorteDatum = geboorteDatum;
 		this.isSpastisch = isSpastisch;
-
 		this.spel = spel;
 		this.klaar = false;
+
+		//this.kleur = kleur;
+		tableau = new Tableau(this);
 	}
 
 	public String getNaam() {
@@ -55,8 +60,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		return spel;
 	}
 
-	@Override
-	public Tableau getTableau() {
+	public Tableau getTableau() throws RemoteException {
 		return tableau;
 	}
 

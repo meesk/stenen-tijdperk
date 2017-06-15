@@ -33,7 +33,12 @@ public class MiddelLocatie extends Locatie {
 	/** 14 Verzamelen Middelen **/
 	public void uitvoerenActie(Speler speler) {
 		// Teruggeven Stamleden
-		Tableau tableau = speler.getTableau();
+		Tableau tableau = null;
+		try {
+			tableau = speler.getTableau();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
 		super.verwijderStamleden(stamleden);

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import domainlayer.Spel;
 import domainlayer.Tableau;
+import javafx.scene.paint.Color;
 
 /**
  * ISpeler.java

@@ -19,8 +19,8 @@ import javafx.stage.Stage;
  * Tristan Caspers s1102755
  * @version 0.6
  */
+
 public class StenenTijdperk {
-	
 	//
 	//                 _oo0oo_
 	//                o8888888o
@@ -47,10 +47,11 @@ public class StenenTijdperk {
 	//
 
 	/** De main method die de controllers registreert in het register. */
+
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		// Het initialiseren van een nieuw spel.
 		Spel spel = new Spel();
-		
+
 		// Het opzetten van het RMI register.
 		LocateRegistry.createRegistry(1099);
 		// Het registreren van het dobbelsteenworp-model in het register.
@@ -58,5 +59,4 @@ public class StenenTijdperk {
 		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
 	}
-
 }
