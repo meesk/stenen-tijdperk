@@ -38,6 +38,7 @@ public class LobbyView extends BorderPane {
 	private CheckBox isSpastisch;
 	private final ToggleGroup group;
 	private LocalDate localDate;
+	private Button klaar;
 
 	public LobbyView(Stage primaryStage, LobbyController controller) {
 
@@ -106,7 +107,7 @@ public class LobbyView extends BorderPane {
 	    this.getStylesheets().add("checkbox.css");
 
 	    // Button ik ben klaar
-	    Button klaar = new Button("Ik ben klaar");
+	    klaar = new Button("Maak speler!");
 	    klaar.maxWidth(200);
 	    klaar.maxHeight(200);
 	    gridPaneForm.add(klaar, 1 , 12);
@@ -114,7 +115,7 @@ public class LobbyView extends BorderPane {
 	    klaar.setOnAction(e -> controller.OnButtonClick());
 
 	    //Progessie bar
-	    ProgressBar pb = new ProgressBar(0.25);
+	    ProgressBar pb = new ProgressBar(0.50);
 	    gridPaneForm.add(pb, 2, 12);
 		gridPaneForm.setStyle("-fx-font-size: 16px;");
 
@@ -150,5 +151,13 @@ public class LobbyView extends BorderPane {
 
 	public ToggleGroup getGroup() {
 		return group;
+	}
+	
+	public void disableButton() {
+		this.klaar.setDisable(true);
+	}
+	
+	public void changeButton() {
+		this.klaar.setText("Beginnen!");
 	}
 }

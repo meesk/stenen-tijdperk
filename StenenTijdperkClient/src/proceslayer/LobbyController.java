@@ -1,6 +1,7 @@
 package proceslayer;
 
 import java.rmi.RemoteException;
+import java.util.regex.Pattern;
 
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
@@ -17,30 +18,42 @@ import presentationlayer.LobbyView;
  */
 
 public class LobbyController {
-	
+
 	private ISpel spel;
 	private LobbyView view;
 
 	public LobbyController(ISpel spel) {
 		this.spel = spel;
 	}
-	
+
 	public void registerView(LobbyView view) {
 		this.view = view;
 	}
 
 	public void OnButtonClick() {
-		ISpeler s;
-		
-		try {	
-			
-			System.out.println(spel.getSpelerLijst().size() + " van de " + spel.getAangegevenSpelers() + " zijn geregistreerd!");
-			
-			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
-						
-		} catch (RemoteException e) {
-			e.printStackTrace();
+
+		int klikCounter = 0;
+
+		if(klikCounter == 0) {
+			if(view.getNaam() != "" && view.getGeboorteDatum() != null) {
+				
+				view.changeButton();
+				
+				ISpeler s;
+
+				try {	
+					// check voor correcte formaat
+					spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
+
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+		} else if (klikCounter == 1) {
+			System.out.println("Ben er klaar voor !");
 		}
+		
+		klikCounter++;
 	}
 
 }

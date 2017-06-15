@@ -1,6 +1,8 @@
 package stenentijdperk;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import domainlayer.Spel;
@@ -17,8 +19,13 @@ import javafx.stage.Stage;
  * Tristan Caspers s1102755
  * @version 0.6
  */
+<<<<<<< HEAD
 public class StenenTijdperk extends Application {
 
+=======
+public class StenenTijdperk {
+	
+>>>>>>> 159af96bbb0bab7e1501b889fb2bc0ca061539af
 	//
 	//                 _oo0oo_
 	//                o8888888o
@@ -45,6 +52,7 @@ public class StenenTijdperk extends Application {
 	//
 
 	/** De main method die de controllers registreert in het register. */
+<<<<<<< HEAD
 //	public static void main(String[] args) throws RemoteException, MalformedURLException {
 //		// Het initialiseren van een nieuw spel.
 //		Spel spel = new Spel();
@@ -65,13 +73,22 @@ public class StenenTijdperk extends Application {
 		Spel spel = new Spel();
 		// Het vragen met hoeveel spelers het spel wordt gespeelt.
 
+=======
+	public static void main(String[] args) throws RemoteException, MalformedURLException {
+		// Het initialiseren van een nieuw spel.
+		Spel spel = new Spel();
+		
+>>>>>>> 159af96bbb0bab7e1501b889fb2bc0ca061539af
 		// Het opzetten van het RMI register.
 		LocateRegistry.createRegistry(1099);
 		// Het registreren van het dobbelsteenworp-model in het register.
 		Naming.rebind("DobbelsteenWorp", spel.getDobbelsteenWorp());
 		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
+<<<<<<< HEAD
 
 		spel.initAantalSpelSpelers();
+=======
+>>>>>>> 159af96bbb0bab7e1501b889fb2bc0ca061539af
 	}
 }

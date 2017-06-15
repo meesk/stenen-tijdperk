@@ -57,18 +57,15 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		Spel spel = (Spel) ois.readObject();
 		ois.close();
-		//
 	}
 
 	@Override
 	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
-		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 
-		synchronized(spelers) {
-			spelers.add(speler);
+		if(this.spelers.size() < 4) {
+			Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 		}
-
-		return speler;
+		return y;
 	}
 
 	@Override
@@ -85,12 +82,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent()){
 			aangegevenSpelers = Integer.parseInt(result.get());
+			synchronized(spelers) {
+				spelers.add(speler);
+			}
 		}
 	}
 
-	@Override
-	public List<ISpeler> getSpelerLijst() throws RemoteException {
-		return spelers;
+	public boolean checkSpelers() {
+		return true;
 	}
-
 }
