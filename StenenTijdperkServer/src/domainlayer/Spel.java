@@ -65,7 +65,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		if(this.spelers.size() < 4) {
 			Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 		}
-		return y;
+		return speler;
 	}
 
 	@Override
@@ -90,5 +90,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public boolean checkSpelers() {
 		return true;
+	}
+
+	@Override
+	public List<ISpeler> getSpelerLijst() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
