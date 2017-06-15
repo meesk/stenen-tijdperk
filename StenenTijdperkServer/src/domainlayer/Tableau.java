@@ -14,18 +14,17 @@ import presentationlayer.TableauView;
 /**
  * @author Tristan Caspers s1102755
  * @author Erwin Olie s1103026
- * @version 0.2
+ * @version 0.3
  */
 
-// MOET NOG AANGEPAST WORDEN IN VERBAND MET SPELER.JAVA ANDERS ONTSTAAT DUBBELE CODE
 public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	private List<Stamlid> stamleden;
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
 	private List<TableauView> observers;
-	private int gereedschap;
-	
+	private int[] gereedschap;
+
 	public Tableau() throws RemoteException {
 		stamleden = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{
@@ -35,7 +34,10 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			put(Middel.STEEN, 0);
 			put(Middel.GOUD, 0);
 		}};
-		gereedschap = 0;
+		gereedschap = new int[3];
+		for (int i = 0; i < gereedschap.length; i++) {
+			gereedschap[i] = 0;
+		}
 	}
 
 	public void ontvangMiddel(Middel middel) {
@@ -78,11 +80,19 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public int getTotaalGereedschap() {
-		return gereedschap;
+		int totaal = 0;
+		for (int i = 0; i < gereedschap.length; i++) {
+			totaal += gereedschap[i];
+		}
+		return totaal;
 	}
 
 	public void verhoogGereedschap() {
-		gereedschap += 1;
+		//if alle vakjes dezelfde waarde hebben voeg de waarde +1 toe aan het bovenste vakje = gereedschap[0]
+		// else verhoog één vakje met een waarde van +1
+		if (gereedschap[0] == gereedschap[1] && gereedschap[1] == gereedschap[2]) {
+			gereedschap[0] + 1;
+		}
 	}
 
 	public void geefGereedschapFiche() {
