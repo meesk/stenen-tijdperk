@@ -1,5 +1,6 @@
 package domainlayer.locaties;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ public class Gereedschapmaker extends Locatie {
 
 	@Override
 	/** @see Sequentie Diagram: 11 Maken Gereedschap **/
-	public void uitvoerenActie(ISpeler speler) {
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		Tableau tableau = speler.getTableau();
 		int gereedschap = tableau.getTotaalGereedschap();
 		if (gereedschap < 4) {
