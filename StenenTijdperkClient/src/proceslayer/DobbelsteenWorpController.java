@@ -22,7 +22,7 @@ public class DobbelsteenWorpController {
 	}
 
 	/** Het opvangen van de werp-actie en het aanroepen van het model voor de uitvoer hiervan. */
-	public void onDobbelsteenWerp() {
+	public void onButtonPressed() {
 		try {
 			// Roep het model aan.
 			model.werp((int) (Math.random() * 10) + 1);

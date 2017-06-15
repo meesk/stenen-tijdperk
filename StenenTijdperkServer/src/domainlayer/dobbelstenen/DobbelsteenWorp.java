@@ -12,7 +12,7 @@ import presentationlayer.skeleton.IDobbelsteenWorpPane;
 /**
  * DobbelsteenWorp.java
  * Het model van de DobbelsteenWorp.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @version 0.4
  */
@@ -31,12 +31,12 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 		for (int i = 0; i < 10; i++) {
 			dobbelstenen[i] = new Dobbelsteen();
 		}
-		
-		// Aanmaken van de views-list 
+
+		// Aanmaken van de views-list
 		views = new ArrayList<>();
 	}
 
-	
+
 	/** {@inheritDoc} */
 	public void werp(int aantal) throws RemoteException {
 		// Het werpen van het aantal dobbelstenen.
@@ -67,7 +67,7 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	public IDobbelsteen[] getDobbelstenen() {
 		return dobbelstenen;
 	}
-	
+
 	public int getTotaal() throws RemoteException {
 		int totaal = 0;
 		for (IDobbelsteen dobbelsteen : dobbelstenen) {
