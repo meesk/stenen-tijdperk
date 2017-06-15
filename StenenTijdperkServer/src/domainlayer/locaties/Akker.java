@@ -16,7 +16,7 @@ import domainlayer.spoor.Voedselspoor;
  */
 public class Akker extends Locatie {
 
-	public Akker() {
+	public Akker() throws RemoteException {
 		super(1);
 	}
 

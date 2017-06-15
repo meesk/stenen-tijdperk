@@ -1,5 +1,6 @@
 package presentationlayer;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 import javafx.geometry.Insets;
@@ -36,8 +37,10 @@ public class LobbyView extends BorderPane {
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
 	private CheckBox isSpastisch;
+	private RadioButton radRood, radGroen, radBlauw, radGeel;
 	private final ToggleGroup group;
 	private LocalDate localDate;
+	private Button klaarBtn;
 
 	public LobbyView(Stage primaryStage, LobbyController controller) {
 
@@ -96,8 +99,7 @@ public class LobbyView extends BorderPane {
 	    spastischLabel.setTextFill(Color.WHITE);
 	    gridPaneForm.add(spastischLabel, 0, 10);
 	    isSpastisch = new CheckBox();
-	    isSpastisch.setOnMouseEntered(e -> isSpastisch.setSelected(!isSpastisch.isSelected()));
-
+	    
         isSpastisch.getStyleClass().add("big-check-box");
         VBox root = new VBox(5, isSpastisch);
         root.setPadding(new Insets(15));
@@ -106,15 +108,21 @@ public class LobbyView extends BorderPane {
 	    this.getStylesheets().add("checkbox.css");
 
 	    // Button ik ben klaar
-	    Button klaar = new Button("Ik ben klaar");
-	    klaar.maxWidth(200);
-	    klaar.maxHeight(200);
-	    gridPaneForm.add(klaar, 1 , 12);
-
-	    klaar.setOnAction(e -> controller.OnButtonClick());
+	    klaarBtn = new Button("Maak speler!");
+	    klaarBtn.maxWidth(200);
+	    klaarBtn.maxHeight(200);
+	    gridPaneForm.add(klaarBtn, 1 , 12);
+	    
+	    klaarBtn.setOnAction(e -> {
+			try {
+				controller.OnButtonClick();
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+		});
 
 	    //Progessie bar
-	    ProgressBar pb = new ProgressBar(0.25);
+	    ProgressBar pb = new ProgressBar(0.50);
 	    gridPaneForm.add(pb, 2, 12);
 		gridPaneForm.setStyle("-fx-font-size: 16px;");
 
@@ -150,5 +158,23 @@ public class LobbyView extends BorderPane {
 
 	public ToggleGroup getGroup() {
 		return group;
+	}
+	
+	public void disableButton() {
+		this.klaarBtn.setDisable(true);
+	}
+	
+	public void disableSpelerInfo() {
+		this.geboorteDatumPicker.setDisable(true);
+		this.isSpastisch.setDisable(true);
+		this.voorNaamField.setDisable(true);
+	}
+	
+	public void veranderKnopTextBeginnen() {
+		this.klaarBtn.setText("Beginnen!");
+	}
+	
+	public void veranderKnopTextWachten() {
+		this.klaarBtn.setText("Momenteel Geduld a.u.b..");
 	}
 }

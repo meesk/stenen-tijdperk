@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
-import domainlayer.spoor.Voedselspoor;
 import presentationlayer.TableauView;
 
 /**
@@ -30,11 +29,13 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private int[] gereedschap;
 	private List<Beschavingskaart> kaarten;
 
-	public Tableau() throws RemoteException {
+	public Tableau(Speler speler) throws RemoteException {
+		this.speler = speler;
+		// Klaarzetten Spel moet nog 5 stamleden hieraan toevoegen!
 		stamleden = new ArrayList<>();
 		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{
-			put(Middel.VOEDSEL, 0);
+			put(Middel.VOEDSEL, 12);
 			put(Middel.HOUT, 0);
 			put(Middel.LEEM, 0);
 			put(Middel.STEEN, 0);

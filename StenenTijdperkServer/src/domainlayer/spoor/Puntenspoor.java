@@ -1,6 +1,7 @@
 package domainlayer.spoor;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 import domainlayer.skeleton.ISpeler;
@@ -19,11 +20,11 @@ import domainlayer.skeleton.spoor.ISpoor;
  *
  * Dit is de klasse die het Puntenspoor bij houdt en aanmaakt.
  */
-public class Puntenspoor implements ISpoor {
+public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 
 	private Map<ISpeler, Integer> markeerstenen;
 
-	public Puntenspoor() {
+	public Puntenspoor() throws RemoteException {
 		markeerstenen = new HashMap<ISpeler, Integer>();
 	}
 

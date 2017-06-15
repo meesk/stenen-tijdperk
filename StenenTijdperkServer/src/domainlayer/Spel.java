@@ -12,12 +12,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.paint.Color;
 
 /**
  * Spel.java
@@ -61,11 +61,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		Spel spel = (Spel) ois.readObject();
 		ois.close();
-		//
 	}
 
 	@Override
 	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
+
 		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
 
 		synchronized(spelers) {
@@ -92,9 +92,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	@Override
-	public List<ISpeler> getSpelerLijst() throws RemoteException {
-		return spelers;
+
+	public List<ISpeler> getSpelerLijst() {
+		return this.spelers;
+	}
+
+	public boolean checkSpelers() {
+		return true;
 	}
 
 	public int getFase(){
@@ -104,7 +108,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	public void setFase(int fase){
 		this.fase = fase;
 	}
-	public void fases(){
+
+	public void fases() {
 
 		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR){
 			switch(status){

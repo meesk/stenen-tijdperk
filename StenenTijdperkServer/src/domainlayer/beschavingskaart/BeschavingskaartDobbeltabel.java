@@ -1,5 +1,7 @@
 package domainlayer.beschavingskaart;
 
+import java.rmi.RemoteException;
+
 /**
 * @Author Alex de Bruin, s1103096
 * @Version 0.1
@@ -14,8 +16,11 @@ import domainlayer.skeleton.ISpeler;
 public class BeschavingskaartDobbeltabel extends Beschavingskaart {
 
 
-	BeschavingskaartDobbeltabel(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten){
+	BeschavingskaartDobbeltabel(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		super(asset, achtergrond, status, kosten);
+		this.achtergrond = achtergrond;
+		this.asset = asset;
+
 	}
 
 	@Override

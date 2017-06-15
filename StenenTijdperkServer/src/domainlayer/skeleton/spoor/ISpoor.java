@@ -17,8 +17,8 @@ import domainlayer.skeleton.ISpeler;
 public interface ISpoor extends Remote {
 
 	public abstract Map<ISpeler, Integer> getMarkeerstenen() throws RemoteException;
-	public void verwijderPunten(ISpeler speler, int aantal);
-	public void verhoogPunten(ISpeler speler, int aantal);
-	public int getProductie(ISpeler speler);
+	public void verwijderPunten(ISpeler speler, int aantal) throws RemoteException;
+	public void verhoogPunten(ISpeler speler, int aantal) throws RemoteException;
+	public int getProductie(ISpeler speler) throws RemoteException;
 }
 

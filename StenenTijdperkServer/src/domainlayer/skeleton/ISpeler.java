@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import domainlayer.Spel;
 import domainlayer.Tableau;
+import javafx.scene.paint.Color;
 
 /**
  * ISpeler.java
@@ -26,5 +27,7 @@ public interface ISpeler extends Remote {
 	public boolean getSpasme() throws RemoteException;
 
 	public Tableau getTableau() throws RemoteException;
+	
+	public void klaarVoorSpeler() throws RemoteException;
 
 }

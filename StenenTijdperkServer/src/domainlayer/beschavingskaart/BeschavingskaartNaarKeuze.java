@@ -1,5 +1,6 @@
 package domainlayer.beschavingskaart;
 
+
 /**
  * @author Alex de Bruin
  * @version 0.1
@@ -8,6 +9,8 @@ package domainlayer.beschavingskaart;
 * <br>
 * Dit is de kaart die de speler naast zijn tableau legt en later kan in wisselen voor grondstoffen.
  */
+
+import java.rmi.RemoteException;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
@@ -18,7 +21,7 @@ public class BeschavingskaartNaarKeuze extends Beschavingskaart {
 	private boolean isNaastTableau;
 	private Middel middelen;
 
-	public BeschavingskaartNaarKeuze(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean isNaastTableau, Middel middelen){
+	public BeschavingskaartNaarKeuze(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean isNaastTableau, Middel middelen) throws RemoteException{
 		super(asset, achtergrond, status, kosten);
 		this.isNaastTableau = isNaastTableau;
 		this.middelen = middelen;

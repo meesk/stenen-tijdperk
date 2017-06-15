@@ -10,6 +10,7 @@ package domainlayer.beschavingskaart;
 *
 */
 
+import java.rmi.RemoteException;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
@@ -17,8 +18,9 @@ import domainlayer.skeleton.ISpeler;
 public class BeschavingskaartGereedschapFishe extends Beschavingskaart {
 
 
-	BeschavingskaartGereedschapFishe(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten){
+	BeschavingskaartGereedschapFishe(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		super(asset, achtergrond, status, kosten);
+
 	}
 	@Override
 	public int getKosten() {

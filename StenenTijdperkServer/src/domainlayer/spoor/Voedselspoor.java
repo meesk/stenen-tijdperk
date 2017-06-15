@@ -1,5 +1,7 @@
 package domainlayer.spoor;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 import domainlayer.skeleton.ISpeler;
@@ -14,11 +16,11 @@ import domainlayer.skeleton.spoor.ISpoor;
  * Dit is de klasse die het Voedselspoor aanmaakt en bijhoudt.
  */
 
-public class Voedselspoor implements ISpoor {
+public class Voedselspoor extends UnicastRemoteObject implements ISpoor {
 
 	private Map<ISpeler, Integer> markeerstenen;
 
-	public Voedselspoor() {
+	public Voedselspoor() throws RemoteException {
 		markeerstenen = new HashMap<ISpeler, Integer>();
 	}
 

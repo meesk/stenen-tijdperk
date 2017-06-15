@@ -25,8 +25,7 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 
 	private int waarde;
 
-
-	BeschavingskaartSpoor(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten){
+	BeschavingskaartSpoor(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 	 super(asset, achtergrond, status, kosten);
 	 this.waarde = waarde;
 	}

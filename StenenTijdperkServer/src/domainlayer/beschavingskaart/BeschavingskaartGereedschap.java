@@ -1,5 +1,7 @@
 package domainlayer.beschavingskaart;
 
+
+
 /**
 * @Author Alex de Bruin, s1103096
 * @Version 0.1
@@ -9,7 +11,7 @@ package domainlayer.beschavingskaart;
 * Dit is de constructor voor de gereedschapskaart die naast het tableau komt te liggen.
 */
 
-
+import java.rmi.RemoteException;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
@@ -21,8 +23,7 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 	private boolean naastTableau = false;
 
 
-
-	BeschavingskaartGereedschap(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean naastTableau){
+	BeschavingskaartGereedschap(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean naastTableau) throws RemoteException{
 		super(asset, achtergrond, status, kosten );
 		this.naastTableau = naastTableau;
 		this.waarde = waarde;

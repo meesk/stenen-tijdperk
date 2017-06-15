@@ -2,6 +2,7 @@ package domainlayer.locaties;
 
 import java.util.List;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import domainlayer.Speelbord;
@@ -11,17 +12,18 @@ import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 
 /**
- * @author Erwin Olie s1103026
+ * @author Erwin Olie, s1103026
+ * @author Tristan Caspers, s1102755
  * @version	0.2
  */
-public abstract class Locatie implements ILocatie {
+public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
 	private int cirkels;
 	protected List<Stamlid> stamleden;
 	private List<LocatieView> observers;
 	protected Speelbord speelbord;
 
-	public Locatie(int cirkels) {
+	public Locatie(int cirkels) throws RemoteException {
 		this.cirkels = cirkels;
 		stamleden = new ArrayList<>();
 		observers = new ArrayList<>();
@@ -32,7 +34,11 @@ public abstract class Locatie implements ILocatie {
 			return false;
 		}
 		stamleden.add(stamlid);
-		stamlid.getSpeler().getTableau().gebruikStamlid(stamlid);
+		try {
+			stamlid.getSpeler().getTableau().gebruikStamlid(stamlid);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 
