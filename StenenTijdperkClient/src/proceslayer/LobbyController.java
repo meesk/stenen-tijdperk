@@ -23,6 +23,8 @@ public class LobbyController {
 
 	private ISpel spel;
 	private LobbyView view;
+	private ISpeler s = null;
+	private int klikCounter = 0;
 
 	public LobbyController(ISpel spel) {
 		this.spel = spel;
@@ -34,26 +36,19 @@ public class LobbyController {
 
 	public void OnButtonClick() throws RemoteException {
 
-		int klikCounter = 0;
-		ISpeler s = null;
-
-		if(klikCounter == 0) {
-			if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4) {
-
-				view.changeButton();
-				
-				// check voor correcte formaat
-				s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
-			} else {
-
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("invul fout");
-				alert.setContentText("Alle gegevens moeten ingevult zijn!");
-				alert.showAndWait();
-			}
-		} else if (klikCounter == 1) {
+		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
+			view.veranderKnopTextBeginnen();
+			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
+			view.disableSpelerInfo();
+		} else if(klikCounter == 1) {
 			s.klaarVoorSpeler();
+			view.veranderKnopTextBeginnen();
 			view.disableButton();
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("invul fout");
+			alert.setContentText("Alle gegevens moeten ingevult zijn!");
+			alert.showAndWait();
 		}
 
 		klikCounter++;

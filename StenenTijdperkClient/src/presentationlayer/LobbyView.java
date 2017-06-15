@@ -37,6 +37,7 @@ public class LobbyView extends BorderPane {
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
 	private CheckBox isSpastisch;
+	private RadioButton radRood, radGroen, radBlauw, radGeel;
 	private final ToggleGroup group;
 	private LocalDate localDate;
 	private Button klaarBtn;
@@ -98,8 +99,7 @@ public class LobbyView extends BorderPane {
 	    spastischLabel.setTextFill(Color.WHITE);
 	    gridPaneForm.add(spastischLabel, 0, 10);
 	    isSpastisch = new CheckBox();
-	    isSpastisch.setOnMouseEntered(e -> isSpastisch.setSelected(!isSpastisch.isSelected()));
-
+	    
         isSpastisch.getStyleClass().add("big-check-box");
         VBox root = new VBox(5, isSpastisch);
         root.setPadding(new Insets(15));
@@ -164,7 +164,17 @@ public class LobbyView extends BorderPane {
 		this.klaarBtn.setDisable(true);
 	}
 	
-	public void changeButton() {
+	public void disableSpelerInfo() {
+		this.geboorteDatumPicker.setDisable(true);
+		this.isSpastisch.setDisable(true);
+		this.voorNaamField.setDisable(true);
+	}
+	
+	public void veranderKnopTextBeginnen() {
 		this.klaarBtn.setText("Beginnen!");
+	}
+	
+	public void veranderKnopTextWachten() {
+		this.klaarBtn.setText("Momenteel Geduld a.u.b..");
 	}
 }
