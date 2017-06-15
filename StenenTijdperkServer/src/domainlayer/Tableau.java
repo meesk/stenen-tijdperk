@@ -14,7 +14,7 @@ import presentationlayer.TableauView;
 /**
  * @author Tristan Caspers s1102755
  * @author Erwin Olie s1103026
- * @version 0.2
+ * @version 0.3
  */
 
 // MOET NOG AANGEPAST WORDEN IN VERBAND MET SPELER.JAVA ANDERS ONTSTAAT DUBBELE CODE
@@ -24,7 +24,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
 	private List<TableauView> observers;
-	private int gereedschap;
+	private int[] gereedschap;
 	
 	public Tableau() throws RemoteException {
 		stamleden = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			put(Middel.STEEN, 0);
 			put(Middel.GOUD, 0);
 		}};
-		gereedschap = 0;
+		gereedschap = new int[] { 0, 0, 0 };
 	}
 
 	public void ontvangMiddel(Middel middel) {
@@ -78,11 +78,26 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public int getTotaalGereedschap() {
-		return gereedschap;
+		int totaal = 0;
+		for (int aantal : gereedschap) {
+			totaal += aantal;
+		}
+		return totaal;
 	}
 
 	public void verhoogGereedschap() {
-		gereedschap += 1;
+		int index = gereedschap.length - 1, totaal = 0;
+		for (int i = gereedschap.length - 1; i >= 0; i--) {
+			int aantal = gereedschap[i];
+			totaal += aantal;
+			if (gereedschap[index] >= aantal) {
+				index = i;
+			}
+		}
+		if (totaal % gereedschap.length == 0) {
+			index = 0;
+		}
+		gereedschap[index]++;
 	}
 
 	public void geefGereedschapFiche() {
