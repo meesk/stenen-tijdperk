@@ -1,6 +1,5 @@
 package domainlayer.beschavingskaart;
 
-import domainlayer.Speelbord;
 /**
  * @author Alex de Bruin, s1103096
  * @version 0.1
@@ -11,26 +10,19 @@ import domainlayer.Speelbord;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
-import domainlayer.spoor.Voedselspoor;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 public class BeschavingskaartDobbelen extends Beschavingskaart {
 
 
-	private Image asset;
-	private int kosten;
 	private int waarde;
 	private Middel[] middel;
-	private IBeschavingskaartAchtergrond achtergrond;
-	private BeschavingskaartStatus status;
-	ImageView imageView = new ImageView(asset);
 
-	public BeschavingskaartDobbelen(Image asset, int waarde, Middel[] middel, IBeschavingskaartAchtergrond achtergrond) {
-		this.asset = asset;
-		this.waarde = waarde;
+
+	public BeschavingskaartDobbelen(String asset, int waarde, Middel[] middel, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) {
+		super(asset, achtergrond, status, kosten);
 		this.middel = middel;
-		this.achtergrond = achtergrond;
+		this.waarde = waarde;
 	}
 
 	@Override
@@ -53,7 +45,7 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 		this.status = status;
 	}
 
-	public Image getAsset() {
+	public String getAsset() {
 		return asset;
 	}
 

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Voedselspoor;
@@ -16,6 +17,7 @@ import presentationlayer.TableauView;
 /**
  * @author Tristan Caspers s1102755
  * @author Erwin Olie s1103026
+ * @author Alex de Bruin s1103096
  * @version 0.3
  */
 
@@ -26,9 +28,11 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private Map<Middel, Integer> middelen;
 	private List<TableauView> observers;
 	private int[] gereedschap;
+	private List<Beschavingskaart> kaarten;
 
 	public Tableau() throws RemoteException {
 		stamleden = new ArrayList<>();
+		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{
 			put(Middel.VOEDSEL, 0);
 			put(Middel.HOUT, 0);
@@ -58,6 +62,11 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public List<Stamlid> getStamleden(){
 		return stamleden;
 	}
+
+	public void ontvangenBeschavingskaarten(Beschavingskaart kaart) {
+		kaarten.add(kaart);
+	}
+
 
 	public void notifyObservers() {
 		for (TableauView observer : observers) {
@@ -101,7 +110,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		//
 		verhoogGereedschap();
 	}
-	
+
 	public void verwijderMiddelen(Map<Middel, Integer> middelen){
 		for (Entry<Middel, Integer> entry : middelen.entrySet()) {
 			// Verwijder de middelen uit de lijst van middelen van het tableau
@@ -109,57 +118,57 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		    System.out.println(entry.getKey() + " " + entry.getValue());
 		}
 	}
-	
+
 	/**
 	 * Kijkt of middelen genoeg zijn, en of het tableau deze middelen heeft
 	 * @author Mees Kluivers, s1102358
 	 * @param middelen
 	 * @return boolean true (stamleden gevoed), false (stamleden niet gevoed)
-	 * @throws RemoteException 
+	 * @throws RemoteException
 	 */
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException{
-		
+
 	    List<Integer> valuesVanSpeler = new ArrayList<Integer>(middelen.values());
 	    List<Integer> ingevoerdeValues = new ArrayList<Integer>(this.middelen.values());
 	    Integer aantalMiddelen = 0;
-	    for (int i = 0; i < valuesVanSpeler.size(); i++) { 
+	    for (int i = 0; i < valuesVanSpeler.size(); i++) {
 		    // Check of er niet teveel middelen zijn ingevult
 	    	if (!(valuesVanSpeler.get(i) <= ingevoerdeValues.get(i)))
 	    		return false;
 
-    		aantalMiddelen = valuesVanSpeler.get(i);	
+    		aantalMiddelen = valuesVanSpeler.get(i);
 	    }
-	    
+
 
 	    // Check of er genoeg middelen zijn ingevult
 	    if (stamleden.size() != aantalMiddelen)
 	    	return false;
-	    	
+
 	    verwijderMiddelen(middelen);
 		return true;
 	}
-	
+
 	/**
 	 * @author Mees Kluivers, s1102358
 	 * @param middelen
 	 * @return true (betaald), false (niet betaald)
 	 */
 	public boolean betalen(Map<Middel, Integer> middelen){
-		
+
 	    List<Integer> values = new ArrayList<Integer>(middelen.values());
 	    List<Integer> values1 = new ArrayList<Integer>(this.middelen.values());
 	    Integer aantalMiddelen = 0;
-	    for (int i = 0; i < values.size(); i++) { 
+	    for (int i = 0; i < values.size(); i++) {
 		    // Check of er niet teveel middelen zijn ingevult
 	    	if (!(values.get(i) <= values1.get(i)))
 	    		return false;
-	    				
-    		aantalMiddelen = values.get(i);	
+
+    		aantalMiddelen = values.get(i);
 	    }
-	    
+
 	    if (stamleden.size() != aantalMiddelen)
 	    	return false;
-	  
+
 		return true;
 	}
 }

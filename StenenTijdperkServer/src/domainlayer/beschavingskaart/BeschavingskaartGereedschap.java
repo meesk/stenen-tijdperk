@@ -12,25 +12,21 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 public class BeschavingskaartGereedschap extends Beschavingskaart {
 
-	private Image asset;
-	private int kosten;
 	private BeschavingskaartStatus status;
 	private int waarde;
-	private IBeschavingskaartAchtergrond achtergrond;
 	private boolean naastTableau = false;
-	ImageView imageView = new ImageView(asset);
 
 
-	BeschavingskaartGereedschap(Image asset, int waarde, IBeschavingskaartAchtergrond achtergrond, boolean naastTableau){
-		this.waarde = waarde;
-		this.achtergrond = achtergrond;
+
+	BeschavingskaartGereedschap(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean naastTableau){
+		super(asset, achtergrond, status, kosten );
 		this.naastTableau = naastTableau;
-		this.asset = asset;
+		this.waarde = waarde;
+
 	}
 
 	public boolean isNaastTableau() {
@@ -61,7 +57,7 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 		this.status = status;
 	}
 
-	public Image getAsset() {
+	public String getAsset() {
 		return asset;
 	}
 

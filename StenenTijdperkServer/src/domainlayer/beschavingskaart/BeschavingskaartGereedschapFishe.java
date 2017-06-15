@@ -12,18 +12,13 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 public class BeschavingskaartGereedschapFishe extends Beschavingskaart {
 
-	private Image asset;
-	private int kosten;
-	private BeschavingskaartStatus status;
-	private IBeschavingskaartAchtergrond achtergrond;
-	ImageView imageView = new ImageView(asset);
-	BeschavingskaartGereedschapFishe(Image asset, IBeschavingskaartAchtergrond achtergrond){
-		this.achtergrond = achtergrond;
+
+	BeschavingskaartGereedschapFishe(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten){
+		super(asset, achtergrond, status, kosten);
 	}
 	@Override
 	public int getKosten() {
@@ -44,7 +39,7 @@ public class BeschavingskaartGereedschapFishe extends Beschavingskaart {
 		this.status = status;
 	}
 
-	public Image getAsset() {
+	public String getAsset() {
 		return asset;
 	}
 

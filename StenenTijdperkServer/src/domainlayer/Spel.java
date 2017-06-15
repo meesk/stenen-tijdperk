@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import domainlayer.dobbelstenen.DobbelsteenWorp;
+import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.TextInputDialog;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextInputDialog;
  * Enzo Campfens s1102421
  * Mees Kluivers s1102358
  * Tristan Caspers s1102755
+ * Alex de Bruin s1103096
  * @version 0.6
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
@@ -34,6 +36,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private DobbelsteenWorp dobbelsteenWorp;
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
+	private int fase;
+	private SpelStatus status;
+	private ISpeler speler;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
@@ -69,12 +74,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		return speler;
 	}
-	
+
 	@Override
 	public int getAangegevenSpelers() {
 		return aangegevenSpelers;
 	}
-	
+
 	public void initAantalSpelSpelers() {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Server");
@@ -90,6 +95,35 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	@Override
 	public List<ISpeler> getSpelerLijst() throws RemoteException {
 		return spelers;
+	}
+
+	public int getFase(){
+		return fase;
+	}
+
+	public void setFase(int fase){
+		this.fase = fase;
+	}
+	public void fases(){
+
+		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR){
+			switch(status){
+				case PLAATSEN_STAMLEDEN : {
+
+		//			while(s.
+
+				}
+
+				case UITVOEREN_ACTIE : {
+
+				}
+
+				case VOEDEN_STAMLEDEN : {
+
+				}
+			}
+		}
+
 	}
 
 }

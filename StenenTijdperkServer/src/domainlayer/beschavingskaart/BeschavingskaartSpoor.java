@@ -13,24 +13,22 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.spoor.Puntenspoor;
 import domainlayer.spoor.Voedselspoor;
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.stream.Collectors;
 import domainlayer.Speelbord;
-import domainlayer.Speler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import domainlayer.Stamlid;
+import domainlayer.Tableau;
+
 
 public class BeschavingskaartSpoor extends Beschavingskaart{
 
-	private Image asset;
 	private int waarde;
-	private int kosten;
-	private BeschavingskaartStatus status;
-	private IBeschavingskaartAchtergrond achtergrond;
 
-	ImageView imageView = new ImageView(asset);
 
-	BeschavingskaartSpoor(Image asset, int waarde, IBeschavingskaartAchtergrond achtergrond){
-		this.waarde = waarde;
-		this.achtergrond = achtergrond;
+	BeschavingskaartSpoor(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten){
+	 super(asset, achtergrond, status, kosten);
+	 this.waarde = waarde;
 	}
 
 	@Override
@@ -39,7 +37,8 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		//actie uitvoeren
 		if(waarde == 1){
 			Speelbord speelbord = super.speelbord;
 			Voedselspoor voedselspoor = speelbord.getVoedselspoor();
@@ -52,6 +51,14 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 			Puntenspoor puntenspoor = speelbord.getPuntenspoor();
 			puntenspoor.verhoogProductie(speler, waarde);
 		}
+		// verwijderen stamleden
+		Tableau tableau = speler.getTableau();
+		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
+		tableau.ontvangStamleden(stamleden);
+		super.verwijderStamleden(stamleden);
+
+		// Beschavingskaart naar tableau
+
 	}
 
 	@Override
@@ -64,7 +71,7 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 		this.status = status;
 	}
 
-	public Image getAsset() {
+	public String getAsset() {
 		return asset;
 	}
 

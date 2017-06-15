@@ -3,29 +3,19 @@ package domainlayer.beschavingskaart;
 /**
 * @Author Alex de Bruin, s1103096
 * @Version 0.1
-* <br>
-* <br>
+*
 * Dit is de contructor voor de dobbeltabel beschavingskaart waar een speler dobbelt en alle spelers een dobbelsteen kiezen.
 */
 
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 public class BeschavingskaartDobbeltabel extends Beschavingskaart {
 
-	private Image asset;
-	private BeschavingskaartStatus status;
-	private int kosten;
-	private IBeschavingskaartAchtergrond achtergrond;
 
-
-	ImageView imageView = new ImageView(asset);
-
-	BeschavingskaartDobbeltabel(Image asset, IBeschavingskaartAchtergrond achtergrond){
-		this.achtergrond = achtergrond;
-		this.asset = asset;
+	BeschavingskaartDobbeltabel(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten){
+		super(asset, achtergrond, status, kosten);
 	}
 
 	@Override
@@ -48,7 +38,7 @@ public class BeschavingskaartDobbeltabel extends Beschavingskaart {
 		this.status = status;
 	}
 
-	public Image getAsset() {
+	public String getAsset() {
 		return asset;
 	}
 

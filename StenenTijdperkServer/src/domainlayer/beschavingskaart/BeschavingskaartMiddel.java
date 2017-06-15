@@ -12,24 +12,19 @@ package domainlayer.beschavingskaart;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 public class BeschavingskaartMiddel extends Beschavingskaart {
 
 
-	private Image asset;
-	private int kosten;
-	private BeschavingskaartStatus status;
 	private int Waarde;
-	private IBeschavingskaartAchtergrond achtergrond;
 	private Middel[] middel;
-	ImageView imageView = new ImageView(asset);
 
-	public BeschavingskaartMiddel(Image asset, int Waarde, IBeschavingskaartAchtergrond achtergrond, Middel... middel) {
-		this.middel = middel;
+
+	public BeschavingskaartMiddel(String asset, int Waarde,  IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, Middel... middel) {
+		super(asset, achtergrond, status, kosten);
 		this.Waarde = Waarde;
-		this.achtergrond = achtergrond;
+		this.middel = middel;
 	}
 
 	@Override
@@ -52,7 +47,7 @@ public class BeschavingskaartMiddel extends Beschavingskaart {
 		this.status = status;
 	}
 
-	public Image getAsset() {
+	public String getAsset() {
 		return asset;
 	}
 
