@@ -11,7 +11,8 @@ import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 
 /**
- * @author Erwin Olie s1103026
+ * @author Erwin Olie, s1103026
+ * @author Tristan Caspers, s1102755
  * @version	0.2
  */
 public abstract class Locatie implements ILocatie {
@@ -32,7 +33,11 @@ public abstract class Locatie implements ILocatie {
 			return false;
 		}
 		stamleden.add(stamlid);
-		stamlid.getSpeler().getTableau().gebruikStamlid(stamlid);
+		try {
+			stamlid.getSpeler().getTableau().gebruikStamlid(stamlid);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  * @version 0.6
  */
 public class StenenTijdperk extends Application {
-	
+
 	//
 	//                 _oo0oo_
 	//                o8888888o
@@ -50,7 +50,7 @@ public class StenenTijdperk extends Application {
 //		Spel spel = new Spel();
 //		// Het vragen met hoeveel spelers het spel wordt gespeelt.
 //		spel.initAantalSpelSpelers();
-//		
+//
 //		// Het opzetten van het RMI register.
 //		LocateRegistry.createRegistry(1099);
 //		// Het registreren van het dobbelsteenworp-model in het register.
@@ -64,15 +64,14 @@ public class StenenTijdperk extends Application {
 		// Het initialiseren van een nieuw spel.
 		Spel spel = new Spel();
 		// Het vragen met hoeveel spelers het spel wordt gespeelt.
-		
+
 		// Het opzetten van het RMI register.
 		LocateRegistry.createRegistry(1099);
 		// Het registreren van het dobbelsteenworp-model in het register.
 		Naming.rebind("DobbelsteenWorp", spel.getDobbelsteenWorp());
 		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
-		
+
 		spel.initAantalSpelSpelers();
 	}
-
 }

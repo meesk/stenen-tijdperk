@@ -27,10 +27,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private List<TableauView> observers;
 	private int[] gereedschap;
 
-	public Tableau() throws RemoteException {
+	public Tableau(Speler speler) throws RemoteException {
+		this.speler = speler;
 		stamleden = new ArrayList<>();
+		// Klaarzetten Spel moet nog 5 stamleden hieraan toevoegen!
 		middelen = new HashMap<Middel, Integer>() {{
-			put(Middel.VOEDSEL, 0);
+			put(Middel.VOEDSEL, 12);
 			put(Middel.HOUT, 0);
 			put(Middel.LEEM, 0);
 			put(Middel.STEEN, 0);
@@ -45,12 +47,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public void ontvangMiddelen(Middel middel, int aantal) {
 		middelen.put(middel, middelen.get(middel) + aantal);
-	}
-
-	public void werpenDobbeltabel() {
-		switch() {
-		case :
-		}
 	}
 
 	public void ontvangStamlid(Stamlid stamlid) {

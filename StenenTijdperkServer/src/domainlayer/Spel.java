@@ -17,6 +17,7 @@ import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.paint.Color;
 
 /**
  * Spel.java
@@ -69,12 +70,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		return speler;
 	}
-	
+
 	@Override
 	public int getAangegevenSpelers() {
 		return aangegevenSpelers;
 	}
-	
+
 	public void initAantalSpelSpelers() {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Server");
