@@ -51,9 +51,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 
 	public void werpenDobbeltabel() {
-		switch() {
-		case :
-		}
+		//switch() {
+		//case :
+		//}
 	}
 
 	public void ontvangStamlid(Stamlid stamlid) {

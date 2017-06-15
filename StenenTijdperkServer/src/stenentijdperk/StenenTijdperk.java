@@ -45,10 +45,6 @@ public class StenenTijdperk {
 	//
 	//A buddha statue to bless your code to be bug free.
 	//
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
 
 	/** De main method die de controllers registreert in het register. */
 
