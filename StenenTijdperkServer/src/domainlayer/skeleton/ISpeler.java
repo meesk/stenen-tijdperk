@@ -25,6 +25,8 @@ public interface ISpeler extends Remote {
 	public LocalDate getGeboorteDatum() throws RemoteException;
 
 	public boolean getSpasme() throws RemoteException;
+	
+	public boolean getKlaar() throws RemoteException;
 
 	public Tableau getTableau() throws RemoteException;
 	

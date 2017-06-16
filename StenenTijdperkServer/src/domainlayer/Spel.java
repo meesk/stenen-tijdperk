@@ -80,25 +80,25 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return aangegevenSpelers;
 	}
 
-	public void initAantalSpelSpelers() {
-		TextInputDialog dialog = new TextInputDialog();
-		dialog.setTitle("Server");
-		dialog.setHeaderText("Aantal speel personen, 2 tot 4");
-		dialog.setContentText("Aantal personen :");
-
-		Optional<String> result = dialog.showAndWait();
-		if (result.isPresent()){
-			aangegevenSpelers = Integer.parseInt(result.get());
-		}
-	}
-
-
 	public List<ISpeler> getSpelerLijst() {
 		return this.spelers;
 	}
 
-	public boolean checkSpelers() {
-		return true;
+	public void checkSpelers() throws RemoteException {
+		int ready = 0;
+		
+		// het aantal spelers, het aantal spelers dat klaar is.
+		
+		for(int i = 0; i < this.spelers.size(); i++) { // zolang i kleiner is dan het aantal spelers.
+			if(this.spelers.get(i).getKlaar()) {
+				ready++;
+			}
+		}
+				
+		if(ready == this.spelers.size()) {
+			// begin spel
+		}
+		
 	}
 
 	public int getFase(){

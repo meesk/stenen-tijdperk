@@ -41,6 +41,7 @@ public class LobbyView extends BorderPane {
 	private final ToggleGroup group;
 	private LocalDate localDate;
 	private Button klaarBtn;
+	
 
 	public LobbyView(Stage primaryStage, LobbyController controller) {
 
@@ -122,7 +123,7 @@ public class LobbyView extends BorderPane {
 		});
 
 	    //Progessie bar
-	    ProgressBar pb = new ProgressBar(0.50);
+	    ProgressBar pb = new ProgressBar();
 	    gridPaneForm.add(pb, 2, 12);
 		gridPaneForm.setStyle("-fx-font-size: 16px;");
 

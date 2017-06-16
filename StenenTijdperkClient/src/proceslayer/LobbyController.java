@@ -36,7 +36,7 @@ public class LobbyController {
 
 	public void OnButtonClick() throws RemoteException {
 
-		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
+		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() > 1 && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
 			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
 			view.disableSpelerInfo();
@@ -44,6 +44,7 @@ public class LobbyController {
 			s.klaarVoorSpeler();
 			view.veranderKnopTextBeginnen();
 			view.disableButton();
+			spel.checkSpelers();
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("invul fout");
