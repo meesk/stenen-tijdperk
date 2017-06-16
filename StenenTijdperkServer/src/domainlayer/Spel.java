@@ -11,14 +11,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
-import domainlayer.enums.Kleur;
+import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.paint.Color;
+import presentationlayer.LobbyView;
 
 /**
  * Spel.java
@@ -66,9 +64,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
-	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
+	public ISpeler maakSpeler(LobbyView view) throws RemoteException {
 
-		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch, kleur);
+		Speler speler = new Speler(this, view);
 
 		synchronized(spelers) {
 			spelers.add(speler);
@@ -89,17 +87,21 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	public void checkSpelers() throws RemoteException {
 		int ready = 0;
 
-		// het aantal spelers, het aantal spelers dat klaar is.
-
-		for(int i = 0; i < this.spelers.size(); i++) { // zolang i kleiner is dan het aantal spelers.
-			if(this.spelers.get(i).getKlaar()) {
-				ready++;
+		if(this.spelers.size() > 1 ) {
+			for(int i = 0; i < this.spelers.size(); i++) { // zolang i kleiner is dan het aantal spelers.
+				if(this.spelers.get(i).getKlaar()) {
+					ready++;
+				}
 			}
-		}
 
-		if(ready == this.spelers.size()) {
-			// Toevoegen 12 voedsel
-			// Toevoegen 5 stamleden
+			if(ready == this.spelers.size()) {
+				for(int i = 0; i < spelers.size(); i++) {
+					spelers.get(i).getTableau().ontvangMiddelen(Middel.VOEDSEL, 12);
+					for (int j = 0; j <= 4; j++) {
+						spelers.get(i).getTableau().krijgStamlid();
+					}
+				}
+			}
 		}
 	}
 
@@ -136,18 +138,17 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 							break;
 						}
 					}
-
-					}
-
 				}
 
-				case UITVOEREN_ACTIE : {
+			}
 
-				}
+			case UITVOEREN_ACTIE : {
 
-				case VOEDEN_STAMLEDEN : {
+			}
 
-				}
+			case VOEDEN_STAMLEDEN : {
+
+			}
 			}
 		}
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 
 import domainlayer.Tableau;
 import domainlayer.enums.Kleur;
+import presentationlayer.LobbyView;
 
 /**
  * ISpel.java
@@ -21,7 +22,7 @@ import domainlayer.enums.Kleur;
 
 public interface ISpel extends Remote {
 
-	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException;
+	public ISpeler maakSpeler(LobbyView view) throws RemoteException;
 
 	//public int getAangegevenSpelers() throws RemoteException;
 

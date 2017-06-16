@@ -1,13 +1,10 @@
 package domainlayer.beschavingskaart;
 
 /**
-* @Author Alex de Bruin, s1103096
-* @Version 0.1
+*  Dit is de constructor voor de andere gereedschapskaart waar de speler een gereedschaps fische krijgt.
 *
-* <br>
-* <br>
-* Dit is de constructor voor de andere gereedschapskaart waar de speler een gereedschaps fische krijgt.
-*
+* @author Alex de Bruin, s1103096
+* @version 0.1
 */
 
 import java.rmi.RemoteException;
@@ -15,10 +12,10 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
 
-public class BeschavingskaartGereedschapFishe extends Beschavingskaart {
+public class BeschavingskaartGereedschapFiche extends Beschavingskaart {
 
 
-	BeschavingskaartGereedschapFishe(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
+	BeschavingskaartGereedschapFiche(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		super(asset, achtergrond, status, kosten);
 
 	}

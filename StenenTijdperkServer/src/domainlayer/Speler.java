@@ -12,6 +12,7 @@ import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.paint.Color;
+import presentationlayer.LobbyView;
 
 /**
  * Speler.java
@@ -34,13 +35,13 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	private boolean klaar;
 
-	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
-		this.naam = naam;
-		this.geboorteDatum = geboorteDatum;
-		this.isSpastisch = isSpastisch;
+	public Speler(Spel spel, LobbyView view) throws RemoteException {
+		this.naam = view.getNaam();
+		this.geboorteDatum = view.getGeboorteDatum();
+		this.isSpastisch = view.getIsSpastisch();
 		this.spel = spel;
 		this.klaar = false;
-		this.kleur = kleur;
+		this.kleur = view.getKleur();
 		tableau = new Tableau(this);
 	}
 
