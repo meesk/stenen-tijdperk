@@ -38,16 +38,17 @@ public class LobbyController {
 
 		view.getKleur();
 
-		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() > 1 && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
+		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
-			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch(), view.getKleur());
+			s = spel.maakSpeler(view);
 			view.disableSpelerInfo();
+			klikCounter++;
 		} else if(klikCounter == 1) {
 			s.klaarVoorSpeler();
 			view.veranderKnopTextBeginnen();
 			view.disableButton();
 			spel.checkSpelers();
-		} else if(view.getNaam() != "" || view.getGeboorteDatum() != null) {
+		} else if(view.getNaam() == "" || view.getGeboorteDatum() == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("invul fout");
             alert.setContentText("Alle gegevens moeten ingevult zijn!");
@@ -58,7 +59,5 @@ public class LobbyController {
             alert.setContentText("Er zijn minder dan 2 spelers!");
             alert.showAndWait();
         }
-
-		klikCounter++;
 	}
 }
