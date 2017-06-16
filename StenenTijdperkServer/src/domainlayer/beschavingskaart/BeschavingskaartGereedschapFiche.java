@@ -1,13 +1,10 @@
 package domainlayer.beschavingskaart;
 
 /**
-* @Author Alex de Bruin, s1103096
-* @Version 0.1
+*  Dit is de constructor voor de andere gereedschapskaart waar de speler een gereedschaps fische krijgt.
 *
-* <br>
-* <br>
-* Dit is de constructor voor de andere gereedschapskaart waar de speler een gereedschaps fische krijgt.
-*
+* @author Alex de Bruin, s1103096
+* @version 0.1
 */
 
 import java.rmi.RemoteException;

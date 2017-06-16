@@ -1,27 +1,38 @@
 package presentationlayer;
 
 import domainlayer.skeleton.ITableau;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import proceslayer.TableauController;
 
 /**
  * TableauView.java
  * Een klasse die alle informatie bevat om de tableau view te maken.
  *
- * @author Tristan Caspers, s1102755
- * @version 0.1
+ * @author Erwin Olie, s1103026
+ * @version 0.2
  */
 
 public class TableauView extends StackPane {
 
-	public TableauView(Stage primaryStage, TableauController controller) {
+	public TableauView() {
+		this(false);
+	}
+	
+	public TableauView(boolean large) {
 
-		controller.registerView(this);
+		Image image = new Image("file:assets/tableau.png");
+		ImageView imageView = new ImageView(image);
 
-		// View nog opbouwen!
-		
-		//this.getChildren().addAll();
+		if (large) {
+			imageView.setFitHeight(image.getHeight() * 0.25);
+			imageView.setFitWidth(image.getWidth() * 0.25);
+		} else {
+			imageView.setFitHeight(image.getHeight() * 0.0625);
+			imageView.setFitWidth(image.getWidth() * 0.0625);
+		}
+
+		this.getChildren().add(imageView);
 	}
 
 	public void modelChanged(ITableau tableau) {

@@ -38,6 +38,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private int fase;
 	private SpelStatus status;
 	private ISpeler speler;
+	private int stamledenListTotaal;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
@@ -112,13 +113,32 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		this.fase = fase;
 	}
 
-	public void fases() {
+	// Het beheren van de spel fases
+	//fase 1 is het lobby gedeelte
+	//fase 2 is het spelen van het spel
+	//fase 3 is het eind view
+
+	public void fases() throws RemoteException {
 
 		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR){
 			switch(status){
-			case PLAATSEN_STAMLEDEN : {
+				case PLAATSEN_STAMLEDEN : {
+					for(int i = 0; i <= spelers.size(); i++){
+						if (this.spelers.get(i).getTableau().getStamleden().size() != 0){
+							//plaatsen stamleden
 
-				//			while(s.
+
+
+					} else {
+						for(int j = 0; j <= spelers.size(); j ++) {
+							stamledenListTotaal += this.spelers.get(j).getTableau().getStamleden().size();
+						}
+
+						if (stamledenListTotaal == 0){
+							break;
+						}
+					}
+				}
 
 			}
 
