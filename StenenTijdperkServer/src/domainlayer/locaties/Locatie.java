@@ -61,7 +61,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	// Nog speler specifiek maken
-	public int getStamleden(List<Stamlid> stamleden) {
+	public int getStamleden() {
 		return stamleden.size();
 	}
 }

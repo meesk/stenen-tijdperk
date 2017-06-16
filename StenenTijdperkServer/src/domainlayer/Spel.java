@@ -14,8 +14,10 @@ import java.util.List;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
+import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LobbyView;
 
 /**
@@ -32,13 +34,20 @@ import presentationlayer.LobbyView;
 public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private Speelbord speelbord;
+	public Speelbord getSpeelbord() {
+		return speelbord;
+	}
+
 	private DobbelsteenWorp dobbelsteenWorp;
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
 	private int fase;
 	private SpelStatus status;
 	private ISpeler speler;
-	private int stamledenListTotaal;
+	private int stamledenNietGeplaatst;
+	private List<Stamlid> geplaatst;
+	private Locatie locatie;
+	private int stamleden = 0;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
@@ -113,39 +122,84 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		this.fase = fase;
 	}
 
-	// Het beheren van de spel fases
-	//fase 1 is het lobby gedeelte
-	//fase 2 is het spelen van het spel
-	//fase 3 is het eind view
+	/** Het beheren van de spel fases
+	*fase 1 is het lobby gedeelte
+	*fase 2 is het spelen van het spel
+	*fase 3 is het eind view
+	 * */
 
 	public void fases() throws RemoteException {
 
-		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR){
+		// fase 2.1
+		//Alleen de fases waar in de speler echt het spel kan spelen staan hier in
+		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR) {
+			//De switch zorgt ervoor de de juiste acties bij de juiste staat van het spel horen
+
 			switch(status){
+
+			// dit is het plaatsen van de stamleden gedeelte
 				case PLAATSEN_STAMLEDEN : {
-					for(int i = 0; i <= spelers.size(); i++){
+					// zolang i kleiner is dan de lijst met spelers
+					for(int i = 0; i < spelers.size(); i++) {
+						//als Tableau van een spler niet leeg is
 						if (this.spelers.get(i).getTableau().getStamleden().size() != 0){
-							//plaatsen stamleden
-
-
-
-					} else {
-						for(int j = 0; j <= spelers.size(); j ++) {
-							stamledenListTotaal += this.spelers.get(j).getTableau().getStamleden().size();
+							// kijk hoeveel spelers er zijn
+							switch(spelers.size()) {
+							//als er twee spelers zijn
+								case '2' : {
+									//stamleden plaatsen
+								}
+							//als er drie spelers zijn
+								case '3' : {
+									//stamleden plaatsen
+								}
+							//als er vier spelers zijn
+								case '4' : {
+									//stamleden plaatsen
+								}
+							}
+						// als er geen stamleden meer zijn bij een speler
+						} else {
+							//zolanf j kleiner is dan de lijst met spelers
+						for(int j = 0; j < spelers.size(); j ++) {
+							//de teller stamleden wordt gevuld met stamleden die er wel nog staan
+							stamledenNietGeplaatst += this.spelers.get(j).getTableau().getStamleden().size();
 						}
-
-						if (stamledenListTotaal == 0){
+						//als de teller met stamleden leeg is gaat het spel naar de volgende fase
+						if (stamledenNietGeplaatst == 0) {
 							break;
 						}
 					}
 				}
-
+					//volgende spelfase
+					status = status.UITVOEREN_ACTIE;
 			}
-
+		//fase 2.2
 			case UITVOEREN_ACTIE : {
 
-			}
 
+				for(Locatie locatie : speelbord.getLocaties()) {
+					stamleden += locatie.getStamleden();
+				}
+				while(stamleden != 0){
+					switch(spelers.size()) {
+
+					case '2' : {
+						//twee spelers krijgen een beurt
+					}
+
+					case '3' : {
+						//drie spelers krijgen een beurt
+					}
+
+					case '4' : {
+						//vier speler krijgen een beurt
+					}
+					}
+				}
+				status = status.VOEDEN_STAMLEDEN;
+			}
+	//fase 2.3
 			case VOEDEN_STAMLEDEN : {
 
 			}

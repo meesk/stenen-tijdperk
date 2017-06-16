@@ -60,4 +60,8 @@ public class Speelbord extends UnicastRemoteObject {
 		return null;
 	}
 
+	public List<Locatie> getLocaties() {
+		return locaties;
+	}
+
 }
