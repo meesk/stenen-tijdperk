@@ -15,10 +15,10 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
 
-public class BeschavingskaartGereedschapFishe extends Beschavingskaart {
+public class BeschavingskaartGereedschapFiche extends Beschavingskaart {
 
 
-	BeschavingskaartGereedschapFishe(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
+	BeschavingskaartGereedschapFiche(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		super(asset, achtergrond, status, kosten);
 
 	}

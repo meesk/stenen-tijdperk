@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Kleur;
+import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
@@ -97,8 +98,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 
 		if(ready == this.spelers.size()) {
-			// Toevoegen 12 voedsel
-			// Toevoegen 5 stamleden
+			for(int i = 0; i < spelers.size(); i++) {
+				spelers.get(i).getTableau().ontvangMiddelen(Middel.VOEDSEL, 12);
+		        for (int j = 0; j <= 4; j++) {
+		        	spelers.get(i).getTableau().krijgStamlid();
+		        }
+			}
 		}
 	}
 

@@ -74,7 +74,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		}
 	}
 
-	public void krijgStamlid(){
+	public void krijgStamlid() {
 		Stamlid s = new Stamlid(speler);
 		stamleden.add(s);
 	}

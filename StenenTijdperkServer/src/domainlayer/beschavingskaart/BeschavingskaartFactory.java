@@ -50,7 +50,7 @@ public class BeschavingskaartFactory {
 			add(new BeschavingskaartGereedschap("file:assets/Beschavingskaarten/Gereedschap/01.png", 2, new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("file:assets/Beschavingskaarten/Gereedschap/02.png", 3, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("file:assets/Beschavingskaarten/Gereedschap/03.png", 4, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
-			add(new BeschavingskaartGereedschapFishe("file:assets/Beschavingskaarten/Gereedschap/nieuw/01.png", new BeschavingskaartGras(Symbool.KUNST), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartGereedschapFiche("file:assets/Beschavingskaarten/Gereedschap/nieuw/01.png", new BeschavingskaartGras(Symbool.KUNST), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartDobbeltabel("file:assets/Beschavingskaarten/Dobbel/01.png", new BeschavingskaartGras(Symbool.SCHRIFT), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartDobbeltabel("file:assets/Beschavingskaarten/Dobbel/02.png", new BeschavingskaartGras(Symbool.ZONNEWIJZER), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartDobbeltabel("file:assets/Beschavingskaarten/Dobbel/05.png", new BeschavingskaartGras(Symbool.WIEL), BeschavingskaartStatus.VRIJ, 0));
