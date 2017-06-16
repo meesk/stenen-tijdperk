@@ -1,6 +1,12 @@
 package presentationlayer;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 import domainlayer.skeleton.locaties.ILocatie;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -16,17 +22,31 @@ import javafx.scene.shape.Rectangle;
 
 public class LocatieView extends StackPane {
 
-	public LocatieView(int x, int y, int w, int h) {
+	private List<Point> points;
+	
+	public LocatieView(int x, int y, int w, int h, List<Point> points) {
 		Rectangle rectangle = new Rectangle(w, h);
 		rectangle.setFill(Color.DARKGOLDENROD);
-		rectangle.setOpacity(0.2);
+		rectangle.setOpacity(0.0);
 		rectangle.setOnMouseMoved(e -> rectangle.setOpacity(0.85));
-		rectangle.setOnMouseExited(e -> rectangle.setOpacity(0.2));
+		rectangle.setOnMouseExited(e -> rectangle.setOpacity(0.0));
 		rectangle.setOnMouseClicked(e -> System.out.println("geklikt op locatie!"));
+		
+		Pane pane = new Pane();
+		this.points = points;
+		
+		for (Point point : points) {
+			Image poppetje = new Image("file:assets/gele_poppetje.png");
+			ImageView imageView = new ImageView(poppetje);
+			imageView.relocate(point.getX(), point.getY());
+			pane.getChildren().add(imageView);
+		}
+		
+		this.getChildren().add(pane);
 		this.getChildren().add(rectangle);
 		this.setLayoutX(x);
 		this.setLayoutY(y);
-
+		
 		// controller.registerView(this);
 	}
 
