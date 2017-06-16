@@ -13,10 +13,10 @@ import javafx.stage.Stage;
  * StenenTijdperk.java<br>
  * Een simpele Main-klasse waar de RMI server word opgezet.
  *
- * @author Erwin Olie s1103026,
- * Enzo Campfens s1102421,
- * Mees Kluivers s1102358,
- * Tristan Caspers s1102755
+ * @author Erwin Olie, s1103026
+ * @author Enzo Campfens, s1102421
+ * @author Mees Kluivers, s1102358
+ * @author Tristan Caspers, s1102755
  * @version 0.6
  */
 

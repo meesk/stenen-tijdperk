@@ -3,6 +3,7 @@ package presentationlayer;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 
+import domainlayer.enums.Kleur;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,9 +29,10 @@ import proceslayer.LobbyController;
  * LobbyView.java
  * Een klasse die alle informatie bevat om de Lobby view te maken.
  *
- * @author Enzo Campfens s1102421,
- * Mees Kluivers s1102358
- * @version 0.1
+ * @author Enzo Campfens, s1102421
+ * @author Mees Kluivers, s1102358
+ * @author Tristan Caspers, s1102755
+ * @version 0.3
  */
 
 public class LobbyView extends BorderPane {
@@ -37,11 +40,11 @@ public class LobbyView extends BorderPane {
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
 	private CheckBox isSpastisch;
+	private Kleur kleur;
 	private RadioButton radRood, radGroen, radBlauw, radGeel;
 	private final ToggleGroup group;
 	private LocalDate localDate;
 	private Button klaarBtn;
-	
 
 	public LobbyView(Stage primaryStage, LobbyController controller) {
 
@@ -100,7 +103,7 @@ public class LobbyView extends BorderPane {
 	    spastischLabel.setTextFill(Color.WHITE);
 	    gridPaneForm.add(spastischLabel, 0, 10);
 	    isSpastisch = new CheckBox();
-	    
+
         isSpastisch.getStyleClass().add("big-check-box");
         VBox root = new VBox(5, isSpastisch);
         root.setPadding(new Insets(15));
@@ -113,7 +116,7 @@ public class LobbyView extends BorderPane {
 	    klaarBtn.maxWidth(200);
 	    klaarBtn.maxHeight(200);
 	    gridPaneForm.add(klaarBtn, 1 , 12);
-	    
+
 	    klaarBtn.setOnAction(e -> {
 			try {
 				controller.OnButtonClick();
@@ -157,24 +160,26 @@ public class LobbyView extends BorderPane {
 		return isSpastisch.isSelected();
 	}
 
+	//public Kleur getKleur() {}
+
 	public ToggleGroup getGroup() {
 		return group;
 	}
-	
+
 	public void disableButton() {
 		this.klaarBtn.setDisable(true);
 	}
-	
+
 	public void disableSpelerInfo() {
 		this.geboorteDatumPicker.setDisable(true);
 		this.isSpastisch.setDisable(true);
 		this.voorNaamField.setDisable(true);
 	}
-	
+
 	public void veranderKnopTextBeginnen() {
 		this.klaarBtn.setText("Beginnen!");
 	}
-	
+
 	public void veranderKnopTextWachten() {
 		this.klaarBtn.setText("Momenteel Geduld a.u.b..");
 	}

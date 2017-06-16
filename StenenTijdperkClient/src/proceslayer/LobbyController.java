@@ -14,8 +14,8 @@ import presentationlayer.LobbyView;
  * De controller voor de lobby.
  *
  * @author Erwin Olie, s1103026
- * Enzo Campfens, s1102421
- * Mees Kluivers, s1102358
+ * @author Enzo Campfens, s1102421
+ * @author Mees Kluivers, s1102358
  * @version 0.3
  */
 
@@ -38,7 +38,7 @@ public class LobbyController {
 
 		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() > 1 && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
-			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());
+			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch(), view.getKleur());
 			view.disableSpelerInfo();
 		} else if(klikCounter == 1) {
 			s.klaarVoorSpeler();
@@ -54,5 +54,4 @@ public class LobbyController {
 
 		klikCounter++;
 	}
-
 }

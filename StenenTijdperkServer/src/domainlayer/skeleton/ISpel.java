@@ -7,20 +7,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 import domainlayer.Tableau;
+import domainlayer.enums.Kleur;
 
 /**
  * ISpel.java
  * Een interface voor het spel aan de server kant.
  *
  * @author Enzo Campfens s1102421
- * Mees Kluivers s1102358
- * Tristan Caspers s1102755
+ * @author Mees Kluivers s1102358
+ * @author Tristan Caspers s1102755
  * @version 0.2
  */
 
 public interface ISpel extends Remote {
 
-	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException;
+	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, Kleur kleur) throws RemoteException;
 
 	//public int getAangegevenSpelers() throws RemoteException;
 

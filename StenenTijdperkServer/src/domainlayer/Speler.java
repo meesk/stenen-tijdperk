@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.paint.Color;
@@ -17,30 +18,29 @@ import javafx.scene.paint.Color;
  * Een klasse waar de spelers worden aangemaakt.
  *
  * @author	Erwin Olie, s1103026
- * Enzo Campfens, s1102421
- * Mees Kluivers, s1102358
- * Tristan Caspers, s1102755
- * @version	0.4
+ * @author Enzo Campfens, s1102421
+ * @author Mees Kluivers, s1102358
+ * @author Tristan Caspers, s1102755
+ * @version	0.5
  */
 public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	private Spel spel;
 	private String naam;
-	//private Color kleur;
+	private Kleur kleur;
 	private LocalDate geboorteDatum;
 	private boolean isSpastisch;
 	private Tableau tableau;
 
 	private boolean klaar;
 
-	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch/*, Color kleur*/) throws RemoteException {
+	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch, Kleur kleur) throws RemoteException {
 		this.naam = naam;
 		this.geboorteDatum = geboorteDatum;
 		this.isSpastisch = isSpastisch;
 		this.spel = spel;
 		this.klaar = false;
-
-		//this.kleur = kleur;
+		this.kleur = kleur;
 		tableau = new Tableau(this);
 	}
 
@@ -59,9 +59,13 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	public Spel getSpel() {
 		return spel;
 	}
-	
+
 	public boolean getKlaar() {
-		return this.klaar;
+		return klaar;
+	}
+
+	public Kleur getKleur() {
+		return kleur;
 	}
 
 	public Tableau getTableau() throws RemoteException {
@@ -71,6 +75,5 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	@Override
 	public void klaarVoorSpeler() throws RemoteException {
 		this.klaar = true;
-
 	}
 }

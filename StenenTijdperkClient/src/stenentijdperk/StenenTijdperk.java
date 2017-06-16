@@ -22,11 +22,11 @@ import proceslayer.SpelController;
  * StenenTijdperk.java
  * Een simpele Main-klasse waar de client word opgezet.
  *
- * @author	Erwin Olie s1103026,
- * Enzo Campfens s1102421,
- * Mees Kluivers s1102358,
- * Tristan Caspers s1102755
- * @version	0.5
+ * @author Erwin Olie, s1103026
+ * @author Enzo Campfens, s1102421
+ * @author Mees Kluivers, s1102358
+ * @author Tristan Caspers, s1102755
+ * @version	0.6
  */
 public class StenenTijdperk extends Application {
 
@@ -38,7 +38,7 @@ public class StenenTijdperk extends Application {
 	@Override
 	/** {@inheritDoc} */
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		//
 		//                 _oo0oo_
 		//                o8888888o
@@ -67,7 +67,7 @@ public class StenenTijdperk extends Application {
 		// Het definieren van de modellen
 		IDobbelsteenWorp dobbelsteenWorp = (IDobbelsteenWorp) Naming.lookup("rmi://localhost/DobbelsteenWorp");
 		ISpel spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
-		
+
 		// ...
 		HandleidingView handleidingPane = new HandleidingView();
 
@@ -80,7 +80,7 @@ public class StenenTijdperk extends Application {
 		// Het definieren van de views
 		LobbyView lobbyView = new LobbyView(primaryStage, lobbyController);
 		SpelView spelView = new SpelView(spelController, dobbelsteenWorpController, dobbelsteenWorp);
-		
+
 		// Het voorbereiden en tonen van de stage.
 		Scene scene = new Scene(lobbyView, 884, 780);
 		primaryStage.setTitle("Het Stenen Tijdperk");

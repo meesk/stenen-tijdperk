@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
+import domainlayer.enums.Kleur;
 import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
@@ -23,11 +24,11 @@ import javafx.scene.paint.Color;
  * Spel.java
  * De klasse waar alle elementen tot 1 spel worden gevoegd.
  *
- * @author Erwin Olie s1103026,
- * Enzo Campfens s1102421,
- * Mees Kluivers s1102358,
- * Tristan Caspers s1102755,
- * Alex de Bruin s1103096
+ * @author Erwin Olie, s1103026
+ * @author Enzo Campfens, s1102421
+ * @author Mees Kluivers, s1102358
+ * @author Tristan Caspers, s1102755
+ * @author Alex de Bruin, s1103096
  * @version 0.75
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
@@ -64,9 +65,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
-	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch) throws RemoteException {
+	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, Kleur kleur) throws RemoteException {
 
-		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch);
+		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch, kleur);
 
 		synchronized(spelers) {
 			spelers.add(speler);
@@ -86,19 +87,19 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public void checkSpelers() throws RemoteException {
 		int ready = 0;
-		
+
 		// het aantal spelers, het aantal spelers dat klaar is.
-		
+
 		for(int i = 0; i < this.spelers.size(); i++) { // zolang i kleiner is dan het aantal spelers.
 			if(this.spelers.get(i).getKlaar()) {
 				ready++;
 			}
 		}
-				
+
 		if(ready == this.spelers.size()) {
-			// begin spel
+			// Toevoegen 12 voedsel
+			// Toevoegen 5 stamleden
 		}
-		
 	}
 
 	public int getFase(){
