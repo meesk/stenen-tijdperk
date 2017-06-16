@@ -21,7 +21,7 @@ import domainlayer.enums.Kleur;
 
 public interface ISpel extends Remote {
 
-	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, Kleur kleur) throws RemoteException;
+	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException;
 
 	//public int getAangegevenSpelers() throws RemoteException;
 

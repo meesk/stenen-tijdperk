@@ -58,5 +58,7 @@ public class StenenTijdperk {
 		Naming.rebind("DobbelsteenWorp", spel.getDobbelsteenWorp());
 		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
+		
+		System.out.println("server started...");
 	}
 }

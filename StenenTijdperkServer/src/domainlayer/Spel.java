@@ -65,7 +65,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
-	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, Kleur kleur) throws RemoteException {
+	public ISpeler maakSpeler(String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
 
 		Speler speler = new Speler(this, naam, geboorteDatum, isSpastisch, kleur);
 

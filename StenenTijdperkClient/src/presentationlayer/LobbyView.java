@@ -160,10 +160,10 @@ public class LobbyView extends BorderPane {
 		return isSpastisch.isSelected();
 	}
 
-	//public Kleur getKleur() {}
+	public String getKleur() {
 
-	public ToggleGroup getGroup() {
-		return group;
+		RadioButton selectedRadio = (RadioButton) group.getSelectedToggle();
+		return selectedRadio.getText();
 	}
 
 	public void disableButton() {

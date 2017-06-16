@@ -27,14 +27,14 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	private Spel spel;
 	private String naam;
-	private Kleur kleur;
+	private String kleur;
 	private LocalDate geboorteDatum;
 	private boolean isSpastisch;
 	private Tableau tableau;
 
 	private boolean klaar;
 
-	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch, Kleur kleur) throws RemoteException {
+	public Speler(Spel spel, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
 		this.naam = naam;
 		this.geboorteDatum = geboorteDatum;
 		this.isSpastisch = isSpastisch;
@@ -62,10 +62,6 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	public boolean getKlaar() {
 		return klaar;
-	}
-
-	public Kleur getKleur() {
-		return kleur;
 	}
 
 	public Tableau getTableau() throws RemoteException {
