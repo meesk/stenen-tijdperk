@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -157,8 +158,11 @@ public class LobbyView extends BorderPane {
 		return isSpastisch.isSelected();
 	}
 
-	public ToggleGroup getGroup() {
-		return group;
+	public String getKleur() {
+		
+		RadioButton selectedRadio = (RadioButton) group.getSelectedToggle();
+		return selectedRadio.getText();
+		
 	}
 	
 	public void disableButton() {

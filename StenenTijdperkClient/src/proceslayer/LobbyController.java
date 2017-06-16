@@ -35,7 +35,9 @@ public class LobbyController {
 	}
 
 	public void OnButtonClick() throws RemoteException {
-
+		
+		view.getKleur();
+		
 		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() > 1 && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
 			s = spel.maakSpeler(view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch());

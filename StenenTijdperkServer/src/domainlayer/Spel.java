@@ -86,9 +86,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public void checkSpelers() throws RemoteException {
 		int ready = 0;
-		
-		// het aantal spelers, het aantal spelers dat klaar is.
-		
+				
 		for(int i = 0; i < this.spelers.size(); i++) { // zolang i kleiner is dan het aantal spelers.
 			if(this.spelers.get(i).getKlaar()) {
 				ready++;
