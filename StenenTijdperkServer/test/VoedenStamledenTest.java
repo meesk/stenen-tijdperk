@@ -1,4 +1,4 @@
-import java.rmi.RemoteException;
+/*import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,4 +62,4 @@ public class VoedenStamledenTest {
 		Assert.assertFalse(b);
 	}
 
-}
+}*/
