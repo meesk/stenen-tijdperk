@@ -114,8 +114,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void verwijderMiddelen(Map<Middel, Integer> middelen){
 		for (Entry<Middel, Integer> entry : middelen.entrySet()) {
 			// Verwijder de middelen uit de lijst van middelen van het tableau
-		    this.middelen.remove(entry.getKey(), this.middelen.get(entry.getKey()) - entry.getValue());
-		    System.out.println(entry.getKey() + " " + entry.getValue());
+		    this.middelen.replace(entry.getKey(), this.middelen.get(entry.getKey()), this.middelen.get(entry.getKey()) - entry.getValue());
+		    System.out.println("Nieuwe middelen: " + this.middelen.get(entry.getKey()));
 		}
 	}
 
