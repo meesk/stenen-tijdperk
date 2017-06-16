@@ -29,7 +29,7 @@ public class VoedenStamledenTest {
 		stamleden = new ArrayList<Stamlid>();
 		// voeg 5 stamleden toe
 		for(int i = 0; i < 5; i++){
-			Stamlid s = new Stamlid(new Speler(new Spel(), "hoi", LocalDate.now(), false));
+			Stamlid s = new Stamlid(new Speler(new Spel(), "hoi", LocalDate.now(), false, "rood"));
 			stamleden.add(s);
 		}
 		tableau.ontvangStamleden(stamleden);
