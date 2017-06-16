@@ -47,12 +47,17 @@ public class LobbyController {
 			view.veranderKnopTextBeginnen();
 			view.disableButton();
 			spel.checkSpelers();
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("invul fout");
-			alert.setContentText("Alle gegevens moeten ingevult zijn!");
-			alert.showAndWait();
-		}
+		} else if(view.getNaam() != "" || view.getGeboorteDatum() != null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("invul fout");
+            alert.setContentText("Alle gegevens moeten ingevult zijn!");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Speler fout");
+            alert.setContentText("Er zijn minder dan 2 spelers!");
+            alert.showAndWait();
+        }
 
 		klikCounter++;
 	}
