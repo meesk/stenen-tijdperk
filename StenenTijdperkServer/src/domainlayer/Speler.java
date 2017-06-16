@@ -59,6 +59,10 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	public Spel getSpel() {
 		return spel;
 	}
+	
+	public boolean getKlaar() {
+		return this.klaar;
+	}
 
 	public Tableau getTableau() throws RemoteException {
 		return tableau;
