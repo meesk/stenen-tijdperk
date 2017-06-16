@@ -16,7 +16,7 @@ import presentationlayer.LobbyView;
  * @author Erwin Olie, s1103026
  * Enzo Campfens, s1102421
  * Mees Kluivers, s1102358
- * @version 0.1
+ * @version 0.3
  */
 
 public class LobbyController {

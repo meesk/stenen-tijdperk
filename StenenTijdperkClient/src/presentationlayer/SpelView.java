@@ -15,8 +15,8 @@ import proceslayer.SpelController;
  * SpelView.java - Het bestand met alle informatie om het spelbord te tekenen.
  *
  * @author Erwin Olie s1103026
- * Enzo Campfens s1102421
- * @versie 0.3
+ * @author Enzo Campfens s1102421
+ * @version 0.3
  *
  */
 
