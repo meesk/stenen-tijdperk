@@ -12,7 +12,7 @@ import presentationlayer.LobbyView;
 /**
  * LobbyController.java
  * De controller voor de lobby.
- * 
+ *
  * @author Erwin Olie, s1103026
  * Enzo Campfens, s1102421
  * Mees Kluivers, s1102358

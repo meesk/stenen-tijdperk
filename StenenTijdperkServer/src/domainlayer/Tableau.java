@@ -14,8 +14,8 @@ import domainlayer.skeleton.ITableau;
 import presentationlayer.TableauView;
 
 /**
- * @author Tristan Caspers s1102755
- * @author Erwin Olie s1103026
+ * @author Tristan Caspers s1102755,
+ * @author Erwin Olie s1103026,
  * @author Alex de Bruin s1103096
  * @version 0.3
  */
@@ -35,7 +35,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden = new ArrayList<>();
 		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{
-			put(Middel.VOEDSEL, 12);
+			put(Middel.VOEDSEL, 0);
 			put(Middel.HOUT, 0);
 			put(Middel.LEEM, 0);
 			put(Middel.STEEN, 0);
@@ -67,7 +67,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void ontvangenBeschavingskaarten(Beschavingskaart kaart) {
 		kaarten.add(kaart);
 	}
-
 
 	public void notifyObservers() {
 		for (TableauView observer : observers) {
