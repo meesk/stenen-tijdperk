@@ -35,4 +35,6 @@ public interface ISpel extends Remote {
 	public void opslaan() throws IOException;
 
 	public void checkSpelers() throws RemoteException;
+
+	public ISpeelbord getSpeelbord() throws RemoteException;
 }

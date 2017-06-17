@@ -1,6 +1,8 @@
 package domainlayer.locaties;
 
+import java.awt.Point;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,15 +11,13 @@ import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeler;
 
 /**
- * @author	Erwin Olie, s1103026
- * @author Mees Kluivers, s1102358
- *
- * @version	0.1
+ * @author Erwin Olie, s1103026
+ * @version	0.2
  */
 public class Hut extends Locatie {
 
-	public Hut() throws RemoteException {
-		super(2);
+	public Hut(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
+		super(x, y, width, height, cirkels);
 	}
 
 	@Override

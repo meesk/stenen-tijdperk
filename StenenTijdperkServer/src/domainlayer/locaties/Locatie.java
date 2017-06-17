@@ -1,6 +1,7 @@
 package domainlayer.locaties;
 
 import java.util.List;
+import java.awt.Point;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -18,19 +19,25 @@ import presentationlayer.LocatieView;
  */
 public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
-	private int cirkels;
+	private int x, y;
+	private int width, height;
+	private List<Point> cirkels;
 	protected List<Stamlid> stamleden;
 	private List<LocatieView> observers;
 	protected Speelbord speelbord;
 
-	public Locatie(int cirkels) throws RemoteException {
+	public Locatie(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 		this.cirkels = cirkels;
 		stamleden = new ArrayList<>();
 		observers = new ArrayList<>();
 	}
 
 	public boolean plaatsStamlid(Stamlid stamlid) {
-		if (stamleden.size() + 1 > cirkels) {
+		if (stamleden.size() + 1 > cirkels.size()) {
 			return false;
 		}
 		stamleden.add(stamlid);
@@ -63,5 +70,25 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	// Nog speler specifiek maken
 	public int getStamleden() {
 		return stamleden.size();
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public List<Point> getCirkels() {
+		return cirkels;
 	}
 }

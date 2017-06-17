@@ -1,6 +1,8 @@
 package domainlayer.locaties;
 
+import java.awt.Point;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,12 +12,12 @@ import domainlayer.skeleton.ISpeler;
 
 /**
  * @author	Erwin Olie, s1103026
- * @version	0.2
+ * @version	0.3
  */
 public class Gereedschapmaker extends Locatie {
 
-	public Gereedschapmaker() throws RemoteException {
-		super(1);
+	public Gereedschapmaker(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
+		super(x, y, width, height, cirkels);
 	}
 
 	@Override

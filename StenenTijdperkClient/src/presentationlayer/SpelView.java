@@ -3,6 +3,7 @@ package presentationlayer;
 import java.io.IOException;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
+import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import javafx.scene.control.Button;
@@ -22,13 +23,13 @@ import proceslayer.SpelController;
 
 public class SpelView extends Pane {
 
-	public SpelView(SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp) throws Exception {
+	public SpelView(ISpeelbord speelbord, SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp) throws Exception {
 		// De grid waarop de visuele objecten geplaatst worden.
 		GridPane grid = new GridPane();
 		grid.setStyle("-fx-background-color: #6a5b34");
 
 		// Het plaatsen van de views voor het speelbord en spelerstableau.
-		grid.add(new SpeelbordView(), 0, 0, 4, 1);
+		grid.add(new SpeelbordView(speelbord), 0, 0, 4, 1);
 		grid.add(new TableauView(true), 0, 1, 1, 3);
 
 		// Het plaatsen van de views van de kleine tableau's van de overige spelers.

@@ -178,7 +178,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			case UITVOEREN_ACTIE : {
 
 
-				for(Locatie locatie : speelbord.getLocaties()) {
+				for(ILocatie locatie : speelbord.getLocaties()) {
 					stamleden += locatie.getStamleden();
 				}
 				while(stamleden != 0){
