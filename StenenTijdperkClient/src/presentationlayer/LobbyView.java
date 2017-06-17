@@ -1,9 +1,11 @@
 package presentationlayer;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 
 import domainlayer.enums.Kleur;
+import domainlayer.skeleton.ILobbyView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -35,7 +37,7 @@ import proceslayer.LobbyController;
  * @version 0.3
  */
 
-public class LobbyView extends BorderPane {
+public class LobbyView extends BorderPane implements ILobbyView {
 
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
@@ -46,7 +48,9 @@ public class LobbyView extends BorderPane {
 	private LocalDate localDate;
 	private Button klaarBtn;
 
-	public LobbyView(Stage primaryStage, LobbyController controller) {
+	public LobbyView(Stage primaryStage, LobbyController controller) throws RemoteException {
+
+		UnicastRemoteObject.exportObject(this,0);
 
 		controller.registerView(this);
 

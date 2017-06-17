@@ -15,6 +15,7 @@ import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.locaties.Locatie;
+import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.locaties.ILocatie;
@@ -73,7 +74,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
-	public ISpeler maakSpeler(LobbyView view) throws RemoteException {
+	public ISpeler maakSpeler(ILobbyView view) throws RemoteException {
 
 		Speler speler = new Speler(this, view);
 

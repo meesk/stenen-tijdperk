@@ -82,7 +82,7 @@ public class StenenTijdperk extends Application {
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, dobbelsteenWorp);
 
 		// Het voorbereiden en tonen van de stage.
-		Scene scene = new Scene(spelView);
+		Scene scene = new Scene(lobbyView);
 		primaryStage.setTitle("Het Stenen Tijdperk");
 		primaryStage.setScene(scene);
 		primaryStage.show();

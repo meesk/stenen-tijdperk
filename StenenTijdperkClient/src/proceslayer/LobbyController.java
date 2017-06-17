@@ -3,6 +3,7 @@ package proceslayer;
 import java.rmi.RemoteException;
 import java.util.regex.Pattern;
 
+import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.Alert;
@@ -22,7 +23,7 @@ import presentationlayer.LobbyView;
 public class LobbyController {
 
 	private ISpel spel;
-	private LobbyView view;
+	private ILobbyView view;
 	private ISpeler s = null;
 	private int klikCounter = 0;
 
@@ -30,7 +31,7 @@ public class LobbyController {
 		this.spel = spel;
 	}
 
-	public void registerView(LobbyView view) {
+	public void registerView(ILobbyView view) {
 		this.view = view;
 	}
 
