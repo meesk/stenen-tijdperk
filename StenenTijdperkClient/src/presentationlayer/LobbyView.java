@@ -174,6 +174,7 @@ public class LobbyView extends BorderPane implements ILobbyView {
 		this.klaarBtn.setDisable(true);
 	}
 
+	@Override
 	public void disableSpelerInfo() {
 		this.geboorteDatumPicker.setDisable(true);
 		this.isSpastisch.setDisable(true);
