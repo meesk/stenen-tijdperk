@@ -30,7 +30,7 @@ import presentationlayer.LobbyView;
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @author Alex de Bruin, s1103096
- * @version 0.75
+ * @version 0.8
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 
@@ -103,12 +103,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					ready++;
 				}
 			}
-
+			// Deel van Sequentie Diagram 7: Klaarzetten Spel
 			if(ready == this.spelers.size()) {
 				for(int i = 0; i < spelers.size(); i++) {
-					spelers.get(i).getTableau().ontvangMiddelen(Middel.VOEDSEL, 12);
+					spelers.get(i).getTableau().ontvangMiddelen(Middel.VOEDSEL, 12); // 12 voedsel krijgen
 					for (int j = 0; j <= 4; j++) {
-						spelers.get(i).getTableau().krijgStamlid();
+						spelers.get(i).getTableau().krijgStamlid(); // 5 stamleden krijgen
 					}
 				}
 			}
