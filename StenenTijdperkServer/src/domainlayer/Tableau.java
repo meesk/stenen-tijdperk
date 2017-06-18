@@ -75,12 +75,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		}
 	}
 
-	public void notifyObservers(int plaats) {
-		for (TableauView observer : observers) {
-			observer.modelChanged(this);
-		}
-	}
-
 	public void krijgStamlid() {
 		Stamlid s = new Stamlid(speler);
 		stamleden.add(s);
@@ -214,7 +208,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 		return true;
 	}
-	
+
 	public void verliesPunten(){
 		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
 		puntenSpoor.verwijderPunten(speler, 10);
