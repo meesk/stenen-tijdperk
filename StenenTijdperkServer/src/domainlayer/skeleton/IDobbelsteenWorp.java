@@ -3,21 +3,14 @@ package domainlayer.skeleton;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import presentationlayer.skeleton.IDobbelsteenWorpPane;
+import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 
 /**
- * IDobbelsteenWorp.java
- * De interface van de DobbelsteenWorp.
- * 
  * @author	Erwin Olie, s1103026
- * @version	0.2
+ * @version	0.3
  */
 public interface IDobbelsteenWorp extends Remote {
-	/**
-	 * Registreer een observer bij de observable 
-	 * @param view	De observer met zijn view.
-	 */
-	public void addObserver(IDobbelsteenWorpPane view) throws RemoteException;
+	public void addObserver(IDobbelsteenWorpObserver view) throws RemoteException;
 	/** Update de view in alle observers. */
 	public void notifyObservers() throws RemoteException;
 	/**

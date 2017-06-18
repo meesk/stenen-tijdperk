@@ -7,7 +7,7 @@ import java.util.List;
 
 import domainlayer.skeleton.IDobbelsteen;
 import domainlayer.skeleton.IDobbelsteenWorp;
-import presentationlayer.skeleton.IDobbelsteenWorpPane;
+import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 
 /**
  * DobbelsteenWorp.java
@@ -23,7 +23,7 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	/** De dobbelstenen die deze worp bezit. */
 	private IDobbelsteen[] dobbelstenen;
 	/** De views die dit model observeren. */
-	private List<IDobbelsteenWorpPane> views;
+	private List<IDobbelsteenWorpObserver> views;
 
 	/** Het initializeren van dit model. */
 	public DobbelsteenWorp() throws RemoteException {
@@ -53,13 +53,13 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	}
 
 	/** {@inheritDoc} */
-	public void addObserver(IDobbelsteenWorpPane view) throws RemoteException {
+	public void addObserver(IDobbelsteenWorpObserver view) throws RemoteException {
 		views.add(view);
 	}
 
 	/** {@inheritDoc} */
 	public void notifyObservers() throws RemoteException {
-		for (IDobbelsteenWorpPane view : views) {
+		for (IDobbelsteenWorpObserver view : views) {
 			view.modelChanged(this);
 		}
 	}

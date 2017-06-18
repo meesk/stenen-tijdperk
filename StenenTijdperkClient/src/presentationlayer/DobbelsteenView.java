@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import presentationlayer.skeleton.IDobbelsteenPane;
+import presentationlayer.skeleton.IDobbelsteenObserver;
 
 /**
  * DobbelstenPane.java
@@ -17,7 +17,7 @@ import presentationlayer.skeleton.IDobbelsteenPane;
  * @author	Erwin Olie, s1103026
  * @version	0.3
  */
-public class DobbelsteenView extends Pane implements IDobbelsteenPane {
+public class DobbelsteenView extends Pane implements IDobbelsteenObserver {
 
 	/** De View waarin de dobbelsteen-afbeeldingen worden geladen. */
 	private ImageView imageView;

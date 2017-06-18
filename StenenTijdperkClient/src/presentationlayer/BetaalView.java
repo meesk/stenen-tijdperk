@@ -13,7 +13,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import presentationlayer.skeleton.IBetaalView;
+import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
 
 /**
@@ -24,7 +24,7 @@ import proceslayer.BetaalController;
  * @version 0.1
  */
 
-public class BetaalView extends BorderPane implements IBetaalView {
+public class BetaalView extends BorderPane implements ITableauObserver {
 
 	Spinner<Integer> inputVoedsel = new Spinner<Integer>();
 	Spinner<Integer> inputHout = new Spinner<Integer>();

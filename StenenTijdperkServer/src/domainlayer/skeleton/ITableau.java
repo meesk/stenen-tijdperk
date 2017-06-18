@@ -3,18 +3,15 @@ package domainlayer.skeleton;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import presentationlayer.skeleton.ITableauView;
+import presentationlayer.skeleton.ITableauObserver;
 
 /**
- * ITableau.java
- * Een interface voor het tableau aan de server kant.
- *
  * @author Erwin Olie, s1103026
- * @version 0.2
+ * @version 0.3
  */
 
 public interface ITableau extends Remote {
-	public void registerObserver(ITableauView observer) throws RemoteException;
+	public void registerObserver(ITableauObserver observer) throws RemoteException;
 
 	public int[] getGereedschap() throws RemoteException;
 	public boolean[] getGereedschapGebruikt() throws RemoteException;

@@ -13,7 +13,7 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
-import presentationlayer.skeleton.ITableauView;
+import presentationlayer.skeleton.ITableauObserver;
 
 /**
  * @author Tristan Caspers, s1102755
@@ -29,7 +29,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private Map<Middel, Integer> middelen;
 	private List<Beschavingskaart> kaarten;
 
-	private List<ITableauView> observers;
+	private List<ITableauObserver> observers;
 
 	private int[] gereedschap;
 	private boolean[] gereedschapGebruikt;
@@ -78,7 +78,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public void notifyObservers() {
-		for (ITableauView observer : observers) {
+		for (ITableauObserver observer : observers) {
 			try {
 				observer.modelChanged(this);
 			} catch (RemoteException e) {
@@ -227,7 +227,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	@Override
-	public void registerObserver(ITableauView observer) throws RemoteException {
+	public void registerObserver(ITableauObserver observer) throws RemoteException {
 		observers.add(observer);
 		notifyObservers();
 	}

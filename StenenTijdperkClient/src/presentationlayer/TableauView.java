@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import presentationlayer.skeleton.ITableauView;
+import presentationlayer.skeleton.ITableauObserver;
 
 /**
  * TableauView.java
@@ -22,7 +22,7 @@ import presentationlayer.skeleton.ITableauView;
  * @author erwin
  *
  */
-public class TableauView extends StackPane implements ITableauView {
+public class TableauView extends StackPane implements ITableauObserver {
 
 	private double scale = 1.00;
 	private ImageView[] gereedschap;
