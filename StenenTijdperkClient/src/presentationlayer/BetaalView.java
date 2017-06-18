@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import domainlayer.skeleton.ITableau;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import presentationlayer.skeleton.IBetaalView;
 import proceslayer.BetaalController;
 
 /**
@@ -22,7 +24,7 @@ import proceslayer.BetaalController;
  * @version 0.1
  */
 
-public class BetaalView extends BorderPane implements Remote {
+public class BetaalView extends BorderPane implements IBetaalView {
 
 	Spinner<Integer> inputVoedsel = new Spinner<Integer>();
 	Spinner<Integer> inputHout = new Spinner<Integer>();
@@ -117,5 +119,11 @@ public class BetaalView extends BorderPane implements Remote {
 
 	public int getGoud(){
 		return inputGoud.getValue();
+	}
+
+	@Override
+	public void modelChanged(ITableau model) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -12,6 +12,8 @@ package domainlayer.beschavingskaart;
 */
 
 import java.rmi.RemoteException;
+
+import domainlayer.Tableau;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
@@ -21,6 +23,7 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 	private BeschavingskaartStatus status;
 	private int waarde;
 	private boolean naastTableau = false;
+	
 
 
 	BeschavingskaartGereedschap(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean naastTableau) throws RemoteException{
@@ -44,8 +47,9 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
-
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		Tableau tableau = speler.getTableau();
+		tableau.verhoogGereedschap();
 	}
 
 	@Override
