@@ -33,9 +33,9 @@ public class LobbyController {
 		this.spel = spel;
 	}
 
-	public void registerSpelView(SpelView spelView) {
-		this.spelview = spelView;
-	}
+//	public void registerSpelView(SpelView spelView) {
+//		this.spelview = spelView;
+//	}
 
 	public void registerView(LobbyView view) {
 		this.view = view;
@@ -64,10 +64,5 @@ public class LobbyController {
             alert.setContentText("Er zijn minder dan 2 spelers!");
             alert.showAndWait();
         }
-
-		if(spel.getStart()) { // toont het spelview als iedereen klaar is
-			view.close();
-			spelview.show();
-		}
 	}
 }

@@ -15,13 +15,11 @@ import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
-import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
-import presentationlayer.LobbyView;
 
 /**
  * Spel.java
@@ -32,7 +30,7 @@ import presentationlayer.LobbyView;
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @author Alex de Bruin, s1103096
- * @version 0.8
+ * @version 0.9
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 
@@ -50,10 +48,14 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
 
+	private List<ILobbyView> lobbyObservers;
+
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
 		speelbord = new Speelbord(this);
 		dobbelsteenWorp = new DobbelsteenWorp();
+
+		lobbyObservers = new ArrayList<ILobbyView>();
 	}
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
@@ -146,11 +148,18 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 				this.klaarVoorStart = true;
+				notifyObservers();
 			}
 		}
 	}
 
 
+
+	private void notifyObservers() throws RemoteException {
+		for(ILobbyView observer : lobbyObservers) {
+			observer.modelChanged(this);
+		}
+	}
 
 	/** Het beheren van de spel fases
 	 *fase 1 is het lobby gedeelte
@@ -287,5 +296,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			}	// hier binnen blijven
 			}
 		}
+	}
+
+	public void registerLobbyView(ILobbyView observer) throws RemoteException {
+		lobbyObservers.add(observer);
 	}
 }

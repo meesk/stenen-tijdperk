@@ -9,6 +9,7 @@ import java.util.List;
 import domainlayer.Tableau;
 import domainlayer.enums.Kleur;
 import presentationlayer.LobbyView;
+import presentationlayer.SpelView;
 
 /**
  * ISpel.java
@@ -35,4 +36,6 @@ public interface ISpel extends Remote {
 	public ISpeelbord getSpeelbord() throws RemoteException;
 
 	public boolean getStart() throws RemoteException;
+
+	public void registerLobbyView(ILobbyView observer) throws RemoteException;
 }

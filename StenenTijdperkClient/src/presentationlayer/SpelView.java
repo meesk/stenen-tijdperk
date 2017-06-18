@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpeelbord;
-import domainlayer.skeleton.ISpel;
-import domainlayer.skeleton.locaties.ILocatie;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
