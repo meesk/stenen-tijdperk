@@ -30,12 +30,12 @@ public class SpelView extends Pane {
 
 		// Het plaatsen van de views voor het speelbord en spelerstableau.
 		grid.add(new SpeelbordView(speelbord), 0, 0, 4, 1);
-		grid.add(new TableauView(true), 0, 1, 1, 3);
+		grid.add(new TableauView(true, null), 0, 1, 1, 3);
 
 		// Het plaatsen van de views van de kleine tableau's van de overige spelers.
-		 grid.add(new TableauView(), 1, 1);
-		 grid.add(new TableauView(), 2, 1);
-		 grid.add(new TableauView(), 3, 1);
+		 grid.add(new TableauView(null), 1, 1);
+		 grid.add(new TableauView(null), 2, 1);
+		 grid.add(new TableauView(null), 3, 1);
 
 		// Het plaatsen van de view voor de dobbelstenen & worp.
 		// grid.add(new BeschavingskaartView(), 1, 2);

@@ -13,12 +13,13 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
+import presentationlayer.skeleton.ITableauView;
 
 /**
- * @author Tristan Caspers s1102755,
- * @author Erwin Olie s1103026,
- * @author Alex de Bruin s1103096
- * @version 0.3
+ * @author Tristan Caspers, s1102755
+ * @author Erwin Olie, s1103026,
+ * @author Alex de Bruin, s1103096
+ * @version 0.4
  */
 
 public class Tableau extends UnicastRemoteObject implements ITableau {
@@ -26,9 +27,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private List<Stamlid> stamleden;
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
-	private List<TableauView> observers;
-	private int[] gereedschap;
 	private List<Beschavingskaart> kaarten;
+	
+	private List<ITableauView> observers;
+	
+	private int[] gereedschap;
+	private boolean[] gereedschapGebruikt;
 
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
@@ -42,7 +46,11 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			put(Middel.STEEN, 0);
 			put(Middel.GOUD, 0);
 		}};
+		
+		observers = new ArrayList<>();
+		
 		gereedschap = new int[] { 0, 0, 0 };
+		gereedschapGebruikt = new boolean[] { false, false, false };
 	}
 
 	public void ontvangMiddel(Middel middel) {
@@ -70,8 +78,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public void notifyObservers() {
-		for (TableauView observer : observers) {
-			observer.modelChanged(this);
+		for (ITableauView observer : observers) {
+			try {
+				observer.modelChanged(this);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -212,5 +224,21 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void verliesPunten(){
 		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
 		puntenSpoor.verwijderPunten(speler, 10);
+	}
+
+	@Override
+	public void registerObserver(ITableauView observer) throws RemoteException {
+		observers.add(observer);
+		notifyObservers();
+	}
+
+	@Override
+	public int[] getGereedschap() throws RemoteException {
+		return gereedschap;
+	}
+
+	@Override
+	public boolean[] getGereedschapGebruikt() throws RemoteException {
+		return gereedschapGebruikt;
 	}
 }
