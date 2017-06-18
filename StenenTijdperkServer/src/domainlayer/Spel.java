@@ -8,16 +8,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
-import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LobbyView;
 
 /**
@@ -43,10 +42,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private int aangegevenSpelers;
 	private int fase;
 	private SpelStatus status;
-	private ISpeler speler;
 	private int stamledenNietGeplaatst;
-	private List<Stamlid> geplaatst;
-	private Locatie locatie;
 	private int stamleden = 0;
 
 	public Spel() throws RemoteException {
@@ -54,6 +50,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		speelbord = new Speelbord(this);
 		dobbelsteenWorp = new DobbelsteenWorp();
 	}
+
+
 
 	public DobbelsteenWorp getDobbelsteenWorp() {
 		return dobbelsteenWorp;
@@ -121,6 +119,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	public void setFase(int fase){
 		this.fase = fase;
 	}
+
+
 
 	/** Het beheren van de spel fases
 	*fase 1 is het lobby gedeelte
@@ -201,8 +201,15 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			}
 	//fase 2.3
 			case VOEDEN_STAMLEDEN : {
-
+				{// voedenstamleden
 			}
+
+				for(int i = 0; i <= spelers.size(); i++){
+					spelers.get(i).getTableau().resetGereedschapStatus();
+				}
+
+
+			}	// hier binnen blijven
 			}
 		}
 	}
