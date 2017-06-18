@@ -23,4 +23,8 @@ public class LocatieController {
 	public void registerView(LocatieView view) {
 		this.view = view;
 	}
+	
+	public void gebruikKaart() {
+		
+	}
 }

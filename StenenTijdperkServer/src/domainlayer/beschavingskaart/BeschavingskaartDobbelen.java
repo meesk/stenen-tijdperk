@@ -14,20 +14,23 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import java.rmi.RemoteException;
-import domainlayer.Speelbord;
+import java.util.List;
+import java.util.stream.Collectors;
+import domainlayer.Stamlid;
+import domainlayer.Tableau;
 
 public class BeschavingskaartDobbelen extends Beschavingskaart {
 
 
-	private int waarde;
-	private Middel[] middel;
+	private int kosten;
+	private Middel middel;
+	private Tableau tableau;
 
-	public BeschavingskaartDobbelen(String asset, int waarde, Middel[] middel, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException {
+	public BeschavingskaartDobbelen(String asset, Middel middel, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException {
 		super(asset, achtergrond, status, kosten);
 		this.asset = asset;
-		this.waarde = waarde;
 		this.middel = middel;
-		this.waarde = waarde;
+		this.kosten = kosten;
 	}
 
 	@Override
@@ -36,8 +39,19 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		//ontvangen middelen aan de hand van de gegooide ogen.
+		//int in gebruik gereedschap aanpassen
+		this.tableau.gebruikGereedschap(1);
+		int totaalOgen = this.speelbord.getSpel().getDobbelsteenWorp().getTotaal();
 
+		this.tableau.ontvangMiddelen(this.getMiddel(), totaalOgen / this.getMiddel().getWaarde());
+
+		//verwijderen stamleden
+		Tableau tableau = speler.getTableau();
+		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
+		tableau.ontvangStamleden(stamleden);
+		super.verwijderStamleden(stamleden);
 
 	}
 
@@ -58,11 +72,7 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 		return achtergrond;
 	}
 
-	public int getWaarde() {
-		return waarde;
-	}
-
-	public Middel[] getMiddel() {
+	public Middel getMiddel() {
 		return middel;
 	}
 

@@ -57,6 +57,7 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 		super.verwijderStamleden(stamleden);
 
 		// Beschavingskaart naar tableau
+		//moet denk niet hier
 
 	}
 

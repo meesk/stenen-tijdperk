@@ -13,6 +13,7 @@ import domainlayer.locaties.Locatie;
 import domainlayer.locaties.LocatieFactory;
 import domainlayer.locaties.MiddelLocatie;
 import domainlayer.skeleton.ISpeelbord;
+import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.spoor.Puntenspoor;
@@ -25,6 +26,8 @@ import domainlayer.spoor.Voedselspoor;
 public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	private Spel spel;
+
+
 	private List<ILocatie> locaties;
 	private ISpoor[] sporen;
 
@@ -56,6 +59,10 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	public List<ILocatie> getLocaties() {
 		return locaties;
+	}
+
+	public Spel getSpel() {
+		return spel;
 	}
 
 }
