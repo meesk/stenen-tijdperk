@@ -18,6 +18,7 @@ import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LobbyView;
 
 /**
@@ -41,7 +42,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private DobbelsteenWorp dobbelsteenWorp;
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
-	private int fase;
 	private SpelStatus status;
 	private int stamledenNietGeplaatst;
 	private int stamleden = 0;
@@ -113,14 +113,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	public int getFase(){
-		return fase;
-	}
-
-	public void setFase(int fase){
-		this.fase = fase;
-	}
-
 
 
 	/** Het beheren van de spel fases
@@ -178,24 +170,28 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		//fase 2.2
 			case UITVOEREN_ACTIE : {
 
-
+				// ga langs alle locaties en haal daar op hoeveel stamleden geplaatst zijn
 				for(ILocatie locatie : speelbord.getLocaties()) {
 					stamleden += locatie.getStamleden();
 				}
+				//
 				while(stamleden != 0){
+					for(ILocatie locatie : speelbord.getLocaties()) {
+						stamleden += locatie.getStamleden();
+						}
 					switch(spelers.size()) {
 
-					case '2' : {
-						//twee spelers krijgen een beurt
-					}
+						case '2' : {
+							//twee spelers krijgen een beurt
+						}
 
-					case '3' : {
-						//drie spelers krijgen een beurt
-					}
+						case '3' : {
+							//drie spelers krijgen een beurt
+						}
 
-					case '4' : {
-						//vier speler krijgen een beurt
-					}
+						case '4' : {
+							//vier speler krijgen een beurt
+						}
 					}
 				}
 				status = status.VOEDEN_STAMLEDEN;
@@ -207,6 +203,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 				for(int i = 0; i <= spelers.size(); i++){
 					spelers.get(i).getTableau().resetGereedschapStatus();
+				}
+
+				for(int i = 0; i <= speelbord.getLocaties().size(); i++) {
+					// get locatie type
+		//			if(//locatie type == null )
 				}
 
 
