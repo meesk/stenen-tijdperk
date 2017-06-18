@@ -1,6 +1,8 @@
 package domainlayer.locaties;
 
+import java.awt.Point;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,12 +22,8 @@ public class MiddelLocatie extends Locatie {
 	// Het type middel dat deze locatie bevat.
 	private Middel middel;
 
-	public MiddelLocatie(Middel middel) throws RemoteException {
-		super(Integer.MAX_VALUE);
-	}
-
-	public MiddelLocatie(int cirkels, Middel middel) throws RemoteException {
-		super(cirkels);
+	public MiddelLocatie(int x, int y, int width, int height, List<Point> cirkels, Middel middel) throws RemoteException {
+		super(x, y, width, height, cirkels);
 		this.middel = middel;
 	}
 

@@ -1,8 +1,7 @@
 package presentationlayer;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
+import java.rmi.RemoteException;
 
 import domainlayer.skeleton.locaties.ILocatie;
 import javafx.scene.image.Image;
@@ -16,16 +15,14 @@ import javafx.scene.shape.Rectangle;
  * LocatieView.java Een klasse die alle informatie bevat om de locatie view te
  * maken.
  *
- * @author Tristan Caspers, s1102755
- * @version 0.1
+ * @author Erwin Olie, s1103026
+ * @version 0.2
  */
 
 public class LocatieView extends StackPane {
-
-	private List<Point> points;
 	
-	public LocatieView(int x, int y, int w, int h, List<Point> points) {
-		Rectangle rectangle = new Rectangle(w, h);
+	public LocatieView(ILocatie model) throws RemoteException {
+		Rectangle rectangle = new Rectangle(model.getWidth(), model.getHeight());
 		rectangle.setFill(Color.DARKGOLDENROD);
 		rectangle.setOpacity(0.0);
 		rectangle.setOnMouseMoved(e -> rectangle.setOpacity(0.85));
@@ -33,9 +30,8 @@ public class LocatieView extends StackPane {
 		rectangle.setOnMouseClicked(e -> System.out.println("geklikt op locatie!"));
 		
 		Pane pane = new Pane();
-		this.points = points;
 		
-		for (Point point : points) {
+		for (Point point : model.getCirkels()) {
 			Image poppetje = new Image("file:assets/gele_poppetje.png");
 			ImageView imageView = new ImageView(poppetje);
 			imageView.relocate(point.getX(), point.getY());
@@ -44,10 +40,9 @@ public class LocatieView extends StackPane {
 		
 		this.getChildren().add(pane);
 		this.getChildren().add(rectangle);
-		this.setLayoutX(x);
-		this.setLayoutY(y);
+		this.setLayoutX(model.getX());
+		this.setLayoutY(model.getY());
 		
-		// controller.registerView(this);
 	}
 
 	public void modelChanged(ILocatie locatie) {

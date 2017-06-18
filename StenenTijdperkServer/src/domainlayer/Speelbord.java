@@ -10,33 +10,27 @@ import domainlayer.locaties.Akker;
 import domainlayer.locaties.Gereedschapmaker;
 import domainlayer.locaties.Hut;
 import domainlayer.locaties.Locatie;
+import domainlayer.locaties.LocatieFactory;
 import domainlayer.locaties.MiddelLocatie;
+import domainlayer.skeleton.ISpeelbord;
+import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.spoor.Puntenspoor;
 import domainlayer.spoor.Voedselspoor;
 
 /**
  * @author	Erwin Olie, s1103026
- * @version	0.2
+ * @version	0.3
  */
-public class Speelbord extends UnicastRemoteObject {
+public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	private Spel spel;
-	private List<Locatie> locaties;
+	private List<ILocatie> locaties;
 	private ISpoor[] sporen;
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
-		locaties = new ArrayList<Locatie>() {{
-			add(new MiddelLocatie(7, Middel.HOUT)); //Bos
-			add(new MiddelLocatie(7, Middel.LEEM)); //Leemgroeve
-			add(new MiddelLocatie(7, Middel.STEEN)); // Steengroeve
-			add(new MiddelLocatie(7, Middel.GOUD)); //Rivier
-			add(new MiddelLocatie(Middel.VOEDSEL)); //jacht
-			add(new Akker()); //akker
-			add(new Hut()); //hut
-			add(new Gereedschapmaker()); //gereedschapsmaker
-		}};
+		locaties = LocatieFactory.getInstance().getLocaties();
 		sporen = new ISpoor[] {
 			new Voedselspoor(), new Puntenspoor()
 		};
@@ -60,7 +54,7 @@ public class Speelbord extends UnicastRemoteObject {
 		return null;
 	}
 
-	public List<Locatie> getLocaties() {
+	public List<ILocatie> getLocaties() {
 		return locaties;
 	}
 

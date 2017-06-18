@@ -1,6 +1,8 @@
 package domainlayer.locaties;
 
+import java.awt.Point;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,13 +13,13 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.spoor.Voedselspoor;
 
 /**
- * @author	Erwin Olie, s1103026
- * @version	0.2
+ * @author Erwin Olie, s1103026
+ * @version 0.3
  */
 public class Akker extends Locatie {
 
-	public Akker() throws RemoteException {
-		super(1);
+	public Akker(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
+		super(x, y, width, height, cirkels);
 	}
 
 	@Override
@@ -33,7 +35,8 @@ public class Akker extends Locatie {
 
 		// Teruggeven Stamleden
 		Tableau tableau = speler.getTableau();
-		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
+		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler)
+				.collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
 		super.verwijderStamleden(stamleden);
 

@@ -10,6 +10,7 @@ import java.util.Map;
 
 import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.paint.Color;
 import presentationlayer.LobbyView;
@@ -35,7 +36,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	private boolean klaar;
 
-	public Speler(Spel spel, LobbyView view) throws RemoteException {
+	public Speler(Spel spel, ILobbyView view) throws RemoteException {
 		this.naam = view.getNaam();
 		this.geboorteDatum = view.getGeboorteDatum();
 		this.isSpastisch = view.getIsSpastisch();

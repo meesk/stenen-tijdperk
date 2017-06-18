@@ -22,17 +22,15 @@ import presentationlayer.LobbyView;
 
 public interface ISpel extends Remote {
 
-	public ISpeler maakSpeler(LobbyView view) throws RemoteException;
-
-	//public int getAangegevenSpelers() throws RemoteException;
+	public ISpeler maakSpeler(ILobbyView view) throws RemoteException;
 
 	public List<ISpeler> getSpelerLijst() throws RemoteException;
 
 	public int getAangegevenSpelers() throws RemoteException;
 
-	//public List<ISpeler> getSpelerLijst() throws RemoteException;
-
 	public void opslaan() throws IOException;
 
 	public void checkSpelers() throws RemoteException;
+
+	public ISpeelbord getSpeelbord() throws RemoteException;
 }

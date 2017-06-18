@@ -24,7 +24,7 @@ import javafx.scene.image.Image;
 
 public abstract class Beschavingskaart extends Locatie {
 	public Beschavingskaart() throws RemoteException {
-		super(1);
+		super(-1, -1, -1, -1, null);
 	}
 
 	protected String asset;
@@ -33,7 +33,7 @@ public abstract class Beschavingskaart extends Locatie {
 	protected int kosten;
 
 	public Beschavingskaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
-		super(1);
+		super(-1, -1, -1, -1, null);
 		this.asset = asset;
 		this.achtergrond = achtergrond;
 		this.status = status;
