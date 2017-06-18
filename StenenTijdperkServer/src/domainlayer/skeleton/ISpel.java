@@ -33,4 +33,6 @@ public interface ISpel extends Remote {
 	public void checkSpelers() throws RemoteException;
 
 	public ISpeelbord getSpeelbord() throws RemoteException;
+
+	public boolean getStart() throws RemoteException;
 }

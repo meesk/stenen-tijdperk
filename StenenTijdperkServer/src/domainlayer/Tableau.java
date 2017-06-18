@@ -28,9 +28,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
 	private List<Beschavingskaart> kaarten;
-	
+
 	private List<ITableauView> observers;
-	
+
 	private int[] gereedschap;
 	private boolean[] gereedschapGebruikt;
 
@@ -46,9 +46,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			put(Middel.STEEN, 0);
 			put(Middel.GOUD, 0);
 		}};
-		
+
 		observers = new ArrayList<>();
-		
+
 		gereedschap = new int[] { 0, 0, 0 };
 		gereedschapGebruikt = new boolean[] { false, false, false };
 	}

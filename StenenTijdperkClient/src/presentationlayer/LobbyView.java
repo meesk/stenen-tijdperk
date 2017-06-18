@@ -8,6 +8,7 @@ import domainlayer.enums.Kleur;
 import domainlayer.skeleton.ILobbyView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -37,7 +38,7 @@ import proceslayer.LobbyController;
  * @version 0.3
  */
 
-public class LobbyView extends BorderPane implements ILobbyView {
+public class LobbyView extends Stage implements ILobbyView {
 
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
@@ -53,6 +54,8 @@ public class LobbyView extends BorderPane implements ILobbyView {
 		UnicastRemoteObject.exportObject(this,0);
 
 		controller.registerView(this);
+
+		BorderPane borderpane = new BorderPane();
 
 		StackPane stackPane = new StackPane();
 
@@ -113,7 +116,7 @@ public class LobbyView extends BorderPane implements ILobbyView {
         root.setPadding(new Insets(15));
 
 	    gridPaneForm.add(root, 1, 10);
-	    this.getStylesheets().add("checkbox.css");
+	    borderpane.getStylesheets().add("checkbox.css");
 
 	    // Button ik ben klaar
 	    klaarBtn = new Button("Maak speler!");
@@ -147,8 +150,11 @@ public class LobbyView extends BorderPane implements ILobbyView {
 		stackPane.getChildren().addAll(backgroundView, logoView);
 		stackPane.setAlignment(Pos.TOP_LEFT);
 
-		this.getChildren().add(stackPane);
-		this.setCenter(gridPaneForm);
+		borderpane.getChildren().add(stackPane);
+		borderpane.setCenter(gridPaneForm);
+
+		Scene scene = new Scene(borderpane);
+		this.setScene(scene);
 	}
 
 	public String getNaam() {

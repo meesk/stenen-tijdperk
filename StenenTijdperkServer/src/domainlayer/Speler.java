@@ -46,6 +46,20 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		tableau = new Tableau(this);
 	}
 
+	public void ophalenGegevens() {
+		//Beschavingskaart + huttegels
+		//Alle grondstoffen [geen voedsel]
+		//Het puntenspoor.
+
+		//alles optellen en dan een list terug sturen?
+	}
+
+	public void extraTelling() {
+		//Stamleden
+		//Gereedschap
+		//Granenspoor
+	}
+
 	public String getNaam() {
 		return naam;
 	}

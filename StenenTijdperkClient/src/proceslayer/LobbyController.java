@@ -9,6 +9,7 @@ import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import presentationlayer.LobbyView;
+import presentationlayer.SpelView;
 
 /**
  * LobbyController.java
@@ -23,21 +24,24 @@ import presentationlayer.LobbyView;
 public class LobbyController {
 
 	private ISpel spel;
-	private ILobbyView view;
+	private LobbyView view;
 	private ISpeler s = null;
 	private int klikCounter = 0;
+	private SpelView spelview;
 
 	public LobbyController(ISpel spel) {
 		this.spel = spel;
 	}
 
-	public void registerView(ILobbyView view) {
+	public void registerSpelView(SpelView spelView) {
+		this.spelview = spelView;
+	}
+
+	public void registerView(LobbyView view) {
 		this.view = view;
 	}
 
 	public void OnButtonClick() throws RemoteException {
-
-		view.getKleur();
 
 		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
@@ -60,5 +64,10 @@ public class LobbyController {
             alert.setContentText("Er zijn minder dan 2 spelers!");
             alert.showAndWait();
         }
+
+		if(spel.getStart()) { // toont het spelview als iedereen klaar is
+			view.close();
+			spelview.show();
+		}
 	}
 }

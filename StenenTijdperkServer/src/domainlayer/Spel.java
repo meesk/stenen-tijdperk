@@ -48,6 +48,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private int stamledenNietGeplaatst;
 	private int stamleden = 0;
 	private boolean laatsteRonde = false;
+	private boolean klaarVoorStart = false;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
@@ -55,7 +56,35 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		dobbelsteenWorp = new DobbelsteenWorp();
 	}
 
+	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
 
+		try {
+
+			for(int i = 0; i < spelers.size(); i++) {
+				//spelers.get(i).ophalenGegevens();
+			}
+
+			bepaalWinnaar();
+
+			int i = 0;
+			if(i > 1) {
+
+				for(int k = 0; k < spelers.size(); k++) {
+					//spelers.get(i).extraTelling();
+				}
+
+				bepaalWinnaar();
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void bepaalWinnaar() {
+		// vergelijk telling, en pak het hoogste cijfer
+	}
 
 	public DobbelsteenWorp getDobbelsteenWorp() {
 		return dobbelsteenWorp;
@@ -91,6 +120,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return aangegevenSpelers;
 	}
 
+	public boolean getStart() {
+		return this.klaarVoorStart;
+	}
+
 	public List<ISpeler> getSpelerLijst() {
 		return this.spelers;
 	}
@@ -112,6 +145,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 						spelers.get(i).getTableau().krijgStamlid(); // 5 stamleden krijgen
 					}
 				}
+				this.klaarVoorStart = true;
 			}
 		}
 	}
@@ -119,9 +153,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 
 	/** Het beheren van de spel fases
-	*fase 1 is het lobby gedeelte
-	*fase 2 is het spelen van het spel
-	*fase 3 is het eind view
+	 *fase 1 is het lobby gedeelte
+	 *fase 2 is het spelen van het spel
+	 *fase 3 is het eind view
 	 * */
 
 	public void fases() throws RemoteException {
@@ -134,29 +168,29 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			switch(status){
 
 			// dit is het plaatsen van de stamleden gedeelte
-				case PLAATSEN_STAMLEDEN : {
-					// zolang i kleiner is dan de lijst met spelers
-					for(int i = 0; i < spelers.size(); i++) {
-						//als Tableau van een spler niet leeg is
-						if (this.spelers.get(i).getTableau().getStamleden().size() != 0){
-							// kijk hoeveel spelers er zijn
-							switch(spelers.size()) {
-							//als er twee spelers zijn
-								case '2' : {
-									//stamleden plaatsen
-								}
-							//als er drie spelers zijn
-								case '3' : {
-									//stamleden plaatsen
-								}
-							//als er vier spelers zijn
-								case '4' : {
-									//stamleden plaatsen
-								}
-							}
+			case PLAATSEN_STAMLEDEN : {
+				// zolang i kleiner is dan de lijst met spelers
+				for(int i = 0; i < spelers.size(); i++) {
+					//als Tableau van een spler niet leeg is
+					if (this.spelers.get(i).getTableau().getStamleden().size() != 0){
+						// kijk hoeveel spelers er zijn
+						switch(spelers.size()) {
+						//als er twee spelers zijn
+						case '2' : {
+							//stamleden plaatsen
+						}
+						//als er drie spelers zijn
+						case '3' : {
+							//stamleden plaatsen
+						}
+						//als er vier spelers zijn
+						case '4' : {
+							//stamleden plaatsen
+						}
+						}
 						// als er geen stamleden meer zijn bij een speler
-						} else {
-							//zolanf j kleiner is dan de lijst met spelers
+					} else {
+						//zolanf j kleiner is dan de lijst met spelers
 						for(int j = 0; j < spelers.size(); j ++) {
 							//de teller stamleden wordt gevuld met stamleden die er wel nog staan
 							stamledenNietGeplaatst += this.spelers.get(j).getTableau().getStamleden().size();
@@ -167,10 +201,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 						}
 					}
 				}
-					//volgende spelfase
-					status = status.UITVOEREN_ACTIE;
+				//volgende spelfase
+				status = status.UITVOEREN_ACTIE;
 			}
-		//fase 2.2
+			//fase 2.2
 			case UITVOEREN_ACTIE : {
 
 				// ga langs alle locaties en haal daar op hoeveel stamleden geplaatst zijn
@@ -181,28 +215,28 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				while(stamleden != 0){
 					for(ILocatie locatie : speelbord.getLocaties()) {
 						stamleden += locatie.getStamleden();
-						}
+					}
 					switch(spelers.size()) {
 
-						case '2' : {
-							//twee spelers krijgen een beurt
-						}
+					case '2' : {
+						//twee spelers krijgen een beurt
+					}
 
-						case '3' : {
-							//drie spelers krijgen een beurt
-						}
+					case '3' : {
+						//drie spelers krijgen een beurt
+					}
 
-						case '4' : {
-							//vier speler krijgen een beurt
-						}
+					case '4' : {
+						//vier speler krijgen een beurt
+					}
 					}
 				}
 				status = status.VOEDEN_STAMLEDEN;
 			}
-	//fase 2.3
+			//fase 2.3
 			case VOEDEN_STAMLEDEN : {
 				{// voedenstamleden
-			}
+				}
 
 				// resetten gereedschap
 				for(int i = 0; i <= spelers.size(); i++){
