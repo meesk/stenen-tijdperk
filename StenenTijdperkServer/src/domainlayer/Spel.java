@@ -8,9 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
@@ -42,12 +42,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private DobbelsteenWorp dobbelsteenWorp;
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
-	private int fase;
 	private SpelStatus status;
-	private ISpeler speler;
 	private int stamledenNietGeplaatst;
-	private List<Stamlid> geplaatst;
-	private Locatie locatie;
 	private int stamleden = 0;
 
 	public Spel() throws RemoteException {
@@ -55,6 +51,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		speelbord = new Speelbord(this);
 		dobbelsteenWorp = new DobbelsteenWorp();
 	}
+
+
 
 	public DobbelsteenWorp getDobbelsteenWorp() {
 		return dobbelsteenWorp;
@@ -115,13 +113,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	public int getFase(){
-		return fase;
-	}
 
-	public void setFase(int fase){
-		this.fase = fase;
-	}
 
 	/** Het beheren van de spel fases
 	*fase 1 is het lobby gedeelte
@@ -178,32 +170,48 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		//fase 2.2
 			case UITVOEREN_ACTIE : {
 
-
+				// ga langs alle locaties en haal daar op hoeveel stamleden geplaatst zijn
 				for(ILocatie locatie : speelbord.getLocaties()) {
 					stamleden += locatie.getStamleden();
 				}
+				//
 				while(stamleden != 0){
+					for(ILocatie locatie : speelbord.getLocaties()) {
+						stamleden += locatie.getStamleden();
+						}
 					switch(spelers.size()) {
 
-					case '2' : {
-						//twee spelers krijgen een beurt
-					}
+						case '2' : {
+							//twee spelers krijgen een beurt
+						}
 
-					case '3' : {
-						//drie spelers krijgen een beurt
-					}
+						case '3' : {
+							//drie spelers krijgen een beurt
+						}
 
-					case '4' : {
-						//vier speler krijgen een beurt
-					}
+						case '4' : {
+							//vier speler krijgen een beurt
+						}
 					}
 				}
 				status = status.VOEDEN_STAMLEDEN;
 			}
 	//fase 2.3
 			case VOEDEN_STAMLEDEN : {
-
+				{// voedenstamleden
 			}
+
+				for(int i = 0; i <= spelers.size(); i++){
+					spelers.get(i).getTableau().resetGereedschapStatus();
+				}
+
+				for(int i = 0; i <= speelbord.getLocaties().size(); i++) {
+					// get locatie type
+		//			if(//locatie type == null )
+				}
+
+
+			}	// hier binnen blijven
 			}
 		}
 	}

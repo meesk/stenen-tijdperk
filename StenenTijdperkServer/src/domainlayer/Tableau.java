@@ -111,6 +111,14 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		verhoogGereedschap();
 	}
 
+	public void gebruikGereedschap() {
+		// gebruik gereedschap methode
+	}
+
+	public void resetGereedschapStatus() {
+		// Gereedschap dat gebruikt is resetten naar ongebruikt
+	}
+
 	public void verwijderMiddelen(Map<Middel, Integer> middelen){
 		for (Entry<Middel, Integer> entry : middelen.entrySet()) {
 			// Verwijder de middelen uit de lijst van middelen van het tableau
