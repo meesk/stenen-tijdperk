@@ -21,6 +21,7 @@ public class BeschavingskaartFactory {
 
 	private BeschavingskaartFactory instance;
 	private List<Beschavingskaart> beschavingskaarten;
+	private List<Beschavingskaart> randomList;
 
 
 	public BeschavingskaartFactory() throws RemoteException{
@@ -63,5 +64,9 @@ public class BeschavingskaartFactory {
 			add(new BeschavingskaartDobbeltabel("file:assets/Beschavingskaarten/Dobbel/09.png", new BeschavingskaartZand(2, Beschaving.HUTTENBOUWERS), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartNaarKeuze("file:assets/Beschavingskaarten/Grondstof/keuze/01.png", new BeschavingskaartGras(Symbool.MEDICIJNEN), BeschavingskaartStatus.VRIJ, 0, false, null));
 		}};
+	}
+
+	public Beschavingskaart getBescahvingskaart(int plaats) {
+		return beschavingskaarten.get(plaats);
 	}
 }

@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
@@ -18,6 +19,7 @@ import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LobbyView;
 
@@ -45,6 +47,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private SpelStatus status;
 	private int stamledenNietGeplaatst;
 	private int stamleden = 0;
+	private boolean laatsteRonde = false;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
@@ -201,14 +204,50 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				{// voedenstamleden
 			}
 
+				// resetten gereedschap
 				for(int i = 0; i <= spelers.size(); i++){
 					spelers.get(i).getTableau().resetGereedschapStatus();
 				}
 
+				// ophalen beschavingskaarten en huttegels
+				int aantalKaarten = 0;
+				int aantalHutten = 0;
 				for(int i = 0; i <= speelbord.getLocaties().size(); i++) {
-					// get locatie type
-		//			if(//locatie type == null )
+					if (speelbord.getLocaties().get(i)  instanceof Beschavingskaart) {
+						aantalKaarten =+ 1;
+					}
+					if (speelbord.getLocaties().get(i) instanceof IHuttegel) {
+						aantalHutten += 1;
+					}
 				}
+
+				//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
+				if(aantalKaarten < 4){
+
+					//schuif kaarten door
+
+					aantalKaarten = 0;
+					for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
+						if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
+							aantalKaarten += 1;
+						}
+					}
+					if(aantalKaarten < 4) {
+						status = status.BEPALEN_WINNAAR;
+					}
+				}
+
+
+				// als niet alle huttegel plekken vol liggen kijken of spel gestopt moet worden deze ronde of volgende ronde
+				if(aantalHutten < 4 ) {
+					if(laatsteRonde == true){
+						status = status.BEPALEN_WINNAAR;
+					} else {
+						laatsteRonde = true;
+					}
+				}
+
+
 
 
 			}	// hier binnen blijven

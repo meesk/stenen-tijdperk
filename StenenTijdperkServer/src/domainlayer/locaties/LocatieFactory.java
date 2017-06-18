@@ -66,6 +66,7 @@ public class LocatieFactory {
 		locaties.add(new Gereedschapmaker(418, 280, 125, 98, Arrays.asList(
 			new Point(54, 23)
 		)));
+		//locaties.add();
 	}
 
 	public static LocatieFactory getInstance() {
