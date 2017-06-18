@@ -74,6 +74,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		}
 	}
 
+	public void notifyObservers(int plaats) {
+		for (TableauView observer : observers) {
+			observer.modelChanged(this);
+		}
+	}
+
 	public void krijgStamlid() {
 		Stamlid s = new Stamlid(speler);
 		stamleden.add(s);
@@ -111,13 +117,41 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		verhoogGereedschap();
 	}
 
-	public void gebruikGereedschap() {
-		// gebruik gereedschap methode
+
+
+	//in cotroller toevoegen graag hulp
+	//alex
+
+	/**
+	 * Methode zorgt ervoor dat de gereedschaps punten opgeteld worden bij de dobbelstenen
+	 *
+	 * @author Alex de Bruin, s1103096
+	 * @param positie
+	 *
+	 * */
+	public void gebruikGereedschap(int plaats/* de plaats dat op geklikt is*/) throws RemoteException {
+		plaats -= 1;
+		this.speler.getSpel().getDobbelsteenWorp().setTotaal(gereedschap[plaats]);
+
+
 	}
 
-	public void resetGereedschapStatus() {
-		// Gereedschap dat gebruikt is resetten naar ongebruikt
+	/**
+	 * Deze methode zet het gereedschap op gebruikt
+	 *
+	 * @author alex de Bruin, s1103096
+	 * @param status, positie
+	 */
+
+	public void setGereedschapStatus(boolean status, int positie) {
+
+		//Gereedschap op gebruikt zetten
+		notifyObservers();
 	}
+	public void resetGereedschapStatus() {
+		// Gereedschap op ongebruikt zetten
+		notifyObservers();
+		}
 
 	public void verwijderMiddelen(Map<Middel, Integer> middelen){
 		for (Entry<Middel, Integer> entry : middelen.entrySet()) {

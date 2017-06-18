@@ -7,7 +7,7 @@ import java.rmi.Remote;
  * Een interface voor het tableau aan de server kant.
  *
  * @author Tristan Caspers s1102755
- *  Mees Kluivers, s1102358
+ * @author Mees Kluivers, s1102358
  * @version 0.1
  */
 

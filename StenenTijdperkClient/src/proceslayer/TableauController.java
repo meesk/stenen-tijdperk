@@ -23,4 +23,9 @@ public class TableauController {
 	public void registerView(TableauView view) {
 		this.view = view;
 	}
+
+	public void onButtonPressed() {
+		//setGereedschapStatus(boolean status, int positie);
+	}
+
 }

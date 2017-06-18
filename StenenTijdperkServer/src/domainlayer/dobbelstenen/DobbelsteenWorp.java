@@ -19,6 +19,7 @@ import presentationlayer.skeleton.IDobbelsteenWorpPane;
 public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteenWorp {
 	private static final long serialVersionUID = 1L;
 
+	private int totaal = 0;
 	/** De dobbelstenen die deze worp bezit. */
 	private IDobbelsteen[] dobbelstenen;
 	/** De views die dit model observeren. */
@@ -69,10 +70,15 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	}
 
 	public int getTotaal() throws RemoteException {
-		int totaal = 0;
 		for (IDobbelsteen dobbelsteen : dobbelstenen) {
 			totaal += dobbelsteen.getOgen();
 		}
 		return totaal;
 	}
+
+	public void setTotaal(int gereedschapGebruikt) {
+		totaal += gereedschapGebruikt;
+	}
+
+
 }
