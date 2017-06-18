@@ -13,8 +13,8 @@ import javafx.scene.paint.Color;
  * Een interface voor de klasse Speler.java aan de server kant
  *
  * @author Erwin Olie, s1103026
- * Enzo Campfens s1102421
- * Mees Kluivers s1102358
+ * @author Enzo Campfens s1102421
+ * @author Mees Kluivers s1102358
  * @version 0.1
  */
 

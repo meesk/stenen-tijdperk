@@ -1,5 +1,9 @@
 package presentationlayer;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,6 +12,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import proceslayer.BetaalController;
 
 /**
  * BetaalView.java
@@ -17,15 +22,21 @@ import javafx.scene.layout.HBox;
  * @version 0.1
  */
 
-public class BetaalView extends BorderPane {
+public class BetaalView extends BorderPane implements Remote {
 
 	Spinner<Integer> inputVoedsel = new Spinner<Integer>();
 	Spinner<Integer> inputHout = new Spinner<Integer>();
 	Spinner<Integer> inputLeem = new Spinner<Integer>();
 	Spinner<Integer> inputSteen = new Spinner<Integer>();
 	Spinner<Integer> inputGoud = new Spinner<Integer>();
+	
 
-	public BetaalView() {
+	public BetaalView(boolean voeden, BetaalController controller) throws RemoteException {
+		
+		UnicastRemoteObject.exportObject(this,0);
+
+		controller.registerView(this);
+		
 		GridPane gridPane = new GridPane();
 
 		Label voedsel = new Label("voedsel");
@@ -52,8 +63,21 @@ public class BetaalView extends BorderPane {
         inputSteen.setValueFactory(valueSteen);
         inputGoud.setValueFactory(valueGoud);
 
-		gridPane.add(voedsel, 1, 1);
-		gridPane.add(inputVoedsel, 1, 2);
+		HBox hbox = new HBox();
+
+		Button betalenButton = new Button("Betalen middelen");
+
+		// Toon dit alleen voor het voeden van de stamleden
+		if(!voeden) {
+			gridPane.add(voedsel, 1, 1);
+			gridPane.add(inputVoedsel, 1, 2);
+			Button verliesPuntenButton = new Button("Verlies 10 punten");
+			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
+			hbox.getChildren().add(verliesPuntenButton);
+			this.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
+		}
+		
+		hbox.getChildren().add(betalenButton);
 
 		gridPane.add(hout, 1, 1);
 		gridPane.add(inputHout, 1, 2);
@@ -67,16 +91,9 @@ public class BetaalView extends BorderPane {
 		gridPane.add(goud, 4, 1);
 		gridPane.add(inputGoud, 4, 2);
 
-		HBox hbox = new HBox();
-
-		Button betalenButton = new Button("Betalen middelen");
-		Button verliesPuntenButton = new Button("Verlies 10 punten");
-		hbox.getChildren().addAll(verliesPuntenButton, betalenButton);
-
 		gridPane.setAlignment(Pos.CENTER);
 		this.setCenter(gridPane);
 		this.setBottom(hbox);
-		this.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
 		this.setAlignment(betalenButton, Pos.BOTTOM_RIGHT);
 
 		this.setStyle("-fx-background-color: #6a5b34");

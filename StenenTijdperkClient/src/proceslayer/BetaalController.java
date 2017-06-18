@@ -1,6 +1,7 @@
 package proceslayer;
 
 
+import java.rmi.RemoteException;
 import java.util.Map;
 
 import domainlayer.Tableau;
@@ -35,7 +36,7 @@ public class BetaalController {
 		this.view = view;
 	}
 
-	public void onButtonPressed(){
+	public void onButtonPressed() throws RemoteException{
 		int aantalVoedsel = view.getVoedsel();
 		int aantalHout = view.getHout();
 		int aantalLeem = view.getLeem();
@@ -47,7 +48,14 @@ public class BetaalController {
 		middelen.put(leem, aantalLeem);
 		middelen.put(steen, aantalSteen);
 		middelen.put(goud, aantalGoud);
+		
+		// Uitvoeren van de actie voeden stamleden
+		model.voedenStamleden(middelen);
 
+	}
+	
+	public void onVerliesPuntenPressed(){
+		model.verliesPunten();
 	}
 
 	public void onBetaalAction() {

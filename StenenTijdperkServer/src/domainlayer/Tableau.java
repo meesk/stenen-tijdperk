@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
+import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
 
 /**
@@ -212,5 +213,10 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	    	return false;
 
 		return true;
+	}
+	
+	public void verliesPunten(){
+		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
+		puntenSpoor.verwijderPunten(speler, 10);
 	}
 }
