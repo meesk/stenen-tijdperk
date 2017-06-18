@@ -8,6 +8,8 @@ package domainlayer.beschavingskaart;
 */
 
 import java.rmi.RemoteException;
+
+import domainlayer.Tableau;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
@@ -25,7 +27,10 @@ public class BeschavingskaartGereedschapFiche extends Beschavingskaart {
 	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		Tableau tableau = speler.getTableau();
+		// Verhoog het gereedschap op het tableau van de speler
+		tableau.verhoogGereedschap();
 	}
 
 	@Override

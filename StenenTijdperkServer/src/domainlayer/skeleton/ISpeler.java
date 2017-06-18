@@ -30,6 +30,8 @@ public interface ISpeler extends Remote {
 
 	public Tableau getTableau() throws RemoteException;
 	
+	public Spel getSpel() throws RemoteException;
+	
 	public void klaarVoorSpeler() throws RemoteException;
 
 }
