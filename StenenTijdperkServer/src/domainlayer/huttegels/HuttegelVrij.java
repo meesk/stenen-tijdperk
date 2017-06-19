@@ -1,6 +1,6 @@
 package domainlayer.huttegels;
 
-import domainlayer.Speler;
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 
 /**
@@ -23,7 +23,7 @@ public class HuttegelVrij implements IHuttegel {
 	}
 	
 	@Override
-	public void uitvoerenActie(Speler speler) {
+	public void uitvoerenActie(ISpeler speler) {
 		//
 	}
 	

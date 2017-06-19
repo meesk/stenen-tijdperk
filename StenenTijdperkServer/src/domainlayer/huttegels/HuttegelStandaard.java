@@ -2,8 +2,8 @@ package domainlayer.huttegels;
 
 import java.rmi.RemoteException;
 
-import domainlayer.Speler;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 
 /**
@@ -28,7 +28,7 @@ public class HuttegelStandaard implements IHuttegel {
 	}
 
 	@Override
-	public void uitvoerenActie(Speler speler) {
+	public void uitvoerenActie(ISpeler speler) {
 		for (Middel middel : middelen) {
 			try {
 				speler.getTableau().ontvangMiddel(middel);
