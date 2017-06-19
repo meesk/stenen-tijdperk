@@ -72,15 +72,7 @@ public class EindView extends Stage {
 
 		lineChart.getData().addAll(data1, data2, data3, data4);
 
-		Image backgroundImage = new Image("file:assets/eindbackground.jpg");
-		ImageView backgroundView = new ImageView(backgroundImage);
-		backgroundView.fitWidthProperty().bind(this.widthProperty());
-		backgroundView.fitHeightProperty().bind(this.heightProperty());
-		backgroundView.setOpacity(0.75);
-
-		stackPane.getChildren().add(backgroundView);
-		vbox.getChildren().addAll(stackPane, uitreiking, lineChart);
-		vbox.setStyle("-fx-background: ");
+		vbox.getChildren().addAll(uitreiking, lineChart);
 		vbox.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(vbox, 400, 400);
 		this.setTitle("Einde van het spel");
