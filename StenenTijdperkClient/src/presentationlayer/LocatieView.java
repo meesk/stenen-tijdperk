@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import proceslayer.LocatieController;
 
 /**
  * LocatieView.java <br>
@@ -22,13 +23,13 @@ import javafx.scene.shape.Rectangle;
 
 public class LocatieView extends StackPane {
 
-	public LocatieView(ILocatie model) throws RemoteException {
+	public LocatieView(ILocatie model, LocatieController controller) throws RemoteException {
 		Rectangle rectangle = new Rectangle(model.getWidth(), model.getHeight());
 		rectangle.setFill(Color.DARKGOLDENROD);
 		rectangle.setOpacity(0.0);
 		rectangle.setOnMouseMoved(e -> rectangle.setOpacity(0.85));
 		rectangle.setOnMouseExited(e -> rectangle.setOpacity(0.0));
-		rectangle.setOnMouseClicked(e -> System.out.println("geklikt op locatie!"));
+		rectangle.setOnMouseClicked(e -> controller.onKiesLocatie());
 
 		Pane pane = new Pane();
 
