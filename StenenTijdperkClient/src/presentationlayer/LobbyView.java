@@ -152,7 +152,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 
 		borderpane.getChildren().add(stackPane);
 		borderpane.setCenter(gridPaneForm);
-		
+
 		// TODO: dit is voor het gemak, MOET later worden weg worden gehaald.
 		setLobbyGegevens();
 
@@ -196,7 +196,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	public void veranderKnopTextWachten() {
 		this.klaarBtn.setText("Momenteel Geduld a.u.b..");
 	}
-	
+
 	public void setLobbyGegevens() { // tijdelijk, scheelt tijd met invullen
 		this.voorNaamField.setText("Henk");
 		this.isSpastisch.setSelected(true);
