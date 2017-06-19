@@ -36,6 +36,10 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 		return kosten;
 	}
 
+	public void setKosten(int kosten) {
+
+	}
+
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		//ontvangen middelen aan de hand van de gegooide ogen.

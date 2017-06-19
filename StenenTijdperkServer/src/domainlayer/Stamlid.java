@@ -12,10 +12,12 @@ import domainlayer.skeleton.IStamlid;
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */
+
 public class Stamlid extends UnicastRemoteObject implements IStamlid{
 	private Speler speler;
 
-	public Stamlid(Speler speler) throws RemoteException{
+
+	public Stamlid(Speler speler) throws RemoteException {
 		this.speler = speler;
 	}
 

@@ -208,6 +208,8 @@ public class LobbyView extends Stage implements ISpelObserver {
 			try {
 				if(model.getStart()) {
 					this.close();
+				} else {
+					// update progressbar [pb]
 				}
 			} catch(RemoteException e) {
 				e.printStackTrace();

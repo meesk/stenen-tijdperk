@@ -185,10 +185,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
 			}
 			if( stamledenOpTableau > 0) {
-				//if ( /*als de speler die een actie wil uitvoeren de speler is die aan de beurt is*/ .equals(beurtSpeler)) {
+/*uitwerken*/				if ( LocatiePressedBy().equals(beurtSpeler)) {
 					if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
 			//			voer plaatsen stamleden uit
-			//		}
+				}
 				} else {
 					System.out.println("Niet aan de beurt. Wachten op beurt!");
 				}
@@ -203,7 +203,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
 			}
 			if(stamledenOpSpeelbord > 0) {
-//				if(Speler die een actie wil uitvoeren aan de beurt is) {
+/*uitwerken*/				if(LocatiePressedBy().equals(beurtSpeler)) {
 					int stamledenOpLocatieSpeler = 0;
 					for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
 						stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
@@ -211,141 +211,67 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					if(stamledenOpLocatieSpeler > 0) {
 						//uitvoeren actie
 					}
-//				}
+				}
 			}
+
+		} else if(status.equals(status.VOEDEN_STAMLEDEN)) {
+			//voedenStamleden
+
+			// resetten gereedschap
+			for(int i = 0; i <= spelers.size(); i++){
+				spelers.get(i).getTableau().resetGereedschapStatus();
+			}
+
+			// ophalen beschavingskaarten en huttegels
+			int aantalKaarten = 0;
+			int aantalHutten = 0;
+			for(int i = 0; i <= speelbord.getLocaties().size(); i++) {
+				if (speelbord.getLocaties().get(i)  instanceof Beschavingskaart) {
+					aantalKaarten =+ 1;
+				}
+				if (speelbord.getLocaties().get(i) instanceof IHuttegel) {
+					aantalHutten += 1;
+				}
+			}
+
+			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
+			if(aantalKaarten < 4){
+
+				
+
+				aantalKaarten = 0;
+				for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
+					if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
+						aantalKaarten += 1;
+					}
+				}
+				if(aantalKaarten < 4) {
+					status = status.BEPALEN_WINNAAR;
+				}
+			}
+
+
+			// als niet alle huttegel plekken vol liggen kijken of spel gestopt moet worden deze ronde of volgende ronde
+			if(aantalHutten < 4 ) {
+				if(laatsteRonde == true){
+					status = status.BEPALEN_WINNAAR;
+				} else {
+					laatsteRonde = true;
+				}
+			}
+
+
+
+
 
 		}
 
 	}
 
-	/*
-		// fase 2.1
-		//Alleen de fases waar in de speler echt het spel kan spelen staan hier in
-		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR) {
-			//De switch zorgt ervoor de de juiste acties bij de juiste staat van het spel horen
+	private ISpeler LocatiePressedBy() {
 
-			switch(status){
-
-			// dit is het plaatsen van de stamleden gedeelte
-			case PLAATSEN_STAMLEDEN : {
-				// zolang i kleiner is dan de lijst met spelers
-				for(int i = 0; i < spelers.size(); i++) {
-					//als Tableau van een spler niet leeg is
-					if (this.spelers.get(i).getTableau().getStamleden().size() != 0){
-						// kijk hoeveel spelers er zijn
-						switch(spelers.size()) {
-						//als er drie spelers zijn
-						case '3' : {
-							//stamleden plaatsen
-						}
-						//als er vier spelers zijn
-						case '4' : {
-							//stamleden plaatsen
-						}
-						//default is twee spelers
-						}
-						// als er geen stamleden meer zijn bij een speler
-					} else {
-						//zolanf j kleiner is dan de lijst met spelers
-						for(int j = 0; j < spelers.size(); j ++) {
-							//de teller stamleden wordt gevuld met stamleden die er wel nog staan
-							stamledenNietGeplaatst += this.spelers.get(j).getTableau().getStamleden().size();
-						}
-						//als de teller met stamleden leeg is gaat het spel naar de volgende fase
-						if (stamledenNietGeplaatst == 0) {
-							break;
-						}
-					}
-				}
-				//volgende spelfase
-				status = status.UITVOEREN_ACTIE;
-			}
-			//fase 2.2
-			case UITVOEREN_ACTIE : {
-
-				// ga langs alle locaties en haal daar op hoeveel stamleden geplaatst zijn
-				for(ILocatie locatie : speelbord.getLocaties()) {
-					stamleden += locatie.getStamleden();
-				}
-				//
-				while(stamleden != 0){
-					for(ILocatie locatie : speelbord.getLocaties()) {
-						stamleden += locatie.getStamleden();
-					}
-					switch(spelers.size()) {
-
-					case '3' : {
-						//drie spelers krijgen een beurt
-					}
-
-					case '4' : {
-						//vier speler krijgen een beurt
-					}
-					//Default is twee spelers
-					default : {
-
-					}
-					}
-				}
-				status = status.VOEDEN_STAMLEDEN;
-			}
-			//fase 2.3
-			case VOEDEN_STAMLEDEN : {
-				{// voedenstamleden
-				}
-
-				// resetten gereedschap
-				for(int i = 0; i <= spelers.size(); i++){
-					spelers.get(i).getTableau().resetGereedschapStatus();
-				}
-
-				// ophalen beschavingskaarten en huttegels
-				int aantalKaarten = 0;
-				int aantalHutten = 0;
-				for(int i = 0; i <= speelbord.getLocaties().size(); i++) {
-					if (speelbord.getLocaties().get(i)  instanceof Beschavingskaart) {
-						aantalKaarten =+ 1;
-					}
-					if (speelbord.getLocaties().get(i) instanceof IHuttegel) {
-						aantalHutten += 1;
-					}
-				}
-
-				//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
-				if(aantalKaarten < 4){
-
-					//schuif kaarten door
-
-					aantalKaarten = 0;
-					for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
-						if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
-							aantalKaarten += 1;
-						}
-					}
-					if(aantalKaarten < 4) {
-						status = status.BEPALEN_WINNAAR;
-					}
-				}
-
-
-				// als niet alle huttegel plekken vol liggen kijken of spel gestopt moet worden deze ronde of volgende ronde
-				if(aantalHutten < 4 ) {
-					if(laatsteRonde == true){
-						status = status.BEPALEN_WINNAAR;
-					} else {
-						laatsteRonde = true;
-					}
-				}
-
-
-
-
-			}	// hier binnen blijven
-			}
-		}
+		return null;
 	}
-
-*/
 
 
 	public void registerLobbyView(IView observer) throws RemoteException {
