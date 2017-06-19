@@ -10,6 +10,7 @@ import domainlayer.Stamlid;
 import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import domainlayer.skeleton.ITableau;
 
 /**
  * @author	Erwin Olie, s1103026
@@ -24,7 +25,7 @@ public class Gereedschapmaker extends Locatie {
 	@Override
 	/** @see Sequentie Diagram: 11 Maken Gereedschap **/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-		Tableau tableau = speler.getTableau();
+		ITableau tableau = speler.getTableau();
 		int gereedschap = tableau.getTotaalGereedschap();
 		if (gereedschap < 4) {
 			tableau.geefGereedschapFiche();

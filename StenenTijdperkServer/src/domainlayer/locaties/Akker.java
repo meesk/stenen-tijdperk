@@ -11,6 +11,7 @@ import domainlayer.Stamlid;
 import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Voedselspoor;
 
 /**
@@ -35,7 +36,7 @@ public class Akker extends Locatie {
 		}
 
 		// Teruggeven Stamleden
-		Tableau tableau = speler.getTableau();
+		ITableau tableau = speler.getTableau();
 		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
 			try {
 				return s.getSpeler() == speler;

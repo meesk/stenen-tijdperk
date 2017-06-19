@@ -1,14 +1,13 @@
 package presentationlayer;
 
-import java.awt.Point;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.locaties.ILocatie;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import proceslayer.LocatieController;
 
 /**
  * SpeelbordPane.java<br>
@@ -27,7 +26,7 @@ public class SpeelbordView extends Pane {
 
 		try {
 			for (ILocatie locatie : model.getLocaties()) {
-				this.getChildren().add(new LocatieView(locatie));
+				this.getChildren().add(new LocatieView(locatie, new LocatieController(locatie)));
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

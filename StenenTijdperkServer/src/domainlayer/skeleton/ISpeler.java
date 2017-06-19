@@ -28,7 +28,7 @@ public interface ISpeler extends Remote {
 
 	public boolean getKlaar() throws RemoteException;
 
-	public Tableau getTableau() throws RemoteException;
+	public ITableau getTableau() throws RemoteException;
 
 	public Spel getSpel() throws RemoteException;
 
@@ -37,5 +37,7 @@ public interface ISpeler extends Remote {
 	public void ophalenGegevens() throws RemoteException;
 
 	public void extraTelling() throws RemoteException;
+
+	public String getKleur() throws RemoteException;
 
 }

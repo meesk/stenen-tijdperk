@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.ITableau;
 import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
@@ -55,6 +56,10 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		//Gereedschap
 		//Granenspoor
 	}
+	
+	public String getKleur() throws RemoteException {
+		return kleur;
+	}
 
 	public String getNaam() {
 		return naam;
@@ -76,7 +81,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		return klaar;
 	}
 
-	public Tableau getTableau() throws RemoteException {
+	public ITableau getTableau() throws RemoteException {
 		return tableau;
 	}
 

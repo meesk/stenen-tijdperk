@@ -10,6 +10,7 @@ import domainlayer.Stamlid;
 import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import domainlayer.skeleton.ITableau;
 
 /**
  * @author Erwin Olie, s1103026
@@ -24,7 +25,7 @@ public class Hut extends Locatie {
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen aantal stamleden
-		Tableau tableau = speler.getTableau();
+		ITableau tableau = speler.getTableau();
 		int aantalStamleden = tableau.getStamleden().size();
 		if (aantalStamleden < 8) {
 			tableau.krijgStamlid();

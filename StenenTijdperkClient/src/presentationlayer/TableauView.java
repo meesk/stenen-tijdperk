@@ -4,10 +4,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.ITableau;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
@@ -21,6 +23,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	private double scale = 1.00;
 	private ImageView[] gereedschap;
+	private Label naam;
 
 	public TableauView(ITableau model) {
 		this(false, model);
@@ -40,12 +43,19 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		if (true) {
 			Image image = new Image("file:assets/tableau.png");
+			if (model == null) {
+				image = new Image("file:assets/tableau_null.png");
+			}
 			ImageView imageView = new ImageView(image);
 
 			imageView.setFitHeight(image.getHeight() / 4 * scale);
 			imageView.setFitWidth(image.getWidth() / 4 * scale);
 
 			this.getChildren().add(imageView);
+		}
+		
+		if (model == null) {
+			return;
 		}
 
 		Pane pane = new Pane();
@@ -60,12 +70,16 @@ public class TableauView extends StackPane implements ITableauObserver {
 			imageView.relocate(70 / 4 * scale, 35 / 4 * scale + (i * 265 / 4 * scale));
 
 			gereedschap[i] = imageView;
-
+  
 			pane.getChildren().add(imageView);
 		}
 
 		this.getChildren().add(pane);
 
+		naam = new Label();
+		naam.setFont(Font.font(72));
+		this.getChildren().add(naam);
+		
 		if (model != null) {
 			try {
 				model.registerObserver(this);
@@ -82,5 +96,6 @@ public class TableauView extends StackPane implements ITableauObserver {
 			this.gereedschap[i].setImage(new Image("file:assets/gereedschap/" + gereedschap[i] + ".png"));
 			this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
 		}
+		naam.setText(tableau.getSpeler().getNaam());
 	}
 }
