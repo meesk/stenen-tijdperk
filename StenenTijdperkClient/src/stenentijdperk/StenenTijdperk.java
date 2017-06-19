@@ -4,6 +4,7 @@ import java.rmi.Naming;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.ISpeler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -27,6 +28,9 @@ import proceslayer.SpelController;
 */
 public class StenenTijdperk extends Application {
 
+	private static ISpel spel;
+	private static ISpeler speler;
+	
 	/** De main method die de JavaFX applicatie opstart. */
 	public static void main(String[] args) {
 		launch(args);
@@ -61,28 +65,39 @@ public class StenenTijdperk extends Application {
 		//
 		//A buddha statue to bless your code to be bug free.
 		//
-
-		// Het definieren van de modellen
-		IDobbelsteenWorp dobbelsteenWorp = (IDobbelsteenWorp) Naming.lookup("rmi://localhost/DobbelsteenWorp");
-		ISpel spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
-
+		
+		// Het definieren van het model
+		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
+		
 		// ...
 		HandleidingView handleidingPane = new HandleidingView();
 
 
 		// Het definieren van de controllers
-		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(dobbelsteenWorp);
+		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(spel.getDobbelsteenWorp());
 		SpelController spelController = new SpelController(handleidingPane, spel);
 		LobbyController lobbyController = new LobbyController(spel);
 
 		// Het definieren van de views
 		LobbyView lobbyView = new LobbyView(lobbyController, spel);
-		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, dobbelsteenWorp, spel);
+		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, spel.getDobbelsteenWorp(), spel);
 		EindView eindView = new EindView(spelController);
 
 		//lobbyController.registerSpelView(spelView);
 
 		// Het voorbereiden en tonen van de stage.
 		lobbyView.show();
+	}
+	
+	public static ISpel getSpel() {
+		return spel;
+	}
+	
+	public static ISpeler getSpeler() {
+		return speler;
+	}
+	
+	public static void setSpeler(ISpeler s) {
+		speler = s;
 	}
 }

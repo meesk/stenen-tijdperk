@@ -38,7 +38,12 @@ public class SpelController {
 	}
 
 	public void onOpslaanButtonClick() throws IOException {
-		model.opslaan();
+		//model.opslaan();
+		model.getSpelerLijst().get(0).getTableau().verhoogGereedschap();
+		model.getSpelerLijst().get(0).getTableau().verhoogGereedschap();
+		model.getSpelerLijst().get(0).getTableau().verhoogGereedschap();
+		model.getSpelerLijst().get(0).getTableau().verhoogGereedschap();
+		model.getSpelerLijst().get(0).getTableau().verhoogGereedschap();
 		// alleen afsluitene van de applicatie nog.
 	}
 }
