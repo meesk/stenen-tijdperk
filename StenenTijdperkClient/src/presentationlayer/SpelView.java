@@ -1,14 +1,19 @@
 package presentationlayer;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpeelbord;
+import domainlayer.skeleton.ISpel;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import presentationlayer.skeleton.ISpelObserver;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
 
@@ -20,10 +25,13 @@ import proceslayer.SpelController;
  * @author Enzo Campfens, s1102421
  * @version 1.0
  */
-public class SpelView extends Stage {
 
-	public SpelView(ISpeelbord speelbord, SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp) throws Exception {
+public class SpelView extends Stage implements ISpelObserver {
+	public SpelView(ISpeelbord speelbord, SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp, ISpel model) throws Exception {
 
+		UnicastRemoteObject.exportObject(this,0);
+		model.registerSpelView(this);
+		
 		Pane pane = new Pane();
 
 		// De grid waarop de visuele objecten geplaatst worden.
@@ -64,5 +72,17 @@ public class SpelView extends Stage {
 		pane.getChildren().add(grid);
 		Scene scene = new Scene(pane);
 		this.setScene(scene);
+	}
+
+	public void modelChanged(ISpel spel) throws RemoteException {
+		Platform.runLater(() -> {
+			try {
+				if(spel.getStart()) {
+					this.show();
+				}
+			} catch(RemoteException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 }
