@@ -16,12 +16,14 @@ import presentationlayer.TableauView;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
+ * Tableau.java<br>
+ * Een klasse waar de tableau's worden aangemaakt.
+ *
  * @author Tristan Caspers, s1102755
- * @author Erwin Olie, s1103026,
+ * @author Erwin Olie, s1103026
  * @author Alex de Bruin, s1103096
- * @version 0.4
+ * @version 1.0
  */
-
 public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	private List<Stamlid> stamleden;
@@ -36,7 +38,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
-		// Klaarzetten Spel moet nog 5 stamleden hieraan toevoegen!
 		stamleden = new ArrayList<>();
 		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{
@@ -131,11 +132,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	/**
 	 * Methode zorgt ervoor dat de gereedschaps punten opgeteld worden bij de dobbelstenen
-	 *
 	 * @author Alex de Bruin, s1103096
 	 * @param positie
-	 *
-	 * */
+	 */
 	public void gebruikGereedschap(int plaats/* de plaats dat op geklikt is*/) throws RemoteException {
 		plaats -= 1;
 		this.speler.getSpel().getDobbelsteenWorp().setTotaal(gereedschap[plaats]);
@@ -144,10 +143,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	/**
-	 * Deze methode zet het gereedschap op gebruikt
+	 * Deze methode zet het gereedschap op gebruikt.
 	 *
-	 * @author alex de Bruin, s1103096
-	 * @param status, positie
+	 * @author Alex de Bruin, s1103096
 	 */
 
 	public void setGereedschapStatus(boolean status, int positie) {
@@ -169,7 +167,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	/**
-	 * Kijkt of middelen genoeg zijn, en of het tableau deze middelen heeft
+	 * Kijkt of middelen genoeg zijn, en of het tableau deze middelen heeft.
 	 * @author Mees Kluivers, s1102358
 	 * @param middelen
 	 * @return boolean true (stamleden gevoed), false (stamleden niet gevoed)

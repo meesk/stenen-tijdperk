@@ -33,15 +33,14 @@ import presentationlayer.skeleton.ISpelObserver;
 import proceslayer.LobbyController;
 
 /**
- * LobbyView.java
+ * LobbyView.java<br>
  * Een klasse die alle informatie bevat om de Lobby view te maken.
  *
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
- * @version 0.4
+ * @version 1.0
  */
-
 public class LobbyView extends Stage implements ISpelObserver {
 
 	private TextField voorNaamField;

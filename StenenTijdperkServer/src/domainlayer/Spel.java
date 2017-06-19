@@ -23,15 +23,15 @@ import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.skeleton.ISpelObserver;
 
 /**
- * Spel.java
- * De klasse waar alle elementen tot 1 spel worden gevoegd.
+ * Spel.java<br>
+ * De klasse waar alle elementen tot één spel worden gevoegd.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @author Alex de Bruin, s1103096
- * @version 0.9
+ * @version 1.0
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 

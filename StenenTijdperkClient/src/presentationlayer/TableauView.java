@@ -11,16 +11,11 @@ import javafx.scene.layout.StackPane;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
- * TableauView.java
+ * TableauView.java<br>
  * Een klasse die alle informatie bevat om de tableau view te maken.
  *
  * @author Erwin Olie, s1103026
- * @version 0.3
- */
-
-/**
- * @author erwin
- *
+ * @version 1.0
  */
 public class TableauView extends StackPane implements ITableauObserver {
 

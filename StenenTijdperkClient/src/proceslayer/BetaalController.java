@@ -1,6 +1,5 @@
 package proceslayer;
 
-
 import java.rmi.RemoteException;
 import java.util.Map;
 
@@ -9,11 +8,11 @@ import domainlayer.enums.Middel;
 import presentationlayer.BetaalView;
 
 /**
- * BetaalController.java
+ * BetaalController.java<br>
  * De controller voor het betalen.
  *
  * @author Mees Kluivers, s1102358
- * @version 0.1
+ * @version 1.0
  */
 
 public class BetaalController {
@@ -48,12 +47,11 @@ public class BetaalController {
 		middelen.put(leem, aantalLeem);
 		middelen.put(steen, aantalSteen);
 		middelen.put(goud, aantalGoud);
-		
+
 		// Uitvoeren van de actie voeden stamleden
 		model.voedenStamleden(middelen);
-
 	}
-	
+
 	public void onVerliesPuntenPressed(){
 		model.verliesPunten();
 	}
