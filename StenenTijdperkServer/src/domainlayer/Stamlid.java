@@ -1,5 +1,8 @@
 package domainlayer;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import domainlayer.skeleton.IStamlid;
 
 /**
@@ -9,10 +12,10 @@ import domainlayer.skeleton.IStamlid;
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */
-public class Stamlid  implements IStamlid{
+public class Stamlid extends UnicastRemoteObject implements IStamlid{
 	private Speler speler;
 
-	public Stamlid(Speler speler) {
+	public Stamlid(Speler speler) throws RemoteException{
 		this.speler = speler;
 	}
 

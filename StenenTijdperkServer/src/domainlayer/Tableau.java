@@ -90,7 +90,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		}
 	}
 
-	public void krijgStamlid() {
+	public void krijgStamlid() throws RemoteException {
 		Stamlid s = new Stamlid(speler);
 		stamleden.add(s);
 	}
