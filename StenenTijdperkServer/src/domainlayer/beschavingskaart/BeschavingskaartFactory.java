@@ -45,9 +45,9 @@ public class BeschavingskaartFactory {
 			add(new BeschavingskaartMiddel("file:assets/Beschavingskaarten/Voedsel/06.png", 1, new BeschavingskaartGras(Symbool.WEEFGETOUW), BeschavingskaartStatus.VRIJ, 0, Middel.VOEDSEL));
 			add(new BeschavingskaartMiddel("file:assets/Beschavingskaarten/Voedsel/07.png", 3, new BeschavingskaartGras(Symbool.WEEFGETOUW), BeschavingskaartStatus.VRIJ, 0, Middel.VOEDSEL));
 			add(new BeschavingskaartExtraKaart("file:assets/Beschavingskaarten/kaart/01.png", new BeschavingskaartGras(Symbool.SCHRIFT), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbelen("file:assets/Beschavingskaarten/Grondstof/worp/01.png",1 ,new Middel[] {Middel.STEEN }, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbelen("file:assets/Beschavingskaarten/Grondstof/Worp/02.png",2 ,new Middel[] {Middel.HOUT }, new BeschavingskaartZand(2, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbelen("file:assets/Beschavingskaarten/Grondstof/Worp/03.png",1 ,new Middel[] {Middel.GOUD }, new BeschavingskaartGras(Symbool.KUNST), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbelen("file:assets/Beschavingskaarten/Grondstof/worp/01.png", Middel.STEEN, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbelen("file:assets/Beschavingskaarten/Grondstof/Worp/02.png", Middel.HOUT, new BeschavingskaartZand(2, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbelen("file:assets/Beschavingskaarten/Grondstof/Worp/03.png", Middel.GOUD, new BeschavingskaartGras(Symbool.KUNST), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartGereedschap("file:assets/Beschavingskaarten/Gereedschap/01.png", 2, new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("file:assets/Beschavingskaarten/Gereedschap/02.png", 3, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("file:assets/Beschavingskaarten/Gereedschap/03.png", 4, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));

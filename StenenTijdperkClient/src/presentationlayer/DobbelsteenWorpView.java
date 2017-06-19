@@ -8,7 +8,7 @@ import domainlayer.skeleton.IDobbelsteenWorp;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import presentationlayer.skeleton.IDobbelsteenWorpPane;
+import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 import proceslayer.DobbelsteenWorpController;
 
 /**
@@ -18,7 +18,7 @@ import proceslayer.DobbelsteenWorpController;
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */
-public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpPane {
+public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpObserver {
 
 	/** De views van de dobbelstenen binnen dit gebied. */
 	private DobbelsteenView[] dobbelstenen;

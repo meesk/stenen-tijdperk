@@ -29,4 +29,8 @@ public class LocatieController {
 	public void onKiesLocatie() throws RemoteException {
 
 	}
+
+	public void gebruikKaart() {
+
+	}
 }

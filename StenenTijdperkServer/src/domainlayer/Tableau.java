@@ -13,9 +13,10 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
+import presentationlayer.skeleton.ITableauObserver;
 
 /**
- *  * Tableau.java
+ * Tableau.java
  * Een klasse waar de tableau's worden aangemaakt.
  *
  * @author Tristan Caspers, s1102755
@@ -23,15 +24,17 @@ import presentationlayer.TableauView;
  * @author Alex de Bruin, s1103096
  * @version 1.0
  */
-
 public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	private List<Stamlid> stamleden;
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
-	private List<TableauView> observers;
-	private int[] gereedschap;
 	private List<Beschavingskaart> kaarten;
+
+	private List<ITableauObserver> observers;
+
+	private int[] gereedschap;
+	private boolean[] gereedschapGebruikt;
 
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
@@ -45,7 +48,11 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			put(Middel.STEEN, 0);
 			put(Middel.GOUD, 0);
 		}};
+
+		observers = new ArrayList<>();
+
 		gereedschap = new int[] { 0, 0, 0 };
+		gereedschapGebruikt = new boolean[] { false, false, false };
 	}
 
 	public void ontvangMiddel(Middel middel) {
@@ -73,14 +80,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public void notifyObservers() {
-		for (TableauView observer : observers) {
-			observer.modelChanged(this);
-		}
-	}
-
-	public void notifyObservers(int plaats) {
-		for (TableauView observer : observers) {
-			observer.modelChanged(this);
+		for (ITableauObserver observer : observers) {
+			try {
+				observer.modelChanged(this);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -128,11 +133,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	/**
 	 * Methode zorgt ervoor dat de gereedschaps punten opgeteld worden bij de dobbelstenen
-	 *
 	 * @author Alex de Bruin, s1103096
 	 * @param positie
-	 *
-	 * */
+	 */
 	public void gebruikGereedschap(int plaats/* de plaats dat op geklikt is*/) throws RemoteException {
 		plaats -= 1;
 		this.speler.getSpel().getDobbelsteenWorp().setTotaal(gereedschap[plaats]);
@@ -141,10 +144,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	/**
-	 * Deze methode zet het gereedschap op gebruikt
+	 * Deze methode zet het gereedschap op gebruikt.
 	 *
-	 * @author alex de Bruin, s1103096
-	 * @param status, positie
+	 * @author Alex de Bruin, s1103096
 	 */
 
 	public void setGereedschapStatus(boolean status, int positie) {
@@ -166,7 +168,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	/**
-	 * Kijkt of middelen genoeg zijn, en of het tableau deze middelen heeft
+	 * Kijkt of middelen genoeg zijn, en of het tableau deze middelen heeft.
 	 * @author Mees Kluivers, s1102358
 	 * @param middelen
 	 * @return boolean true (stamleden gevoed), false (stamleden niet gevoed)
@@ -221,5 +223,21 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void verliesPunten(){
 		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
 		puntenSpoor.verwijderPunten(speler, 10);
+	}
+
+	@Override
+	public void registerObserver(ITableauObserver observer) throws RemoteException {
+		observers.add(observer);
+		notifyObservers();
+	}
+
+	@Override
+	public int[] getGereedschap() throws RemoteException {
+		return gereedschap;
+	}
+
+	@Override
+	public boolean[] getGereedschapGebruikt() throws RemoteException {
+		return gereedschapGebruikt;
 	}
 }

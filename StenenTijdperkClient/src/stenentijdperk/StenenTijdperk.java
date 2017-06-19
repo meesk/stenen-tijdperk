@@ -22,7 +22,11 @@ import proceslayer.SpelController;
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
+<<<<<<< HEAD
  * @version	1.0
+=======
+ * @version	0.7
+>>>>>>> 28af035b47953cfee1593c56a0ebf888476e507c
  */
 public class StenenTijdperk extends Application {
 
@@ -74,13 +78,12 @@ public class StenenTijdperk extends Application {
 		LobbyController lobbyController = new LobbyController(spel);
 
 		// Het definieren van de views
-		LobbyView lobbyView = new LobbyView(primaryStage, lobbyController);
+		LobbyView lobbyView = new LobbyView(lobbyController, spel);
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, dobbelsteenWorp);
 
+		//lobbyController.registerSpelView(spelView);
+
 		// Het voorbereiden en tonen van de stage.
-		Scene scene = new Scene(spelView);
-		primaryStage.setTitle("Het Stenen Tijdperk");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		lobbyView.show();
 	}
 }

@@ -91,4 +91,8 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	public List<Point> getCirkels() {
 		return cirkels;
 	}
+	
+	public void betaalMiddelen() {
+		
+	}
 }

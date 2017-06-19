@@ -25,13 +25,17 @@ public interface ISpeler extends Remote {
 	public LocalDate getGeboorteDatum() throws RemoteException;
 
 	public boolean getSpasme() throws RemoteException;
-	
+
 	public boolean getKlaar() throws RemoteException;
 
 	public Tableau getTableau() throws RemoteException;
-	
+
 	public Spel getSpel() throws RemoteException;
-	
+
 	public void klaarVoorSpeler() throws RemoteException;
+
+	public void ophalenGegevens() throws RemoteException;
+
+	public void extraTelling() throws RemoteException;
 
 }

@@ -4,6 +4,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 
+import domainlayer.Spel;
+
 public interface ILobbyView extends Remote {
 
 	public String getNaam() throws RemoteException;
@@ -21,4 +23,6 @@ public interface ILobbyView extends Remote {
 	public void veranderKnopTextBeginnen() throws RemoteException;
 
 	public void veranderKnopTextWachten() throws RemoteException;
+
+	public void modelChanged(ISpel spel) throws RemoteException;
 }
