@@ -58,6 +58,7 @@ public class StenenTijdperk extends Application {
 		//   \  \ `_.   \_ __\ /__ _/   .-` /  /
 		//=====`-.____`.___ \_____/___.-`___.-'=====
 		//
+        //			佛祖保佑         永无BUG
 		//
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		//
@@ -84,6 +85,6 @@ public class StenenTijdperk extends Application {
 		//lobbyController.registerSpelView(spelView);
 
 		// Het voorbereiden en tonen van de stage.
-		lobbyView.show();
+		spelView.show();
 	}
 }

@@ -6,6 +6,12 @@ import java.time.LocalDate;
 
 import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.enums.Kleur;
+import domainlayer.enums.Middel;
+import domainlayer.skeleton.ISpeler;
+import javafx.scene.paint.Color;
+import presentationlayer.LobbyView;
+import presentationlayer.skeleton.IView;
 
 /**
  * Speler.java<br>
@@ -28,7 +34,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 
 	private boolean klaar;
 
-	public Speler(Spel spel, ILobbyView view) throws RemoteException {
+	public Speler(Spel spel, IView view) throws RemoteException {
 		this.naam = view.getNaam();
 		this.geboorteDatum = view.getGeboorteDatum();
 		this.isSpastisch = view.getIsSpastisch();

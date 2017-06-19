@@ -10,6 +10,7 @@ import domainlayer.Tableau;
 import domainlayer.enums.Kleur;
 import presentationlayer.LobbyView;
 import presentationlayer.SpelView;
+import presentationlayer.skeleton.IView;
 
 /**
  * ISpel.java
@@ -23,7 +24,7 @@ import presentationlayer.SpelView;
 
 public interface ISpel extends Remote {
 
-	public ISpeler maakSpeler(ILobbyView view) throws RemoteException;
+	public ISpeler maakSpeler(IView view) throws RemoteException;
 
 	public List<ISpeler> getSpelerLijst() throws RemoteException;
 
@@ -37,5 +38,5 @@ public interface ISpel extends Remote {
 
 	public boolean getStart() throws RemoteException;
 
-	public void registerLobbyView(ILobbyView observer) throws RemoteException;
+	public void registerLobbyView(IView observer) throws RemoteException;
 }

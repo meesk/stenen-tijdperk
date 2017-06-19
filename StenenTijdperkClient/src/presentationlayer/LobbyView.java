@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 import domainlayer.Spel;
 import domainlayer.enums.Kleur;
-import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -29,6 +28,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import presentationlayer.skeleton.IView;
 import proceslayer.LobbyController;
 
 /**
@@ -39,8 +39,8 @@ import proceslayer.LobbyController;
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @version 1.0
-*/
-public class LobbyView extends Stage implements ILobbyView {
+ */
+public class LobbyView extends Stage implements IView {
 
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
@@ -181,7 +181,6 @@ public class LobbyView extends Stage implements ILobbyView {
 		this.klaarBtn.setDisable(true);
 	}
 
-	@Override
 	public void disableSpelerInfo() {
 		this.geboorteDatumPicker.setDisable(true);
 		this.isSpastisch.setDisable(true);
