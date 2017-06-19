@@ -49,6 +49,8 @@ public class LobbyView extends Stage implements ISpelObserver {
 	private final ToggleGroup group;
 	private LocalDate localDate;
 	private Button klaarBtn;
+	private ProgressBar pb;
+	private Label spelersAantalLbl;
 
 	public LobbyView(LobbyController controller, ISpel model) throws RemoteException {
 
@@ -132,8 +134,14 @@ public class LobbyView extends Stage implements ISpelObserver {
 			}
 		});
 
+		// label
+		spelersAantalLbl = new Label("");
+		gridPaneForm.add(spelersAantalLbl, 2, 11);
+		spelersAantalLbl.setStyle("-fx-font-size:16px;");
+		spelersAantalLbl.setTextFill(Color.WHITE);
+
 		//Progessie bar
-		ProgressBar pb = new ProgressBar();
+		pb = new ProgressBar(0);
 		gridPaneForm.add(pb, 2, 12);
 		gridPaneForm.setStyle("-fx-font-size: 16px;");
 
@@ -208,9 +216,18 @@ public class LobbyView extends Stage implements ISpelObserver {
 			try {
 				if(model.getStart()) {
 					this.close();
-				} else {
-					// update progressbar [pb]
 				}
+				int aantalKlaar = 0;
+
+				for(int i = 0; i < model.getSpelerLijst().size(); i++) {
+					if(model.getSpelerLijst().get(i).getKlaar()) {
+						aantalKlaar++;
+					}
+				}
+
+				double progressIndicator = (double)aantalKlaar / model.getSpelerLijst().size();
+				pb.setProgress(progressIndicator);
+				spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
 			} catch(RemoteException e) {
 				e.printStackTrace();
 			}
