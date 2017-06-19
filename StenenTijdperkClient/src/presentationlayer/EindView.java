@@ -6,8 +6,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -33,7 +31,7 @@ public class EindView extends Stage {
 
 		// Announcement
 		Label uitreiking = new Label();
-		uitreiking.setText("Speler 1 heeft gewonnen!");
+		uitreiking.setText("Speler 1 heeft gewonnen!"); // Nog laten automatiseren met spel/speler
 		uitreiking.setStyle("-fx-font-size: 22px");
 
 		// Datapunten zijn een aantal spelerspunten per ronde
@@ -56,7 +54,7 @@ public class EindView extends Stage {
 		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
 
 		// Aanmaken van datapunten
-		// for (int i = 0; i < aantalRondes.size(); i++) {}
+		// for (int i = 0; i < aantalRondes.size(); i++) {} // Nog laten automatiseren met spel/speler
 		data1.getData().add(new XYChart.Data<Number, Number>(1, 34));
 		data1.getData().add(new XYChart.Data<Number, Number>(2, 78));
 		data1.getData().add(new XYChart.Data<Number, Number>(3, 99));
@@ -75,7 +73,7 @@ public class EindView extends Stage {
 		vbox.getChildren().addAll(uitreiking, lineChart);
 		vbox.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(vbox, 400, 400);
-		this.setTitle("Einde van het spel");
+		this.setTitle("Einde");
 		this.setScene(scene);
 	}
 }
