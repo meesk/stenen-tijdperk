@@ -3,10 +3,12 @@ package presentationlayer;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.ISpeler;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 import presentationlayer.skeleton.ISpelObserver;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * SpelView.java<br>
@@ -27,25 +30,24 @@ import proceslayer.SpelController;
  */
 
 public class SpelView extends Stage implements ISpelObserver {
-	public SpelView(ISpeelbord speelbord, SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp, ISpel model) throws Exception {
 
-		UnicastRemoteObject.exportObject(this,0);
+	private GridPane grid;
+
+	public SpelView(ISpeelbord speelbord, SpelController spelController,
+			DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp, ISpel model)
+			throws Exception {
+
+		UnicastRemoteObject.exportObject(this, 0);
 		model.registerSpelView(this);
-		
+
 		Pane pane = new Pane();
 
 		// De grid waarop de visuele objecten geplaatst worden.
-		GridPane grid = new GridPane();
+		grid = new GridPane();
 		grid.setStyle("-fx-background-color: #6a5b34");
 
 		// Het plaatsen van de views voor het speelbord en spelerstableau.
 		grid.add(new SpeelbordView(speelbord), 0, 0, 4, 1);
-		grid.add(new TableauView(true, null), 0, 1, 1, 3);
-
-		// Het plaatsen van de views van de kleine tableau's van de overige spelers.
-		 grid.add(new TableauView(null), 1, 1);
-		 grid.add(new TableauView(null), 2, 1);
-		 grid.add(new TableauView(null), 3, 1);
 
 		// Het plaatsen van de view voor de dobbelstenen & worp.
 		// grid.add(new BeschavingskaartView(), 1, 2);
@@ -77,10 +79,19 @@ public class SpelView extends Stage implements ISpelObserver {
 	public void modelChanged(ISpel spel) throws RemoteException {
 		Platform.runLater(() -> {
 			try {
-				if(spel.getStart()) {
+				if (spel.getStart() && !this.isShowing()) {
 					this.show();
+					grid.add(new TableauView(true, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
+					List<ISpeler> spelers = spel.getSpelerLijst();
+					spelers.remove(StenenTijdperk.getSpeler());
+					for (int i = 1; i <= spelers.size(); i++) {
+						grid.add(new TableauView(spelers.get(i - 1).getTableau()), i, 1);
+					}
+					for (int i = 3; i > spelers.size(); i--) {
+						grid.add(new TableauView(null), i, 1);
+					}
 				}
-			} catch(RemoteException e) {
+			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 		});

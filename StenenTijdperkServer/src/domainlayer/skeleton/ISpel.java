@@ -41,4 +41,6 @@ public interface ISpel extends Remote {
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException;
 	
 	public void registerSpelView(ISpelObserver observer) throws RemoteException;
+
+	public IDobbelsteenWorp getDobbelsteenWorp() throws RemoteException;
 }

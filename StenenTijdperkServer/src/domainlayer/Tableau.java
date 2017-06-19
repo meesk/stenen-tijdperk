@@ -120,6 +120,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 			index = 0;
 		}
 		gereedschap[index]++;
+		notifyObservers();
 	}
 
 	public void geefGereedschapFiche() {
@@ -236,5 +237,10 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	@Override
 	public boolean[] getGereedschapGebruikt() throws RemoteException {
 		return gereedschapGebruikt;
+	}
+
+	@Override
+	public ISpeler getSpeler() throws RemoteException {
+		return speler;
 	}
 }

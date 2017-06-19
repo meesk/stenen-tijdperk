@@ -1,8 +1,6 @@
 package presentationlayer;
 
-import java.awt.Point;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.locaties.ILocatie;

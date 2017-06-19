@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import presentationlayer.LobbyView;
 import presentationlayer.SpelView;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * LobbyController.java<br>
@@ -23,7 +24,6 @@ public class LobbyController {
 
 	private ISpel spel;
 	private LobbyView view;
-	private ISpeler s = null;
 	private int klikCounter = 0;
 	private SpelView spelview;
 
@@ -43,12 +43,12 @@ public class LobbyController {
 
 		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
-			s = spel.maakSpeler(view, view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch(), view.getKleur());
+			StenenTijdperk.setSpeler(spel.maakSpeler(view, view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch(), view.getKleur()));
 			view.disableSpelerInfo();
 			klikCounter++;
 		} else if(klikCounter == 1) {
-			s.klaarVoorSpeler();
-			view.veranderKnopTextBeginnen();
+			StenenTijdperk.getSpeler().klaarVoorSpeler();
+			view.veranderKnopTextWachten();
 			view.disableButton();
 			spel.checkSpelers();
 		} else if(view.getNaam() == "" || view.getGeboorteDatum() == null) {

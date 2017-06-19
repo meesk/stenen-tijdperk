@@ -12,6 +12,7 @@ import domainlayer.Tableau;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import domainlayer.skeleton.ITableau;
 
 /**
  * @author Erwin Olie s1103026,
@@ -29,10 +30,11 @@ public class MiddelLocatie extends Locatie {
 	}
 
 	// ISpeler of Speler in uitvoerenActie() parameters?
-	/** 14 Verzamelen Middelen **/
-	public void uitvoerenActie(Speler speler) {
+	/** 14 Verzamelen Middelen 
+	 * @throws RemoteException **/
+	public void uitvoerenActie(Speler speler) throws RemoteException {
 		// Teruggeven Stamleden
-		Tableau tableau = null;
+		ITableau tableau = null;
 		try {
 			tableau = speler.getTableau();
 		} catch (RemoteException e1) {

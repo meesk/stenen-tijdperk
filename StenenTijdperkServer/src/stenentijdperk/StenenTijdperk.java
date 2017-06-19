@@ -1,8 +1,5 @@
 package stenentijdperk;
 
-
-//serverkant
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -40,7 +37,7 @@ public class StenenTijdperk {
 	//   \  \ `_.   \_ __\ /__ _/   .-` /  /
 	//=====`-.____`.___ \_____/___.-`___.-'=====
 	//
-    //			ä½›ç¥–ä¿�ä½‘         æ°¸æ— BUG
+    //Alex <3 Piemels   ä½›ç¥–ä¿�ä½‘   æ°¸æ— BUG
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
