@@ -1,8 +1,5 @@
 package stenentijdperk;
 
-
-//client kant
-
 import java.rmi.Naming;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
