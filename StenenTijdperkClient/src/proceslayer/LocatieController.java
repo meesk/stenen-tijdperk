@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * LocatieController.java
@@ -26,11 +27,7 @@ public class LocatieController {
 		this.view = view;
 	}
 
-	public void onKiesLocatie() throws RemoteException {
-
-	}
-
-	public void gebruikKaart() {
-
+	public void onKiesLocatie() {
+		System.out.println("hoi! ik heb op een locatie geklikt =)");
 	}
 }
