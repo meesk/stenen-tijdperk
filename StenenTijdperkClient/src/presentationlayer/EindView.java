@@ -1,9 +1,11 @@
 package presentationlayer;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proceslayer.SpelController;
@@ -24,6 +26,11 @@ public class EindView extends Stage {
 		spelController.registerView(this);
 
 		VBox vbox = new VBox(15);
+
+		// Announcement
+		Label uitreiking = new Label();
+		uitreiking.setText("Speler 1 heeft gewonnen!");
+		uitreiking.setStyle("-fx-font-size: 20px");
 
 		// Datapunten zijn een aantal spelerspunten per ronde
 		NumberAxis xAxis = new NumberAxis();
@@ -58,9 +65,9 @@ public class EindView extends Stage {
 		data4.getData().add(new XYChart.Data<Number, Number>(3, 98));
 
 		lineChart.getData().addAll(data1, data2, data3, data4);
-		lineChart.setTitle("Speler Statistieken");
 
-		vbox.getChildren().add(lineChart);
+		vbox.getChildren().addAll(uitreiking, lineChart);
+		vbox.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(vbox, 400, 400);
 		this.setTitle("Einde van het spel");
 		this.setScene(scene);

@@ -16,7 +16,7 @@ import presentationlayer.skeleton.ISpelObserver;
  * Speler.java<br>
  * Een klasse waar de spelers worden aangemaakt.
  *
- * @author	Erwin Olie, s1103026
+ * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
