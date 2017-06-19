@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 
-import domainlayer.Spel;
 import domainlayer.enums.Kleur;
 import domainlayer.skeleton.ISpel;
 import javafx.application.Platform;
@@ -19,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -154,6 +152,9 @@ public class LobbyView extends Stage implements ISpelObserver {
 
 		borderpane.getChildren().add(stackPane);
 		borderpane.setCenter(gridPaneForm);
+		
+		// TODO: dit is voor het gemak, MOET later worden weg worden gehaald.
+		setLobbyGegevens();
 
 		Scene scene = new Scene(borderpane);
 		setScene(scene);
@@ -198,6 +199,8 @@ public class LobbyView extends Stage implements ISpelObserver {
 	
 	public void setLobbyGegevens() { // tijdelijk, scheelt tijd met invullen
 		this.voorNaamField.setText("Henk");
+		this.isSpastisch.setSelected(true);
+		this.geboorteDatumPicker.setValue(LocalDate.of(2015,07,20));
 	}
 
 	public void modelChanged(ISpel model) throws RemoteException {
