@@ -3,7 +3,6 @@ package proceslayer;
 import java.rmi.RemoteException;
 import java.util.regex.Pattern;
 
-import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.Alert;
