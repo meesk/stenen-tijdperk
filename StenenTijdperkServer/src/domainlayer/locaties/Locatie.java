@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import domainlayer.Speelbord;
 import domainlayer.Stamlid;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 
@@ -22,7 +23,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	private int x, y;
 	private int width, height;
 	private List<Point> cirkels;
-	protected List<Stamlid> stamleden;
+	protected List<IStamlid> stamleden;
 	private List<LocatieView> observers;
 	protected Speelbord speelbord;
 
@@ -61,38 +62,49 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		}
 	}
 
-	public void verwijderStamleden(List<Stamlid> stamleden) {
-		for (Stamlid stamlid : stamleden) {
+	public void verwijderStamleden(List<IStamlid> stamleden) {
+		for (IStamlid stamlid : stamleden) {
 			this.stamleden.remove(stamlid);
 		}
 	}
 
 	// Nog speler specifiek maken
-	public int getStamleden() {
-		return stamleden.size();
+	public List<IStamlid> getStamleden() {
+		return stamleden;
 	}
-	
+
+	public List<IStamlid> getStamleden(ISpeler speler) throws RemoteException {
+
+		List<IStamlid> lijstSpelerStamleden = new ArrayList<>();
+		for(IStamlid stamlid : stamleden) {
+			if (stamlid.getSpeler().equals(speler))
+			lijstSpelerStamleden.add(stamlid);
+		}
+		return lijstSpelerStamleden;
+
+	}
+
 	public int getX() {
 		return x;
 	}
-	
+
 	public int getY() {
 		return y;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public List<Point> getCirkels() {
 		return cirkels;
 	}
-	
+
 	public void betaalMiddelen() {
-		
+
 	}
 }

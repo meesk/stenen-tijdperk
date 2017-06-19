@@ -1,5 +1,8 @@
 package stenentijdperk;
 
+
+//client kant
+
 import java.rmi.Naming;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
@@ -63,8 +66,8 @@ public class StenenTijdperk extends Application {
 		//
 
 		// Het definieren van de modellen
-		IDobbelsteenWorp dobbelsteenWorp = (IDobbelsteenWorp) Naming.lookup("rmi://localhost/DobbelsteenWorp");
-		ISpel spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
+		IDobbelsteenWorp dobbelsteenWorp = (IDobbelsteenWorp) Naming.lookup("rmi://145.101.80.67/DobbelsteenWorp");
+		ISpel spel = (ISpel) Naming.lookup("rmi://145.101.80.67/Spel");
 
 		// ...
 		HandleidingView handleidingPane = new HandleidingView();

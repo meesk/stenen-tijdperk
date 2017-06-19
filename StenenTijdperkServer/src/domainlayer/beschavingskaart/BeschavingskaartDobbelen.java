@@ -9,6 +9,8 @@ package domainlayer.beschavingskaart;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
+
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +47,15 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 
 		//verwijderen stamleden
 		Tableau tableau = speler.getTableau();
-		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
+		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+			try {
+				return s.getSpeler() == speler;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		}).collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
 		super.verwijderStamleden(stamleden);
 

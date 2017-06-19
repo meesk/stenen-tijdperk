@@ -10,6 +10,8 @@ import java.util.Map.Entry;
 
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
@@ -26,7 +28,7 @@ import presentationlayer.skeleton.ITableauObserver;
  */
 public class Tableau extends UnicastRemoteObject implements ITableau {
 
-	private List<Stamlid> stamleden;
+	private List<IStamlid> stamleden;
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
 	private List<Beschavingskaart> kaarten;
@@ -70,7 +72,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden.remove(stamlid);
 	}
 
-	public List<Stamlid> getStamleden(){
+	public List<IStamlid> getStamleden(){
 		return stamleden;
 	}
 
@@ -93,7 +95,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden.add(s);
 	}
 
-	public void ontvangStamleden(List<Stamlid> stamleden) {
+	public void ontvangStamleden(List<IStamlid> stamleden) {
 		this.stamleden.addAll(stamleden);
 	}
 
@@ -125,11 +127,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		verhoogGereedschap();
 	}
 
-
-
-	//in cotroller toevoegen graag hulp
-	//alex
-
 	/**
 	 * Methode zorgt ervoor dat de gereedschaps punten opgeteld worden bij de dobbelstenen
 	 * @author Alex de Bruin, s1103096
@@ -148,13 +145,14 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	 * @author Alex de Bruin, s1103096
 	 */
 
-	public void setGereedschapStatus(boolean status, int positie) {
+	public void setGereedschapStatus(int positie) {
+		gereedschapGebruikt[positie] = true;
 
-		//Gereedschap op gebruikt zetten
 		notifyObservers();
 	}
-	public void resetGereedschapStatus() {
-		// Gereedschap op ongebruikt zetten
+	public void resetGereedschapStatus() throws RemoteException {
+		for(int i = 0; i <= getGereedschapGebruikt().length; i++)
+			gereedschapGebruikt[i] = false;
 		notifyObservers();
 		}
 

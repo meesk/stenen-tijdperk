@@ -1,5 +1,7 @@
 package domainlayer;
 
+import domainlayer.skeleton.IStamlid;
+
 /**
  * Stamlid.java<br>
  * Een klasse waar de stamleden worden aangemaakt.
@@ -7,7 +9,7 @@ package domainlayer;
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */
-public class Stamlid {
+public class Stamlid  implements IStamlid{
 	private Speler speler;
 
 	public Stamlid(Speler speler) {

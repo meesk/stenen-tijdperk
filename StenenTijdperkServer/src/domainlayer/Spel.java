@@ -21,10 +21,11 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.skeleton.ISpelObserver;
+import presentationlayer.skeleton.IView;
 
 /**
  * Spel.java<br>
- * De klasse waar alle elementen tot één spel worden gevoegd.
+ * De klasse waar alle elementen tot 1 spel worden gevoegd.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
@@ -44,8 +45,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
 	private SpelStatus status;
-	private int stamledenNietGeplaatst;
-	private int stamleden = 0;
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
 
@@ -162,7 +161,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		for(ISpelObserver observer : lobbyObservers) {
 			observer.modelChanged(this);
 		}
-		
+
 		for(ISpelObserver observer : spelViewObservers) {
 			observer.modelChanged(this);
 		}
@@ -174,8 +173,52 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 *fase 3 is het eind view
 	 * */
 
+	private ISpeler beurtSpeler;
+
 	public void fases() throws RemoteException {
 
+		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+
+		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
+			int stamledenOpTableau = 0;
+			for( int i = 0; i <= spelers.size(); i++) {
+				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
+			}
+			if( stamledenOpTableau > 0) {
+				//if ( /*als de speler die een actie wil uitvoeren de speler is die aan de beurt is*/ .equals(beurtSpeler)) {
+					if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
+			//			voer plaatsen stamleden uit
+			//		}
+				} else {
+					System.out.println("Niet aan de beurt. Wachten op beurt!");
+				}
+				beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+
+			} else {
+				status = status.UITVOEREN_ACTIE;
+			}
+		} else if (status.equals(status.UITVOEREN_ACTIE)) {
+			int stamledenOpSpeelbord = 0;
+			for(int j = 0; j <= spelers.size(); j++) {
+				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
+			}
+			if(stamledenOpSpeelbord > 0) {
+//				if(Speler die een actie wil uitvoeren aan de beurt is) {
+					int stamledenOpLocatieSpeler = 0;
+					for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
+						stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
+					}
+					if(stamledenOpLocatieSpeler > 0) {
+						//uitvoeren actie
+					}
+//				}
+			}
+
+		}
+
+	}
+
+	/*
 		// fase 2.1
 		//Alleen de fases waar in de speler echt het spel kan spelen staan hier in
 		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR) {
@@ -191,10 +234,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					if (this.spelers.get(i).getTableau().getStamleden().size() != 0){
 						// kijk hoeveel spelers er zijn
 						switch(spelers.size()) {
-						//als er twee spelers zijn
-						case '2' : {
-							//stamleden plaatsen
-						}
 						//als er drie spelers zijn
 						case '3' : {
 							//stamleden plaatsen
@@ -203,6 +242,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 						case '4' : {
 							//stamleden plaatsen
 						}
+						//default is twee spelers
 						}
 						// als er geen stamleden meer zijn bij een speler
 					} else {
@@ -234,16 +274,16 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 					switch(spelers.size()) {
 
-					case '2' : {
-						//twee spelers krijgen een beurt
-					}
-
 					case '3' : {
 						//drie spelers krijgen een beurt
 					}
 
 					case '4' : {
 						//vier speler krijgen een beurt
+					}
+					//Default is twee spelers
+					default : {
+
 					}
 					}
 				}
@@ -305,10 +345,17 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+*/
+
+
+	public void registerLobbyView(IView observer) throws RemoteException {
+
+	}
+
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);
 	}
-	
+
 	public void registerSpelView(ISpelObserver observer) throws RemoteException {
 		spelViewObservers.add(observer);
 	}
