@@ -4,6 +4,8 @@ package presentationlayer;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import domainlayer.enums.Kleur;
 import domainlayer.skeleton.ISpel;
@@ -86,26 +88,41 @@ public class LobbyView extends Stage implements ISpelObserver {
 		kiesKleur.setTextFill(Color.WHITE);
 		gridPaneForm.add(kiesKleur, 0, 4);
 
+		//		RadioButton radRood = new RadioButton("Rood");
+		//		radRood.setTextFill(Color.WHITE);
+		//		gridPaneForm.add(radRood, 1, 3);
+		//		RadioButton radGroen = new RadioButton("Groen");
+		//		radGroen.setTextFill(Color.WHITE);
+		//		gridPaneForm.add(radGroen, 1, 4);
+		//		RadioButton radBlauw = new RadioButton("Blauw");
+		//		radBlauw.setTextFill(Color.WHITE);
+		//		gridPaneForm.add(radBlauw, 1, 5);
+		//		RadioButton radGeel = new RadioButton("Geel");
+		//		radGeel.setTextFill(Color.WHITE);
+		//		gridPaneForm.add(radGeel, 1, 6);
+		//
+		//		// Toevoegen radio buttons aan groep
+		//		radRood.setToggleGroup(group);
+		//		radGroen.setToggleGroup(group);
+		//		radBlauw.setToggleGroup(group);
+		//		radGeel.setToggleGroup(group);
+
 		// Radio buttons kleuren
 		group = new ToggleGroup();
-		RadioButton radRood = new RadioButton("Rood");
-		radRood.setTextFill(Color.WHITE);
-		gridPaneForm.add(radRood, 1, 3);
-		RadioButton radGroen = new RadioButton("Groen");
-		radGroen.setTextFill(Color.WHITE);
-		gridPaneForm.add(radGroen, 1, 4);
-		RadioButton radBlauw = new RadioButton("Blauw");
-		radBlauw.setTextFill(Color.WHITE);
-		gridPaneForm.add(radBlauw, 1, 5);
-		RadioButton radGeel = new RadioButton("Geel");
-		radGeel.setTextFill(Color.WHITE);
-		gridPaneForm.add(radGeel, 1, 6);
+		List<RadioButton> kleurButtons = new ArrayList<RadioButton>();
+		int position = 3;
+		String kleuren[] = {"Rood", "Groen", "Blauw", "Geel"};
 
-		// Toevoegen radio buttons aan groep
-		radRood.setToggleGroup(group);
-		radGroen.setToggleGroup(group);
-		radBlauw.setToggleGroup(group);
-		radGeel.setToggleGroup(group);
+		for(int i = 0; i < 4; i++) {
+			kleurButtons.add(new RadioButton(kleuren[i]));
+		}
+		for(int k = 0; k < kleurButtons.size(); k++) {
+			kleurButtons.get(k).setToggleGroup(group);
+			kleurButtons.get(k).setTextFill(Color.WHITE);
+			gridPaneForm.add(kleurButtons.get(k), 1, position);
+			position++;
+		}
+
 
 		// Radio button spastische speler
 		Label spastischLabel = new Label("Ja, ik heb last van spasticiteit");
