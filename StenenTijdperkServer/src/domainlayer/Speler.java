@@ -56,6 +56,10 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		//Gereedschap
 		//Granenspoor
 	}
+	
+	public String getKleur() throws RemoteException {
+		return kleur;
+	}
 
 	public String getNaam() {
 		return naam;

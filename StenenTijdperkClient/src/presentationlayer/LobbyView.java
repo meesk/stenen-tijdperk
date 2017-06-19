@@ -9,6 +9,7 @@ import java.util.List;
 
 import domainlayer.enums.Kleur;
 import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.ISpeler;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,7 +40,8 @@ import proceslayer.LobbyController;
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
- * @version 1.0
+ * @author Erwin Olie, s1103026
+ * @version 1.2
  */
 public class LobbyView extends Stage implements ISpelObserver {
 
@@ -53,10 +55,11 @@ public class LobbyView extends Stage implements ISpelObserver {
 	private Button klaarBtn;
 	private ProgressBar pb;
 	private Label spelersAantalLbl;
+	private RadioButton[] kleurButtons;
 
 	public LobbyView(LobbyController controller, ISpel model) throws RemoteException {
 
-		UnicastRemoteObject.exportObject(this,0);
+		UnicastRemoteObject.exportObject(this, 0);
 
 		model.registerLobbyView(this);
 		controller.registerView(this);
@@ -88,41 +91,40 @@ public class LobbyView extends Stage implements ISpelObserver {
 		kiesKleur.setTextFill(Color.WHITE);
 		gridPaneForm.add(kiesKleur, 0, 4);
 
-		//		RadioButton radRood = new RadioButton("Rood");
-		//		radRood.setTextFill(Color.WHITE);
-		//		gridPaneForm.add(radRood, 1, 3);
-		//		RadioButton radGroen = new RadioButton("Groen");
-		//		radGroen.setTextFill(Color.WHITE);
-		//		gridPaneForm.add(radGroen, 1, 4);
-		//		RadioButton radBlauw = new RadioButton("Blauw");
-		//		radBlauw.setTextFill(Color.WHITE);
-		//		gridPaneForm.add(radBlauw, 1, 5);
-		//		RadioButton radGeel = new RadioButton("Geel");
-		//		radGeel.setTextFill(Color.WHITE);
-		//		gridPaneForm.add(radGeel, 1, 6);
+		// RadioButton radRood = new RadioButton("Rood");
+		// radRood.setTextFill(Color.WHITE);
+		// gridPaneForm.add(radRood, 1, 3);
+		// RadioButton radGroen = new RadioButton("Groen");
+		// radGroen.setTextFill(Color.WHITE);
+		// gridPaneForm.add(radGroen, 1, 4);
+		// RadioButton radBlauw = new RadioButton("Blauw");
+		// radBlauw.setTextFill(Color.WHITE);
+		// gridPaneForm.add(radBlauw, 1, 5);
+		// RadioButton radGeel = new RadioButton("Geel");
+		// radGeel.setTextFill(Color.WHITE);
+		// gridPaneForm.add(radGeel, 1, 6);
 		//
-		//		// Toevoegen radio buttons aan groep
-		//		radRood.setToggleGroup(group);
-		//		radGroen.setToggleGroup(group);
-		//		radBlauw.setToggleGroup(group);
-		//		radGeel.setToggleGroup(group);
+		// // Toevoegen radio buttons aan groep
+		// radRood.setToggleGroup(group);
+		// radGroen.setToggleGroup(group);
+		// radBlauw.setToggleGroup(group);
+		// radGeel.setToggleGroup(group);
 
 		// Radio buttons kleuren
 		group = new ToggleGroup();
-		List<RadioButton> kleurButtons = new ArrayList<RadioButton>();
 		int position = 3;
-		String kleuren[] = {"Rood", "Groen", "Blauw", "Geel"};
+		String kleuren[] = { "Rood", "Groen", "Blauw", "Geel" };
+		kleurButtons = new RadioButton[kleuren.length];
 
-		for(int i = 0; i < 4; i++) {
-			kleurButtons.add(new RadioButton(kleuren[i]));
+		for (int i = 0; i < 4; i++) {
+			kleurButtons[i] = new RadioButton(kleuren[i]);
 		}
-		for(int k = 0; k < kleurButtons.size(); k++) {
-			kleurButtons.get(k).setToggleGroup(group);
-			kleurButtons.get(k).setTextFill(Color.WHITE);
-			gridPaneForm.add(kleurButtons.get(k), 1, position);
+		for (int k = 0; k < kleurButtons.length; k++) {
+			kleurButtons[k].setToggleGroup(group);
+			kleurButtons[k].setTextFill(Color.WHITE);
+			gridPaneForm.add(kleurButtons[k], 1, position);
 			position++;
 		}
-
 
 		// Radio button spastische speler
 		Label spastischLabel = new Label("Ja, ik heb last van spasticiteit");
@@ -141,7 +143,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 		klaarBtn = new Button("Maak speler!");
 		klaarBtn.maxWidth(200);
 		klaarBtn.maxHeight(200);
-		gridPaneForm.add(klaarBtn, 1 , 12);
+		gridPaneForm.add(klaarBtn, 1, 12);
 
 		klaarBtn.setOnAction(e -> {
 			try {
@@ -157,7 +159,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 		spelersAantalLbl.setStyle("-fx-font-size:16px;");
 		spelersAantalLbl.setTextFill(Color.WHITE);
 
-		//Progessie bar
+		// Progessie bar
 		pb = new ProgressBar(0);
 		gridPaneForm.add(pb, 2, 12);
 		gridPaneForm.setStyle("-fx-font-size: 16px;");
@@ -225,27 +227,51 @@ public class LobbyView extends Stage implements ISpelObserver {
 	public void setLobbyGegevens() { // tijdelijk, scheelt tijd met invullen
 		this.voorNaamField.setText("Henk");
 		this.isSpastisch.setSelected(true);
-		this.geboorteDatumPicker.setValue(LocalDate.of(2015,07,20));
+		this.geboorteDatumPicker.setValue(LocalDate.of(2015, 07, 20));
 	}
 
 	public void modelChanged(ISpel model) throws RemoteException {
 		Platform.runLater(() -> {
 			try {
-				if(model.getStart()) {
+				if (model.getStart() && this.isShowing()) {
 					this.close();
+					return;
 				}
 				int aantalKlaar = 0;
 
-				for(int i = 0; i < model.getSpelerLijst().size(); i++) {
-					if(model.getSpelerLijst().get(i).getKlaar()) {
+				for (int i = 0; i < model.getSpelerLijst().size(); i++) {
+					if (model.getSpelerLijst().get(i).getKlaar()) {
 						aantalKlaar++;
 					}
 				}
 
-				double progressIndicator = (double)aantalKlaar / model.getSpelerLijst().size();
+				double progressIndicator = (double) aantalKlaar / model.getSpelerLijst().size();
 				pb.setProgress(progressIndicator);
 				spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
-			} catch(RemoteException e) {
+
+				// deze code is lelijk maar werkt heel goed <3
+				for (RadioButton rb : kleurButtons) {
+					if (rb.isDisabled()) {
+						continue;
+					}
+					for (ISpeler speler : model.getSpelerLijst()) {
+						if (!speler.getKleur().equals(rb.getText())) {
+							continue;
+						}
+						rb.setDisable(true);
+						if (rb.isSelected() && !voorNaamField.isDisabled()) {
+							for (RadioButton nrb : kleurButtons) {
+								if (nrb.isDisabled()) {
+									continue;
+								}
+								nrb.fire();
+								break;
+							}
+						}
+					}
+				}
+
+			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 		});
