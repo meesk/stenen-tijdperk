@@ -8,7 +8,7 @@ import domainlayer.skeleton.ITableau;
 
 /**
  * IBetaalView.java<br>
- * De interface voor de view van de betaalview
+ * De interface voor de view van de betaalview.
  *
  * @author	Mees Kluivers, s1102358
  * @version	1.0

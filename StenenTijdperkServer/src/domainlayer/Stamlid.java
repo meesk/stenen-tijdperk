@@ -1,7 +1,7 @@
 package domainlayer;
 
 /**
- * Stamlid.java
+ * Stamlid.java<br>
  * Een klasse waar de stamleden worden aangemaakt.
  *
  * @author	Erwin Olie, s1103026

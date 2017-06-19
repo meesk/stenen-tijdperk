@@ -1,13 +1,9 @@
 package domainlayer.beschavingskaart;
 
-
-
-
 /**
  * @author Alex de Bruin, s1103096
- * @version 0.1
- * <br>
-* <br>
+ * @version 1.0
+ *
  * Dit is de constructor voor de beschavingskaart <br> waar je met een dobbelsteen moet gooien om een aantal middelen te verkrijgen.
  */
 import domainlayer.enums.BeschavingskaartStatus;

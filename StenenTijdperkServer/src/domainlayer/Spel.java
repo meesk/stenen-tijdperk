@@ -23,7 +23,7 @@ import presentationlayer.skeleton.IView;
 
 /**
  * Spel.java<br>
- * De klasse waar alle elementen tot ��n spel worden gevoegd.
+ * De klasse waar alle elementen tot 1 spel worden gevoegd.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
@@ -167,7 +167,43 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 *fase 3 is het eind view
 	 * */
 
-	public void fases() throws RemoteException {}
+	//private ISpeler beurtSpeler;
+
+	private int beurt;
+
+	public void fases() throws RemoteException {
+
+
+		//eurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+		beurt = (beurt + 1) % spelers.size();
+
+
+
+
+		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
+			int stamledenOpTableau = 0;
+			for( int i = 0; i <= spelers.size(); i++) {
+				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
+			}
+			if( stamledenOpTableau != 0) {
+			//	if( speler is aan de beurt) {
+			//			speler beurt is niet waar
+			//			speler next speler aan de beurt is waar
+			//	}
+
+
+			} else {
+				status = status.UITVOEREN_ACTIE;
+			}
+		} else if (status.equals(status.UITVOEREN_ACTIE)) {
+			int stamledenOpSpeelbord = 0;
+			for(int j = 0; j <= spelers.size(); j++) {
+				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden();
+			}
+
+		}
+
+	}
 
 	/*
 		// fase 2.1

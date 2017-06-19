@@ -22,6 +22,7 @@ import domainlayer.spoor.Voedselspoor;
 /**
  * Speelbord.java <br>
  * Een klasse waar het speelbord wordt aangemaakt.
+ * 
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */

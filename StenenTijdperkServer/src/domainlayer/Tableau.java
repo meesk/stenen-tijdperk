@@ -17,7 +17,7 @@ import presentationlayer.TableauView;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
- * Tableau.java
+ * Tableau.java<br>
  * Een klasse waar de tableau's worden aangemaakt.
  *
  * @author Tristan Caspers, s1102755
@@ -39,7 +39,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
-		// Klaarzetten Spel moet nog 5 stamleden hieraan toevoegen!
 		stamleden = new ArrayList<>();
 		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{

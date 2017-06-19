@@ -8,7 +8,7 @@ import domainlayer.Spel;
 import domainlayer.skeleton.ISpel;
 
 public interface IView extends Remote {
-	
+
 	// De eerste 4 hieronder moeten worden gepushed.
 
 	public String getNaam() throws RemoteException;

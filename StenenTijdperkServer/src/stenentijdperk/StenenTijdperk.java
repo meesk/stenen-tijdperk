@@ -9,8 +9,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import domainlayer.Spel;
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 /**
  * StenenTijdperk.java<br>
@@ -20,9 +18,8 @@ import javafx.stage.Stage;
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
- * @version 0.6
+ * @version 1.0
  */
-
 public class StenenTijdperk {
 	//
 	//                 _oo0oo_
@@ -43,7 +40,7 @@ public class StenenTijdperk {
 	//   \  \ `_.   \_ __\ /__ _/   .-` /  /
 	//=====`-.____`.___ \_____/___.-`___.-'=====
 	//
-    //			佛祖保佑         永无BUG
+    //			ä½›ç¥–ä¿�ä½‘         æ°¸æ— BUG
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
@@ -63,6 +60,6 @@ public class StenenTijdperk {
 		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
 
-		System.out.println("server started...");
+		System.out.println("Server started...");
 	}
 }

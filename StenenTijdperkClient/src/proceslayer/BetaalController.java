@@ -1,6 +1,5 @@
 package proceslayer;
 
-
 import java.rmi.RemoteException;
 import java.util.Map;
 
@@ -51,7 +50,6 @@ public class BetaalController {
 
 		// Uitvoeren van de actie voeden stamleden
 		model.voedenStamleden(middelen);
-
 	}
 
 	public void onVerliesPuntenPressed(){
