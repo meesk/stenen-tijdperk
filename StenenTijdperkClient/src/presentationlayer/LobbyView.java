@@ -1,3 +1,4 @@
+
 package presentationlayer;
 
 import java.rmi.RemoteException;
@@ -28,7 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import presentationlayer.skeleton.IView;
+import presentationlayer.skeleton.ISpelObserver;
 import proceslayer.LobbyController;
 
 /**
@@ -40,7 +41,7 @@ import proceslayer.LobbyController;
  * @author Tristan Caspers, s1102755
  * @version 1.0
  */
-public class LobbyView extends Stage implements IView {
+public class LobbyView extends Stage implements ISpelObserver {
 
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
@@ -193,6 +194,10 @@ public class LobbyView extends Stage implements IView {
 
 	public void veranderKnopTextWachten() {
 		this.klaarBtn.setText("Momenteel Geduld a.u.b..");
+	}
+	
+	public void setLobbyGegevens() { // tijdelijk, scheelt tijd met invullen
+		this.voorNaamField.setText("Henk");
 	}
 
 	public void modelChanged(ISpel model) throws RemoteException {

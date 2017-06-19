@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
-import presentationlayer.skeleton.IView;
+import presentationlayer.skeleton.ISpelObserver;
 
 /**
  * Spel.java<br>
@@ -48,14 +49,16 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
 
-	private List<IView> lobbyObservers;
+	private List<ISpelObserver> lobbyObservers;
+	private List<ISpelObserver> spelViewObservers;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
 		speelbord = new Speelbord(this);
 		dobbelsteenWorp = new DobbelsteenWorp();
 
-		lobbyObservers = new ArrayList<IView>();
+		lobbyObservers = new ArrayList<ISpelObserver>();
+		spelViewObservers = new ArrayList<ISpelObserver>();
 	}
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
@@ -106,9 +109,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
-	public ISpeler maakSpeler(IView view) throws RemoteException {
+	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean b, String kleur) throws RemoteException {
 
-		Speler speler = new Speler(this, view);
+		Speler speler = new Speler(this, view, kleur, geboorteDatum, b, kleur);
 
 		synchronized(spelers) {
 			spelers.add(speler);
@@ -156,7 +159,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 
 	private void notifyObservers() throws RemoteException {
-		for(IView observer : lobbyObservers) {
+		for(ISpelObserver observer : lobbyObservers) {
+			observer.modelChanged(this);
+		}
+		
+		for(ISpelObserver observer : spelViewObservers) {
 			observer.modelChanged(this);
 		}
 	}
@@ -298,7 +305,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	public void registerLobbyView(IView observer) throws RemoteException {
+	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);
+	}
+	
+	public void registerSpelView(ISpelObserver observer) throws RemoteException {
+		spelViewObservers.add(observer);
 	}
 }
