@@ -1,6 +1,5 @@
 package presentationlayer;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -17,11 +16,11 @@ import presentationlayer.skeleton.IBetaalView;
 import proceslayer.BetaalController;
 
 /**
- * BetaalView.java
- * Een klasse die alle informatie bevat om de betaal view te maken
+ * BetaalView.java<br>
+ * Een klasse die alle informatie bevat om de betaal view te maken.
  *
  * @author Mees Kluivers, s1102358
- * @version 0.1
+ * @version 1.0
  */
 
 public class BetaalView extends BorderPane implements IBetaalView {
@@ -31,14 +30,14 @@ public class BetaalView extends BorderPane implements IBetaalView {
 	Spinner<Integer> inputLeem = new Spinner<Integer>();
 	Spinner<Integer> inputSteen = new Spinner<Integer>();
 	Spinner<Integer> inputGoud = new Spinner<Integer>();
-	
+
 
 	public BetaalView(boolean voeden, BetaalController controller) throws RemoteException {
-		
+
 		UnicastRemoteObject.exportObject(this,0);
 
 		controller.registerView(this);
-		
+
 		GridPane gridPane = new GridPane();
 
 		Label voedsel = new Label("voedsel");
@@ -78,7 +77,7 @@ public class BetaalView extends BorderPane implements IBetaalView {
 			hbox.getChildren().add(verliesPuntenButton);
 			this.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
 		}
-		
+
 		hbox.getChildren().add(betalenButton);
 
 		gridPane.add(hout, 1, 1);
@@ -123,7 +122,6 @@ public class BetaalView extends BorderPane implements IBetaalView {
 
 	@Override
 	public void modelChanged(ITableau model) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+
 	}
 }

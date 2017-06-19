@@ -10,8 +10,11 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.locaties.ILocatie;
 
 /**
+ * LocatieFactory.java<br>
+ * Een klasse waar de locaties worden toegevoegd.
+ *
  * @author Erwin Olie, s1103026
- * @version 0.1
+ * @version 1.0
  */
 public class LocatieFactory {
 

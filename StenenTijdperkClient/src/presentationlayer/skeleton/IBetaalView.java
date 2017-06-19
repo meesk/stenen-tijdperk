@@ -7,11 +7,11 @@ import java.rmi.RemoteException;
 import domainlayer.skeleton.ITableau;
 
 /**
- * IBetaalView.java
+ * IBetaalView.java<br>
  * De interface voor de view van de betaalview
- * 
+ *
  * @author	Mees Kluivers, s1102358
- * @version	0.1
+ * @version	1.0
  */
 public interface IBetaalView extends Remote {
 	/**

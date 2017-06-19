@@ -4,11 +4,11 @@ import domainlayer.skeleton.ITableau;
 import presentationlayer.TableauView;
 
 /**
- * TableauController.java
+ * TableauController.java<br>
  * De controller voor het tableau.
  *
  * @author Tristan Caspers, s1102755
- * @version 0.1
+ * @version 1.0
  */
 public class TableauController {
 

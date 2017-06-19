@@ -4,8 +4,11 @@ import javafx.stage.Stage;
 import proceslayer.SpelController;
 
 /**
- * @author Tristan Caspers s1102755
- * @version 0.1
+ * EindView.java<br>
+ * Een klasse die alle informatie bevat om de eind view te maken.
+ *
+ * @author Tristan Caspers, s1102755
+ * @version 1.0
  */
 
 public class EindView {

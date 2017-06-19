@@ -6,11 +6,11 @@ import java.rmi.RemoteException;
 import domainlayer.skeleton.IDobbelsteenWorp;
 
 /**
- * IDobbelsteenWorpPane.java
+ * IDobbelsteenWorpPane.java<br>
  * De interface voor de view over dobbelsteen worpen.
- * 
+ *
  * @author	Erwin Olie, s1103026
- * @version	0.1
+ * @version	1.0
  */
 public interface IDobbelsteenWorpPane extends Remote {
 	/**

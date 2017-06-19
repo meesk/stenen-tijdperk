@@ -6,11 +6,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
 /**
- * TableauView.java
+ * TableauView.java<br>
  * Een klasse die alle informatie bevat om de tableau view te maken.
  *
  * @author Erwin Olie, s1103026
- * @version 0.2
+ * @version 1.0
  */
 
 public class TableauView extends StackPane {
@@ -18,7 +18,7 @@ public class TableauView extends StackPane {
 	public TableauView() {
 		this(false);
 	}
-	
+
 	public TableauView(boolean large) {
 
 		Image image = new Image("file:assets/tableau.png");

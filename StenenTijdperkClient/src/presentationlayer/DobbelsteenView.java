@@ -11,15 +11,15 @@ import javafx.scene.layout.Pane;
 import presentationlayer.skeleton.IDobbelsteenPane;
 
 /**
- * DobbelstenPane.java
+ * DobbelstenPane.java<br>
  * De view van enkele dobbelstenen.
  *
  * @author	Erwin Olie, s1103026
- * @version	0.3
+ * @version	1.0
  */
 public class DobbelsteenView extends Pane implements IDobbelsteenPane {
 
-	/** De View waarin de dobbelsteen-afbeeldingen worden geladen. */
+	/** De view waarin de dobbelsteen-afbeeldingen worden geladen. */
 	private ImageView imageView;
 	/** De locatie van de dobbelsteen-afbeeldingen. */
 	private final String RESOURCE = "file:assets/dobbelstenen/%d.png";

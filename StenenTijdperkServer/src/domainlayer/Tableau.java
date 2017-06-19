@@ -15,10 +15,13 @@ import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
 
 /**
- * @author Tristan Caspers s1102755,
- * @author Erwin Olie s1103026,
- * @author Alex de Bruin s1103096
- * @version 0.3
+ *  * Tableau.java
+ * Een klasse waar de tableau's worden aangemaakt.
+ *
+ * @author Tristan Caspers, s1102755
+ * @author Erwin Olie, s1103026
+ * @author Alex de Bruin, s1103096
+ * @version 1.0
  */
 
 public class Tableau extends UnicastRemoteObject implements ITableau {
@@ -214,7 +217,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 		return true;
 	}
-	
+
 	public void verliesPunten(){
 		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
 		puntenSpoor.verwijderPunten(speler, 10);

@@ -5,11 +5,11 @@ import java.rmi.RemoteException;
 import domainlayer.skeleton.IDobbelsteenWorp;
 
 /**
- * DobbelsteenWorpController.java
+ * DobbelsteenWorpController.java<br>
  * De controller om de acties uitgevoerd in de view op te vangen.
  *
  * @author	Erwin Olie, s1103026
- * @version	0.2
+ * @version	1.0
  */
 public class DobbelsteenWorpController {
 

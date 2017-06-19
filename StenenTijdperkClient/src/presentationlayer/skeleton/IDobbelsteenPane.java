@@ -7,11 +7,11 @@ import java.rmi.RemoteException;
 import domainlayer.skeleton.IDobbelsteen;
 
 /**
- * IDobbelsteenPane.java
+ * IDobbelsteenPane.java<br>
  * De interface voor de view over losse dobbelstenen.
- * 
+ *
  * @author	Erwin Olie, s1103026
- * @version	0.1
+ * @version	1.0
  */
 public interface IDobbelsteenPane extends Remote {
 	/**

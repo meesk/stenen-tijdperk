@@ -3,27 +3,19 @@ package domainlayer;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import domainlayer.enums.Kleur;
-import domainlayer.enums.Middel;
 import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpeler;
-import javafx.scene.paint.Color;
-import presentationlayer.LobbyView;
 
 /**
- * Speler.java
+ * Speler.java<br>
  * Een klasse waar de spelers worden aangemaakt.
  *
  * @author	Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
- * @version	0.5
+ * @version	1.0
  */
 public class Speler extends UnicastRemoteObject implements ISpeler {
 

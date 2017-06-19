@@ -11,11 +11,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 /**
- * SpeelbordPane.java
+ * SpeelbordPane.java<br>
  * De view van het speelbord.
  *
  * @author Erwin Olie, s1103026
- * @version 0.4
+ * @version 1.0
  */
 public class SpeelbordView extends Pane {
 
@@ -24,7 +24,7 @@ public class SpeelbordView extends Pane {
 		ImageView imageView = new ImageView(image);
 
 		this.getChildren().add(imageView);
-		
+
 		try {
 			for (ILocatie locatie : model.getLocaties()) {
 				this.getChildren().add(new LocatieView(locatie));
