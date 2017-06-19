@@ -1,5 +1,8 @@
 package stenentijdperk;
 
+
+//client kant
+
 import java.rmi.Naming;
 
 import domainlayer.skeleton.IDobbelsteenWorp;
@@ -22,11 +25,7 @@ import proceslayer.SpelController;
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
-<<<<<<< HEAD
  * @version	1.0
-=======
- * @version	0.7
->>>>>>> 28af035b47953cfee1593c56a0ebf888476e507c
  */
 public class StenenTijdperk extends Application {
 
