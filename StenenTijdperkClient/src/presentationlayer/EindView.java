@@ -6,6 +6,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proceslayer.SpelController;
@@ -26,17 +29,20 @@ public class EindView extends Stage {
 		spelController.registerView(this);
 
 		VBox vbox = new VBox(15);
+		StackPane stackPane = new StackPane();
 
 		// Announcement
 		Label uitreiking = new Label();
 		uitreiking.setText("Speler 1 heeft gewonnen!");
-		uitreiking.setStyle("-fx-font-size: 20px");
+		uitreiking.setStyle("-fx-font-size: 22px");
 
 		// Datapunten zijn een aantal spelerspunten per ronde
 		NumberAxis xAxis = new NumberAxis();
 		xAxis.setLabel("Ronde");
+		xAxis.setMinorTickVisible(false);
 		NumberAxis yAxis = new NumberAxis();
 		yAxis.setLabel("Punten");
+		yAxis.setMinorTickVisible(false);
 
 		XYChart.Series<Number, Number> data1 = new XYChart.Series<Number, Number>();
 		data1.setName("Speler 1");
@@ -54,19 +60,27 @@ public class EindView extends Stage {
 		data1.getData().add(new XYChart.Data<Number, Number>(1, 34));
 		data1.getData().add(new XYChart.Data<Number, Number>(2, 78));
 		data1.getData().add(new XYChart.Data<Number, Number>(3, 99));
-		data2.getData().add(new XYChart.Data<Number, Number>(1, 0));
+		data2.getData().add(new XYChart.Data<Number, Number>(34, 0));
 		data2.getData().add(new XYChart.Data<Number, Number>(2, 20));
 		data2.getData().add(new XYChart.Data<Number, Number>(3, 45));
-		data3.getData().add(new XYChart.Data<Number, Number>(1, 43));
+		data3.getData().add(new XYChart.Data<Number, Number>(57, 43));
 		data3.getData().add(new XYChart.Data<Number, Number>(2, 50));
 		data3.getData().add(new XYChart.Data<Number, Number>(3, 65));
 		data4.getData().add(new XYChart.Data<Number, Number>(1, 8));
-		data4.getData().add(new XYChart.Data<Number, Number>(2, 78));
-		data4.getData().add(new XYChart.Data<Number, Number>(3, 98));
+		data4.getData().add(new XYChart.Data<Number, Number>(31, 78));
+		data4.getData().add(new XYChart.Data<Number, Number>(45, 98));
 
 		lineChart.getData().addAll(data1, data2, data3, data4);
 
-		vbox.getChildren().addAll(uitreiking, lineChart);
+		Image backgroundImage = new Image("file:assets/eindbackground.jpg");
+		ImageView backgroundView = new ImageView(backgroundImage);
+		backgroundView.fitWidthProperty().bind(this.widthProperty());
+		backgroundView.fitHeightProperty().bind(this.heightProperty());
+		backgroundView.setOpacity(0.75);
+
+		stackPane.getChildren().add(backgroundView);
+		vbox.getChildren().addAll(stackPane, uitreiking, lineChart);
+		vbox.setStyle("-fx-background: ");
 		vbox.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(vbox, 400, 400);
 		this.setTitle("Einde van het spel");
