@@ -10,6 +10,7 @@ import domainlayer.skeleton.ISpel;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
 import presentationlayer.LobbyView;
 import presentationlayer.SpelView;
@@ -80,10 +81,11 @@ public class StenenTijdperk extends Application {
 		// Het definieren van de views
 		LobbyView lobbyView = new LobbyView(lobbyController, spel);
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, dobbelsteenWorp, spel);
+		EindView eindView = new EindView(spelController);
 
 		//lobbyController.registerSpelView(spelView);
 
 		// Het voorbereiden en tonen van de stage.
-		lobbyView.show();
+		eindView.show();
 	}
 }
