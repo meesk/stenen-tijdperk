@@ -167,8 +167,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 *fase 3 is het eind view
 	 * */
 
-	public void fases() throws RemoteException {
+	public void fases() throws RemoteException {}
 
+	/*
 		// fase 2.1
 		//Alleen de fases waar in de speler echt het spel kan spelen staan hier in
 		while( status != SpelStatus.KLAARZETTEN && status != SpelStatus.BEPALEN_WINNAAR) {
@@ -184,10 +185,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					if (this.spelers.get(i).getTableau().getStamleden().size() != 0){
 						// kijk hoeveel spelers er zijn
 						switch(spelers.size()) {
-						//als er twee spelers zijn
-						case '2' : {
-							//stamleden plaatsen
-						}
 						//als er drie spelers zijn
 						case '3' : {
 							//stamleden plaatsen
@@ -196,6 +193,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 						case '4' : {
 							//stamleden plaatsen
 						}
+						//default is twee spelers
 						}
 						// als er geen stamleden meer zijn bij een speler
 					} else {
@@ -227,16 +225,16 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 					switch(spelers.size()) {
 
-					case '2' : {
-						//twee spelers krijgen een beurt
-					}
-
 					case '3' : {
 						//drie spelers krijgen een beurt
 					}
 
 					case '4' : {
 						//vier speler krijgen een beurt
+					}
+					//Default is twee spelers
+					default : {
+
 					}
 					}
 				}
@@ -297,7 +295,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			}
 		}
 	}
-
+*/
 	public void registerLobbyView(ILobbyView observer) throws RemoteException {
 		lobbyObservers.add(observer);
 	}

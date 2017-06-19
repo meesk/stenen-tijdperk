@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
@@ -124,11 +125,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		verhoogGereedschap();
 	}
 
-
-
-	//in cotroller toevoegen graag hulp
-	//alex
-
 	/**
 	 * Methode zorgt ervoor dat de gereedschaps punten opgeteld worden bij de dobbelstenen
 	 *
@@ -150,13 +146,14 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	 * @param status, positie
 	 */
 
-	public void setGereedschapStatus(boolean status, int positie) {
+	public void setGereedschapStatus(int positie) {
+		gereedschapGebruikt[positie] = true;
 
-		//Gereedschap op gebruikt zetten
 		notifyObservers();
 	}
-	public void resetGereedschapStatus() {
-		// Gereedschap op ongebruikt zetten
+	public void resetGereedschapStatus() throws RemoteException {
+		for(int i = 0; i <= getGereedschapGebruikt().length; i++)
+			gereedschapGebruikt[i] = false;
 		notifyObservers();
 		}
 
