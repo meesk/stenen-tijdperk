@@ -38,7 +38,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
-		// Klaarzetten Spel moet nog 5 stamleden hieraan toevoegen!
 		stamleden = new ArrayList<>();
 		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>() {{

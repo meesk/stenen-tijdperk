@@ -10,11 +10,11 @@ import domainlayer.skeleton.IDobbelsteenWorp;
 import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 
 /**
- * DobbelsteenWorp.java
+ * DobbelsteenWorp.java<br>
  * Het model van de DobbelsteenWorp.
  *
  * @author Erwin Olie, s1103026
- * @version 0.4
+ * @version 1.0
  */
 public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteenWorp {
 	private static final long serialVersionUID = 1L;

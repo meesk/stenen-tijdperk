@@ -22,12 +22,8 @@ import proceslayer.SpelController;
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
-<<<<<<< HEAD
  * @version	1.0
-=======
- * @version	0.7
->>>>>>> 28af035b47953cfee1593c56a0ebf888476e507c
- */
+*/
 public class StenenTijdperk extends Application {
 
 	/** De main method die de JavaFX applicatie opstart. */
@@ -58,7 +54,7 @@ public class StenenTijdperk extends Application {
 		//   \  \ `_.   \_ __\ /__ _/   .-` /  /
 		//=====`-.____`.___ \_____/___.-`___.-'=====
 		//
-        //			佛祖保佑         永无BUG
+        //			ä½›ç¥–ä¿�ä½‘         æ°¸æ— BUG
 		//
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		//

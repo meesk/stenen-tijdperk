@@ -57,6 +57,6 @@ public class StenenTijdperk {
 		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
 
-		System.out.println("server started...");
+		System.out.println("Server started...");
 	}
 }
