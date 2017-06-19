@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
@@ -27,7 +28,7 @@ import presentationlayer.skeleton.ITableauObserver;
  */
 public class Tableau extends UnicastRemoteObject implements ITableau {
 
-	private List<Stamlid> stamleden;
+	private List<IStamlid> stamleden;
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
 	private List<Beschavingskaart> kaarten;
@@ -71,7 +72,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden.remove(stamlid);
 	}
 
-	public List<Stamlid> getStamleden(){
+	public List<IStamlid> getStamleden(){
 		return stamleden;
 	}
 
@@ -94,7 +95,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden.add(s);
 	}
 
-	public void ontvangStamleden(List<Stamlid> stamleden) {
+	public void ontvangStamleden(List<IStamlid> stamleden) {
 		this.stamleden.addAll(stamleden);
 	}
 

@@ -1,6 +1,7 @@
 package domainlayer.skeleton;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  * IStamlid.java
@@ -11,5 +12,7 @@ import java.rmi.Remote;
  */
 
 public interface IStamlid extends Remote {
+
+	public ISpeler getSpeler() throws RemoteException;
 
 }

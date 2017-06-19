@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import domainlayer.Stamlid;
 import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 
 /**
  * @author Erwin Olie, s1103026
@@ -30,7 +31,14 @@ public class Hut extends Locatie {
 		}
 
 		// Teruggeven Stamleden
-		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
+		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+			try {
+				return s.getSpeler() == speler;
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}).collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
 		super.verwijderStamleden(stamleden);
 

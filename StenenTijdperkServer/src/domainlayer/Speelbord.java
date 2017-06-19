@@ -22,7 +22,7 @@ import domainlayer.spoor.Voedselspoor;
 /**
  * Speelbord.java <br>
  * Een klasse waar het speelbord wordt aangemaakt.
- * 
+ *
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */
@@ -33,6 +33,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	private List<ILocatie> locaties;
 	private ISpoor[] sporen;
+	private ILocatie laatstGekozenLcatie;
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
@@ -42,6 +43,14 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		};
 	}
 
+	public void setLaatstGekozenLocatie(ILocatie locatie) {
+		this.laatstGekozenLcatie = locatie;
+	}
+
+	public ILocatie getLaatstGekozenLocatie() {
+		return laatstGekozenLcatie;
+
+	}
 	public Voedselspoor getVoedselspoor() {
 		for (ISpoor spoor : sporen) {
 			if (spoor instanceof Voedselspoor) {

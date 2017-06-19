@@ -11,6 +11,7 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 import domainlayer.spoor.Puntenspoor;
 import domainlayer.spoor.Voedselspoor;
 import java.rmi.RemoteException;
@@ -52,7 +53,14 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 		}
 		// verwijderen stamleden
 		Tableau tableau = speler.getTableau();
-		List<Stamlid> stamleden = super.stamleden.stream().filter(s -> s.getSpeler() == speler).collect(Collectors.toList());
+		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+			try {
+				return s.getSpeler() == speler;
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}).collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
 		super.verwijderStamleden(stamleden);
 

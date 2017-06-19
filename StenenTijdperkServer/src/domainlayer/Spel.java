@@ -45,8 +45,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
 	private SpelStatus status;
-	private int stamledenNietGeplaatst;
-	private int stamleden = 0;
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
 
@@ -175,30 +173,26 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 *fase 3 is het eind view
 	 * */
 
-	//private ISpeler beurtSpeler;
-
-	private int beurt;
+	private ISpeler beurtSpeler;
 
 	public void fases() throws RemoteException {
 
-
-		//eurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
-		beurt = (beurt + 1) % spelers.size();
-
-
-
+		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
 
 		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
 			int stamledenOpTableau = 0;
 			for( int i = 0; i <= spelers.size(); i++) {
 				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
 			}
-			if( stamledenOpTableau != 0) {
-			//	if( speler is aan de beurt) {
-			//			speler beurt is niet waar
-			//			speler next speler aan de beurt is waar
-			//	}
-
+			if( stamledenOpTableau > 0) {
+				//if ( /*als de speler die een actie wil uitvoeren de speler is die aan de beurt is*/ .equals(beurtSpeler)) {
+					if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
+			//			voer plaatsen stamleden uit
+			//		}
+				} else {
+					System.out.println("Niet aan de beurt. Wachten op beurt!");
+				}
+				beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
 
 			} else {
 				status = status.UITVOEREN_ACTIE;
@@ -206,7 +200,18 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		} else if (status.equals(status.UITVOEREN_ACTIE)) {
 			int stamledenOpSpeelbord = 0;
 			for(int j = 0; j <= spelers.size(); j++) {
-				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden();
+				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
+			}
+			if(stamledenOpSpeelbord > 0) {
+//				if(Speler die een actie wil uitvoeren aan de beurt is) {
+					int stamledenOpLocatieSpeler = 0;
+					for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
+						stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
+					}
+					if(stamledenOpLocatieSpeler > 0) {
+						//uitvoeren actie
+					}
+//				}
 			}
 
 		}
