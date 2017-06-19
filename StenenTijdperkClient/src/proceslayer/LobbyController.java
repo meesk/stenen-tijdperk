@@ -48,7 +48,7 @@ public class LobbyController {
 			klikCounter++;
 		} else if(klikCounter == 1) {
 			s.klaarVoorSpeler();
-			view.veranderKnopTextBeginnen();
+			view.veranderKnopTextWachten();
 			view.disableButton();
 			spel.checkSpelers();
 		} else if(view.getNaam() == "" || view.getGeboorteDatum() == null) {

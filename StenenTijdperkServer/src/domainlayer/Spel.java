@@ -115,7 +115,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		synchronized(spelers) {
 			spelers.add(speler);
 		}
-
+		notifyObservers();
 		return speler;
 	}
 
@@ -150,8 +150,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 				this.klaarVoorStart = true;
-				notifyObservers();
 			}
+			notifyObservers();
 		}
 	}
 
