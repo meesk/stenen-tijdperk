@@ -8,7 +8,7 @@ import domainlayer.skeleton.IDobbelsteen;
 
 /**
  * IDobbelsteenPane.java<br>
- * De interface voor de view over losse dobbelstenen.
+ * De interface voor de view van losse dobbelstenen in het pane.
  *
  * @author	Erwin Olie, s1103026
  * @version	1.0
