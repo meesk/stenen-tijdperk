@@ -50,7 +50,6 @@ public class BetaalController {
 
 		// Uitvoeren van de actie voeden stamleden
 		model.voedenStamleden(middelen);
-
 	}
 
 	public void onVerliesPuntenPressed(){

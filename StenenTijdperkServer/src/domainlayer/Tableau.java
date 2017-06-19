@@ -16,7 +16,7 @@ import presentationlayer.TableauView;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
- * Tableau.java
+ * Tableau.java<br>
  * Een klasse waar de tableau's worden aangemaakt.
  *
  * @author Tristan Caspers, s1102755
