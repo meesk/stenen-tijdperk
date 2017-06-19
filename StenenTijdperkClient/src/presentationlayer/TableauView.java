@@ -15,16 +15,7 @@ import presentationlayer.skeleton.ITableauObserver;
  * Een klasse die alle informatie bevat om de tableau view te maken.
  *
  * @author Erwin Olie, s1103026
-<<<<<<< HEAD
  * @version 1.0
-=======
- * @version 0.3
- */
-
-/**
- * @author erwin
- *
->>>>>>> 28af035b47953cfee1593c56a0ebf888476e507c
  */
 public class TableauView extends StackPane implements ITableauObserver {
 
@@ -35,19 +26,6 @@ public class TableauView extends StackPane implements ITableauObserver {
 		this(false, model);
 	}
 
-<<<<<<< HEAD
-	public TableauView(boolean large) {
-
-		Image image = new Image("file:assets/tableau.png");
-		ImageView imageView = new ImageView(image);
-
-		if (large) {
-			imageView.setFitHeight(image.getHeight() * 0.25);
-			imageView.setFitWidth(image.getWidth() * 0.25);
-		} else {
-			imageView.setFitHeight(image.getHeight() * 0.0625);
-			imageView.setFitWidth(image.getWidth() * 0.0625);
-=======
 	public TableauView(boolean large, ITableau model) {
 
 		try {
@@ -68,7 +46,6 @@ public class TableauView extends StackPane implements ITableauObserver {
 			imageView.setFitWidth(image.getWidth() / 4 * scale);
 
 			this.getChildren().add(imageView);
->>>>>>> 28af035b47953cfee1593c56a0ebf888476e507c
 		}
 
 		Pane pane = new Pane();

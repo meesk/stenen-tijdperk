@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 
-import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
