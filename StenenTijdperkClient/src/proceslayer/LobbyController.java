@@ -44,7 +44,7 @@ public class LobbyController {
 
 		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
-			s = spel.maakSpeler(view);
+			s = spel.maakSpeler(view, view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch(), view.getKleur());
 			view.disableSpelerInfo();
 			klikCounter++;
 		} else if(klikCounter == 1) {
