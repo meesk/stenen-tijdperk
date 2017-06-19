@@ -1,9 +1,7 @@
 package proceslayer;
 
 import java.rmi.RemoteException;
-import java.util.regex.Pattern;
 
-import domainlayer.skeleton.ILobbyView;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.Alert;
@@ -12,13 +10,13 @@ import presentationlayer.LobbyView;
 import presentationlayer.SpelView;
 
 /**
- * LobbyController.java
+ * LobbyController.java<br>
  * De controller voor de lobby.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
- * @version 0.3
+ * @version 1.0
  */
 
 public class LobbyController {

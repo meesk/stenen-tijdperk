@@ -1,24 +1,16 @@
 package domainlayer.beschavingskaart;
 
 import java.rmi.RemoteException;
-import domainlayer.Speler;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
-import javafx.scene.image.Image;
 
 /**
-* Dit is een abstracte klasse waar alle beschavingskaarten van overerven.\
+* Beschavingskaart.java
+* Een klasse waarbij de beschavingskaarten algemeen worden aangemaakt.
 *
-*
-*
-*
-*
-* @Author Alex de Bruin, s1103096
-* @Version 0.1
-*
-*
-
+* @author Alex de Bruin, s1103096
+* @version 1.0
 */
 
 

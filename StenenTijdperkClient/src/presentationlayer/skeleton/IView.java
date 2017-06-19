@@ -1,12 +1,15 @@
-package domainlayer.skeleton;
+package presentationlayer.skeleton;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 import domainlayer.Spel;
+import domainlayer.skeleton.ISpel;
 
-public interface ILobbyView extends Remote {
+public interface IView extends Remote {
+	
+	// De eerste 4 hieronder moeten worden gepushed.
 
 	public String getNaam() throws RemoteException;
 
@@ -15,14 +18,6 @@ public interface ILobbyView extends Remote {
 	public boolean getIsSpastisch() throws RemoteException;
 
 	public String getKleur() throws RemoteException;
-
-	public void disableButton() throws RemoteException;
-
-	public void disableSpelerInfo() throws RemoteException;
-
-	public void veranderKnopTextBeginnen() throws RemoteException;
-
-	public void veranderKnopTextWachten() throws RemoteException;
 
 	public void modelChanged(ISpel spel) throws RemoteException;
 }

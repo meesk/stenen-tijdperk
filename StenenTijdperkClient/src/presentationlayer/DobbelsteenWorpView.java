@@ -12,11 +12,11 @@ import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 import proceslayer.DobbelsteenWorpController;
 
 /**
- * DobbelstenWorpPane.java
+ * DobbelstenWorpPane.java<br>
  * De view van alle dobbelstenen en wat omheen staat.
  *
  * @author	Erwin Olie, s1103026
- * @version	0.3
+ * @version	1.0
  */
 public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpObserver {
 

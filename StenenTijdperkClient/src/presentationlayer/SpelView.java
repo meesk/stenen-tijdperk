@@ -13,14 +13,13 @@ import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
 
 /**
- * SpelView.java - Het bestand met alle informatie om het spelbord te tekenen.
+ * SpelView.java<br>
+ * Het bestand met alle informatie om het spelbord te tekenen.
  *
- * @author Erwin Olie s1103026
- * @author Enzo Campfens s1102421
- * @version 0.4
- *
+ * @author Erwin Olie, s1103026
+ * @author Enzo Campfens, s1102421
+ * @version 1.0
  */
-
 public class SpelView extends Stage {
 
 	public SpelView(ISpeelbord speelbord, SpelController spelController, DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp) throws Exception {

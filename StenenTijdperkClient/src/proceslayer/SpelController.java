@@ -7,12 +7,12 @@ import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
 
 /**
- * SpelController.java
+ * SpelController.java<br>
  * Een controller klasse voor het spel.
  *
- * @author Enzo Campfens s1102421,
- * Tristan Caspers s102755
- * @version 0.2
+ * @author Enzo Campfens, s1102421
+ * @author Tristan Caspers, s102755
+ * @version 1.0
  *
  */
 

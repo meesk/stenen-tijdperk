@@ -6,27 +6,27 @@ import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import presentationlayer.DobbelsteenWorpView;
 import presentationlayer.HandleidingView;
 import presentationlayer.LobbyView;
-import presentationlayer.SpeelbordView;
 import presentationlayer.SpelView;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.LobbyController;
 import proceslayer.SpelController;
 
 /**
- * StenenTijdperk.java
+ * StenenTijdperk.java<br>
  * Een simpele Main-klasse waar de client word opgezet.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
+<<<<<<< HEAD
+ * @version	1.0
+=======
  * @version	0.7
+>>>>>>> 28af035b47953cfee1593c56a0ebf888476e507c
  */
 public class StenenTijdperk extends Application {
 
@@ -58,6 +58,7 @@ public class StenenTijdperk extends Application {
 		//   \  \ `_.   \_ __\ /__ _/   .-` /  /
 		//=====`-.____`.___ \_____/___.-`___.-'=====
 		//
+        //			佛祖保佑         永无BUG
 		//
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		//
@@ -84,6 +85,6 @@ public class StenenTijdperk extends Application {
 		//lobbyController.registerSpelView(spelView);
 
 		// Het voorbereiden en tonen van de stage.
-		lobbyView.show();
+		spelView.show();
 	}
 }

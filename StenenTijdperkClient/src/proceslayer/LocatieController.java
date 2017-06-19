@@ -1,5 +1,7 @@
 package proceslayer;
 
+import java.rmi.RemoteException;
+
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 
@@ -23,8 +25,12 @@ public class LocatieController {
 	public void registerView(LocatieView view) {
 		this.view = view;
 	}
-	
+
+	public void onKiesLocatie() throws RemoteException {
+
+	}
+
 	public void gebruikKaart() {
-		
+
 	}
 }
