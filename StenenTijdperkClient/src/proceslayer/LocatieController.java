@@ -2,6 +2,7 @@ package proceslayer;
 
 import java.rmi.RemoteException;
 
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
@@ -29,5 +30,10 @@ public class LocatieController {
 
 	public void onKiesLocatie() {
 		System.out.println("hoi! ik heb op een locatie geklikt =)");
+	}
+
+	public ISpeler wieHeeftErGeklikt() {
+		return StenenTijdperk.getSpeler();
+
 	}
 }

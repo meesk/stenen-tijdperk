@@ -22,6 +22,7 @@ import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.skeleton.ISpelObserver;
 import presentationlayer.skeleton.IView;
+import proceslayer.LocatieController;
 
 /**
  * Spel.java<br>
@@ -192,7 +193,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
 			}
 			if( stamledenOpTableau > 0) {
-/*uitwerken*/				if ( LocatiePressedBy().equals(beurtSpeler)) {
+/*uitwerken*/	if ( LocatieController.wieHeeftErGeklikt().equals(beurtSpeler)) {
 					if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
 			//			voer plaatsen stamleden uit
 				}
@@ -210,7 +211,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
 			}
 			if(stamledenOpSpeelbord > 0) {
-/*uitwerken*/				if(LocatiePressedBy().equals(beurtSpeler)) {
+/*uitwerken*/	if(LocatiePressedBy().equals(beurtSpeler)) {
 					int stamledenOpLocatieSpeler = 0;
 					for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
 						stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
@@ -276,7 +277,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	private ISpeler LocatiePressedBy() {
-
 		return null;
 	}
 
