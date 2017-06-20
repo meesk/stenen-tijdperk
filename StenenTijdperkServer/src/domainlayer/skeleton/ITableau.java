@@ -40,5 +40,7 @@ public interface ITableau extends Remote {
 	public void gebruikStamlid(Stamlid stamlid)  throws RemoteException;
 
 	public ISpeler getSpeler() throws RemoteException;
+
+	public void resetGereedschapStatus() throws RemoteException;
 }
 

@@ -25,7 +25,7 @@ public abstract class Beschavingskaart extends Locatie {
 	protected int kosten;
 
 	public Beschavingskaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
-		super(-1, -1, -1, -1, null);
+		super(-1, 436, 94, 133, null);
 		this.asset = asset;
 		this.achtergrond = achtergrond;
 		this.status = status;

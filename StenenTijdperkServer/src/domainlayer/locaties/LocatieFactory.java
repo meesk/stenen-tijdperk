@@ -69,9 +69,7 @@ public class LocatieFactory {
 		locaties.add(new Gereedschapmaker(418, 280, 125, 98, Arrays.asList(
 			new Point(54, 23)
 		)));
-		//locaties.add(beschavingskaart from array);
-		//max 4, min 4 beschavingskaarten
-		//
+
 	}
 
 	public static LocatieFactory getInstance() {
