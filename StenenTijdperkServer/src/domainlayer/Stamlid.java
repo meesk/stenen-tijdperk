@@ -3,6 +3,7 @@ package domainlayer;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 
 /**
@@ -13,13 +14,13 @@ import domainlayer.skeleton.IStamlid;
  * @version	1.0
  */
 public class Stamlid extends UnicastRemoteObject  implements IStamlid{
-	private Speler speler;
+	private ISpeler speler;
 
-	public Stamlid(Speler speler) throws RemoteException {
+	public Stamlid(ISpeler speler) throws RemoteException {
 		this.speler = speler;
 	}
 
-	public Speler getSpeler() {
+	public ISpeler getSpeler() {
 		return speler;
 	}
 }

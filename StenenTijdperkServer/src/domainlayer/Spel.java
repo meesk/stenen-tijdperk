@@ -21,7 +21,6 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.skeleton.ISpelObserver;
-import presentationlayer.skeleton.IView;
 
 /**
  * Spel.java<br>
@@ -347,10 +346,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 */
 
-
-	public void registerLobbyView(IView observer) throws RemoteException {
-
-	}
 
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);
