@@ -11,15 +11,16 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
+import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import presentationlayer.skeleton.ISpelObserver;
+
 
 /**
  * Spel.java<br>
@@ -34,6 +35,7 @@ import presentationlayer.skeleton.ISpelObserver;
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 
+	private ISpeler beurtSpeler;
 	private Speelbord speelbord;
 	public Speelbord getSpeelbord() {
 		return speelbord;
@@ -67,7 +69,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			bepaalWinnaar();
 
 			int i = 0;
-			if(i > 1) { //TODO : verander deze condition
+			if(i > 1) {
 
 				for(int k = 0; k < spelers.size(); k++) {
 					//spelers.get(i).extraTelling();
@@ -75,8 +77,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 				bepaalWinnaar();
 			}
-			
-			//create eindeView met een map k,v k = speler naam, v = het aantal punten.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -146,12 +146,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 
-				//LocalDate jongsteSpeler = LocalDate.MAX;
-				//for(int i = 0; i <= spelers.size(); i++) {
-				//	if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
-				//		beurtSpeler = spelers.get(i);
-				//	}
-				//}
+			//	LocalDate jongsteSpeler = LocalDate.MAX;
+			//	for(int i = 0; i <= spelers.size(); i++) {
+			//		if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
+			//			beurtSpeler = spelers.get(i);
+			//		}
+			//	}
 				this.klaarVoorStart = true;
 			}
 			notifyObservers();
@@ -174,8 +174,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 *fase 3 is het eind view
 	 * */
 
-	private ISpeler beurtSpeler;
-
 	public void fases() throws RemoteException {
 
 		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
@@ -186,47 +184,58 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
 			}
 			if( stamledenOpTableau > 0) {
-/*uitwerken*/				if ( LocatiePressedBy().equals(beurtSpeler)) {
-					if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
+				if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
 			//			voer plaatsen stamleden uit
-				}
+
 				} else {
-					System.out.println("Niet aan de beurt. Wachten op beurt!");
-				}
+
 				beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+				for(int j = 0; j <= spelers.size(); j++){
+					if(spelers.get(j) != spelers.get(spelers.indexOf(beurtSpeler))) {
+						spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
+					}
+				}
+			}
 
 			} else {
 				status = status.UITVOEREN_ACTIE;
 			}
 		} else if (status.equals(status.UITVOEREN_ACTIE)) {
 			int stamledenOpSpeelbord = 0;
-			for(int j = 0; j <= spelers.size(); j++) {
+			for(int j = 0; j < spelers.size(); j++) {
 				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
 			}
 			if(stamledenOpSpeelbord > 0) {
-/*uitwerken*/				if(LocatiePressedBy().equals(beurtSpeler)) {
-					int stamledenOpLocatieSpeler = 0;
-					for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
-						stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
-					}
-					if(stamledenOpLocatieSpeler > 0) {
-						//uitvoeren actie
+				//checken of de speler die stamleden wil plaatsen aan de beurt is
+				int stamledenOpLocatieSpeler = 0;
+				for(int k = 0; k < speelbord.getLocaties().size(); k++) {
+					stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
+				}
+				if(stamledenOpLocatieSpeler > 0) {
+					//uitvoeren actie
+				}
+			} else {
+				beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler)) + 1 % spelers.size());
+				for(int j = 0; j < spelers.size(); j++){
+					if(spelers.get(j) != spelers.get(spelers.indexOf(beurtSpeler))) {
+						spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
 					}
 				}
 			}
-
 		} else if(status.equals(status.VOEDEN_STAMLEDEN)) {
 			//voedenStamleden
+			for(int i = 0; i< spelers.size(); i++) {
 
-			// resetten gereedschap
-			for(int i = 0; i <= spelers.size(); i++){
-				spelers.get(i).getTableau().resetGereedschapStatus();
 			}
 
+			// resetten gereedschap
+			for(int i = 0; i < spelers.size(); i++){
+				spelers.get(i).getTableau().resetGereedschapStatus();
+			}
 			// ophalen beschavingskaarten en huttegels
 			int aantalKaarten = 0;
 			int aantalHutten = 0;
-			for(int i = 0; i <= speelbord.getLocaties().size(); i++) {
+			for(int i = 0; i < speelbord.getLocaties().size(); i++) {
 				if (speelbord.getLocaties().get(i)  instanceof Beschavingskaart) {
 					aantalKaarten =+ 1;
 				}
@@ -234,11 +243,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					aantalHutten += 1;
 				}
 			}
-
 			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
 			if(aantalKaarten < 4) {
 				aantalKaarten = 0;
-				for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
+				for (int i = 0; 1< speelbord.getLocaties().size(); i++) {
 					if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
 						aantalKaarten += 1;
 					}
@@ -247,7 +255,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					status = status.BEPALEN_WINNAAR;
 				}
 			}
-
 			// als niet alle huttegel plekken vol liggen kijken of spel gestopt moet worden deze ronde of volgende ronde
 			if(aantalHutten < 4 ) {
 				if(laatsteRonde == true){
@@ -259,10 +266,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	private ISpeler LocatiePressedBy() {
-		return null;
-	}
-
 
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);
@@ -270,5 +273,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public void registerSpelView(ISpelObserver observer) throws RemoteException {
 		spelViewObservers.add(observer);
+	}
+
+	@Override
+	public ISpeler getBeurtSpeler() {
+		return beurtSpeler;
 	}
 }

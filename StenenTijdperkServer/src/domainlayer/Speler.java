@@ -13,6 +13,7 @@ import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
+import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.ISpeler;
 import javafx.scene.paint.Color;
 import presentationlayer.LobbyView;
@@ -37,6 +38,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	private boolean isSpastisch;
 	private Tableau tableau;
 	private boolean klaar;
+	private SpelerStatus status;
 
 	public Speler(Spel spel, ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
 		this.naam = naam;
@@ -46,6 +48,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.klaar = false;
 		this.kleur = kleur;
 		tableau = new Tableau(this);
+		this.status = status.GEEN_BEURT;
 	}
 
 	public void ophalenGegevens() throws RemoteException {
@@ -65,7 +68,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		//tableau.getTotaalGereedschap();
 		this.getSpel().getSpeelbord().getVoedselspoor();
 	}
-	
+
 	public String getKleur() throws RemoteException {
 		return kleur;
 	}
@@ -97,6 +100,14 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	@Override
 	public void klaarVoorSpeler() throws RemoteException {
 		this.klaar = true;
+	}
+
+	public void setStatus(SpelerStatus status) {
+		this.status = status;
+	}
+
+	public SpelerStatus getStatus() {
+		return status;
 	}
 
 }

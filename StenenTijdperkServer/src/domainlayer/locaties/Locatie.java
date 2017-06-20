@@ -112,7 +112,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	public void betaalMiddelen() {
 
 	}
-	
+
 	public void plaatsStamlid(ISpeler speler) throws RemoteException {
 		if (stamleden.size() >= cirkels.size()) {
 			return;
@@ -120,7 +120,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		stamleden.add(new Stamlid(speler));
 		notifyObservers();
 	}
-	
+
 	public void registerObserver(ILocatieObserver observer) {
 		observers.add(observer);
 	}

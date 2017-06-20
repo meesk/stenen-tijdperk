@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.ITableau;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
@@ -55,7 +56,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 			this.getChildren().add(imageView);
 		}
-		
+
 		if (model == null) {
 			return;
 		}
@@ -72,7 +73,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			imageView.relocate(70 / 4 * scale, 35 / 4 * scale + (i * 265 / 4 * scale));
 
 			gereedschap[i] = imageView;
-  
+
 			pane.getChildren().add(imageView);
 		}
 
@@ -81,7 +82,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		naam = new Label();
 		naam.setFont(Font.font(72));
 		this.getChildren().add(naam);
-		
+
 		if (model != null) {
 			try {
 				model.registerObserver(this);
@@ -92,14 +93,21 @@ public class TableauView extends StackPane implements ITableauObserver {
 	}
 
 	public void modelChanged(ITableau tableau) throws RemoteException {
-		int[] gereedschap = tableau.getGereedschap();
-		boolean[] gereedschapGebruikt = tableau.getGereedschapGebruikt();
-		for (int i = 0; i < gereedschap.length; i++) {
-			this.gereedschap[i].setImage(new Image("file:assets/gereedschap/" + gereedschap[i] + ".png"));
-			this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
-		}
-		System.out.println(tableau.getSpeler().getKleur());
-		naam.setStyle("-fx-font-color:"+tableau.getSpeler().getKleur()+";");
-		naam.setText(tableau.getSpeler().getNaam());
+		Platform.runLater(() -> {
+			int[] gereedschap;
+			try {
+				gereedschap = tableau.getGereedschap();
+				boolean[] gereedschapGebruikt = tableau.getGereedschapGebruikt();
+				for (int i = 0; i < gereedschap.length; i++) {
+					this.gereedschap[i].setImage(new Image("file:assets/gereedschap/" + gereedschap[i] + ".png"));
+					this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
+				}
+				System.out.println(tableau.getSpeler().getKleur());
+				naam.setStyle("-fx-font-color:" + tableau.getSpeler().getKleur() + ";");
+				naam.setText(tableau.getSpeler().getNaam());
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 }

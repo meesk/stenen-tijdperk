@@ -2,6 +2,8 @@ package proceslayer;
 
 import java.rmi.RemoteException;
 
+import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
@@ -28,10 +30,20 @@ public class LocatieController {
 	}
 
 	public void onKiesLocatie() {
-		System.out.println("hoi! ik heb op een locatie geklikt =)");
+
 		try {
-			model.plaatsStamlid(StenenTijdperk.getSpeler());
+			if (StenenTijdperk.getSpeler().equals(StenenTijdperk.getSpel().getBeurtSpeler())){
+				System.out.println("hoi! ik heb op een locatie geklikt =)");
+				try {
+					model.plaatsStamlid(StenenTijdperk.getSpeler());
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("Je hebt geen beurt. wacht please!!");
+			}
 		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

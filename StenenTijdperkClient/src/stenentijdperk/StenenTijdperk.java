@@ -62,11 +62,12 @@ public class StenenTijdperk extends Application {
 	/** {@inheritDoc} */
 	public void start(Stage primaryStage) throws Exception {
 		// Het definieren van het model
-		spel = (ISpel) Naming.lookup("rmi://145.101.89.143/Spel");
+
+		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
+		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
 		// ...
 		HandleidingView handleidingPane = new HandleidingView();
-
 
 		// Het definieren van de controllers
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(spel.getDobbelsteenWorp());

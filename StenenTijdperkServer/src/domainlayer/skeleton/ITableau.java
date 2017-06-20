@@ -3,6 +3,7 @@ package domainlayer.skeleton;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Map;
 
 import domainlayer.Stamlid;
 import domainlayer.enums.Middel;
@@ -42,5 +43,8 @@ public interface ITableau extends Remote {
 	public ISpeler getSpeler() throws RemoteException;
 
 	public void resetGereedschapStatus() throws RemoteException;
+
+	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException;
+
 }
 
