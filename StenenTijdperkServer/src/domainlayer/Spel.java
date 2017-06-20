@@ -149,6 +149,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 						spelers.get(i).getTableau().krijgStamlid(); // 5 stamleden krijgen
 					}
 				}
+
+				LocalDate jongsteSpeler = LocalDate.MAX;
+				for(int i = 0; i <= spelers.size(); i++) {
+					if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
+						beurtSpeler = spelers.get(i);
+					}
+				}
 				this.klaarVoorStart = true;
 			}
 			notifyObservers();
@@ -237,7 +244,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
 			if(aantalKaarten < 4){
 
-				
+
 
 				aantalKaarten = 0;
 				for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
