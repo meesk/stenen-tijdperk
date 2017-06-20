@@ -80,6 +80,8 @@ public class SpelView extends Stage implements ISpelObserver {
 		Platform.runLater(() -> {
 			try {
 				if (spel.getStart() && !this.isShowing()) {
+					this.setHeight(965);
+					this.setWidth(1000);
 					this.show();
 					grid.add(new TableauView(true, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
 					List<ISpeler> spelers = spel.getSpelerLijst();

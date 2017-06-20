@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.beschavingskaart.Beschavingskaart;
@@ -51,22 +52,29 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.status = status.GEEN_BEURT;
 	}
 
-	public void ophalenGegevens() throws RemoteException {
+	public int ophalenGegevens() throws RemoteException {
+		// Alles wordt opgehaald wat nodig is voor de eerste telling.
+		int stamleden = tableau.getStamleden().size(); // Hier is stamleden ook nodig inverband met de beschavingskaart.
 		
-		
-		//Beschavingskaart + huttegels
 		List<IHuttegel> spelerTegels = tableau.getHuttegels();
 		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
 		Map<Middel, Integer> middelen = tableau.getMiddelen();
-		this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
-
-		//alles optellen en dan een list terug sturen?
+		int puntenspoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
+		
+		int Telling = puntenspoor + 
+				middelen.get(Middel.HOUT) + 
+				middelen.get(Middel.LEEM) +
+				middelen.get(Middel.STEEN) +
+				middelen.get(Middel.GOUD);
+		// nog de huttegels + beschavingskaarten
+		
+		return 0;
 	}
 
-	public void extraTelling() {
-		//tableau.getStamleden(); list met stamleden.
-		//tableau.getTotaalGereedschap();
-		this.getSpel().getSpeelbord().getVoedselspoor();
+	public void extraTelling() throws RemoteException {
+		int stamleden = tableau.getStamleden().size(); // dit is om het aantal stamleden erbij op te tellen.
+		int totaalGereedschap = tableau.getTotaalGereedschap();
+		int granenspoor = this.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(this);
 	}
 
 	public String getKleur() throws RemoteException {

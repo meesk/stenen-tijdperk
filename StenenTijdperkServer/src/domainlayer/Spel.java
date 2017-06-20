@@ -10,7 +10,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
@@ -61,9 +64,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
+		
+		Map<String, Integer> spelerPuntenTotaal = new HashMap(); // hier worden de waardes in opgeslagen.
+		
 		try {
 			for(int i = 0; i < spelers.size(); i++) {
 				//spelers.get(i).ophalenGegevens();
+				spelerPuntenTotaal.put(spelers.get(i).getNaam(), spelers.get(i).ophalenGegevens());
 			}
 
 			bepaalWinnaar();

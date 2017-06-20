@@ -41,7 +41,7 @@ public class LobbyController {
 
 	public void OnButtonClick() throws RemoteException {
 
-		if(view.getNaam() != "" && view.getGeboorteDatum() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
+		if(!view.getNaam().trim().isEmpty() && view.getGeboorteDatum() != null && view.getKleur() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
 			view.veranderKnopTextBeginnen();
 			StenenTijdperk.setSpeler(spel.maakSpeler(view, view.getNaam(), view.getGeboorteDatum(), view.getIsSpastisch(), view.getKleur()));
 			view.disableSpelerInfo();
@@ -51,7 +51,7 @@ public class LobbyController {
 			view.veranderKnopTextWachten();
 			view.disableButton();
 			spel.checkSpelers();
-		} else if(view.getNaam() == "" || view.getGeboorteDatum() == null) {
+		} else if(view.getNaam().trim().isEmpty() || view.getGeboorteDatum() == null || view.getKleur() != null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("invul fout");
             alert.setContentText("Alle gegevens moeten ingevult zijn!");

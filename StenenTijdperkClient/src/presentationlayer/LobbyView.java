@@ -91,25 +91,6 @@ public class LobbyView extends Stage implements ISpelObserver {
 		kiesKleur.setTextFill(Color.WHITE);
 		gridPaneForm.add(kiesKleur, 0, 4);
 
-		// RadioButton radRood = new RadioButton("Rood");
-		// radRood.setTextFill(Color.WHITE);
-		// gridPaneForm.add(radRood, 1, 3);
-		// RadioButton radGroen = new RadioButton("Groen");
-		// radGroen.setTextFill(Color.WHITE);
-		// gridPaneForm.add(radGroen, 1, 4);
-		// RadioButton radBlauw = new RadioButton("Blauw");
-		// radBlauw.setTextFill(Color.WHITE);
-		// gridPaneForm.add(radBlauw, 1, 5);
-		// RadioButton radGeel = new RadioButton("Geel");
-		// radGeel.setTextFill(Color.WHITE);
-		// gridPaneForm.add(radGeel, 1, 6);
-		//
-		// // Toevoegen radio buttons aan groep
-		// radRood.setToggleGroup(group);
-		// radGroen.setToggleGroup(group);
-		// radBlauw.setToggleGroup(group);
-		// radGeel.setToggleGroup(group);
-
 		// Radio buttons kleuren
 		group = new ToggleGroup();
 		int position = 3;
@@ -201,9 +182,11 @@ public class LobbyView extends Stage implements ISpelObserver {
 	}
 
 	public String getKleur() {
-
-		RadioButton selectedRadio = (RadioButton) group.getSelectedToggle();
-		return selectedRadio.getText();
+		if (group.getSelectedToggle() != null) {
+			RadioButton selectedRadio = (RadioButton) group.getSelectedToggle();
+			return selectedRadio.getText();
+		}
+		return "";
 	}
 
 	public void disableButton() {

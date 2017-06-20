@@ -35,7 +35,7 @@ public interface ISpeler extends Remote {
 
 	public void klaarVoorSpeler() throws RemoteException;
 
-	public void ophalenGegevens() throws RemoteException;
+	public int ophalenGegevens() throws RemoteException;
 
 	public void extraTelling() throws RemoteException;
 
