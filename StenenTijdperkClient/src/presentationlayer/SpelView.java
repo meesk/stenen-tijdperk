@@ -105,6 +105,7 @@ public class SpelView extends Stage implements ISpelObserver {
 				if (spel.getVoeden()) {
 					BetaalView bv = new BetaalView(true, false, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
 					bv.show();
+					StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
 				}
 			} catch (RemoteException e) {
 				e.printStackTrace();

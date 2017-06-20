@@ -50,6 +50,8 @@ public interface ITableau extends Remote {
 	public List<IHuttegel> getHuttegels() throws RemoteException;
 
 	public void verliesPunten() throws RemoteException;
+	
+	public Map<Middel, Integer> getMiddelen() throws RemoteException;
 
 	public IStamlid popStamlid() throws RemoteException;
 

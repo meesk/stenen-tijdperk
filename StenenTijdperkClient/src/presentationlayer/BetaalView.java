@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.ITableau;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * BetaalView.java<br>
@@ -27,12 +29,13 @@ import proceslayer.BetaalController;
 
 public class BetaalView extends Stage implements ITableauObserver {
 
-	Spinner<Integer> inputVoedsel = new Spinner<Integer>();
-	Spinner<Integer> inputHout = new Spinner<Integer>();
-	Spinner<Integer> inputLeem = new Spinner<Integer>();
-	Spinner<Integer> inputSteen = new Spinner<Integer>();
-	Spinner<Integer> inputGoud = new Spinner<Integer>();
-	Spinner<Integer> inputStamleden = new Spinner<Integer>();
+	private Spinner<Integer> inputVoedsel = new Spinner<Integer>();
+	private Spinner<Integer> inputHout = new Spinner<Integer>();
+	private Spinner<Integer> inputLeem = new Spinner<Integer>();
+	private Spinner<Integer> inputSteen = new Spinner<Integer>();
+	private Spinner<Integer> inputGoud = new Spinner<Integer>();
+	private Spinner<Integer> inputStamleden = new Spinner<Integer>();
+	private Label aantalBetalen;
 
 	public BetaalView(boolean voeden, boolean toonStamleden, BetaalController controller) throws RemoteException {
 
@@ -74,8 +77,10 @@ public class BetaalView extends Stage implements ITableauObserver {
 		betalenButton.setOnAction(e -> this.close());
 
 		if (voeden) {
-			gridPane.add(voedsel, 1, 1);
-			gridPane.add(inputVoedsel, 1, 2);
+			gridPane.add(voedsel, 0, 1);
+			gridPane.add(inputVoedsel, 0, 2);
+			aantalBetalen = new Label("moetietsstaandenkik");
+			borderPane.setTop(aantalBetalen);
 			Button verliesPuntenButton = new Button("Verlies 10 punten");
 			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
 			hbox.getChildren().add(verliesPuntenButton);
@@ -144,7 +149,16 @@ public class BetaalView extends Stage implements ITableauObserver {
 
 	@Override
 	public void modelChanged(ITableau model) throws RemoteException {
-
+		Platform.runLater(() -> {
+			try{
+				int stamleden = model.getStamleden().size();
+//				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getProductie(StenenTijdperk.getSpeler());
+				aantalBetalen.setText("Aantal te betalen middelen :" + (stamleden));
+			}catch(RemoteException ex){
+				
+			}
+		});
+		
 	}
 
 	public int getStamleden() {
