@@ -79,7 +79,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 				bepaalWinnaar();
 			}
-
+			
+			//create eindeView met een map k,v k = speler naam, v = het aantal punten.
 
 		} catch (Exception e) {
 			e.printStackTrace();

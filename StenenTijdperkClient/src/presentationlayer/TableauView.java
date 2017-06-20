@@ -5,10 +5,12 @@ import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.ITableau;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import presentationlayer.skeleton.ITableauObserver;
 
@@ -96,6 +98,8 @@ public class TableauView extends StackPane implements ITableauObserver {
 			this.gereedschap[i].setImage(new Image("file:assets/gereedschap/" + gereedschap[i] + ".png"));
 			this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
 		}
+		System.out.println(tableau.getSpeler().getKleur());
+		naam.setStyle("-fx-font-color:"+tableau.getSpeler().getKleur()+";");
 		naam.setText(tableau.getSpeler().getNaam());
 	}
 }
