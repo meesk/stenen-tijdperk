@@ -6,6 +6,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
+import presentationlayer.BetaalView;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
 
@@ -35,12 +36,26 @@ public class LocatieController {
 			ISpel spel = StenenTijdperk.getSpel();
 			ISpeler speler = StenenTijdperk.getSpeler();
 			if (!speler.equals(spel.getBeurtSpeler())) {
-				return;
+				return; // deze speler heeft geen beurt
 			}
 
 			switch (spel.getStatus()) {
 			case PLAATSEN_STAMLEDEN:
-				model.plaatsStamlid(speler);
+				int plaats = model.getCirkels().size() - model.getStamleden().size();
+				if (plaats == 0) {
+					return; // deze plek is vol
+				}
+				int aantal = -1;
+				while (aantal == -1 || aantal > plaats) {
+					BetaalView betaalView = new BetaalView(false, true, new BetaalController(speler.getTableau()));
+					betaalView.showAndWait();
+					aantal = betaalView.getStamleden();
+				}
+				if (aantal <= 0) {
+					return; // stamleden plaatsen geannuleerd
+				}
+				model.plaatsStamleden(speler, aantal);
+					
 				break;
 			case UITVOEREN_ACTIE:
 				model.uitvoerenActie(speler);

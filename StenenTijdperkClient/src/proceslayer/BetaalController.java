@@ -5,6 +5,7 @@ import java.util.Map;
 
 import domainlayer.Tableau;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.ITableau;
 import presentationlayer.BetaalView;
 
 /**
@@ -18,7 +19,7 @@ import presentationlayer.BetaalView;
 public class BetaalController {
 
 	private BetaalView view;
-	private Tableau model;
+	private ITableau model;
 	private Map<Middel, Integer> middelen;
 
 	private Middel voedsel = Middel.VOEDSEL;
@@ -27,7 +28,7 @@ public class BetaalController {
 	private Middel steen = Middel.STEEN;
 	private Middel goud = Middel.GOUD;
 
-	public BetaalController(Tableau model){
+	public BetaalController(ITableau model){
 		this.model = model;
 	}
 
@@ -36,7 +37,7 @@ public class BetaalController {
 	}
 
 	public void onButtonPressed() throws RemoteException{
-		int aantalVoedsel = view.getVoedsel();
+		/*int aantalVoedsel = view.getVoedsel();
 		int aantalHout = view.getHout();
 		int aantalLeem = view.getLeem();
 		int aantalSteen = view.getSteen();
@@ -49,11 +50,16 @@ public class BetaalController {
 		middelen.put(goud, aantalGoud);
 
 		// Uitvoeren van de actie voeden stamleden
-		model.voedenStamleden(middelen);
+		model.voedenStamleden(middelen);*/
 	}
 
 	public void onVerliesPuntenPressed(){
-		model.verliesPunten();
+		try {
+			model.verliesPunten();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void onBetaalAction() {

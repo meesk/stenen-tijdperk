@@ -49,5 +49,7 @@ public interface ITableau extends Remote {
 
 	public List<IHuttegel> getHuttegels() throws RemoteException;
 
+	public void verliesPunten() throws RemoteException;
+
 }
 
