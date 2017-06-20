@@ -37,7 +37,7 @@ public interface ISpeler extends Remote {
 
 	public int ophalenGegevens() throws RemoteException;
 
-	public void extraTelling() throws RemoteException;
+	public int extraGegevens() throws RemoteException;
 
 	public String getKleur() throws RemoteException;
 

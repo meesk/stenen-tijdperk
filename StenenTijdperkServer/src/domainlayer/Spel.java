@@ -64,33 +64,48 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
-		
+
 		Map<String, Integer> spelerPuntenTotaal = new HashMap(); // hier worden de waardes in opgeslagen.
-		
+
 		try {
 			for(int i = 0; i < spelers.size(); i++) {
-				//spelers.get(i).ophalenGegevens();
+				// per speler het totaal aantal punten eerste telling, weg gestopt onder naam.
 				spelerPuntenTotaal.put(spelers.get(i).getNaam(), spelers.get(i).ophalenGegevens());
 			}
 
-			bepaalWinnaar();
-
-			int i = 0;
-			if(i > 1) {
-
+			// Als bepaalWinnaar false is dan wordt hieronder de 2de telling gedaan.
+			if(!bepaalWinnaar(spelerPuntenTotaal)) {
 				for(int k = 0; k < spelers.size(); k++) {
-					//spelers.get(i).extraTelling();
+					spelerPuntenTotaal.put(spelers.get(k).getNaam(), spelerPuntenTotaal.get(spelers.get(k).getNaam() + spelers.get(k).extraGegevens()));
 				}
-
-				bepaalWinnaar();
 			}
+
+			//open eindview met spelerPuntenTotaal.
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void bepaalWinnaar() {
-		// vergelijk telling, en pak het hoogste cijfer
+	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
+
+		boolean winnaarBepaald = false;
+
+		int highest = -9999; // int mag geen null zijn en aangezien je min kan hebben in het spel, vandaar.
+		int secondHighest = -9999;
+
+		for(int i = 0; i < spelers.size(); i++) {
+			if(spelerPuntenTotaal.get(spelers.get(i).getNaam()) > highest || highest == -9999) {
+				secondHighest = highest;
+				highest = spelerPuntenTotaal.get(spelers.get(i).getNaam());
+			}
+		}
+
+		if(highest > secondHighest) {
+			winnaarBepaald = true;
+		}
+
+		return winnaarBepaald;
 	}
 
 	public DobbelsteenWorp getDobbelsteenWorp() {
@@ -187,11 +202,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	public void fases() throws RemoteException {
 
 		System.out.println("fases()");
-		
+
 		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
 
 		System.out.println("beurtSpeler = " + beurtSpeler.getNaam());
-		
+
 		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
 			int stamledenOpTableau = 0;
 			for( int i = 0; i <= spelers.size(); i++) {
