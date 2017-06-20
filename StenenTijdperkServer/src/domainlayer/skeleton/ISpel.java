@@ -44,5 +44,5 @@ public interface ISpel extends Remote {
 
 	public IDobbelsteenWorp getDobbelsteenWorp() throws RemoteException;
 
-	public ISpeler getBeurtSpeler();
+	public ISpeler getBeurtSpeler() throws RemoteException;
 }
