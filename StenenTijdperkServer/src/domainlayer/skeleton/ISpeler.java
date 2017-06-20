@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import domainlayer.Spel;
 import domainlayer.Tableau;
+import domainlayer.enums.SpelerStatus;
 import javafx.scene.paint.Color;
 
 /**
@@ -39,5 +40,10 @@ public interface ISpeler extends Remote {
 	public void extraTelling() throws RemoteException;
 
 	public String getKleur() throws RemoteException;
+
+	public void setStatus(SpelerStatus status);
+
+	public SpelerStatus getStatus();
+
 
 }
