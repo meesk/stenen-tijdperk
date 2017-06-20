@@ -20,10 +20,8 @@ import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
-import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.skeleton.ISpelObserver;
-import presentationlayer.skeleton.IView;
-import proceslayer.LocatieController;
+
 
 /**
  * Spel.java<br>
@@ -63,9 +61,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
-
 		try {
-
 			for(int i = 0; i < spelers.size(); i++) {
 				//spelers.get(i).ophalenGegevens();
 			}
@@ -81,8 +77,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 				bepaalWinnaar();
 			}
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -152,19 +146,17 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 
-				LocalDate jongsteSpeler = LocalDate.MAX;
-				for(int i = 0; i <= spelers.size(); i++) {
-					if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
-						beurtSpeler = spelers.get(i);
-					}
-				}
+				//LocalDate jongsteSpeler = LocalDate.MAX;
+				//for(int i = 0; i <= spelers.size(); i++) {
+				//	if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
+				//		beurtSpeler = spelers.get(i);
+				//	}
+				//}
 				this.klaarVoorStart = true;
 			}
 			notifyObservers();
 		}
 	}
-
-
 
 	private void notifyObservers() throws RemoteException {
 		for(ISpelObserver observer : lobbyObservers) {
@@ -243,10 +235,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				}
 			}
 			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
-			if(aantalKaarten < 4){
-
-
-
+			if(aantalKaarten < 4) {
 				aantalKaarten = 0;
 				for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
 					if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
@@ -266,17 +255,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				}
 			}
 		}
-
 	}
 
 	private ISpeler LocatiePressedBy() {
 		return null;
 	}
 
-
-	public void registerLobbyView(IView observer) throws RemoteException {
-
-	}
 
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);

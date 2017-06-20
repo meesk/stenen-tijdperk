@@ -30,6 +30,11 @@ public class LocatieController {
 
 	public void onKiesLocatie() {
 		System.out.println("hoi! ik heb op een locatie geklikt =)");
+		try {
+			model.plaatsStamlid(StenenTijdperk.getSpeler());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ISpeler wieHeeftErGeklikt() {

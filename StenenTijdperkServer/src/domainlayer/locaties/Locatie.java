@@ -12,6 +12,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
+import presentationlayer.skeleton.ILocatieObserver;
 
 /**
  * @author Erwin Olie, s1103026
@@ -24,7 +25,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	private int width, height;
 	private List<Point> cirkels;
 	protected List<IStamlid> stamleden;
-	private List<LocatieView> observers;
+	private List<ILocatieObserver> observers;
 	protected Speelbord speelbord;
 
 	public Locatie(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
@@ -51,14 +52,18 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
-	
+
 	public void addObserver(LocatieView observer) {
 		observers.add(observer);
 	}
 
 	public void notifyObservers() {
-		for (LocatieView observer : observers) {
-			observer.modelChanged(this);
+		for (ILocatieObserver observer : observers) {
+			try {
+				observer.modelChanged(this);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -106,5 +111,17 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
 	public void betaalMiddelen() {
 
+	}
+
+	public void plaatsStamlid(ISpeler speler) throws RemoteException {
+		if (stamleden.size() >= cirkels.size()) {
+			return;
+		}
+		stamleden.add(new Stamlid(speler));
+		notifyObservers();
+	}
+
+	public void registerObserver(ILocatieObserver observer) {
+		observers.add(observer);
 	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import presentationlayer.skeleton.ILocatieObserver;
 
 /**
  * @author	Erwin Olie, s1103026
@@ -20,4 +21,6 @@ public interface ILocatie extends Remote {
 	public List<Point> getCirkels() throws RemoteException;
 	public List<IStamlid> getStamleden() throws RemoteException;
 	public List<IStamlid> getStamleden(ISpeler beurtSpeler) throws RemoteException;
+	public void plaatsStamlid(ISpeler speler) throws RemoteException;
+	public void registerObserver(ILocatieObserver locatieView) throws RemoteException;
 }
