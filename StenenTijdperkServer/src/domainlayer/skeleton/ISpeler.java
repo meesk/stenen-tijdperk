@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import domainlayer.Spel;
 import domainlayer.Tableau;
 import domainlayer.enums.SpelerStatus;
+import domainlayer.skeleton.locaties.ILocatie;
 import javafx.scene.paint.Color;
 
 /**
@@ -44,5 +45,9 @@ public interface ISpeler extends Remote {
 	public void setStatus(SpelerStatus status) throws RemoteException;
 
 	public SpelerStatus getStatus() throws RemoteException;
+
+	public ILocatie getLaatsteLocatie() throws RemoteException;
+
+	public void setLaatsteLocatie(ILocatie model) throws RemoteException;
 
 }

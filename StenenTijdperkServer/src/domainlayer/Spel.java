@@ -211,8 +211,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
 			int stamledenOpTableau = 0;
-			for( int i = 0; i <= spelers.size(); i++) {
-				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
+			for(ISpeler speler : spelers) {
+				stamledenOpTableau += speler.getTableau().getStamleden().size();
 			}
 			if( stamledenOpTableau > 0) {
 				if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {

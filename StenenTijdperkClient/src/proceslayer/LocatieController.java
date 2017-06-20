@@ -41,6 +41,9 @@ public class LocatieController {
 
 			switch (spel.getStatus()) {
 			case PLAATSEN_STAMLEDEN:
+				if (speler.getLaatsteLocatie() != null && speler.getLaatsteLocatie().equals(model)) {
+					return; // deze locatie is vorige ronde gekozen
+				}
 				int plaats = model.getCirkels().size() - model.getStamleden().size();
 				if (plaats == 0) {
 					return; // deze plek is vol
@@ -55,7 +58,8 @@ public class LocatieController {
 					return; // stamleden plaatsen geannuleerd
 				}
 				model.plaatsStamleden(speler, aantal);
-					
+				speler.setLaatsteLocatie(model);
+				spel.fases();
 				break;
 			case UITVOEREN_ACTIE:
 				model.uitvoerenActie(speler);

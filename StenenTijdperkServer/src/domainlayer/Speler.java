@@ -11,6 +11,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
+import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
@@ -41,6 +42,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	private boolean klaar;
 	private SpelerStatus status;
 	private boolean voeden;
+	private ILocatie laatsteLocatie;
 
 	public Speler(Spel spel, ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
 		this.naam = naam;
@@ -52,6 +54,14 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		tableau = new Tableau(this);
 		this.status = status.GEEN_BEURT;
 		this.voeden = false;
+	}
+	
+	public ILocatie getLaatsteLocatie() {
+		return laatsteLocatie;
+	}
+	
+	public void setLaatsteLocatie(ILocatie laatsteLocatie) {
+		this.laatsteLocatie = laatsteLocatie;
 	}
 
 	public int ophalenGegevens() throws RemoteException {
