@@ -266,9 +266,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);
+		notifyObservers();
 	}
 
 	public void registerSpelView(ISpelObserver observer) throws RemoteException {
 		spelViewObservers.add(observer);
+		notifyObservers();
 	}
 }
