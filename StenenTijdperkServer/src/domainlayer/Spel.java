@@ -184,19 +184,18 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
 			}
 			if( stamledenOpTableau > 0) {
-				//checken of de speler die stamleden wil plaatsen aan de beurt is gebeurt nu in locatie controller
 				if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
 			//			voer plaatsen stamleden uit
 
 				} else {
-					System.out.println("Niet aan de beurt. Wachten op beurt!");
-				}
+
 				beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
 				for(int j = 0; j <= spelers.size(); j++){
 					if(spelers.get(j) != spelers.get(spelers.indexOf(beurtSpeler))) {
 						spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
 					}
 				}
+			}
 
 			} else {
 				status = status.UITVOEREN_ACTIE;

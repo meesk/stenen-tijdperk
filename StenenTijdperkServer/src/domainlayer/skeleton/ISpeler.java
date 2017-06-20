@@ -41,9 +41,9 @@ public interface ISpeler extends Remote {
 
 	public String getKleur() throws RemoteException;
 
-	public void setStatus(SpelerStatus status);
+	public void setStatus(SpelerStatus status) throws RemoteException;
 
-	public SpelerStatus getStatus();
+	public SpelerStatus getStatus() throws RemoteException;
 
 
 }
