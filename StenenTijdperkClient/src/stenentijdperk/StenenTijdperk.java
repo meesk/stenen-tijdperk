@@ -52,7 +52,7 @@ public class StenenTijdperk extends Application {
 
 	private static ISpel spel;
 	private static ISpeler speler;
-	
+
 	/** De main method die de JavaFX applicatie opstart. */
 	public static void main(String[] args) {
 		launch(args);
@@ -63,7 +63,7 @@ public class StenenTijdperk extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Het definieren van het model
 		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
-		
+
 		// ...
 		HandleidingView handleidingPane = new HandleidingView();
 
@@ -83,15 +83,15 @@ public class StenenTijdperk extends Application {
 		// Het voorbereiden en tonen van de stage.
 		lobbyView.show();
 	}
-	
+
 	public static ISpel getSpel() {
 		return spel;
 	}
-	
+
 	public static ISpeler getSpeler() {
 		return speler;
 	}
-	
+
 	public static void setSpeler(ISpeler s) {
 		speler = s;
 	}

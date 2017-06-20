@@ -7,14 +7,15 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 
 /**
- * Stamlid.java<br>
+ * Stamlid.java
  * Een klasse waar de stamleden worden aangemaakt.
  *
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */
-public class Stamlid extends UnicastRemoteObject  implements IStamlid{
+public class Stamlid extends UnicastRemoteObject implements IStamlid {
 	private ISpeler speler;
+
 
 	public Stamlid(ISpeler speler) throws RemoteException {
 		this.speler = speler;
