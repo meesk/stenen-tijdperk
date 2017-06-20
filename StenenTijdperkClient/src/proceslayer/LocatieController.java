@@ -3,14 +3,15 @@ package proceslayer;
 import java.rmi.RemoteException;
 
 import domainlayer.skeleton.ISpeler;
+import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
+import presentationlayer.BetaalView;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
 
 /**
- * LocatieController.java
- * De controller voor de locatie.
+ * LocatieController.java De controller voor de locatie.
  *
  * @author Tristan Caspers, s1102755
  * @version 0.1
@@ -32,18 +33,35 @@ public class LocatieController {
 	public void onKiesLocatie() {
 
 		try {
-			if (StenenTijdperk.getSpeler().equals(StenenTijdperk.getSpel().getBeurtSpeler())){
-				System.out.println("hoi! ik heb op een locatie geklikt =)");
-				try {
-					model.plaatsStamlid(StenenTijdperk.getSpeler());
-				} catch (RemoteException e) {
-					e.printStackTrace();
+			ISpel spel = StenenTijdperk.getSpel();
+			ISpeler speler = StenenTijdperk.getSpeler();
+			if (!speler.equals(spel.getBeurtSpeler())) {
+				return; // deze speler heeft geen beurt
+			}
+
+			switch (spel.getStatus()) {
+			case PLAATSEN_STAMLEDEN:
+				int plaats = model.getCirkels().size() - model.getStamleden().size();
+				if (plaats == 0) {
+					return; // deze plek is vol
 				}
-			} else {
-				System.out.println("Je hebt geen beurt. wacht please!!");
+				int aantal = -1;
+				while (aantal == -1 || aantal > plaats) {
+					BetaalView betaalView = new BetaalView(false, true, new BetaalController(speler.getTableau()));
+					betaalView.showAndWait();
+					aantal = betaalView.getStamleden();
+				}
+				if (aantal <= 0) {
+					return; // stamleden plaatsen geannuleerd
+				}
+				model.plaatsStamleden(speler, aantal);
+					
+				break;
+			case UITVOEREN_ACTIE:
+				model.uitvoerenActie(speler);
+				break;
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

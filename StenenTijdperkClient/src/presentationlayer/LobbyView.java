@@ -31,6 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ISpelObserver;
+import proceslayer.BetaalController;
 import proceslayer.LobbyController;
 
 /**
@@ -58,7 +59,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	private RadioButton[] kleurButtons;
 
 	public LobbyView(LobbyController controller, ISpel model) throws RemoteException {
-
+		
 		UnicastRemoteObject.exportObject(this, 0);
 
 		model.registerLobbyView(this);

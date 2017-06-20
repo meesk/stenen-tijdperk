@@ -8,6 +8,7 @@ import java.util.List;
 
 import domainlayer.Tableau;
 import domainlayer.enums.Kleur;
+import domainlayer.enums.SpelStatus;
 import presentationlayer.LobbyView;
 import presentationlayer.SpelView;
 import presentationlayer.skeleton.ISpelObserver;
@@ -49,4 +50,6 @@ public interface ISpel extends Remote {
 	public void fases() throws RemoteException;
 	
 	public boolean getVoeden() throws RemoteException;
+
+	public SpelStatus getStatus() throws RemoteException;
 }

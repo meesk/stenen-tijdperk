@@ -57,26 +57,32 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	public int ophalenGegevens() throws RemoteException {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.
 		int stamleden = tableau.getStamleden().size(); // Hier is stamleden ook nodig inverband met de beschavingskaart.
-		
-		List<IHuttegel> spelerTegels = tableau.getHuttegels();
+
 		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
 		Map<Middel, Integer> middelen = tableau.getMiddelen();
 		int puntenspoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
-		
-		int Telling = puntenspoor + 
-				middelen.get(Middel.HOUT) + 
+
+		int telling = puntenspoor +
+				middelen.get(Middel.HOUT) +
 				middelen.get(Middel.LEEM) +
 				middelen.get(Middel.STEEN) +
 				middelen.get(Middel.GOUD);
 		// nog de huttegels + beschavingskaarten
-		
-		return 0;
+
+		return telling;
 	}
 
-	public void extraTelling() throws RemoteException {
+	public int extraGegevens() throws RemoteException {
 		int stamleden = tableau.getStamleden().size(); // dit is om het aantal stamleden erbij op te tellen.
 		int totaalGereedschap = tableau.getTotaalGereedschap();
 		int granenspoor = this.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(this);
+
+		int telling =
+				stamleden +
+				totaalGereedschap +
+				granenspoor;
+
+		return telling;
 	}
 
 	public String getKleur() throws RemoteException {

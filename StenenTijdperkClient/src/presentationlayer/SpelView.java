@@ -102,7 +102,7 @@ public class SpelView extends Stage implements ISpelObserver {
 		Platform.runLater(() -> {
 			try {
 				if (spel.getVoeden()) {
-					BetaalView bv = new BetaalView(true, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
+					BetaalView bv = new BetaalView(true, false, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
 					bv.show();
 				}
 			} catch (RemoteException e) {

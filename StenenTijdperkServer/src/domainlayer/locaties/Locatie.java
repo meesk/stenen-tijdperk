@@ -113,11 +113,14 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
 	}
 
-	public void plaatsStamlid(ISpeler speler) throws RemoteException {
-		if (stamleden.size() >= cirkels.size()) {
-			return;
-		}
+	private void plaatsStamlid(ISpeler speler) throws RemoteException {
 		stamleden.add(new Stamlid(speler));
+	}
+
+	public void plaatsStamleden(ISpeler speler, int aantal) throws RemoteException {
+		for (int i = 0; i < aantal; i++) {
+			plaatsStamlid(speler);
+		}
 		notifyObservers();
 	}
 

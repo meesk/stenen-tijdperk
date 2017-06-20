@@ -33,6 +33,7 @@ public class BetaalController {
 		this.model = tableau;
 	}
 
+
 	public void registerView(BetaalView view){
 		this.view = view;
 	}
@@ -41,7 +42,9 @@ public class BetaalController {
 		view.show();
 	}
 
-	public void onButtonPressed(){
+
+	public void onButtonPressed() {
+		
 		int aantalVoedsel = view.getVoedsel();
 		int aantalHout = view.getHout();
 		int aantalLeem = view.getLeem();
@@ -54,8 +57,6 @@ public class BetaalController {
 		middelen.put(leem, aantalLeem);
 		middelen.put(steen, aantalSteen);
 		middelen.put(goud, aantalGoud);
-		
-		System.out.println("Ja het werkt.. hoop ik");
 
 		// Uitvoeren van de actie voeden stamleden
 		try {
