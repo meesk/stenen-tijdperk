@@ -153,12 +153,14 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 
-			//	LocalDate jongsteSpeler = LocalDate.MAX;
-			//	for(int i = 0; i <= spelers.size(); i++) {
-			//		if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
-			//			beurtSpeler = spelers.get(i);
-			//		}
-			//	}
+				LocalDate jongsteSpeler = LocalDate.MAX;
+				for(int i = 0; i < spelers.size(); i++) {
+					if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
+						jongsteSpeler = spelers.get(i).getGeboorteDatum();
+						beurtSpeler = spelers.get(i);
+						System.out.println("beurtspeler = " + beurtSpeler.getNaam());
+					}
+				}
 				this.klaarVoorStart = true;
 			}
 			notifyObservers();
@@ -183,8 +185,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public void fases() throws RemoteException {
 
+		System.out.println("fases()");
+		
 		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
 
+		System.out.println("beurtSpeler = " + beurtSpeler.getNaam());
+		
 		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
 			int stamledenOpTableau = 0;
 			for( int i = 0; i <= spelers.size(); i++) {

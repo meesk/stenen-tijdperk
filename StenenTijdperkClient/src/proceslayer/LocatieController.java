@@ -32,7 +32,7 @@ public class LocatieController {
 	public void onKiesLocatie() {
 
 		try {
-			if (StenenTijdperk.getSpeler().equals(StenenTijdperk.getSpel().getBeurtSpeler())){
+			if (StenenTijdperk.getSpeler().equals(StenenTijdperk.getSpel().getBeurtSpeler())) {
 				System.out.println("hoi! ik heb op een locatie geklikt =)");
 				try {
 					model.plaatsStamlid(StenenTijdperk.getSpeler());
@@ -43,7 +43,6 @@ public class LocatieController {
 				System.out.println("Je hebt geen beurt. wacht please!!");
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
