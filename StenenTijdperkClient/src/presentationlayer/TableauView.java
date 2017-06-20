@@ -26,6 +26,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	private double scale = 1.00;
 	private ImageView[] gereedschap;
+	private ImageView[] huttegels;
 	private Label naam;
 
 	public TableauView(ITableau model) {
@@ -41,7 +42,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		}
 
 		if (!large) {
-			scale = 0.4;
+			scale = 0.3;
 		}
 
 		if (true) {
@@ -61,26 +62,48 @@ public class TableauView extends StackPane implements ITableauObserver {
 			return;
 		}
 
-		Pane pane = new Pane();
+		{
+			Pane pane = new Pane();
 
-		gereedschap = new ImageView[3];
-		for (int i = 0; i < 3; i++) {
-			Image image = new Image("file:assets/gereedschap/0.png");
-			ImageView imageView = new ImageView();
+			gereedschap = new ImageView[3];
+			for (int i = 0; i < 3; i++) {
+				Image image = new Image("file:assets/gereedschap/0.png");
+				ImageView imageView = new ImageView(image);
 
-			imageView.setFitHeight(image.getHeight() * 2 / 4 * scale);
-			imageView.setFitWidth(image.getWidth() * 2 / 4 * scale);
-			imageView.relocate(70 / 4 * scale, 35 / 4 * scale + (i * 265 / 4 * scale));
+				imageView.setFitHeight(image.getHeight() * 2 / 4 * scale);
+				imageView.setFitWidth(image.getWidth() * 2 / 4 * scale);
+				imageView.relocate(70 / 4 * scale, 35 / 4 * scale + (i * 265 / 4 * scale));
 
-			gereedschap[i] = imageView;
+				gereedschap[i] = imageView;
 
-			pane.getChildren().add(imageView);
+				pane.getChildren().add(imageView);
+			}
+
+			this.getChildren().add(pane);
 		}
 
-		this.getChildren().add(pane);
+		{
+			Pane pane = new Pane();
+
+			huttegels = new ImageView[5];
+			for (int i = 0; i < 5; i++) {
+				Image image = new Image("file:assets/huttegels/standaard/04.png");
+				ImageView imageView = new ImageView(image);
+
+				imageView.setFitHeight(image.getHeight() / 6 / 100 * 102 * scale);
+				imageView.setFitWidth(image.getWidth() / 6 / 100 * 102 * scale);
+				imageView.relocate(8 * scale + (i * 95 * scale), 205 * scale);
+
+				huttegels[i] = imageView;
+
+				pane.getChildren().add(imageView);
+			}
+
+			this.getChildren().add(pane);
+		}
 
 		naam = new Label();
-		naam.setFont(Font.font(72));
+		naam.setFont(Font.font(18));
 		this.getChildren().add(naam);
 
 		if (model != null) {
