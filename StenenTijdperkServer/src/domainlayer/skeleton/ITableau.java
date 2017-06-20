@@ -7,6 +7,7 @@ import java.util.Map;
 
 import domainlayer.Stamlid;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.huttegels.IHuttegel;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
@@ -45,6 +46,8 @@ public interface ITableau extends Remote {
 	public void resetGereedschapStatus() throws RemoteException;
 
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException;
+
+	public List<IHuttegel> getHuttegels() throws RemoteException;
 
 }
 

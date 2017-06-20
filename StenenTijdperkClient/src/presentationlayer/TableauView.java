@@ -2,8 +2,16 @@ package presentationlayer;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import domainlayer.enums.Middel;
+import domainlayer.huttegels.HuttegelKiezen;
+import domainlayer.huttegels.HuttegelStandaard;
+import domainlayer.huttegels.HuttegelVrij;
 import domainlayer.skeleton.ITableau;
+import domainlayer.skeleton.huttegels.IHuttegel;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
@@ -87,12 +95,12 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 			huttegels = new ImageView[5];
 			for (int i = 0; i < 5; i++) {
-				Image image = new Image("file:assets/huttegels/standaard/04.png");
+				Image image = new Image("file:assets/huttegels/null.png");
 				ImageView imageView = new ImageView(image);
 
 				imageView.setFitHeight(image.getHeight() / 6 / 100 * 102 * scale);
 				imageView.setFitWidth(image.getWidth() / 6 / 100 * 102 * scale);
-				imageView.relocate(8 * scale + (i * 95 * scale), 205 * scale);
+				imageView.relocate(8 * scale + (i * 95 * scale), 200 * scale);
 
 				huttegels[i] = imageView;
 
@@ -117,14 +125,29 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	public void modelChanged(ITableau tableau) throws RemoteException {
 		Platform.runLater(() -> {
-			int[] gereedschap;
 			try {
-				gereedschap = tableau.getGereedschap();
+				
+				int[] gereedschap = tableau.getGereedschap();
 				boolean[] gereedschapGebruikt = tableau.getGereedschapGebruikt();
 				for (int i = 0; i < gereedschap.length; i++) {
 					this.gereedschap[i].setImage(new Image("file:assets/gereedschap/" + gereedschap[i] + ".png"));
 					this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
 				}
+				
+				
+
+				List<IHuttegel> huttegels = tableau.getHuttegels();
+				for (int i = 0; i < huttegels.size(); i++) {
+					try {
+						this.huttegels[i % 5].setImage(new Image("file:assets/huttegels/" + huttegels.get(i).getAsset()));
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				
+				
+				
 				System.out.println(tableau.getSpeler().getKleur());
 				naam.setStyle("-fx-font-color:" + tableau.getSpeler().getKleur() + ";");
 				naam.setText(tableau.getSpeler().getNaam());

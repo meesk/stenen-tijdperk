@@ -12,10 +12,12 @@ import domainlayer.skeleton.huttegels.IHuttegel;
  */
 public class HuttegelStandaard implements IHuttegel {
 
+	private String asset;
 	private int waarde;
 	private Middel[] middelen;
 
-	public HuttegelStandaard(Middel... middelen) {
+	public HuttegelStandaard(String asset, Middel... middelen) {
+		this.asset = asset;
 		this.middelen = middelen;
 	}
 
@@ -38,5 +40,10 @@ public class HuttegelStandaard implements IHuttegel {
 		}
 		berekenWaarde();
 		//@@TODO: toevoegen waarde aan puntenspoor
+	}
+
+	@Override
+	public String getAsset() throws RemoteException {
+		return asset;
 	}
 }

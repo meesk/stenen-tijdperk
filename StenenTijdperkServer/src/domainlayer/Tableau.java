@@ -51,7 +51,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		middelen.put(Middel.STEEN, 0);
 		middelen.put(Middel.GOUD, 0);
 		
-
+		huttegels = new ArrayList<>();
 		observers = new ArrayList<>();
 
 		gereedschap = new int[] { 0, 0, 0 };

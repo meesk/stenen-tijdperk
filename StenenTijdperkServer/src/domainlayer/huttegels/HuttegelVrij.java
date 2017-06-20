@@ -1,5 +1,7 @@
 package domainlayer.huttegels;
 
+import java.rmi.RemoteException;
+
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
 
@@ -9,10 +11,12 @@ import domainlayer.skeleton.huttegels.IHuttegel;
  */
 public class HuttegelVrij implements IHuttegel {
 
+	private String asset;
 	private int min;
 	private int max;
 	
-	public HuttegelVrij(int min, int max){
+	public HuttegelVrij(String asset, int min, int max){
+		this.asset = asset;
 		this.min = min;
 		this.max = max;
 	}
@@ -25,6 +29,11 @@ public class HuttegelVrij implements IHuttegel {
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
 		//
+	}
+
+	@Override
+	public String getAsset() throws RemoteException {
+		return asset;
 	}
 	
 }
