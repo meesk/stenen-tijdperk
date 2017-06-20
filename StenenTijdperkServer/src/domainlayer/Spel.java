@@ -162,6 +162,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 				this.klaarVoorStart = true;
+				status = SpelStatus.PLAATSEN_STAMLEDEN;
 			}
 			notifyObservers();
 		}
@@ -291,5 +292,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	@Override
 	public ISpeler getBeurtSpeler() {
 		return beurtSpeler;
+	}
+
+	@Override
+	public SpelStatus getStatus() throws RemoteException {
+		return status;
 	}
 }

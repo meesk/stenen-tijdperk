@@ -3,14 +3,14 @@ package proceslayer;
 import java.rmi.RemoteException;
 
 import domainlayer.skeleton.ISpeler;
+import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
 
 /**
- * LocatieController.java
- * De controller voor de locatie.
+ * LocatieController.java De controller voor de locatie.
  *
  * @author Tristan Caspers, s1102755
  * @version 0.1
@@ -32,15 +32,19 @@ public class LocatieController {
 	public void onKiesLocatie() {
 
 		try {
-			if (StenenTijdperk.getSpeler().equals(StenenTijdperk.getSpel().getBeurtSpeler())) {
-				System.out.println("hoi! ik heb op een locatie geklikt =)");
-				try {
-					model.plaatsStamlid(StenenTijdperk.getSpeler());
-				} catch (RemoteException e) {
-					e.printStackTrace();
-				}
-			} else {
-				System.out.println("Je hebt geen beurt. wacht please!!");
+			ISpel spel = StenenTijdperk.getSpel();
+			ISpeler speler = StenenTijdperk.getSpeler();
+			if (!speler.equals(spel.getBeurtSpeler())) {
+				return;
+			}
+
+			switch (spel.getStatus()) {
+			case PLAATSEN_STAMLEDEN:
+				model.plaatsStamlid(speler);
+				break;
+			case UITVOEREN_ACTIE:
+				model.uitvoerenActie(speler);
+				break;
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

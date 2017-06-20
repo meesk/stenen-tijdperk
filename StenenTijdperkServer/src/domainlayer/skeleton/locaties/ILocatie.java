@@ -23,4 +23,5 @@ public interface ILocatie extends Remote {
 	public List<IStamlid> getStamleden(ISpeler beurtSpeler) throws RemoteException;
 	public void plaatsStamlid(ISpeler speler) throws RemoteException;
 	public void registerObserver(ILocatieObserver locatieView) throws RemoteException;
+	public void uitvoerenActie(ISpeler speler) throws RemoteException;
 }
