@@ -56,7 +56,6 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.
 		int stamleden = tableau.getStamleden().size(); // Hier is stamleden ook nodig inverband met de beschavingskaart.
 
-		List<IHuttegel> spelerTegels = tableau.getHuttegels();
 		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
 		Map<Middel, Integer> middelen = tableau.getMiddelen();
 		int puntenspoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
