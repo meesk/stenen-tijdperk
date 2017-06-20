@@ -3,6 +3,7 @@ package proceslayer;
 import java.rmi.RemoteException;
 
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
@@ -65,6 +66,13 @@ public class LocatieController {
 				spel.fases();
 				break;
 			case UITVOEREN_ACTIE:
+				int _aantal = 0;
+				for (IStamlid stamlid : model.getStamleden()) {
+					if (stamlid.getSpeler().equals(StenenTijdperk.getSpeler())) {
+						_aantal++;
+					}
+				}
+				spel.getDobbelsteenWorp().werp(_aantal);
 				model.uitvoerenActie(speler);
 				break;
 			}
