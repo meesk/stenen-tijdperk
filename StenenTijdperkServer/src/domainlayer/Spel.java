@@ -69,7 +69,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			bepaalWinnaar();
 
 			int i = 0;
-			if(i > 1) {
+			if(i > 1) { //TODO : verander deze condition
 
 				for(int k = 0; k < spelers.size(); k++) {
 					//spelers.get(i).extraTelling();
@@ -77,6 +77,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 				bepaalWinnaar();
 			}
+			
+			//create eindeView met een map k,v k = speler naam, v = het aantal punten.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -270,10 +272,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);
+		notifyObservers();
 	}
 
 	public void registerSpelView(ISpelObserver observer) throws RemoteException {
 		spelViewObservers.add(observer);
+		notifyObservers();
 	}
 
 	@Override

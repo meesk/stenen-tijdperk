@@ -2,7 +2,7 @@ package domainlayer.skeleton.spoor;
 
 /**
 * @author Alex de Bruin, s1103096
- *  <br>Erwin olie. s1103026
+* @author Erwin olie. s1103026
 * @Version 0.1
 *
 * <br>
@@ -20,5 +20,6 @@ public interface ISpoor extends Remote {
 	public void verwijderPunten(ISpeler speler, int aantal) throws RemoteException;
 	public void verhoogPunten(ISpeler speler, int aantal) throws RemoteException;
 	public int getProductie(ISpeler speler) throws RemoteException;
+	public int getMarkeerSteen(ISpeler speler) throws RemoteException;
 }
 

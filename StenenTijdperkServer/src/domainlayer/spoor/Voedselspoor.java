@@ -53,6 +53,11 @@ public class Voedselspoor extends UnicastRemoteObject implements ISpoor {
 
 	}
 
+	@Override
+	public int getMarkeerSteen(ISpeler speler) throws RemoteException {
+		return markeerstenen.get(speler);
+	}
+
 
 
 }

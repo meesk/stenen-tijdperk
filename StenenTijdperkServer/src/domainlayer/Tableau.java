@@ -13,6 +13,7 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
+import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.TableauView;
 import presentationlayer.skeleton.ITableauObserver;
@@ -32,7 +33,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
 	private List<Beschavingskaart> kaarten;
-
+	private List<IHuttegel> huttegels;
 	private List<ITableauObserver> observers;
 
 	private int[] gereedschap;
@@ -42,13 +43,14 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		this.speler = speler;
 		stamleden = new ArrayList<>();
 		kaarten = new ArrayList<>();
-		middelen = new HashMap<Middel, Integer>() {{
-			put(Middel.VOEDSEL, 0);
-			put(Middel.HOUT, 0);
-			put(Middel.LEEM, 0);
-			put(Middel.STEEN, 0);
-			put(Middel.GOUD, 0);
-		}};
+		middelen = new HashMap<Middel, Integer>();
+		
+		middelen.put(Middel.VOEDSEL, 0);
+		middelen.put(Middel.HOUT, 0);
+		middelen.put(Middel.LEEM, 0);
+		middelen.put(Middel.STEEN, 0);
+		middelen.put(Middel.GOUD, 0);
+		
 
 		observers = new ArrayList<>();
 
@@ -242,5 +244,21 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	@Override
 	public ISpeler getSpeler() throws RemoteException {
 		return speler;
+	}
+
+	public Map<Middel, Integer> getMiddelen() {
+		return middelen;
+	}
+
+	public List<Beschavingskaart> getKaarten() {
+		return kaarten;
+	}
+
+	public List<IHuttegel> getHuttegels() {
+		return huttegels;
+	}
+
+	public List<ITableauObserver> getObservers() {
+		return observers;
 	}
 }

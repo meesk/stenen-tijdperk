@@ -12,11 +12,9 @@ import domainlayer.skeleton.spoor.ISpoor;
 
 /**
  * @author Erwin Olie s1103026
- * @Author Alex de Bruin, s1103096
- * @version 0.3
+ * @author Alex de Bruin, s1103096
+ * @version 0.4
  *
- * <br>
- * <br>
  *
  * Dit is de klasse die het Puntenspoor bij houdt en aanmaakt.
  */
@@ -38,8 +36,6 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 		markeerstenen.put(speler, markeerstenen.get(speler) + aantal);
 	}
 
-
-
 	public int getProductie(ISpeler speler) {
 		return markeerstenen.get(speler);
 	}
@@ -51,8 +47,12 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 
 	@Override
 	public Map<ISpeler, Integer> getMarkeerstenen() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return markeerstenen;
+	}
+	
+	public int getMarkeerSteen(ISpeler speler) throws RemoteException {
+		return markeerstenen.get(speler);
+		
 	}
 
 
