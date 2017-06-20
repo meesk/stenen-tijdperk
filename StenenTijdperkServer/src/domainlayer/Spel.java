@@ -19,7 +19,6 @@ import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
-import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.skeleton.ISpelObserver;
 import presentationlayer.skeleton.IView;
 
@@ -61,9 +60,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
-
 		try {
-
 			for(int i = 0; i < spelers.size(); i++) {
 				//spelers.get(i).ophalenGegevens();
 			}
@@ -79,8 +76,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 				bepaalWinnaar();
 			}
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -162,8 +157,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-
-
 	private void notifyObservers() throws RemoteException {
 		for(ISpelObserver observer : lobbyObservers) {
 			observer.modelChanged(this);
@@ -242,10 +235,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			}
 
 			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
-			if(aantalKaarten < 4){
-
-
-
+			if(aantalKaarten < 4) {
 				aantalKaarten = 0;
 				for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
 					if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
@@ -257,7 +247,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				}
 			}
 
-
 			// als niet alle huttegel plekken vol liggen kijken of spel gestopt moet worden deze ronde of volgende ronde
 			if(aantalHutten < 4 ) {
 				if(laatsteRonde == true){
@@ -266,17 +255,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					laatsteRonde = true;
 				}
 			}
-
-
-
-
-
 		}
-
 	}
 
 	private ISpeler LocatiePressedBy() {
-
 		return null;
 	}
 
