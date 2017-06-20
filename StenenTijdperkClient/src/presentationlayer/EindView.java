@@ -6,7 +6,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proceslayer.SpelController;
@@ -18,23 +17,19 @@ import proceslayer.SpelController;
  * @author Tristan Caspers, s1102755
  * @version 1.0
  */
-
 public class EindView extends Stage {
 
-	@SuppressWarnings("unchecked")
 	public EindView(SpelController spelController) {
 
 		spelController.registerView(this);
 
 		VBox vbox = new VBox(15);
-		StackPane stackPane = new StackPane();
 
 		// Announcement
 		Label uitreiking = new Label();
-		uitreiking.setText("Speler 1 heeft gewonnen!"); // Nog laten automatiseren met spel/speler
+		uitreiking.setText("Speler ... heeft gewonnen!"); // Nog maken
 		uitreiking.setStyle("-fx-font-size: 22px");
 
-		// Datapunten zijn een aantal spelerspunten per ronde
 		NumberAxis xAxis = new NumberAxis();
 		xAxis.setLabel("Ronde");
 		xAxis.setMinorTickVisible(false);
@@ -54,7 +49,7 @@ public class EindView extends Stage {
 		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
 
 		// Aanmaken van datapunten
-		// for (int i = 0; i < aantalRondes.size(); i++) {} // Nog laten automatiseren met spel/speler
+		// for (int i = 0; i < aantalRondes.size(); i++) {} // Nog maken
 		data1.getData().add(new XYChart.Data<Number, Number>(1, 34));
 		data1.getData().add(new XYChart.Data<Number, Number>(2, 78));
 		data1.getData().add(new XYChart.Data<Number, Number>(3, 99));
