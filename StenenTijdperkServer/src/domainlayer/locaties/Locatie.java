@@ -114,7 +114,8 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	private void plaatsStamlid(ISpeler speler) throws RemoteException {
-		stamleden.add(new Stamlid(speler));
+		IStamlid stamlid = speler.getTableau().popStamlid();
+		stamleden.add(stamlid);
 	}
 
 	public void plaatsStamleden(ISpeler speler, int aantal) throws RemoteException {

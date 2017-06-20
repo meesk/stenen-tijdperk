@@ -107,6 +107,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 			gridPaneForm.add(kleurButtons[k], 1, position);
 			position++;
 		}
+		kleurButtons[0].fire();
 
 		// Radio button spastische speler
 		Label spastischLabel = new Label("Ja, ik heb last van spasticiteit");

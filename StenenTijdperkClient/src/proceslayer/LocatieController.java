@@ -54,6 +54,9 @@ public class LocatieController {
 					betaalView.showAndWait();
 					aantal = betaalView.getStamleden();
 				}
+				if (aantal > speler.getTableau().getStamleden().size()) {
+					return; // @@TODO: remove
+				}
 				if (aantal <= 0) {
 					return; // stamleden plaatsen geannuleerd
 				}

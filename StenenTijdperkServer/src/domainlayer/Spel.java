@@ -206,6 +206,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		System.out.println("fases()");
 
 		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+		for (ISpeler speler : spelers) {
+			speler.getTableau().notifyObservers();
+		}
 
 		System.out.println("beurtSpeler = " + beurtSpeler.getNaam());
 
@@ -215,7 +218,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpTableau += speler.getTableau().getStamleden().size();
 			}
 			if( stamledenOpTableau > 0) {
-				if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
+				
+				while (beurtSpeler.getTableau().getStamleden().size() == 0) {
+					beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+				}
+				
+				
+				/*if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
 			//			voer plaatsen stamleden uit
 
 				} else {
@@ -226,7 +235,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 						spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
 					}
 				}
-			}
+			}*/
 
 			} else {
 				status = status.UITVOEREN_ACTIE;

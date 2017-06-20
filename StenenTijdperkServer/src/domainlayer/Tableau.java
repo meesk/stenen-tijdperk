@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -41,7 +42,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
-		stamleden = new ArrayList<>();
+		stamleden = new LinkedList<>();
 		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>();
 		
@@ -262,5 +263,10 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public List<ITableauObserver> getObservers() {
 		return observers;
+	}
+
+	@Override
+	public IStamlid popStamlid() throws RemoteException {
+		return (IStamlid)((LinkedList)stamleden).pop();
 	}
 }

@@ -93,6 +93,7 @@ public class SpelView extends Stage implements ISpelObserver {
 					for (int i = 3; i > spelers.size(); i--) {
 						grid.add(new TableauView(null), i, 1);
 					}
+					this.sizeToScene();
 				}
 			} catch (RemoteException e) {
 				e.printStackTrace();

@@ -13,16 +13,22 @@ import domainlayer.huttegels.HuttegelVrij;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * TableauView.java<br>
@@ -37,13 +43,14 @@ public class TableauView extends StackPane implements ITableauObserver {
 	private ImageView[] gereedschap;
 	private ImageView[] huttegels;
 	private Label naam;
+	private Pane middelPane;
+	private ImageView achtergrond;
 
 	public TableauView(ITableau model) {
 		this(false, model);
 	}
 
-	public TableauView(boolean large, ITableau model) {
-
+	public TableauView(boolean large, ITableau model) {		
 		try {
 			UnicastRemoteObject.exportObject(this, 0);
 		} catch (RemoteException e) {
@@ -61,10 +68,25 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 			ImageView imageView = new ImageView(image);
 
+			if (model != null) {
+		        try {
+					switch (model.getSpeler().getKleur()) {
+					case "Rood" : imageView.setEffect(new InnerShadow(8, Color.RED)); break;
+					case "Blauw" : imageView.setEffect(new InnerShadow(8, Color.BLUE)); break;
+					case "Geel" : imageView.setEffect(new InnerShadow(8, Color.YELLOW)); break;
+					case "Groen" : imageView.setEffect(new InnerShadow(8, Color.GREEN)); break;
+					}
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+			
 			imageView.setFitHeight(image.getHeight() / 4 * scale);
 			imageView.setFitWidth(image.getWidth() / 4 * scale);
 
 			this.getChildren().add(imageView);
+			
+			achtergrond = imageView;
 		}
 
 		if (model == null) {
@@ -111,6 +133,12 @@ public class TableauView extends StackPane implements ITableauObserver {
 			this.getChildren().add(pane);
 		}
 
+		middelPane = new Pane();
+		middelPane.setPrefWidth(this.getWidth());
+		middelPane.setPrefHeight(this.getHeight());
+		
+		this.getChildren().add(middelPane);
+
 		naam = new Label();
 		naam.setFont(Font.font(18));
 		this.getChildren().add(naam);
@@ -127,6 +155,37 @@ public class TableauView extends StackPane implements ITableauObserver {
 	public void modelChanged(ITableau tableau) throws RemoteException {
 		Platform.runLater(() -> {
 			try {
+
+				achtergrond.setEffect(null);
+				switch (tableau.getSpeler().getKleur()) {
+				case "Rood" : achtergrond.setEffect(new InnerShadow(3, Color.RED)); break;
+				case "Blauw" : achtergrond.setEffect(new InnerShadow(3, Color.BLUE)); break;
+				case "Geel" : achtergrond.setEffect(new InnerShadow(3, Color.YELLOW)); break;
+				case "Groen" : achtergrond.setEffect(new InnerShadow(3, Color.GREEN)); break;
+				}
+				if (StenenTijdperk.getSpel().getBeurtSpeler().equals(tableau.getSpeler())) {
+					switch (tableau.getSpeler().getKleur()) {
+					case "Rood" : achtergrond.setEffect(new InnerShadow(80, Color.DARKRED)); break;
+					case "Blauw" : achtergrond.setEffect(new InnerShadow(80, Color.DARKBLUE)); break;
+					case "Geel" : achtergrond.setEffect(new InnerShadow(80, Color.DARKGOLDENROD)); break;
+					case "Groen" : achtergrond.setEffect(new InnerShadow(80, Color.DARKGREEN)); break;
+					}
+				}
+				
+				middelPane.getChildren().clear();
+				for (int i = 0; i < tableau.getStamleden().size(); i++) {
+
+					Image image =  new Image("file:assets/stamlid_" + tableau.getSpeler().getKleur() + ".png");
+					ImageView imageView = new ImageView(image);
+
+					imageView.setFitHeight(image.getHeight() * scale);
+					imageView.setFitWidth(image.getWidth() * scale);
+					imageView.relocate(100 * scale + i * 30 * scale, 0);
+					
+					middelPane.getChildren().add(imageView);
+				};
+				
+				
 				
 				int[] gereedschap = tableau.getGereedschap();
 				boolean[] gereedschapGebruikt = tableau.getGereedschapGebruikt();

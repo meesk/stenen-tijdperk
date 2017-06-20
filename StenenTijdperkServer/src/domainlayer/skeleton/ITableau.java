@@ -51,5 +51,7 @@ public interface ITableau extends Remote {
 
 	public void verliesPunten() throws RemoteException;
 
+	public IStamlid popStamlid() throws RemoteException;
+
 }
 
