@@ -144,12 +144,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 
-				LocalDate jongsteSpeler = LocalDate.MAX;
-				for(int i = 0; i <= spelers.size(); i++) {
-					if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
-						beurtSpeler = spelers.get(i);
-					}
-				}
+				//LocalDate jongsteSpeler = LocalDate.MAX;
+				//for(int i = 0; i <= spelers.size(); i++) {
+				//	if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
+				//		beurtSpeler = spelers.get(i);
+				//	}
+				//}
 				this.klaarVoorStart = true;
 			}
 			notifyObservers();

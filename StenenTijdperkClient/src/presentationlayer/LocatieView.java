@@ -65,7 +65,7 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 
 				for (int i = 0; i < stamleden.size(); i++) {
 					Point point = cirkels.get(i);
-					Image poppetje = new Image("file:assets/gele_poppetje.png");
+					Image poppetje = new Image("file:assets/stamlid_" + stamleden.get(i).getSpeler().getKleur() + ".png");
 					ImageView imageView = new ImageView(poppetje);
 					imageView.relocate(point.getX(), point.getY());
 					pane.getChildren().add(imageView);
