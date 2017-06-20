@@ -209,13 +209,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			}
 		} else if (status.equals(status.UITVOEREN_ACTIE)) {
 			int stamledenOpSpeelbord = 0;
-			for(int j = 0; j <= spelers.size(); j++) {
+			for(int j = 0; j < spelers.size(); j++) {
 				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
 			}
 			if(stamledenOpSpeelbord > 0) {
 				//checken of de speler die stamleden wil plaatsen aan de beurt is
 				int stamledenOpLocatieSpeler = 0;
-				for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
+				for(int k = 0; k < speelbord.getLocaties().size(); k++) {
 					stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
 				}
 				if(stamledenOpLocatieSpeler > 0) {
@@ -223,7 +223,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				}
 			} else {
 				beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler)) + 1 % spelers.size());
-				for(int j = 0; j <= spelers.size(); j++){
+				for(int j = 0; j < spelers.size(); j++){
 					if(spelers.get(j) != spelers.get(spelers.indexOf(beurtSpeler))) {
 						spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
 					}
@@ -231,18 +231,18 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			}
 		} else if(status.equals(status.VOEDEN_STAMLEDEN)) {
 			//voedenStamleden
-			for(int i = 0; i<= spelers.size(); i++) {
+			for(int i = 0; i< spelers.size(); i++) {
 
 			}
 
 			// resetten gereedschap
-			for(int i = 0; i <= spelers.size(); i++){
+			for(int i = 0; i < spelers.size(); i++){
 				spelers.get(i).getTableau().resetGereedschapStatus();
 			}
 			// ophalen beschavingskaarten en huttegels
 			int aantalKaarten = 0;
 			int aantalHutten = 0;
-			for(int i = 0; i <= speelbord.getLocaties().size(); i++) {
+			for(int i = 0; i < speelbord.getLocaties().size(); i++) {
 				if (speelbord.getLocaties().get(i)  instanceof Beschavingskaart) {
 					aantalKaarten =+ 1;
 				}
@@ -253,7 +253,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
 			if(aantalKaarten < 4) {
 				aantalKaarten = 0;
-				for (int i = 0; 1<= speelbord.getLocaties().size(); i++) {
+				for (int i = 0; 1< speelbord.getLocaties().size(); i++) {
 					if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
 						aantalKaarten += 1;
 					}

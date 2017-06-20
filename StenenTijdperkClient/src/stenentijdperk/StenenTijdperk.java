@@ -19,7 +19,7 @@
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-//			    佛祖保佑 永无BUG
+//			    ä½›ç¥–ä¿�ä½‘ æ°¸æ— BUG
 package stenentijdperk;
 
 import java.rmi.Naming;
@@ -62,12 +62,12 @@ public class StenenTijdperk extends Application {
 	/** {@inheritDoc} */
 	public void start(Stage primaryStage) throws Exception {
 		// Het definieren van het model
+
 		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
 		// ...
 		HandleidingView handleidingPane = new HandleidingView();
-
 
 		// Het definieren van de controllers
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(spel.getDobbelsteenWorp());
