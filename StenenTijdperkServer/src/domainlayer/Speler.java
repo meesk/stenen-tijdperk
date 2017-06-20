@@ -40,6 +40,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	private Tableau tableau;
 	private boolean klaar;
 	private SpelerStatus status;
+	private boolean voeden;
 
 	public Speler(Spel spel, ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
 		this.naam = naam;
@@ -50,6 +51,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.kleur = kleur;
 		tableau = new Tableau(this);
 		this.status = status.GEEN_BEURT;
+		this.voeden = false;
 	}
 
 	public int ophalenGegevens() throws RemoteException {

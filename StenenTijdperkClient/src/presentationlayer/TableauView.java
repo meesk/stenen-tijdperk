@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import presentationlayer.skeleton.ITableauObserver;
+import proceslayer.BetaalController;
 
 /**
  * TableauView.java<br>

@@ -45,4 +45,8 @@ public interface ISpel extends Remote {
 	public IDobbelsteenWorp getDobbelsteenWorp() throws RemoteException;
 
 	public ISpeler getBeurtSpeler() throws RemoteException;
+	
+	public void fases() throws RemoteException;
+	
+	public boolean getVoeden() throws RemoteException;
 }

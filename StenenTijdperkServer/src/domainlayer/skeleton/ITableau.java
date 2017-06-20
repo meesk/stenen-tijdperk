@@ -43,6 +43,8 @@ public interface ITableau extends Remote {
 	public ISpeler getSpeler() throws RemoteException;
 
 	public void resetGereedschapStatus() throws RemoteException;
+	
+	public void verliesPunten() throws RemoteException;
 
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException;
 

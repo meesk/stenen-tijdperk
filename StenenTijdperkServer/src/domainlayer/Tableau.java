@@ -154,7 +154,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		notifyObservers();
 	}
 	public void resetGereedschapStatus() throws RemoteException {
-		for(int i = 0; i <= getGereedschapGebruikt().length; i++)
+		for(int i = 0; i < getGereedschapGebruikt().length; i++)
 			gereedschapGebruikt[i] = false;
 		notifyObservers();
 		}
@@ -176,23 +176,25 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	 */
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException{
 
-	    List<Integer> valuesVanSpeler = new ArrayList<Integer>(middelen.values());
-	    List<Integer> ingevoerdeValues = new ArrayList<Integer>(this.middelen.values());
 	    Integer aantalMiddelen = 0;
-	    for (int i = 0; i < valuesVanSpeler.size(); i++) {
-		    // Check of er niet teveel middelen zijn ingevult
-	    	if (!(valuesVanSpeler.get(i) <= ingevoerdeValues.get(i)))
-	    		return false;
-
-    		aantalMiddelen = valuesVanSpeler.get(i);
-	    }
+	     
+		for (Entry<Middel, Integer> entry : this.middelen.entrySet()) {
+			//Check of er niet te teveel middelen zijn ingevult
+		    if(entry.getValue() < middelen.get(entry.getKey())){
+		    	return false;
+		    }
+		    aantalMiddelen += middelen.get(entry.getKey());
+		}
 
 
 	    // Check of er genoeg middelen zijn ingevult
-	    if (stamleden.size() != aantalMiddelen)
+	    if (stamleden.size() != aantalMiddelen){
 	    	return false;
-
+	    }
+	    
 	    verwijderMiddelen(middelen);
+	    
+	    notifyObservers();
 		return true;
 	}
 

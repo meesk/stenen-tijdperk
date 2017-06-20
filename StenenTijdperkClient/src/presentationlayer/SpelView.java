@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ISpelObserver;
+import proceslayer.BetaalController;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
 import stenentijdperk.StenenTijdperk;
@@ -92,6 +93,17 @@ public class SpelView extends Stage implements ISpelObserver {
 					for (int i = 3; i > spelers.size(); i--) {
 						grid.add(new TableauView(null), i, 1);
 					}
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		});
+		// Open betaalview voor laatste fase
+		Platform.runLater(() -> {
+			try {
+				if (spel.getVoeden()) {
+					BetaalView bv = new BetaalView(true, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
+					bv.show();
 				}
 			} catch (RemoteException e) {
 				e.printStackTrace();

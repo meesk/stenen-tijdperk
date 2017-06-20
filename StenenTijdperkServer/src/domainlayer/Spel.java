@@ -21,6 +21,7 @@ import domainlayer.enums.SpelStatus;
 import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import presentationlayer.skeleton.ISpelObserver;
 
@@ -50,6 +51,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private SpelStatus status;
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
+	private boolean voeden;
 
 	private List<ISpelObserver> lobbyObservers;
 	private List<ISpelObserver> spelViewObservers;
@@ -231,10 +233,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			}
 		} else if(status.equals(status.VOEDEN_STAMLEDEN)) {
 			//voedenStamleden
-			for(int i = 0; i< spelers.size(); i++) {
-
-			}
-
+			setVoeden(true);
+			notifyObservers();
+			
 			// resetten gereedschap
 			for(int i = 0; i < spelers.size(); i++){
 				spelers.get(i).getTableau().resetGereedschapStatus();
@@ -253,7 +254,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
 			if(aantalKaarten < 4) {
 				aantalKaarten = 0;
-				for (int i = 0; 1< speelbord.getLocaties().size(); i++) {
+				for (int i = 0; 1 < speelbord.getLocaties().size(); i++) {
 					if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
 						aantalKaarten += 1;
 					}
@@ -273,6 +274,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	public void setVoeden(boolean b){
+		voeden = b;
+	}
+	
+	public boolean getVoeden(){
+		return voeden;
+	}
 
 	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
 		lobbyObservers.add(observer);

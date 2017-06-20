@@ -45,5 +45,4 @@ public interface ISpeler extends Remote {
 
 	public SpelerStatus getStatus() throws RemoteException;
 
-
 }

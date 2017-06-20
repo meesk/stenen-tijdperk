@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.ITableau;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -12,6 +13,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
 
@@ -23,7 +25,7 @@ import proceslayer.BetaalController;
  * @version 1.0
  */
 
-public class BetaalView extends BorderPane implements ITableauObserver {
+public class BetaalView extends Stage implements ITableauObserver {
 
 	Spinner<Integer> inputVoedsel = new Spinner<Integer>();
 	Spinner<Integer> inputHout = new Spinner<Integer>();
@@ -33,7 +35,8 @@ public class BetaalView extends BorderPane implements ITableauObserver {
 
 
 	public BetaalView(boolean voeden, BetaalController controller) throws RemoteException {
-
+		BorderPane borderpane = new BorderPane();
+		
 		UnicastRemoteObject.exportObject(this,0);
 
 		controller.registerView(this);
@@ -67,15 +70,16 @@ public class BetaalView extends BorderPane implements ITableauObserver {
 		HBox hbox = new HBox();
 
 		Button betalenButton = new Button("Betalen middelen");
+		betalenButton.setOnMouseClicked(e -> controller.onButtonPressed());
 
 		// Toon dit alleen voor het voeden van de stamleden
-		if(!voeden) {
-			gridPane.add(voedsel, 1, 1);
-			gridPane.add(inputVoedsel, 1, 2);
+		if(voeden) {
+			gridPane.add(voedsel, 0, 1);
+			gridPane.add(inputVoedsel, 0, 2);
 			Button verliesPuntenButton = new Button("Verlies 10 punten");
 			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
 			hbox.getChildren().add(verliesPuntenButton);
-			this.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
+			borderpane.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
 		}
 
 		hbox.getChildren().add(betalenButton);
@@ -93,11 +97,20 @@ public class BetaalView extends BorderPane implements ITableauObserver {
 		gridPane.add(inputGoud, 4, 2);
 
 		gridPane.setAlignment(Pos.CENTER);
-		this.setCenter(gridPane);
-		this.setBottom(hbox);
-		this.setAlignment(betalenButton, Pos.BOTTOM_RIGHT);
+		borderpane.setCenter(gridPane);
+		borderpane.setBottom(hbox);
+		borderpane.setAlignment(betalenButton, Pos.BOTTOM_RIGHT);
 
-		this.setStyle("-fx-background-color: #6a5b34");
+		borderpane.setStyle("-fx-background-color: #6a5b34");
+		
+		// Maakt een nieuwe Scene aan met de ScrollPane om de handleiding te tonen.
+		Scene scene = new Scene(borderpane, 800, 800);
+
+		// Zet de titel van de PrimaryStage en dat de PrimaryStage altijd on top moet zijn.
+		// en daarna wordt de Scene in de PrimaryStage gezet.
+		this.setTitle("Betalen middelen");
+		this.setAlwaysOnTop(true);
+		this.setScene(scene);
 	}
 
 	public int getVoedsel(){
