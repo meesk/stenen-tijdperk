@@ -16,6 +16,7 @@ import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
+import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
@@ -193,10 +194,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpTableau += this.spelers.get(i).getTableau().getStamleden().size();
 			}
 			if( stamledenOpTableau > 0) {
-/*uitwerken*/	if ( LocatieController.wieHeeftErGeklikt().equals(beurtSpeler)) {
-					if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
+				//checken of de speler die stamleden wil plaatsen aan de beurt is
+				if (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size() > 0) {
 			//			voer plaatsen stamleden uit
-				}
+
 				} else {
 					System.out.println("Niet aan de beurt. Wachten op beurt!");
 				}
@@ -211,25 +212,25 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
 			}
 			if(stamledenOpSpeelbord > 0) {
-/*uitwerken*/	if(LocatiePressedBy().equals(beurtSpeler)) {
-					int stamledenOpLocatieSpeler = 0;
-					for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
-						stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
-					}
-					if(stamledenOpLocatieSpeler > 0) {
-						//uitvoeren actie
-					}
+				//checken of de speler die stamleden wil plaatsen aan de beurt is
+				int stamledenOpLocatieSpeler = 0;
+				for(int k = 0; k <= speelbord.getLocaties().size(); k++) {
+					stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
+				}
+				if(stamledenOpLocatieSpeler > 0) {
+					//uitvoeren actie
 				}
 			}
-
 		} else if(status.equals(status.VOEDEN_STAMLEDEN)) {
 			//voedenStamleden
+			for(int i = 0; i<= spelers.size(); i++) {
+
+			}
 
 			// resetten gereedschap
 			for(int i = 0; i <= spelers.size(); i++){
 				spelers.get(i).getTableau().resetGereedschapStatus();
 			}
-
 			// ophalen beschavingskaarten en huttegels
 			int aantalKaarten = 0;
 			int aantalHutten = 0;
@@ -241,7 +242,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					aantalHutten += 1;
 				}
 			}
-
 			//kaarten doorschuiven als niet vier instanties van beschavingskaart liggen
 			if(aantalKaarten < 4){
 
@@ -257,8 +257,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					status = status.BEPALEN_WINNAAR;
 				}
 			}
-
-
 			// als niet alle huttegel plekken vol liggen kijken of spel gestopt moet worden deze ronde of volgende ronde
 			if(aantalHutten < 4 ) {
 				if(laatsteRonde == true){
@@ -267,11 +265,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					laatsteRonde = true;
 				}
 			}
-
-
-
-
-
 		}
 
 	}

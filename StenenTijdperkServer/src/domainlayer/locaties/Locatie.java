@@ -51,7 +51,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
-
+	
 	public void addObserver(LocatieView observer) {
 		observers.add(observer);
 	}
