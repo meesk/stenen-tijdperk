@@ -59,11 +59,11 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 			spoor.addSpeler(this);
 		}
 	}
-	
+
 	public ILocatie getLaatsteLocatie() {
 		return laatsteLocatie;
 	}
-	
+
 	public void setLaatsteLocatie(ILocatie laatsteLocatie) {
 		this.laatsteLocatie = laatsteLocatie;
 	}
@@ -72,27 +72,26 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.
 		int stamleden = tableau.getStamleden().size(); // Hier is stamleden ook nodig inverband met de beschavingskaart.
 
-		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
+//		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
 		Map<Middel, Integer> middelen = tableau.getMiddelen();
-		int puntenspoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
+		int puntenSpoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
 
-		int telling = puntenspoor +
-				middelen.get(Middel.HOUT) +
+		int telling = middelen.get(Middel.HOUT) +
 				middelen.get(Middel.LEEM) +
 				middelen.get(Middel.STEEN) +
 				middelen.get(Middel.GOUD);
-		// nog de huttegels + beschavingskaarten
+		// puntenspoor + berekening van beschavingskaarten nog.
 
 		return telling;
 	}
 
 	public int extraGegevens() throws RemoteException {
-		int stamleden = tableau.getStamleden().size(); // dit is om het aantal stamleden erbij op te tellen.
+		int stamleden = tableau.getStamleden().size();
 		int totaalGereedschap = tableau.getTotaalGereedschap();
 		int granenspoor = this.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(this);
 
-		int telling =
-				stamleden +
+
+		int telling = stamleden +
 				totaalGereedschap +
 				granenspoor;
 
