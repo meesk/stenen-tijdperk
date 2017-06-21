@@ -82,6 +82,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 			aantalBetalen = new Label("moetietsstaandenkik");
 			aantalBetalen.setTextAlignment(TextAlignment.CENTER);
 			aantalBetalen.setStyle("-fx-font-size: 15pt;");
+			betalenButton.setText("Betalen middelen");
 			borderPane.setTop(aantalBetalen);
 			Button verliesPuntenButton = new Button("Verlies 10 punten");
 			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());

@@ -70,9 +70,6 @@ public class LocatieFactory {
 		locaties.add(new Gereedschapmaker(418, 280, 125, 98, Arrays.asList(
 			new Point(54, 23)
 		)));
-		
-		
-//		new LocatieView(128, 260, 110, 68, new ArrayList<>()), // jacht		
 
 
 	}

@@ -4,13 +4,16 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -32,7 +35,13 @@ public class TableauView extends StackPane implements ITableauObserver {
 	private ImageView[] huttegels;
 	private Label naam;
 	private Pane middelPane;
+	private GridPane middelen;
 	private ImageView achtergrond;
+	private Label voedsel;
+	private Label hout;
+	private Label leem;
+	private Label steen;
+	private Label goud;
 
 	public TableauView(ITableau model) {
 		this(false, model);
@@ -120,15 +129,36 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 			this.getChildren().add(pane);
 		}
+		
+		middelen = new GridPane();
+		
+		middelen.setHgap(10);
+		
+		voedsel = new Label();
+		hout = new Label();
+		leem = new Label();
+		steen = new Label();
+		goud = new Label();
+		
+		middelen.add(voedsel, 1, 5);
+		middelen.add(hout, 2, 5);
+		middelen.add(leem, 3, 5);
+		middelen.add(steen, 4, 5);
+		middelen.add(goud, 5, 5);
+		middelen.setAlignment(Pos.CENTER);
+		middelen.setMinHeight(10);
+		
 
 		middelPane = new Pane();
 		middelPane.setPrefWidth(this.getWidth());
 		middelPane.setPrefHeight(this.getHeight());
 
 		this.getChildren().add(middelPane);
+		this.getChildren().add(middelen);
 
 		naam = new Label();
 		naam.setFont(Font.font(18));
+		naam.setAlignment(Pos.BASELINE_RIGHT);
 		this.getChildren().add(naam);
 
 		if (model != null) {
@@ -197,6 +227,15 @@ public class TableauView extends StackPane implements ITableauObserver {
 		naam.setStyle("-fx-font-color:" + tableau.getSpeler().getKleur() + ";");
 		naam.setText(tableau.getSpeler().getNaam());
 	}
+	
+	private void tekenMiddelen(ITableau tableau) throws RemoteException{
+		voedsel.setText(tableau.getMiddelen().get(Middel.VOEDSEL).toString());
+		hout.setText(tableau.getMiddelen().get(Middel.HOUT).toString());
+		leem.setText(tableau.getMiddelen().get(Middel.LEEM).toString());
+		steen.setText(tableau.getMiddelen().get(Middel.STEEN).toString());
+		goud.setText(tableau.getMiddelen().get(Middel.GOUD).toString());
+		
+	}
 
 	@Override
 	public void modelChanged(ITableau tableau) throws RemoteException {
@@ -207,6 +246,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 				tekenGereedschap(tableau);
 				tekenHuttegels(tableau);
 				tekenNaam(tableau);
+				tekenMiddelen(tableau);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
