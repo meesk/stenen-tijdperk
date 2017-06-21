@@ -59,6 +59,7 @@ public class LocatieFactory {
 			new Point(80, 24),
 			new Point(56, 38)
 		), Middel.GOUD));
+		locaties.add(new MiddelLocatie(94, 69, 127, 220, generatePoints(40), Middel.VOEDSEL));
 		locaties.add(new Akker(247, 327, 75, 61, Arrays.asList(
 			new Point(28, 2)
 		)));
@@ -69,7 +70,23 @@ public class LocatieFactory {
 		locaties.add(new Gereedschapmaker(418, 280, 125, 98, Arrays.asList(
 			new Point(54, 23)
 		)));
+		
+		
+//		new LocatieView(128, 260, 110, 68, new ArrayList<>()), // jacht		
 
+
+	}
+	
+	private ArrayList<Point> generatePoints(int aantal){
+		ArrayList<Point> points = new ArrayList<Point>();
+		int x = 5;
+		int y = 20;
+		for(int i = 0; i < aantal; i++){
+			points.add(new Point(x,y));
+			x += 5;
+			y += 10;
+		}
+		return points;
 	}
 
 	public static LocatieFactory getInstance() {

@@ -5,8 +5,10 @@ import java.rmi.RemoteException;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import proceslayer.LocatieController;
 
@@ -22,6 +24,15 @@ public class SpeelbordView extends Pane {
 	public SpeelbordView(ISpeelbord model) {
 		Image image = new Image("file:assets/speelbord.jpg");
 		ImageView imageView = new ImageView(image);
+		
+		imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+		     @Override
+		     public void handle(MouseEvent event) {
+		         System.out.println(event.getSceneX() + " y : " + event.getSceneY());
+		         event.consume();
+		     }
+		});
 
 		this.getChildren().add(imageView);
 
