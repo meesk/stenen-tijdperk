@@ -28,6 +28,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import domainlayer.Spel;
+import domainlayer.skeleton.ISpel;
 
 /**
  * StenenTijdperk.java
@@ -41,10 +42,12 @@ import domainlayer.Spel;
  */
 public class StenenTijdperk {
 	
+	private static ISpel spel;
+	
 	/** De main method die de modellen registreert in het register. */
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		// Het initialiseren van een nieuw spel.
-		Spel spel = new Spel();
+		spel = new Spel();
 
 		// Het opzetten van het RMI register.
 		LocateRegistry.createRegistry(1099);
@@ -52,5 +55,9 @@ public class StenenTijdperk {
 		Naming.rebind("Spel", spel);
 
 		System.out.println("Server started...");
+	}
+	
+	public static ISpel getSpel() {
+		return spel;
 	}
 }

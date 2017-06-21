@@ -10,11 +10,15 @@ package domainlayer.beschavingskaart;
 */
 
 import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
+import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.spoor.Puntenspoor;
 import domainlayer.spoor.Voedselspoor;
+import stenentijdperk.StenenTijdperk;
+
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,16 +45,16 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		//actie uitvoeren
 		if(waarde == 1){
-			Speelbord speelbord = super.speelbord;
-			Voedselspoor voedselspoor = (Voedselspoor)speelbord.getVoedselspoor();
+			ISpeelbord speelbord = StenenTijdperk.getSpel().getSpeelbord();
+			ISpoor voedselspoor = speelbord.getVoedselspoor();
 			int productie = voedselspoor.getProductie(speler);
 			if(productie < 10){
-				voedselspoor.verhoogProductie(speler);
+				voedselspoor.verhoogPunten(speler, 1);
 			}
 		} else {
-			Speelbord speelbord = super.speelbord;
-			Puntenspoor puntenspoor = (Puntenspoor)speelbord.getPuntenspoor();
-			puntenspoor.verhoogProductie(speler, waarde);
+			ISpeelbord speelbord = StenenTijdperk.getSpel().getSpeelbord();
+			ISpoor puntenspoor = speelbord.getPuntenspoor();
+			puntenspoor.verhoogPunten(speler, 1);
 		}
 		// verwijderen stamleden
 		ITableau tableau = speler.getTableau();

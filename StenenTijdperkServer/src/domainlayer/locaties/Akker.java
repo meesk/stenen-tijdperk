@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 import domainlayer.Speelbord;
 import domainlayer.Stamlid;
 import domainlayer.Tableau;
+import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.spoor.Voedselspoor;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * @author Erwin Olie, s1103026
@@ -29,7 +31,7 @@ public class Akker extends Locatie {
 	/** @see Sequentie Diagram: 10 Gebruiken Akker **/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen Voedselspoor
-		Speelbord speelbord = super.speelbord;
+		ISpeelbord speelbord = StenenTijdperk.getSpel().getSpeelbord();
 		ISpoor voedselspoor = speelbord.getVoedselspoor();
 		int productie = voedselspoor.getProductie(speler);
 		if (productie < 10) {

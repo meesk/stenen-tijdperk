@@ -55,8 +55,8 @@ public class Voedselspoor extends UnicastRemoteObject implements ISpoor {
 		return markeerstenen;
 	}
 
-	public int getProductie(ISpeler speler) {
-		return markeerstenen.get(speler);
+	public int getProductie(ISpeler speler) throws RemoteException {
+		return markeerstenen.get(speler.getKleur());
 	}
 
 	public void verhoogProductie(ISpeler speler) throws RemoteException {

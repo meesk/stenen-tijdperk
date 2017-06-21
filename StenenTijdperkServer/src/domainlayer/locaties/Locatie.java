@@ -26,7 +26,6 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	private List<Point> cirkels;
 	protected List<IStamlid> stamleden;
 	private List<ILocatieObserver> observers;
-	protected Speelbord speelbord;
 
 	public Locatie(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
 		this.x = x;
