@@ -14,6 +14,8 @@ import domainlayer.locaties.LocatieFactory;
 import domainlayer.locaties.MiddelLocatie;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.spoor.Puntenspoor;
@@ -66,6 +68,17 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 			}
 		}
 		return null;
+	}
+	
+	public boolean heeftStamleden(ISpeler speler) throws RemoteException {
+		for (ILocatie locatie : locaties) {
+			for (IStamlid stamlid : locatie.getStamleden()) {
+				if (speler.getKleur().equals(stamlid.getSpeler().getKleur())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public List<ILocatie> getLocaties() {
