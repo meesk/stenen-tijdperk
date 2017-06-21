@@ -2,18 +2,10 @@ package domainlayer;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.List;
 
-import domainlayer.enums.Middel;
-import domainlayer.locaties.Akker;
-import domainlayer.locaties.Gereedschapmaker;
-import domainlayer.locaties.Hut;
-import domainlayer.locaties.Locatie;
 import domainlayer.locaties.LocatieFactory;
-import domainlayer.locaties.MiddelLocatie;
 import domainlayer.skeleton.ISpeelbord;
-import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.locaties.ILocatie;
@@ -52,10 +44,12 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return laatstGekozenLcatie;
 	}
 	
+	@Override
 	public ISpoor getVoedselspoor() {
 		return voedselSpoor;
 	}
 
+	@Override
 	public ISpoor getPuntenspoor() {
 		return puntenSpoor;
 	}
@@ -71,6 +65,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return false;
 	}
 
+	@Override
 	public List<ILocatie> getLocaties() {
 		return locaties;
 	}

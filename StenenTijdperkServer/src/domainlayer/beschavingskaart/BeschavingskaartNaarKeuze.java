@@ -55,10 +55,12 @@ public class BeschavingskaartNaarKeuze extends Beschavingskaart {
 		this.isNaastTableau = isNaastTableau;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

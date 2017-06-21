@@ -15,16 +15,11 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.spoor.ISpoor;
-import domainlayer.spoor.Puntenspoor;
-import domainlayer.spoor.Voedselspoor;
 import stenentijdperk.StenenTijdperk;
 
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
-import domainlayer.Speelbord;
-import domainlayer.Stamlid;
-import domainlayer.Tableau;
 
 
 public class BeschavingskaartSpoor extends Beschavingskaart{
@@ -84,10 +79,12 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 		this.status = status;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

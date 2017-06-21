@@ -24,16 +24,19 @@ public class Dobbelsteen extends UnicastRemoteObject implements IDobbelsteen {
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public void reset() {
 		ogen = 0;
 	}
 
 	/** Werp de dobbelsteen naar een willekeurig getal tussen 1 en 6. */
+	@Override
 	public void werp() {
 		ogen = (int) (Math.random() * 6) + 1;
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public int getOgen() {
 		return ogen;
 	}

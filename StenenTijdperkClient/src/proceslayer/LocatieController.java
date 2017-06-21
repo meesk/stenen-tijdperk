@@ -6,7 +6,6 @@ import java.util.List;
 
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
-import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.BetaalView;

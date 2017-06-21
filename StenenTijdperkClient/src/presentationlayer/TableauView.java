@@ -2,32 +2,20 @@ package presentationlayer;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import domainlayer.enums.Middel;
-import domainlayer.huttegels.HuttegelKiezen;
-import domainlayer.huttegels.HuttegelStandaard;
-import domainlayer.huttegels.HuttegelVrij;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.Glow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import presentationlayer.skeleton.ITableauObserver;
-import proceslayer.BetaalController;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -210,6 +198,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		naam.setText(tableau.getSpeler().getNaam());
 	}
 
+	@Override
 	public void modelChanged(ITableau tableau) throws RemoteException {
 		Platform.runLater(() -> {
 			try {

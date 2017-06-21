@@ -5,7 +5,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
 import javafx.application.Platform;
 import javafx.scene.image.Image;

@@ -1,8 +1,6 @@
 package proceslayer;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
-
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.spoor.ISpoor;
 import presentationlayer.EindView;

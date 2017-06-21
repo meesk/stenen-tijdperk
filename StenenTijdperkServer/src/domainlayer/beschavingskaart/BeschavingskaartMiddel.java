@@ -47,6 +47,7 @@ public class BeschavingskaartMiddel extends Beschavingskaart {
 		this.status = status;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
@@ -55,6 +56,7 @@ public class BeschavingskaartMiddel extends Beschavingskaart {
 		return Waarde;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

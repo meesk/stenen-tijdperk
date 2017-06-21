@@ -1,7 +1,6 @@
 
 package presentationlayer;
 
-import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
@@ -262,6 +261,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 		spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
 	}
 
+	@Override
 	public void modelChanged(ISpel model) throws RemoteException {
 		Platform.runLater(() -> {
 			try {

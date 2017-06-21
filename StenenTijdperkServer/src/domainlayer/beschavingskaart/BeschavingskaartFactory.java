@@ -7,8 +7,6 @@ package domainlayer.beschavingskaart;
  */
 
 import java.util.ArrayList;
-import javafx.scene.image.Image;
-
 import java.util.List;
 import java.rmi.RemoteException;
 
