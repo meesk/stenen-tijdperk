@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -72,26 +73,42 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.
 		int stamleden = tableau.getStamleden().size(); // Hier is stamleden ook nodig inverband met de beschavingskaart.
 
-//		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
+		//		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
 		Map<Middel, Integer> middelen = tableau.getMiddelen();
 		int puntenSpoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
 
 		int telling = middelen.get(Middel.HOUT) +
 				middelen.get(Middel.LEEM) +
 				middelen.get(Middel.STEEN) +
-				middelen.get(Middel.GOUD);
+				middelen.get(Middel.GOUD) +
+				puntenSpoor;
 		// puntenspoor + berekening van beschavingskaarten nog.
 
 		return telling;
 	}
 
 	public int extraGegevens() throws RemoteException {
-		int stamleden = tableau.getStamleden().size();
+		List<ILocatie> locaties = this.getSpel().getSpeelbord().getLocaties();
+		List<IStamlid> spelBordStamleden = new ArrayList<IStamlid>();
+		int totaalStamleden = 0;
+
+		for(ILocatie locatie : locaties){
+			spelBordStamleden.addAll(locatie.getStamleden());
+		}
+
+		for(IStamlid stamlid : spelBordStamleden){
+			if(stamlid.getSpeler().getKleur().equals(this.getKleur())){
+				totaalStamleden++;
+			}
+		}
+
+		totaalStamleden += tableau.getStamleden().size();
+
 		int totaalGereedschap = tableau.getTotaalGereedschap();
 		int granenspoor = this.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(this);
 
 
-		int telling = stamleden +
+		int telling = totaalStamleden +
 				totaalGereedschap +
 				granenspoor;
 

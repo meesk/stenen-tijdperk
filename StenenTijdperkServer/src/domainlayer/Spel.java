@@ -25,7 +25,9 @@ import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
+import presentationlayer.EindView;
 import presentationlayer.skeleton.ISpelObserver;
+import proceslayer.SpelController;
 
 /**
  * Spel.java<br>
@@ -67,29 +69,21 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
 
-		Map<String, Integer> spelerPuntenTotaal = new HashMap(); // hier worden
-																	// de
-																	// waardes
-																	// in
-																	// opgeslagen.
+		Map<String, Integer> spelerPuntenTotaal = new HashMap();
 
 		try {
 			for (int i = 0; i < spelers.size(); i++) {
-				// per speler het totaal aantal punten eerste telling, weg
-				// gestopt onder naam.
+				// per speler het totaal aantal punten eerste telling, weg gestopt onder naam.
 				spelerPuntenTotaal.put(spelers.get(i).getNaam(), spelers.get(i).ophalenGegevens());
 			}
 
-			// Als bepaalWinnaar false is dan wordt hieronder de 2de telling
-			// gedaan.
+			// Als bepaalWinnaar false is dan wordt hieronder de 2de telling gedaan.
 			if (!bepaalWinnaar(spelerPuntenTotaal)) {
 				for (int k = 0; k < spelers.size(); k++) {
-					spelerPuntenTotaal.put(spelers.get(k).getNaam(),
-							spelerPuntenTotaal.get(spelers.get(k).getNaam() + spelers.get(k).extraGegevens()));
+					int temp = spelerPuntenTotaal.get(spelers.get(k).getNaam()) + spelers.get(k).extraGegevens();
+					spelerPuntenTotaal.put(spelers.get(k).getNaam(), temp);
 				}
 			}
-
-			// open eindview met spelerPuntenTotaal.
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,21 +92,19 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
 
-		boolean winnaarBepaald = false;
+		boolean winnaarBepaald 	= false;
 
-		int highest = Integer.MIN_VALUE; // int mag geen null zijn en aangezien
-											// je min kan hebben in het spel,
-											// vandaar.
-		int secondHighest = Integer.MIN_VALUE;
+		int highest 			= Integer.MIN_VALUE;
+		int secondHighest		= Integer.MIN_VALUE;
 
 		for (int i = 0; i < spelers.size(); i++) {
-			if (spelerPuntenTotaal.get(spelers.get(i).getNaam()) > highest || highest == -9999) {
+			if (spelerPuntenTotaal.get(spelers.get(i).getNaam()) > highest || spelerPuntenTotaal.get(spelers.get(i).getNaam()) == highest) {
 				secondHighest = highest;
 				highest = spelerPuntenTotaal.get(spelers.get(i).getNaam());
 			}
 		}
 
-		if (highest > secondHighest) {
+		if(highest != secondHighest && highest > secondHighest) {
 			winnaarBepaald = true;
 		}
 
@@ -221,7 +213,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			volgendeBeurt();
 			return;
 		}
-		
+
 		volgendeBeurt();
 		while (beurtSpeler.getTableau().getStamleden().size() == 0) {
 			volgendeBeurt();
@@ -240,12 +232,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			faseVoedenStamleden();
 			return;
 		}
-		
+
 		while (!speelbord.heeftStamleden(beurtSpeler)) {
 			volgendeBeurt();
 		}
 	}
-	
+
 	private boolean checkBetaalt() throws RemoteException{
 		int i = 0;
 		for (ISpeler s  : spelers){

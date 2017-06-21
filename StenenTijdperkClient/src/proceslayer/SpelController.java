@@ -46,6 +46,8 @@ public class SpelController {
 			spoor.verhoogPunten(StenenTijdperk.getSpeler(), 1);
 			spoor.notifyObservers();
 		}
+
+		model.eindeSpel();
 		// alleen afsluitene van de applicatie nog.
 	}
 }

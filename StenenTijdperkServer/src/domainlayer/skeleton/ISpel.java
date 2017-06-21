@@ -51,4 +51,6 @@ public interface ISpel extends Remote {
 	public boolean getVoeden() throws RemoteException;
 
 	public SpelStatus getStatus() throws RemoteException;
+
+	public void eindeSpel() throws RemoteException;
 }
