@@ -15,6 +15,7 @@ import java.rmi.RemoteException;
 
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpeler;
 
 
@@ -48,7 +49,7 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-		DobbelsteenWorp dw = speler.getSpel().getDobbelsteenWorp();
+		IDobbelsteenWorp dw = speler.getSpel().getDobbelsteenWorp();
 		// Voeg 1 extra oog aan de worp toe
 		dw.setTotaal(1);
 	}

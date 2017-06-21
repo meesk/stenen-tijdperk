@@ -30,7 +30,7 @@ public interface ISpeler extends Remote {
 
 	public ITableau getTableau() throws RemoteException;
 
-	public Spel getSpel() throws RemoteException;
+	public ISpel getSpel() throws RemoteException;
 
 	public void klaarVoorSpeler() throws RemoteException;
 

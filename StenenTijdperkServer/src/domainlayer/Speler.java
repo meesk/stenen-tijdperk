@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.Map;
 
+import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.locaties.ILocatie;
@@ -114,7 +115,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	}
 
 	@Override
-	public Spel getSpel() {
+	public ISpel getSpel() {
 		return spel;
 	}
 
