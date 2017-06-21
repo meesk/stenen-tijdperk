@@ -1,5 +1,6 @@
 package presentationlayer;
 
+import domainlayer.skeleton.ISpel;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -15,11 +16,11 @@ import proceslayer.SpelController;
  * Een klasse die alle informatie bevat om de eind view te maken.
  *
  * @author Tristan Caspers, s1102755
- * @version 1.0
+ * @version 1.5
  */
 public class EindView extends Stage {
 
-	public EindView(SpelController spelController) {
+	public EindView(SpelController spelController, ISpel model) {
 
 		spelController.registerView(this);
 

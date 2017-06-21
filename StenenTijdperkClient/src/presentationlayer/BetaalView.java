@@ -14,7 +14,9 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
 import stenentijdperk.StenenTijdperk;
@@ -74,17 +76,18 @@ public class BetaalView extends Stage implements ITableauObserver {
 		Button betalenButton = new Button("Betalen middelen");
 		betalenButton.setOnMouseClicked(e -> controller.onButtonPressed());
 
-		betalenButton.setOnAction(e -> this.close());
-
 		if (voeden) {
 			gridPane.add(voedsel, 0, 1);
 			gridPane.add(inputVoedsel, 0, 2);
 			aantalBetalen = new Label("moetietsstaandenkik");
+			aantalBetalen.setTextAlignment(TextAlignment.CENTER);
+			aantalBetalen.setStyle("-fx-font-size: 15pt;");
 			borderPane.setTop(aantalBetalen);
 			Button verliesPuntenButton = new Button("Verlies 10 punten");
 			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
 			hbox.getChildren().add(verliesPuntenButton);
 			borderPane.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
+			this.initStyle(StageStyle.UNDECORATED);
 		}
 
 		hbox.getChildren().add(betalenButton);
@@ -104,6 +107,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 		}
 
 		if (toonStamleden) {
+			betalenButton.setOnAction(e -> this.close());
 			gridPane.add(stamleden, 1, 1);
 			gridPane.add(inputStamleden, 1, 2);
 		}
@@ -152,8 +156,8 @@ public class BetaalView extends Stage implements ITableauObserver {
 		Platform.runLater(() -> {
 			try{
 				int stamleden = model.getStamleden().size();
-//				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getProductie(StenenTijdperk.getSpeler());
-				aantalBetalen.setText("Aantal te betalen middelen :" + (stamleden));
+//				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getProductie(model.getSpeler());
+				aantalBetalen.setText("Aantal te betalen middelen : " + (stamleden));
 			}catch(RemoteException ex){
 				
 			}

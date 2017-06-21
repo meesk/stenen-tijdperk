@@ -62,7 +62,8 @@ public class BetaalController {
 		try {
 			// Als het succesvol is gegaan close de view
 			boolean b = model.voedenStamleden(middelen);
-			if(b){
+			if(b == true){
+				model.setBetaalt(true);
 				view.close();
 			}
 		} catch (RemoteException e) {
@@ -73,7 +74,10 @@ public class BetaalController {
 
 	public void onVerliesPuntenPressed(){
 		try {
-			model.verliesPunten();
+			boolean b = model.verliesPunten();
+			if(b){
+				view.close();
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

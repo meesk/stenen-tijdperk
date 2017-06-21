@@ -19,16 +19,14 @@
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-//			    ä½›ç¥–ä¿�ä½‘ æ°¸æ— BUG
+//			    ä½›ç¥–ä¿�ä½‘ æ°¸æ— BUG
 package stenentijdperk;
 
 import java.rmi.Naming;
 
-import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
@@ -53,7 +51,7 @@ public class StenenTijdperk extends Application {
 	private static ISpel spel;
 	private static ISpeler speler;
 
-	/** De main method die de JavaFX applicatie opstart. */
+	/** De main method dies de JavaFX applicatie opstart. */
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -77,12 +75,12 @@ public class StenenTijdperk extends Application {
 		// Het definieren van de views
 		LobbyView lobbyView = new LobbyView(lobbyController, spel);
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, spel.getDobbelsteenWorp(), spel);
-		EindView eindView = new EindView(spelController);
+		EindView eindView = new EindView(spelController, spel);
 
 		//lobbyController.registerSpelView(spelView);
 
 		// Het voorbereiden en tonen van de stage.
-		lobbyView.show();
+		eindView.show();
 	}
 
 	public static ISpel getSpel() {

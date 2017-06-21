@@ -245,10 +245,26 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			volgendeBeurt();
 		}
 	}
+	
+	private boolean checkBetaalt() throws RemoteException{
+		int i = 0;
+		for (ISpeler s  : spelers){
+			if(s.getTableau().getBetaalt() == true){
+			i++;
+			}
+		}
+		if(i == spelers.size()){
+			return true;
+		}
+		return false;
+	}
 
 	private void faseVoedenStamleden() throws RemoteException {
-		System.out.println("voeden stamleden gestart!");
-		// @@TODO: mees?
+		setVoeden(true);
+		notifyObservers();
+		status = SpelStatus.PLAATSEN_STAMLEDEN;
+		volgendeBeurt();
+		fases();
 	}
 
 	private void notifyEverything() throws RemoteException {
@@ -278,7 +294,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	public void fases() throws RemoteException {
-
 		switch (status) {
 		case PLAATSEN_STAMLEDEN:
 			fasePlaatsenStamleden();

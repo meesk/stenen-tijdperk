@@ -3,7 +3,6 @@ package proceslayer;
 import java.rmi.RemoteException;
 
 import domainlayer.skeleton.ISpel;
-import domainlayer.skeleton.ISpeler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import presentationlayer.LobbyView;
