@@ -48,4 +48,6 @@ public interface ISpel extends Remote {
 	public SpelStatus getStatus() throws RemoteException;
 
 	public void eindeSpel() throws RemoteException;
+
+	public void notifyEverything() throws RemoteException;
 }

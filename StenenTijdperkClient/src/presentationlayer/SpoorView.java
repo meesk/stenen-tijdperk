@@ -37,8 +37,13 @@ public class SpoorView extends StackPane implements ISpoorObserver {
 					imageView.setFitHeight(image.getHeight() / 3);
 					imageView.setFitWidth(image.getWidth() / 3);
 
-					imageView.setTranslateX(spoor.getPunten()[set.getValue() % spoor.getPunten().length].getX() + 10 * i);
-					imageView.setTranslateY(spoor.getPunten()[set.getValue() % spoor.getPunten().length].getY());
+					int place = set.getValue() % spoor.getPunten().length;
+					while (place < 0) {
+						place += spoor.getPunten().length;
+					}
+					
+					imageView.setTranslateX(spoor.getPunten()[place].getX() + 10 * i);
+					imageView.setTranslateY(spoor.getPunten()[place].getY());
 
 					this.getChildren().add(imageView);
 					i++;

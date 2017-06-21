@@ -7,6 +7,7 @@ import java.util.Map;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import presentationlayer.BetaalView;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * BetaalController.java<br>
@@ -63,6 +64,7 @@ public class BetaalController {
 			boolean b = model.voedenStamleden(middelen);
 			if(b == true){
 				model.setBetaalt(true);
+				StenenTijdperk.getSpel().notifyEverything();
 				view.close();
 			}
 		} catch (RemoteException e) {
@@ -77,6 +79,7 @@ public class BetaalController {
 			if(b){
 				view.close();
 			}
+			StenenTijdperk.getSpel().notifyEverything();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

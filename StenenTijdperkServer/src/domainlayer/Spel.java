@@ -270,7 +270,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		fases();
 	}
 
-	private void notifyEverything() throws RemoteException {
+	public void notifyEverything() throws RemoteException {
 		// notify alle locaties
 		for (ILocatie locatie : speelbord.getLocaties()) {
 			locatie.notifyObservers();
