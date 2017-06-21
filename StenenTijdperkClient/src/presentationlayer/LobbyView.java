@@ -4,8 +4,6 @@ package presentationlayer;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import domainlayer.enums.Kleur;
 import domainlayer.skeleton.ISpel;
@@ -31,7 +29,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ISpelObserver;
-import proceslayer.BetaalController;
 import proceslayer.LobbyController;
 
 /**
@@ -59,7 +56,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	private RadioButton[] kleurButtons;
 
 	public LobbyView(LobbyController controller, ISpel model) throws RemoteException {
-		
+
 		UnicastRemoteObject.exportObject(this, 0);
 
 		model.registerObserver(this);
@@ -206,7 +203,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	}
 
 	public void veranderKnopTextWachten() {
-		this.klaarBtn.setText("Momenteel Geduld a.u.b..");
+		this.klaarBtn.setText("Moment geduld aub...");
 	}
 
 	public void setLobbyGegevens() { // tijdelijk, scheelt tijd met invullen
@@ -214,7 +211,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 		this.isSpastisch.setSelected(true);
 		this.geboorteDatumPicker.setValue(LocalDate.of(2015, 07, 20));
 	}
-	
+
 	private void updateKleuren(ISpel model) throws RemoteException {
 		for (RadioButton rb : kleurButtons) {
 			if (rb.isDisabled()) {
@@ -237,7 +234,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 			}
 		}
 	}
-	
+
 	private void updateProgress(ISpel model) throws RemoteException {
 		int aantalKlaar = 0;
 		for (ISpeler speler : model.getSpelerLijst()) {
@@ -245,7 +242,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 				aantalKlaar++;
 			}
 		}
-		
+
 		pb.setProgress((double) aantalKlaar / model.getSpelerLijst().size());
 		spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
 	}
@@ -257,7 +254,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 					this.close();
 					return;
 				}
-				
+
 				updateProgress(model);
 				updateKleuren(model);
 

@@ -24,11 +24,9 @@ package stenentijdperk;
 
 import java.rmi.Naming;
 
-import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
