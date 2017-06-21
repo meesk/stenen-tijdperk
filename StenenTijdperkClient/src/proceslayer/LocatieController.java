@@ -65,13 +65,16 @@ public class LocatieController {
 				stamleden.add(stamlid);
 			}
 		}
+		if (stamleden.size() == 0) {
+			return; // speler heeft geen stamleden op locatie
+		}
 		spel.getDobbelsteenWorp().werp(stamleden.size());
+		model.uitvoerenActie(speler);
 		for (IStamlid stamlid : stamleden) {
 			model.verwijderStamlid(stamlid);
 		}
 		speler.getTableau().ontvangStamleden(stamleden);
 		StenenTijdperk.getSpeler().getTableau().notifyObservers();
-		model.uitvoerenActie(speler);
 		spel.fases();
 	}
 	

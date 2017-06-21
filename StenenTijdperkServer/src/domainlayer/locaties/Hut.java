@@ -32,7 +32,7 @@ public class Hut extends Locatie {
 		}
 
 		// Teruggeven Stamleden
-		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+		/*List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
 			try {
 				return s.getSpeler() == speler;
 			} catch (RemoteException e) {
@@ -47,7 +47,7 @@ public class Hut extends Locatie {
 		super.notifyObservers();
 
 		// update tableau view
-		tableau.notifyObservers();
+		tableau.notifyObservers();*/
 
 
 	}

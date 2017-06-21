@@ -26,22 +26,22 @@ import domainlayer.spoor.Voedselspoor;
  * Een klasse waar het speelbord wordt aangemaakt.
  *
  * @author	Erwin Olie, s1103026
- * @version	1.0
+ * @version	1.2
  */
 public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	private Spel spel;
 
 	private List<ILocatie> locaties;
-	private ISpoor[] sporen;
+	private ISpoor voedselSpoor;
+	private ISpoor puntenSpoor;
 	private ILocatie laatstGekozenLcatie;
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
 		locaties = LocatieFactory.getInstance().getLocaties();
-		sporen = new ISpoor[] {
-			new Voedselspoor(), new Puntenspoor()
-		};
+		voedselSpoor = new Voedselspoor();
+		puntenSpoor = new Puntenspoor();
 	}
 
 	public void setLaatstGekozenLocatie(ILocatie locatie) {
@@ -50,24 +50,14 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	public ILocatie getLaatstGekozenLocatie() {
 		return laatstGekozenLcatie;
-
 	}
+	
 	public ISpoor getVoedselspoor() {
-		for (ISpoor spoor : sporen) {
-			if (spoor instanceof Voedselspoor) {
-				return (Voedselspoor)spoor;
-			}
-		}
-		return null;
+		return voedselSpoor;
 	}
 
 	public ISpoor getPuntenspoor() {
-		for (ISpoor spoor : sporen) {
-			if (spoor instanceof Puntenspoor) {
-				return (Puntenspoor)spoor;
-			}
-		}
-		return null;
+		return puntenSpoor;
 	}
 	
 	public boolean heeftStamleden(ISpeler speler) throws RemoteException {
@@ -91,7 +81,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	@Override
 	public ISpoor[] getSporen() throws RemoteException {
-		return sporen;
+		return new ISpoor[] { puntenSpoor, voedselSpoor };
 	}
 
 }

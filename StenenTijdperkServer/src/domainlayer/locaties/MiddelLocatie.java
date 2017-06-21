@@ -40,7 +40,7 @@ public class MiddelLocatie extends Locatie {
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}
-		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+		/*List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
 			try {
 				return s.getSpeler() == speler;
 			} catch (RemoteException e1) {
@@ -49,7 +49,7 @@ public class MiddelLocatie extends Locatie {
 			}
 		}).collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
-		super.verwijderStamleden(stamleden);
+		super.verwijderStamleden(stamleden);*/
 
 		// Middelen Toevoegen
 		try {
@@ -59,8 +59,8 @@ public class MiddelLocatie extends Locatie {
 		}
 
 		// Update Views
-		super.notifyObservers();
-		tableau.notifyObservers();
+		//super.notifyObservers();
+		//tableau.notifyObservers();
 	}
 
 	@Override

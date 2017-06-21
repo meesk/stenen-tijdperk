@@ -12,6 +12,7 @@ import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
+import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.spoor.Voedselspoor;
 
 /**
@@ -29,14 +30,14 @@ public class Akker extends Locatie {
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen Voedselspoor
 		Speelbord speelbord = super.speelbord;
-		Voedselspoor voedselspoor = (Voedselspoor)speelbord.getVoedselspoor();
+		ISpoor voedselspoor = speelbord.getVoedselspoor();
 		int productie = voedselspoor.getProductie(speler);
 		if (productie < 10) {
-			voedselspoor.verhoogProductie(speler);
+			voedselspoor.verhoogPunten(speler, 1);
 		}
 
 		// Teruggeven Stamleden
-		ITableau tableau = speler.getTableau();
+		/*ITableau tableau = speler.getTableau();
 		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
 			try {
 				return s.getSpeler() == speler;
@@ -48,15 +49,15 @@ public class Akker extends Locatie {
 		})
 				.collect(Collectors.toList());
 		tableau.ontvangStamleden(stamleden);
-		super.verwijderStamleden(stamleden);
+		super.verwijderStamleden(stamleden);*/
 
 		// Update Views (locatie)
-		super.notifyObservers();
+		/*super.notifyObservers();
 
 		// Update Views (tableau)
 		tableau.notifyObservers();
 
 		// Update Views (voedselspoor)
-		voedselspoor.notifyObservers();
+		voedselspoor.notifyObservers();*/
 	}
 }
