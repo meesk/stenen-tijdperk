@@ -42,7 +42,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 	public BetaalView(boolean voeden, boolean toonStamleden, BetaalController controller) throws RemoteException {
 
 		BorderPane borderPane = new BorderPane();
-		
+
 		UnicastRemoteObject.exportObject(this,0);
 
 
@@ -73,7 +73,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 
 		HBox hbox = new HBox();
 
-		Button betalenButton = new Button("Betalen middelen");
+		Button betalenButton = new Button("Plaatsen");
 		betalenButton.setOnMouseClicked(e -> controller.onButtonPressed());
 
 		if (voeden) {
@@ -159,10 +159,10 @@ public class BetaalView extends Stage implements ITableauObserver {
 				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
 				aantalBetalen.setText("Aantal te betalen middelen : " + (stamleden - voedselspoor));
 			}catch(RemoteException ex){
-				
+
 			}
 		});
-		
+
 	}
 
 	public int getStamleden() {
