@@ -57,6 +57,7 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 				List<Point> cirkels = model.getCirkels();
 				List<IStamlid> stamleden = model.getStamleden();
 
+				pane.getChildren().clear();
 				for (int i = 0; i < stamleden.size(); i++) {
 					Point point = cirkels.get(i);
 					Image poppetje = new Image("file:assets/stamlid_" + stamleden.get(i).getSpeler().getKleur() + ".png");

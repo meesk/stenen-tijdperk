@@ -124,6 +124,16 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		}
 		notifyObservers();
 	}
+	
+	public void verwijderStamlid(IStamlid stamlid) throws RemoteException {
+		int index = -1;
+		for (IStamlid s : stamleden) {
+			if (s.equals(stamlid)) {
+				index = stamleden.indexOf(s);
+			}
+		}
+		stamleden.remove(index);
+	}
 
 	public void registerObserver(ILocatieObserver observer) {
 		observers.add(observer);

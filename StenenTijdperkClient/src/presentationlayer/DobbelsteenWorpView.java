@@ -54,12 +54,12 @@ public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpObserve
 		}
 
 		// Het aanmaken van de werp-button.
-		Button button = new Button("werp!");
+		//Button button = new Button("werp!");
 		// De button koppelen aan de controller.
-		button.setOnAction(e -> controller.onButtonPressed());
+		//button.setOnAction(e -> controller.onButtonPressed());
 
 		// Het samenvoegen van de views.
-		flowPane.getChildren().add(button);
+		//flowPane.getChildren().add(button);
 		this.getChildren().add(flowPane);
 	}
 

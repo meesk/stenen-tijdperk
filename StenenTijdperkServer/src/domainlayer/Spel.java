@@ -23,6 +23,7 @@ import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
+import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.skeleton.ISpelObserver;
 
 
@@ -206,7 +207,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			speler.getTableau().notifyObservers();
 		}
 		
-		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
+		if (status.equals(SpelStatus.PLAATSEN_STAMLEDEN)) {
 			int stamledenOpTableau = 0;
 			for(ISpeler speler : spelers) {
 				stamledenOpTableau += speler.getTableau().getStamleden().size();
@@ -240,21 +241,23 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				stamledenOpSpeelbord += this.speelbord.getLocaties().get(j).getStamleden().size();
 			}
 			if(stamledenOpSpeelbord > 0) {
+				
+				
 				//checken of de speler die stamleden wil plaatsen aan de beurt is
-				int stamledenOpLocatieSpeler = 0;
+				/*int stamledenOpLocatieSpeler = 0;
 				for(int k = 0; k < speelbord.getLocaties().size(); k++) {
 					stamledenOpLocatieSpeler += speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
 				}
 				if(stamledenOpLocatieSpeler > 0) {
 					//uitvoeren actie
-				}
+				}*/
 			} else {
-				beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler)) + 1 % spelers.size());
+				/*beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler)) + 1 % spelers.size());
 				for(int j = 0; j < spelers.size(); j++){
 					if(spelers.get(j) != spelers.get(spelers.indexOf(beurtSpeler))) {
 						spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
 					}
-				}
+				}*/
 			}
 		} else if(status.equals(status.VOEDEN_STAMLEDEN)) {
 			//voedenStamleden
@@ -296,6 +299,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					laatsteRonde = true;
 				}
 			}
+		}
+		
+		for (ILocatie locatie : speelbord.getLocaties()) {
+			locatie.notifyObservers();
+		}
+		for (ISpeler speler : spelers) {
+			speler.getTableau().notifyObservers();
 		}
 	}
 
