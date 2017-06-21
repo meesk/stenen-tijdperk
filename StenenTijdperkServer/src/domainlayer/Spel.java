@@ -243,7 +243,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	private void faseVoedenStamleden() throws RemoteException {
-		// @@TODO: mees?
+		setVoeden(true);
+		notifyObservers();
 	}
 
 	private void notifyEverything() throws RemoteException {
@@ -269,7 +270,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	public void fases() throws RemoteException {
-
 		switch (status) {
 		case PLAATSEN_STAMLEDEN:
 			fasePlaatsenStamleden();

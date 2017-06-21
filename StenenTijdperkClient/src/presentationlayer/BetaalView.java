@@ -14,6 +14,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
@@ -80,6 +81,8 @@ public class BetaalView extends Stage implements ITableauObserver {
 			gridPane.add(voedsel, 0, 1);
 			gridPane.add(inputVoedsel, 0, 2);
 			aantalBetalen = new Label("moetietsstaandenkik");
+			aantalBetalen.setTextAlignment(TextAlignment.CENTER);
+			aantalBetalen.setStyle("-fx-font-size: 15pt;");
 			borderPane.setTop(aantalBetalen);
 			Button verliesPuntenButton = new Button("Verlies 10 punten");
 			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
@@ -152,8 +155,8 @@ public class BetaalView extends Stage implements ITableauObserver {
 		Platform.runLater(() -> {
 			try{
 				int stamleden = model.getStamleden().size();
-//				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getProductie(StenenTijdperk.getSpeler());
-				aantalBetalen.setText("Aantal te betalen middelen :" + (stamleden));
+//				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getProductie(model.getSpeler());
+				aantalBetalen.setText("Aantal te betalen middelen : " + (stamleden));
 			}catch(RemoteException ex){
 				
 			}

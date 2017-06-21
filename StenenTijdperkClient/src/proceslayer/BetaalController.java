@@ -62,7 +62,8 @@ public class BetaalController {
 		try {
 			// Als het succesvol is gegaan close de view
 			boolean b = model.voedenStamleden(middelen);
-			if(b){
+			System.out.println(b);
+			if(b == true){
 				view.close();
 			}
 		} catch (RemoteException e) {
