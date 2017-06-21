@@ -30,10 +30,24 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 
 	public Puntenspoor() throws RemoteException {
 		markeerstenen = new HashMap<String, Integer>();
-		punten = new Point[] {
-			new Point(100, 100)
-		};
 		observers = new ArrayList<>();
+		initPunten();
+	}
+	
+	private void initPunten() {
+		punten = new Point[30+20+30+20];
+		for (int i = 0; i < 31; i++) {
+			punten[i] = new Point(12 + 28 * i, 10);
+		}
+		for (int i = 0; i < 21; i++) {
+			punten[30 + i] = new Point(12 + 28 * 30, 10 + i * 29);
+		}
+		for (int i = 0; i < 31; i++) {
+			punten[30 + 20 + i] = new Point(12 + 28 * 30 - 28 * i, 10 + 20 * 29);
+		}
+		for (int i = 0; i < 20; i++) {
+			punten[30 + 20 + 30 + i] = new Point(12 + 28 * 30 - 28 * 30, 10 + 20 * 29 - i * 29);
+		}
 	}
 
 	@Override
