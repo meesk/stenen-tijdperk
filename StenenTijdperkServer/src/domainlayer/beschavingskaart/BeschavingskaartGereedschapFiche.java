@@ -31,7 +31,14 @@ public class BeschavingskaartGereedschapFiche extends Beschavingskaart {
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		ITableau tableau = speler.getTableau();
 		// Verhoog het gereedschap op het tableau van de speler
-		tableau.verhoogGereedschap();
+		int gereedschap = tableau.getTotaalGereedschap();
+		if (gereedschap < 4) {
+			tableau.geefGereedschapFiche();
+		}
+		else if (gereedschap < 16) {
+			tableau.verhoogGereedschap();
+		}
+		tableau.notifyObservers();
 	}
 
 	@Override
