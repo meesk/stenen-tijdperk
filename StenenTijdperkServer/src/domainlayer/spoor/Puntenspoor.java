@@ -33,7 +33,7 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 		observers = new ArrayList<>();
 		initPunten();
 	}
-	
+
 	private void initPunten() {
 		punten = new Point[30+20+30+20];
 		for (int i = 0; i < 31; i++) {
@@ -73,10 +73,10 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 	public Map<String, Integer> getMarkeerstenen() throws RemoteException {
 		return markeerstenen;
 	}
-	
+
 	public int getMarkeerSteen(ISpeler speler) throws RemoteException {
-		return markeerstenen.get(speler);
-		
+		return markeerstenen.get(speler.getKleur());
+
 	}
 
 	@Override
