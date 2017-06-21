@@ -75,6 +75,7 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 
 	@Override
 	public int getTotaal() throws RemoteException {
+		totaal = 0;
 		for (IDobbelsteen dobbelsteen : dobbelstenen) {
 			totaal += dobbelsteen.getOgen();
 		}

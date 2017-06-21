@@ -45,13 +45,13 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden = new LinkedList<>();
 		kaarten = new ArrayList<>();
 		middelen = new HashMap<Middel, Integer>();
-		
+
 		middelen.put(Middel.VOEDSEL, 0);
 		middelen.put(Middel.HOUT, 0);
 		middelen.put(Middel.LEEM, 0);
 		middelen.put(Middel.STEEN, 0);
 		middelen.put(Middel.GOUD, 0);
-		
+
 		huttegels = new ArrayList<>();
 		observers = new ArrayList<>();
 
@@ -190,7 +190,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException{
 
 	    Integer aantalMiddelen = 0;
-	     
+
 		for (Entry<Middel, Integer> entry : this.middelen.entrySet()) {
 			//Check of er niet te teveel middelen zijn ingevult
 		    if(entry.getValue() < middelen.get(entry.getKey())){
@@ -206,9 +206,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	    if (aantal != aantalMiddelen){
 	    	return false;
 	    }
-	    
+
 	    verwijderMiddelen(middelen);
-	    
+
 	    notifyObservers();
 		return true;
 	}
@@ -246,7 +246,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		} catch (RemoteException e) {
 			return false;
 		}
-	
+
 		return true;
 	}
 
@@ -288,12 +288,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public List<ITableauObserver> getObservers() {
 		return observers;
 	}
-	
+
 	@Override
 	public void setBetaalt(boolean betaalt){
 		this.heeftBetaalt = betaalt;
 	}
-	
+
 	@Override
 	public boolean getBetaalt(){
 		return heeftBetaalt;

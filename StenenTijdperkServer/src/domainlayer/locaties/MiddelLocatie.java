@@ -80,6 +80,8 @@ public class MiddelLocatie extends Locatie {
 		// Middelen Toevoegen
 		try {
 			tableau.ontvangMiddelen(middel, speler.getSpel().getDobbelsteenWorp().getTotaal() / middel.getWaarde());
+			System.out.println("aantal ogen : " + speler.getSpel().getDobbelsteenWorp().getTotaal());
+			System.out.println(tableau.getMiddelen());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
