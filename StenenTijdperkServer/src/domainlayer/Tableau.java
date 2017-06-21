@@ -36,6 +36,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private List<Beschavingskaart> kaarten;
 	private List<IHuttegel> huttegels;
 	private List<ITableauObserver> observers;
+	private boolean heeftBetaalt;
 
 	private int[] gereedschap;
 	private boolean[] gereedschapGebruikt;
@@ -223,9 +224,10 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return true;
 	}
 
-	public void verliesPunten(){
-		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
-		puntenSpoor.verwijderPunten(speler, 10);
+	public boolean verliesPunten(){
+//		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
+//		puntenSpoor.verwijderPunten(speler, 10);
+		return true;
 	}
 
 	@Override
@@ -263,6 +265,14 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public List<ITableauObserver> getObservers() {
 		return observers;
+	}
+	
+	public void setBetaalt(boolean betaalt){
+		this.heeftBetaalt = betaalt;
+	}
+	
+	public boolean getBetaalt(){
+		return heeftBetaalt;
 	}
 
 	@Override
