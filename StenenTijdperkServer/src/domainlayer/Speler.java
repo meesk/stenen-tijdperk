@@ -12,6 +12,7 @@ import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
+import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
@@ -54,6 +55,9 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		tableau = new Tableau(this);
 		this.status = status.GEEN_BEURT;
 		this.voeden = false;
+		for (ISpoor spoor : spel.getSpeelbord().getSporen()) {
+			spoor.addSpeler(this);
+		}
 	}
 	
 	public ILocatie getLaatsteLocatie() {

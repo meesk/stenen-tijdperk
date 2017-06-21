@@ -24,6 +24,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
+import domainlayer.skeleton.spoor.ISpoor;
 import presentationlayer.skeleton.ISpelObserver;
 
 /**
@@ -195,6 +196,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				}
 				this.klaarVoorStart = true;
 				status = SpelStatus.PLAATSEN_STAMLEDEN;
+				notifyEverything();
 			}
 			notifyObservers();
 		}
@@ -216,6 +218,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 		if (aantalStamleden == 0) {
 			status = SpelStatus.UITVOEREN_ACTIE;
+			volgendeBeurt();
 			return;
 		}
 		
@@ -231,9 +234,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		for (ILocatie locatie : speelbord.getLocaties()) {
 			aantalStamleden += locatie.getStamleden().size();
 		}
-		System.out.println(aantalStamleden);
 		if (aantalStamleden == 0) {
 			status = SpelStatus.VOEDEN_STAMLEDEN;
+			volgendeBeurt();
+			faseVoedenStamleden();
 			return;
 		}
 		
@@ -243,6 +247,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	private void faseVoedenStamleden() throws RemoteException {
+		System.out.println("voeden stamleden gestart!");
 		// @@TODO: mees?
 	}
 
@@ -254,6 +259,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		// notify alle tableaus
 		for (ISpeler speler : spelers) {
 			speler.getTableau().notifyObservers();
+		}
+		// notify alle sporen
+		for (ISpoor spoor : speelbord.getSporen()) {
+			spoor.notifyObservers();
 		}
 	}
 

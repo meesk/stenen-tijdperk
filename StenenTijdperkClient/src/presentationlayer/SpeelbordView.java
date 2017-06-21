@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.locaties.ILocatie;
+import domainlayer.skeleton.spoor.ISpoor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -27,6 +28,9 @@ public class SpeelbordView extends Pane {
 		try {
 			for (ILocatie locatie : model.getLocaties()) {
 				this.getChildren().add(new LocatieView(locatie, new LocatieController(locatie)));
+			}
+			for (ISpoor spoor : model.getSporen()) {
+				this.getChildren().add(new SpoorView(spoor));
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();

@@ -52,7 +52,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return laatstGekozenLcatie;
 
 	}
-	public Voedselspoor getVoedselspoor() {
+	public ISpoor getVoedselspoor() {
 		for (ISpoor spoor : sporen) {
 			if (spoor instanceof Voedselspoor) {
 				return (Voedselspoor)spoor;
@@ -61,7 +61,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return null;
 	}
 
-	public Puntenspoor getPuntenspoor() {
+	public ISpoor getPuntenspoor() {
 		for (ISpoor spoor : sporen) {
 			if (spoor instanceof Puntenspoor) {
 				return (Puntenspoor)spoor;
@@ -87,6 +87,11 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	public Spel getSpel() {
 		return spel;
+	}
+
+	@Override
+	public ISpoor[] getSporen() throws RemoteException {
+		return sporen;
 	}
 
 }

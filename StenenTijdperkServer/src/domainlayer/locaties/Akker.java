@@ -29,7 +29,7 @@ public class Akker extends Locatie {
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen Voedselspoor
 		Speelbord speelbord = super.speelbord;
-		Voedselspoor voedselspoor = speelbord.getVoedselspoor();
+		Voedselspoor voedselspoor = (Voedselspoor)speelbord.getVoedselspoor();
 		int productie = voedselspoor.getProductie(speler);
 		if (productie < 10) {
 			voedselspoor.verhoogProductie(speler);

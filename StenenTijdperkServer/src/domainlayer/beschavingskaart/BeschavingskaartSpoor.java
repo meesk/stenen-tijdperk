@@ -42,14 +42,14 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 		//actie uitvoeren
 		if(waarde == 1){
 			Speelbord speelbord = super.speelbord;
-			Voedselspoor voedselspoor = speelbord.getVoedselspoor();
+			Voedselspoor voedselspoor = (Voedselspoor)speelbord.getVoedselspoor();
 			int productie = voedselspoor.getProductie(speler);
 			if(productie < 10){
 				voedselspoor.verhoogProductie(speler);
 			}
 		} else {
 			Speelbord speelbord = super.speelbord;
-			Puntenspoor puntenspoor = speelbord.getPuntenspoor();
+			Puntenspoor puntenspoor = (Puntenspoor)speelbord.getPuntenspoor();
 			puntenspoor.verhoogProductie(speler, waarde);
 		}
 		// verwijderen stamleden

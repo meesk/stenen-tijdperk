@@ -224,8 +224,13 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public void verliesPunten(){
-		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
-		puntenSpoor.verwijderPunten(speler, 10);
+		Puntenspoor puntenSpoor = (Puntenspoor)speler.getSpel().getSpeelbord().getPuntenspoor();
+		try {
+			puntenSpoor.verwijderPunten(speler, 10);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
