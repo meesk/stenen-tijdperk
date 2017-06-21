@@ -9,6 +9,7 @@ import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
@@ -18,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import presentationlayer.skeleton.ITableauObserver;
 import stenentijdperk.StenenTijdperk;
 
@@ -42,20 +44,22 @@ public class TableauView extends StackPane implements ITableauObserver {
 	private Label leem;
 	private Label steen;
 	private Label goud;
+	private Stage largeTableau;
 
-	public TableauView(ITableau model) {
-		this(false, model);
-	}
-
-	public TableauView(boolean large, ITableau model) {
+	public TableauView(double scale, ITableau model) {
 		try {
 			UnicastRemoteObject.exportObject(this, 0);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		
+		this.scale = scale;
 
-		if (!large) {
-			scale = 0.3;
+		if (scale == 0.3) {
+
+			largeTableau = new Stage();
+			Scene scene = new Scene(new TableauView(1.5, model));
+			largeTableau.setScene(scene);
 		}
 
 		if (true) {
@@ -157,9 +161,19 @@ public class TableauView extends StackPane implements ITableauObserver {
 		this.getChildren().add(middelen);
 
 		naam = new Label();
-		naam.setFont(Font.font(18));
+		naam.setFont(Font.font(36 * scale));
 		naam.setAlignment(Pos.BASELINE_RIGHT);
 		this.getChildren().add(naam);
+		
+		if (scale == 0.3) {
+			Pane enlargeButton = new Pane();
+			enlargeButton.setPrefHeight(this.getPrefHeight());
+			enlargeButton.setPrefWidth(this.getPrefWidth());
+			enlargeButton.setOnMouseClicked(e -> {
+				largeTableau.show();
+			});
+			this.getChildren().add(enlargeButton);
+		}
 
 		if (model != null) {
 			try {

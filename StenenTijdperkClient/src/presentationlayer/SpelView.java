@@ -78,14 +78,14 @@ public class SpelView extends Stage implements ISpelObserver {
 	}
 	
 	private void toonSpelView(ISpel spel) throws RemoteException {
-		grid.add(new TableauView(true, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
+		grid.add(new TableauView(1.0, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
 		List<ISpeler> spelers = spel.getSpelerLijst();
 		spelers.remove(StenenTijdperk.getSpeler());
 		for (int i = 1; i <= spelers.size(); i++) {
-			grid.add(new TableauView(spelers.get(i - 1).getTableau()), i, 1);
+			grid.add(new TableauView(0.3, spelers.get(i - 1).getTableau()), i, 1);
 		}
 		for (int i = 3; i > spelers.size(); i--) {
-			grid.add(new TableauView(null), i, 1);
+			grid.add(new TableauView(0.3, null), i, 1);
 		}
 		this.show();
 		this.sizeToScene();
