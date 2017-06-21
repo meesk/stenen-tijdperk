@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
+import domainlayer.huttegels.HuttegelLocatie;
 import domainlayer.skeleton.locaties.ILocatie;
 
 /**
@@ -72,8 +73,10 @@ public class LocatieFactory {
 		locaties.add(new Gereedschapmaker(418, 280, 125, 98, Arrays.asList(
 			new Point(54, 23)
 		)));
-
-
+		locaties.add(new HuttegelLocatie(91, 476, 82, 90, Arrays.asList(new Point(26, 18)), 0));
+		locaties.add(new HuttegelLocatie(175, 476, 82, 90, Arrays.asList(new Point(26, 18)), 1));
+		locaties.add(new HuttegelLocatie(259, 476, 82, 90, Arrays.asList(new Point(26, 18)), 2));
+		locaties.add(new HuttegelLocatie(343, 476, 82, 90, Arrays.asList(new Point(26, 18)), 3));
 	}
 	
 	private ArrayList<Point> generatePoints(int aantal){

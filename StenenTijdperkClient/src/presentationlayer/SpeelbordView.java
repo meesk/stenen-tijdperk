@@ -50,10 +50,5 @@ public class SpeelbordView extends Pane {
 		//new LocatieView(553, 436, 94, 133, new ArrayList<>()), // beschavingskaart 3
 		//new LocatieView(647, 436, 94, 133, new ArrayList<>()), // beschavingskaart 2
 		//new LocatieView(741, 436, 94, 133, new ArrayList<>()), // beschavingskaart 1
-		//new LocatieView(128, 260, 110, 68, new ArrayList<>()), // jacht
-		//new LocatieView(91, 476, 82, 90, new ArrayList<>()), // huttegel 1
-		//new LocatieView(175, 476, 82, 90, new ArrayList<>()), // huttegel 2
-		//new LocatieView(259, 476, 82, 90, new ArrayList<>()), // huttegel 3
-		//new LocatieView(343, 476, 82, 90, new ArrayList<>()), // huttegel 4
 	}
 }

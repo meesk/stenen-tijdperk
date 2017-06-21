@@ -2,12 +2,16 @@ package domainlayer;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import domainlayer.huttegels.HuttegelFactory;
 import domainlayer.locaties.LocatieFactory;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
 import domainlayer.spoor.Puntenspoor;
@@ -28,12 +32,30 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	private ISpoor voedselSpoor;
 	private ISpoor puntenSpoor;
 	private ILocatie laatstGekozenLcatie;
+	private List<IHuttegel>[] huttegels;
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
 		locaties = LocatieFactory.getInstance().getLocaties();
 		voedselSpoor = new Voedselspoor();
 		puntenSpoor = new Puntenspoor();
+		initHuttegels();
+	}
+	
+	private void initHuttegels() {
+		huttegels = new List[4];
+		for (int i = 0; i < 4; i++) {
+			huttegels[i] = new ArrayList<>();
+		}
+		List<IHuttegel> huttegels = HuttegelFactory.getInstance().getHuttegels();
+		Collections.shuffle(huttegels);
+		for (int i = 0; i < 28; i++) {
+			this.huttegels[i / 7].add(huttegels.get(i));
+		}
+	}
+	
+	public List<IHuttegel>[] getHuttegels() {
+		return huttegels;
 	}
 
 	public void setLaatstGekozenLocatie(ILocatie locatie) {
@@ -77,6 +99,13 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	@Override
 	public ISpoor[] getSporen() throws RemoteException {
 		return new ISpoor[] { puntenSpoor, voedselSpoor };
+	}
+
+	@Override
+	public IHuttegel popHuttegel(int index) throws RemoteException {
+		IHuttegel huttegel = huttegels[index].get(0);
+		huttegels[index].remove(0);
+		return huttegel;
 	}
 
 }

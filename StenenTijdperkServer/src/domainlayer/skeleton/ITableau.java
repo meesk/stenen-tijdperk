@@ -59,5 +59,7 @@ public interface ITableau extends Remote {
 	
 	public void setBetaalt(boolean betaalt) throws RemoteException;
 
+	public void geefHuttegel(IHuttegel huttegel) throws RemoteException;
+
 }
 

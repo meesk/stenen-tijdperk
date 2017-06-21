@@ -1,6 +1,7 @@
 package domainlayer.huttegels;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
@@ -10,13 +11,13 @@ import domainlayer.skeleton.huttegels.IHuttegel;
  * @author	Erwin Olie, s1103026
  * @version	0.1
  */
-public class HuttegelStandaard implements IHuttegel {
+public class HuttegelStandaard extends UnicastRemoteObject implements IHuttegel {
 
 	private String asset;
 	private int waarde;
 	private Middel[] middelen;
 
-	public HuttegelStandaard(String asset, Middel... middelen) {
+	public HuttegelStandaard(String asset, Middel... middelen) throws RemoteException {
 		this.asset = asset;
 		this.middelen = middelen;
 	}

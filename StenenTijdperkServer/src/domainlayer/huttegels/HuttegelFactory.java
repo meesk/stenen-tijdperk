@@ -1,5 +1,6 @@
 package domainlayer.huttegels;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class HuttegelFactory {
 	private static HuttegelFactory instance;
 	private List<IHuttegel> huttegels;
 
-	public HuttegelFactory() {
+	public HuttegelFactory() throws RemoteException {
 		huttegels = new ArrayList<IHuttegel>();
 		huttegels.add(new HuttegelVrij("vrij/01.png", 1, 7));
 		huttegels.add(new HuttegelVrij("vrij/02.png", 1, 7));
@@ -47,10 +48,18 @@ public class HuttegelFactory {
 		huttegels.add(new HuttegelStandaard("standaard/16.png", Middel.HOUT, Middel.LEEM, Middel.LEEM));
 		huttegels.add(new HuttegelStandaard("standaard/17.png", Middel.HOUT, Middel.HOUT, Middel.LEEM));
 	}
+	
+	public List<IHuttegel> getHuttegels() {
+		return huttegels;
+	}
 
 	public static HuttegelFactory getInstance() {
 		if (instance == null) {
-			instance = new HuttegelFactory();
+			try {
+				instance = new HuttegelFactory();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		return instance;
 	}

@@ -301,4 +301,10 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public IStamlid popStamlid() throws RemoteException {
 		return (IStamlid)((LinkedList)stamleden).pop();
 	}
+
+	@Override
+	public void geefHuttegel(IHuttegel huttegel) throws RemoteException {
+		huttegels.add(huttegel);
+		notifyObservers();
+	}
 }

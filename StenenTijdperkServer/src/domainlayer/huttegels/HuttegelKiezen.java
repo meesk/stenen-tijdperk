@@ -1,6 +1,7 @@
 package domainlayer.huttegels;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
@@ -9,13 +10,13 @@ import domainlayer.skeleton.huttegels.IHuttegel;
  * @author	Erwin Olie, s1103026
  * @version	0.1
  */
-public class HuttegelKiezen implements IHuttegel {
+public class HuttegelKiezen extends UnicastRemoteObject implements IHuttegel {
 
 	private String asset;
 	private int aantal;
 	private int soorten;
 	
-	public HuttegelKiezen(String asset, int aantal, int soorten){
+	public HuttegelKiezen(String asset, int aantal, int soorten) throws RemoteException {
 		this.asset = asset;
 		this.aantal = aantal;
 		this.soorten = soorten;
