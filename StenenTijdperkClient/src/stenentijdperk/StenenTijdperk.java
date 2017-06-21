@@ -80,7 +80,7 @@ public class StenenTijdperk extends Application {
 		//lobbyController.registerSpelView(spelView);
 
 		// Het voorbereiden en tonen van de stage.
-		eindView.show();
+		lobbyView.show();
 	}
 
 	public static ISpel getSpel() {
