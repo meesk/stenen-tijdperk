@@ -50,7 +50,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		this(false, model);
 	}
 
-	public TableauView(boolean large, ITableau model) {		
+	public TableauView(boolean large, ITableau model) {
 		try {
 			UnicastRemoteObject.exportObject(this, 0);
 		} catch (RemoteException e) {
@@ -80,12 +80,12 @@ public class TableauView extends StackPane implements ITableauObserver {
 					e.printStackTrace();
 				}
 			}
-			
+
 			imageView.setFitHeight(image.getHeight() / 4 * scale);
 			imageView.setFitWidth(image.getWidth() / 4 * scale);
 
 			this.getChildren().add(imageView);
-			
+
 			achtergrond = imageView;
 		}
 
@@ -136,7 +136,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		middelPane = new Pane();
 		middelPane.setPrefWidth(this.getWidth());
 		middelPane.setPrefHeight(this.getHeight());
-		
+
 		this.getChildren().add(middelPane);
 
 		naam = new Label();
@@ -151,7 +151,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
-	
+
 	private void tekenTableau(ITableau tableau) throws RemoteException {
 		achtergrond.setEffect(null);
 		switch (tableau.getSpeler().getKleur()) {
@@ -169,7 +169,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
-	
+
 	private void tekenStamleden(ITableau tableau) throws RemoteException {
 		middelPane.getChildren().clear();
 		for (int i = 0; i < tableau.getStamleden().size(); i++) {
@@ -180,11 +180,11 @@ public class TableauView extends StackPane implements ITableauObserver {
 			imageView.setFitHeight(image.getHeight() * scale);
 			imageView.setFitWidth(image.getWidth() * scale);
 			imageView.relocate(100 * scale + i * 30 * scale, 0);
-			
+
 			middelPane.getChildren().add(imageView);
 		};
 	}
-	
+
 	private void tekenGereedschap(ITableau tableau) throws RemoteException {
 		int[] gereedschap = tableau.getGereedschap();
 		boolean[] gereedschapGebruikt = tableau.getGereedschapGebruikt();
@@ -193,7 +193,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
 		}
 	}
-	
+
 	private void tekenHuttegels(ITableau tableau) throws RemoteException {
 		List<IHuttegel> huttegels = tableau.getHuttegels();
 		for (int i = 0; i < huttegels.size(); i++) {
@@ -204,7 +204,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
-	
+
 	private void tekenNaam(ITableau tableau) throws RemoteException {
 		naam.setStyle("-fx-font-color:" + tableau.getSpeler().getKleur() + ";");
 		naam.setText(tableau.getSpeler().getNaam());
