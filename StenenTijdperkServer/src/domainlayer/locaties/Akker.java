@@ -2,19 +2,10 @@ package domainlayer.locaties;
 
 import java.awt.Point;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import domainlayer.Speelbord;
-import domainlayer.Stamlid;
-import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpeler;
-import domainlayer.skeleton.IStamlid;
-import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.spoor.ISpoor;
-import domainlayer.spoor.Voedselspoor;
 import stenentijdperk.StenenTijdperk;
 
 /**

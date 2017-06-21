@@ -46,10 +46,12 @@ public class BeschavingskaartExtraKaart extends Beschavingskaart {
 
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

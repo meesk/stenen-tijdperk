@@ -14,15 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
-import domainlayer.skeleton.ITableau;
-import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
 import presentationlayer.skeleton.ISpelObserver;
@@ -43,6 +40,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private ISpeler beurtSpeler;
 	private Speelbord speelbord;
 
+	@Override
 	public Speelbord getSpeelbord() {
 		return speelbord;
 	}
@@ -119,10 +117,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return winnaarBepaald;
 	}
 
+	@Override
 	public DobbelsteenWorp getDobbelsteenWorp() {
 		return dobbelsteenWorp;
 	}
 
+	@Override
 	public void opslaan() throws IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("spel.ser")));
 		oos.writeObject(this);
@@ -154,14 +154,17 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return aangegevenSpelers;
 	}
 
+	@Override
 	public boolean getStart() {
 		return this.klaarVoorStart;
 	}
 
+	@Override
 	public List<ISpeler> getSpelerLijst() {
 		return this.spelers;
 	}
 
+	@Override
 	public void checkSpelers() throws RemoteException {
 		int ready = 0;
 
@@ -293,6 +296,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	@Override
 	public void fases() throws RemoteException {
 		switch (status) {
 		case PLAATSEN_STAMLEDEN:
@@ -432,10 +436,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		voeden = b;
 	}
 
+	@Override
 	public boolean getVoeden() {
 		return voeden;
 	}
 
+	@Override
 	public void registerObserver(ISpelObserver observer) throws RemoteException {
 		observers.add(observer);
 		notifyObservers();

@@ -51,10 +51,12 @@ public class Voedselspoor extends UnicastRemoteObject implements ISpoor {
 
 
 
+	@Override
 	public Map<String, Integer> getMarkeerstenen() {
 		return markeerstenen;
 	}
 
+	@Override
 	public int getProductie(ISpeler speler) throws RemoteException {
 		return markeerstenen.get(speler.getKleur());
 	}

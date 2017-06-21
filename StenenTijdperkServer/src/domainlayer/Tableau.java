@@ -15,8 +15,6 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
-import domainlayer.spoor.Puntenspoor;
-import presentationlayer.TableauView;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
@@ -60,10 +58,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		gereedschapGebruikt = new boolean[] { false, false, false };
 	}
 
+	@Override
 	public void ontvangMiddel(Middel middel) {
 		ontvangMiddelen(middel, 1);
 	}
 
+	@Override
 	public void ontvangMiddelen(Middel middel, int aantal) {
 		middelen.put(middel, middelen.get(middel) + aantal);
 	}
@@ -72,10 +72,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		stamleden.add(stamlid);
 	}
 
+	@Override
 	public void gebruikStamlid(Stamlid stamlid) {
 		stamleden.remove(stamlid);
 	}
 
+	@Override
 	public List<IStamlid> getStamleden(){
 		return stamleden;
 	}
@@ -84,6 +86,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		kaarten.add(kaart);
 	}
 
+	@Override
 	public void notifyObservers() {
 		for (ITableauObserver observer : observers) {
 			try {
@@ -94,15 +97,18 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		}
 	}
 
+	@Override
 	public void krijgStamlid() throws RemoteException {
 		Stamlid s = new Stamlid(speler);
 		stamleden.add(s);
 	}
 
+	@Override
 	public void ontvangStamleden(List<IStamlid> stamleden) {
 		this.stamleden.addAll(stamleden);
 	}
 
+	@Override
 	public int getTotaalGereedschap() {
 		int totaal = 0;
 		for (int aantal : gereedschap) {
@@ -111,6 +117,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return totaal;
 	}
 
+	@Override
 	public void verhoogGereedschap() {
 		int index = gereedschap.length - 1, totaal = 0;
 		for (int i = gereedschap.length - 1; i >= 0; i--) {
@@ -127,6 +134,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		notifyObservers();
 	}
 
+	@Override
 	public void geefGereedschapFiche() {
 		//
 		verhoogGereedschap();
@@ -155,6 +163,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 		notifyObservers();
 	}
+	@Override
 	public void resetGereedschapStatus() throws RemoteException {
 		for(int i = 0; i < getGereedschapGebruikt().length; i++)
 			gereedschapGebruikt[i] = false;
@@ -176,6 +185,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	 * @return boolean true (stamleden gevoed), false (stamleden niet gevoed)
 	 * @throws RemoteException
 	 */
+	@Override
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException{
 
 	    Integer aantalMiddelen = 0;
@@ -224,6 +234,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return true;
 	}
 
+	@Override
 	public boolean verliesPunten(){
 /*		Puntenspoor puntenSpoor = (Puntenspoor)speler.getSpel().getSpeelbord().getPuntenspoor();
 		try {
@@ -258,6 +269,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return speler;
 	}
 
+	@Override
 	public Map<Middel, Integer> getMiddelen() {
 		return middelen;
 	}
@@ -266,6 +278,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return kaarten;
 	}
 
+	@Override
 	public List<IHuttegel> getHuttegels() {
 		return huttegels;
 	}
@@ -274,10 +287,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return observers;
 	}
 	
+	@Override
 	public void setBetaalt(boolean betaalt){
 		this.heeftBetaalt = betaalt;
 	}
 	
+	@Override
 	public boolean getBetaalt(){
 		return heeftBetaalt;
 	}

@@ -9,7 +9,6 @@ package domainlayer.beschavingskaart;
 
 import java.rmi.RemoteException;
 
-import domainlayer.Tableau;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
@@ -51,10 +50,12 @@ public class BeschavingskaartGereedschapFiche extends Beschavingskaart {
 		this.status = status;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

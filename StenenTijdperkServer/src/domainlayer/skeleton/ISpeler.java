@@ -5,10 +5,8 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 import domainlayer.Spel;
-import domainlayer.Tableau;
 import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.locaties.ILocatie;
-import javafx.scene.paint.Color;
 
 /**
  * ISpeler.java

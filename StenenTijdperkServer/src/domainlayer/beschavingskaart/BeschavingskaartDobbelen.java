@@ -16,7 +16,6 @@ import stenentijdperk.StenenTijdperk;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
-import domainlayer.Stamlid;
 import domainlayer.Tableau;
 
 public class BeschavingskaartDobbelen extends Beschavingskaart {
@@ -72,14 +71,17 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 		return status;
 	}
 
+	@Override
 	public void setStatus(BeschavingskaartStatus status){
 		this.status = status;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

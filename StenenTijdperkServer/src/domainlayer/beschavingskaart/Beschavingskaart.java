@@ -41,9 +41,11 @@ public abstract class Beschavingskaart extends Locatie {
 
 	public abstract BeschavingskaartStatus getStatus();
 	public abstract void setStatus(BeschavingskaartStatus status);
+	@Override
 	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
 	public abstract int getKosten();
 
+	@Override
 	public void betaalMiddelen(){
 
 	}

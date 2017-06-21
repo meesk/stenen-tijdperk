@@ -39,6 +39,7 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 
 
 	/** {@inheritDoc} */
+	@Override
 	public void werp(int aantal) throws RemoteException {
 		// Het werpen van het aantal dobbelstenen.
 		for (int i = 0; i < aantal; i++) {
@@ -53,11 +54,13 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public void addObserver(IDobbelsteenWorpObserver view) throws RemoteException {
 		views.add(view);
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public void notifyObservers() throws RemoteException {
 		for (IDobbelsteenWorpObserver view : views) {
 			view.modelChanged(this);
@@ -65,10 +68,12 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public IDobbelsteen[] getDobbelstenen() {
 		return dobbelstenen;
 	}
 
+	@Override
 	public int getTotaal() throws RemoteException {
 		for (IDobbelsteen dobbelsteen : dobbelstenen) {
 			totaal += dobbelsteen.getOgen();

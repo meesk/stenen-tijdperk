@@ -13,7 +13,6 @@ package domainlayer.beschavingskaart;
 
 import java.rmi.RemoteException;
 
-import domainlayer.Tableau;
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
@@ -64,6 +63,7 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 		this.status = status;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
@@ -72,6 +72,7 @@ public class BeschavingskaartGereedschap extends Beschavingskaart {
 		return waarde;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

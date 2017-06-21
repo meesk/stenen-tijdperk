@@ -43,10 +43,12 @@ public class BeschavingskaartDobbeltabel extends Beschavingskaart {
 		this.status = status;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

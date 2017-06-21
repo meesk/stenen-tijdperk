@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
-import stenentijdperk.StenenTijdperk;
 
 /**
  * BetaalView.java<br>
@@ -86,7 +85,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 			Button verliesPuntenButton = new Button("Verlies 10 punten");
 			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
 			hbox.getChildren().add(verliesPuntenButton);
-			borderPane.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
+			BorderPane.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
 			this.initStyle(StageStyle.UNDECORATED);
 		}
 
@@ -122,7 +121,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 
 		borderPane.setCenter(gridPane);
 		borderPane.setBottom(hbox);
-		borderPane.setAlignment(betalenButton, Pos.BOTTOM_RIGHT);
+		BorderPane.setAlignment(betalenButton, Pos.BOTTOM_RIGHT);
 
 		borderPane.setStyle("-fx-background-color: #6a5b34");
 

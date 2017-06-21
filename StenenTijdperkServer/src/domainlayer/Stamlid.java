@@ -20,6 +20,7 @@ public class Stamlid extends UnicastRemoteObject implements IStamlid {
 		this.speler = speler;
 	}
 
+	@Override
 	public ISpeler getSpeler() {
 		return speler;
 	}

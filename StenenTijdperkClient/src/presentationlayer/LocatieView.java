@@ -49,6 +49,7 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 
 	}
 
+	@Override
 	public void modelChanged(ILocatie model) throws RemoteException {
 
 		Platform.runLater(() -> {
