@@ -15,6 +15,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.huttegels.IHuttegel;
+import domainlayer.spoor.Puntenspoor;
 import presentationlayer.skeleton.ITableauObserver;
 
 /**
@@ -200,7 +201,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 
 	    // Check of er genoeg middelen zijn ingevult
-	    if (stamleden.size() != aantalMiddelen){
+		int aantal = stamleden.size() - speler.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(speler);
+		System.out.println("speler voedselspoor: " + speler.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(speler));
+	    if (aantal != aantalMiddelen){
 	    	return false;
 	    }
 	    
@@ -236,15 +239,14 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	@Override
 	public boolean verliesPunten(){
-/*		Puntenspoor puntenSpoor = (Puntenspoor)speler.getSpel().getSpeelbord().getPuntenspoor();
 		try {
+			Puntenspoor puntenSpoor = (Puntenspoor)speler.getSpel().getSpeelbord().getPuntenspoor();
 			puntenSpoor.verwijderPunten(speler, 10);
+
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-//		Puntenspoor puntenSpoor = speler.getSpel().getSpeelbord().getPuntenspoor();
-//		puntenSpoor.verwijderPunten(speler, 10);
+			return false;
+		}
+	
 		return true;
 	}
 

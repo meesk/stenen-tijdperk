@@ -38,28 +38,10 @@ public class Hut extends Locatie {
 		}
 		
 		aantalStamleden += tableau.getStamleden().size();
+		
 		if (aantalStamleden < 10) {
 			tableau.krijgStamlid();
 		}
-
-		// Teruggeven Stamleden
-		/*List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
-			try {
-				return s.getSpeler() == speler;
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}).collect(Collectors.toList());
-		tableau.ontvangStamleden(stamleden);
-		super.verwijderStamleden(stamleden);
-
-		// update locatie view
-		super.notifyObservers();
-
-		// update tableau view
-		tableau.notifyObservers();*/
-
 
 	}
 

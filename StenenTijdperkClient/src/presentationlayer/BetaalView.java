@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
+import stenentijdperk.StenenTijdperk;
 
 /**
  * BetaalView.java<br>
@@ -155,8 +156,8 @@ public class BetaalView extends Stage implements ITableauObserver {
 		Platform.runLater(() -> {
 			try{
 				int stamleden = model.getStamleden().size();
-//				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getProductie(model.getSpeler());
-				aantalBetalen.setText("Aantal te betalen middelen : " + (stamleden));
+				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
+				aantalBetalen.setText("Aantal te betalen middelen : " + (stamleden - voedselspoor));
 			}catch(RemoteException ex){
 				
 			}
