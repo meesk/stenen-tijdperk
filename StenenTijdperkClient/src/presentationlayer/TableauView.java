@@ -37,6 +37,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 	private ImageView[] huttegels;
 	private Label naam;
 	private Pane middelPane;
+	private Pane textPane;
 	private GridPane middelen;
 	private ImageView achtergrond;
 	private Label voedsel;
@@ -64,36 +65,24 @@ public class TableauView extends StackPane implements ITableauObserver {
 		initGereedschap();
 		initHuttegels();
 		
-		middelen = new GridPane();
+		textPane = new Pane();
+		textPane.setPrefHeight(this.getHeight());
+		textPane.setPrefWidth(this.getWidth());
 		
-		middelen.setHgap(10);
+		initMiddelen();
 		
-		voedsel = new Label();
-		hout = new Label();
-		leem = new Label();
-		steen = new Label();
-		goud = new Label();
-		
-		middelen.add(voedsel, 1, 5);
-		middelen.add(hout, 2, 5);
-		middelen.add(leem, 3, 5);
-		middelen.add(steen, 4, 5);
-		middelen.add(goud, 5, 5);
-		middelen.setAlignment(Pos.CENTER);
-		middelen.setMinHeight(10);
-		
-
 		middelPane = new Pane();
 		middelPane.setPrefWidth(this.getWidth());
 		middelPane.setPrefHeight(this.getHeight());
 
 		this.getChildren().add(middelPane);
-		this.getChildren().add(middelen);
 
 		naam = new Label();
 		naam.setFont(Font.font(36 * scale));
-		naam.setAlignment(Pos.BASELINE_RIGHT);
-		this.getChildren().add(naam);
+		naam.setLayoutX(160.0 * scale);
+		naam.setLayoutY(65.0 * scale);
+		textPane.getChildren().add(naam);
+		this.getChildren().add(textPane);
 		
 		if (scale == 0.3) {
 			initLargeTableau(model);
@@ -126,6 +115,37 @@ public class TableauView extends StackPane implements ITableauObserver {
 		}
 
 		this.getChildren().add(pane);
+	}
+	
+	private void initMiddelen(){
+		
+		middelen = new GridPane();
+		
+		middelen.setHgap(15 * scale);
+		
+		voedsel = new Label();
+		hout = new Label();
+		leem = new Label();
+		steen = new Label();
+		goud = new Label();
+		
+		voedsel.setFont(Font.font(36 * scale));
+		hout.setFont(Font.font(36 * scale));
+		leem.setFont(Font.font(36 * scale));
+		steen.setFont(Font.font(36 * scale));
+		goud.setFont(Font.font(36 * scale));
+
+		middelen.add(voedsel, 1, 0);
+		middelen.add(hout, 2, 0);
+		middelen.add(leem, 3, 0);
+		middelen.add(steen, 4, 0);
+		middelen.add(goud, 5, 0);
+		
+		middelen.setMinHeight(10 * scale);
+		middelen.setLayoutX(100.0 * scale);
+		middelen.setLayoutY(100.0 * scale);
+		textPane.getChildren().add(middelen);
+		
 	}
 	
 	private void initHuttegels() {
