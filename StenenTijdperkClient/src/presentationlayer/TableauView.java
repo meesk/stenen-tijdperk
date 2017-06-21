@@ -55,84 +55,14 @@ public class TableauView extends StackPane implements ITableauObserver {
 		
 		this.scale = scale;
 
-		if (scale == 0.3) {
-
-			largeTableau = new Stage();
-			Scene scene = new Scene(new TableauView(1.5, model));
-			largeTableau.setScene(scene);
-		}
-
-		if (true) {
-			Image image = new Image("file:assets/tableau.png");
-			if (model == null) {
-				image = new Image("file:assets/tableau_null.png");
-			}
-			ImageView imageView = new ImageView(image);
-
-			if (model != null) {
-		        try {
-					switch (model.getSpeler().getKleur()) {
-					case "Rood" : imageView.setEffect(new InnerShadow(8, Color.RED)); break;
-					case "Blauw" : imageView.setEffect(new InnerShadow(8, Color.BLUE)); break;
-					case "Geel" : imageView.setEffect(new InnerShadow(8, Color.YELLOW)); break;
-					case "Groen" : imageView.setEffect(new InnerShadow(8, Color.GREEN)); break;
-					}
-				} catch (RemoteException e) {
-					e.printStackTrace();
-				}
-			}
-
-			imageView.setFitHeight(image.getHeight() / 4 * scale);
-			imageView.setFitWidth(image.getWidth() / 4 * scale);
-
-			this.getChildren().add(imageView);
-
-			achtergrond = imageView;
-		}
+		initTableau(model);
 
 		if (model == null) {
 			return;
 		}
 
-		{
-			Pane pane = new Pane();
-
-			gereedschap = new ImageView[3];
-			for (int i = 0; i < 3; i++) {
-				Image image = new Image("file:assets/gereedschap/0.png");
-				ImageView imageView = new ImageView(image);
-
-				imageView.setFitHeight(image.getHeight() * 2 / 4 * scale);
-				imageView.setFitWidth(image.getWidth() * 2 / 4 * scale);
-				imageView.relocate(70 / 4 * scale, 35 / 4 * scale + (i * 265 / 4 * scale));
-
-				gereedschap[i] = imageView;
-
-				pane.getChildren().add(imageView);
-			}
-
-			this.getChildren().add(pane);
-		}
-
-		{
-			Pane pane = new Pane();
-
-			huttegels = new ImageView[5];
-			for (int i = 0; i < 5; i++) {
-				Image image = new Image("file:assets/huttegels/null.png");
-				ImageView imageView = new ImageView(image);
-
-				imageView.setFitHeight(image.getHeight() / 6 / 100 * 102 * scale);
-				imageView.setFitWidth(image.getWidth() / 6 / 100 * 102 * scale);
-				imageView.relocate(8 * scale + (i * 95 * scale), 200 * scale);
-
-				huttegels[i] = imageView;
-
-				pane.getChildren().add(imageView);
-			}
-
-			this.getChildren().add(pane);
-		}
+		initGereedschap();
+		initHuttegels();
 		
 		middelen = new GridPane();
 		
@@ -166,13 +96,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		this.getChildren().add(naam);
 		
 		if (scale == 0.3) {
-			Pane enlargeButton = new Pane();
-			enlargeButton.setPrefHeight(this.getPrefHeight());
-			enlargeButton.setPrefWidth(this.getPrefWidth());
-			enlargeButton.setOnMouseClicked(e -> {
-				largeTableau.show();
-			});
-			this.getChildren().add(enlargeButton);
+			initLargeTableau(model);
 		}
 
 		if (model != null) {
@@ -182,6 +106,87 @@ public class TableauView extends StackPane implements ITableauObserver {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private void initGereedschap() {
+		Pane pane = new Pane();
+
+		gereedschap = new ImageView[3];
+		for (int i = 0; i < 3; i++) {
+			Image image = new Image("file:assets/gereedschap/0.png");
+			ImageView imageView = new ImageView(image);
+
+			imageView.setFitHeight(image.getHeight() * 2 / 4 * scale);
+			imageView.setFitWidth(image.getWidth() * 2 / 4 * scale);
+			imageView.relocate(70 / 4 * scale, 35 / 4 * scale + (i * 265 / 4 * scale));
+
+			gereedschap[i] = imageView;
+
+			pane.getChildren().add(imageView);
+		}
+
+		this.getChildren().add(pane);
+	}
+	
+	private void initHuttegels() {
+		Pane pane = new Pane();
+
+		huttegels = new ImageView[5];
+		for (int i = 0; i < 5; i++) {
+			Image image = new Image("file:assets/huttegels/null.png");
+			ImageView imageView = new ImageView(image);
+
+			imageView.setFitHeight(image.getHeight() / 6 / 100 * 102 * scale);
+			imageView.setFitWidth(image.getWidth() / 6 / 100 * 102 * scale);
+			imageView.relocate(8 * scale + (i * 95 * scale), 200 * scale);
+
+			huttegels[i] = imageView;
+
+			pane.getChildren().add(imageView);
+		}
+
+		this.getChildren().add(pane);
+	}
+	
+	private void initTableau(ITableau model) {
+		Image image = new Image("file:assets/tableau.png");
+		if (model == null) {
+			image = new Image("file:assets/tableau_null.png");
+		}
+		ImageView imageView = new ImageView(image);
+
+		if (model != null) {
+	        try {
+				switch (model.getSpeler().getKleur()) {
+				case "Rood" : imageView.setEffect(new InnerShadow(8, Color.RED)); break;
+				case "Blauw" : imageView.setEffect(new InnerShadow(8, Color.BLUE)); break;
+				case "Geel" : imageView.setEffect(new InnerShadow(8, Color.YELLOW)); break;
+				case "Groen" : imageView.setEffect(new InnerShadow(8, Color.GREEN)); break;
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+
+		imageView.setFitHeight(image.getHeight() / 4 * scale);
+		imageView.setFitWidth(image.getWidth() / 4 * scale);
+
+		this.getChildren().add(imageView);
+
+		achtergrond = imageView;
+	}
+	
+	private void initLargeTableau(ITableau model) {
+		largeTableau = new Stage();
+		Scene scene = new Scene(new TableauView(1.5, model));
+		largeTableau.setScene(scene);
+		Pane enlargeButton = new Pane();
+		enlargeButton.setPrefHeight(this.getPrefHeight());
+		enlargeButton.setPrefWidth(this.getPrefWidth());
+		enlargeButton.setOnMouseClicked(e -> {
+			largeTableau.show();
+		});
+		this.getChildren().add(enlargeButton);
 	}
 
 	private void tekenTableau(ITableau tableau) throws RemoteException {

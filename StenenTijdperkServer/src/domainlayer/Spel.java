@@ -186,9 +186,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					}
 				}
 
-				LocalDate jongsteSpeler = LocalDate.MAX;
+				LocalDate jongsteSpeler = LocalDate.MIN;
 				for (int i = 0; i < spelers.size(); i++) {
-					if (spelers.get(i).getGeboorteDatum().isBefore(jongsteSpeler)) {
+					if (spelers.get(i).getGeboorteDatum().isAfter(jongsteSpeler)) {
 						jongsteSpeler = spelers.get(i).getGeboorteDatum();
 						beurtSpeler = spelers.get(i);
 						System.out.println("beurtspeler = " + beurtSpeler.getNaam());
