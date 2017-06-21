@@ -121,7 +121,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		
 		middelen = new GridPane();
 		
-		middelen.setHgap(15);
+		middelen.setHgap(15 * scale);
 		
 		voedsel = new Label();
 		hout = new Label();
@@ -141,7 +141,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		middelen.add(steen, 4, 0);
 		middelen.add(goud, 5, 0);
 		
-		middelen.setMinHeight(10);
+		middelen.setMinHeight(10 * scale);
 		middelen.setLayoutX(100.0 * scale);
 		middelen.setLayoutY(100.0 * scale);
 		textPane.getChildren().add(middelen);
