@@ -2,18 +2,10 @@ package domainlayer;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.List;
 
-import domainlayer.enums.Middel;
-import domainlayer.locaties.Akker;
-import domainlayer.locaties.Gereedschapmaker;
-import domainlayer.locaties.Hut;
-import domainlayer.locaties.Locatie;
 import domainlayer.locaties.LocatieFactory;
-import domainlayer.locaties.MiddelLocatie;
 import domainlayer.skeleton.ISpeelbord;
-import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.locaties.ILocatie;
@@ -26,22 +18,22 @@ import domainlayer.spoor.Voedselspoor;
  * Een klasse waar het speelbord wordt aangemaakt.
  *
  * @author	Erwin Olie, s1103026
- * @version	1.0
+ * @version	1.2
  */
 public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	private Spel spel;
 
 	private List<ILocatie> locaties;
-	private ISpoor[] sporen;
+	private ISpoor voedselSpoor;
+	private ISpoor puntenSpoor;
 	private ILocatie laatstGekozenLcatie;
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
 		locaties = LocatieFactory.getInstance().getLocaties();
-		sporen = new ISpoor[] {
-			new Voedselspoor(), new Puntenspoor()
-		};
+		voedselSpoor = new Voedselspoor();
+		puntenSpoor = new Puntenspoor();
 	}
 
 	public void setLaatstGekozenLocatie(ILocatie locatie) {
@@ -50,24 +42,16 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	public ILocatie getLaatstGekozenLocatie() {
 		return laatstGekozenLcatie;
-
 	}
+	
+	@Override
 	public ISpoor getVoedselspoor() {
-		for (ISpoor spoor : sporen) {
-			if (spoor instanceof Voedselspoor) {
-				return (Voedselspoor)spoor;
-			}
-		}
-		return null;
+		return voedselSpoor;
 	}
 
+	@Override
 	public ISpoor getPuntenspoor() {
-		for (ISpoor spoor : sporen) {
-			if (spoor instanceof Puntenspoor) {
-				return (Puntenspoor)spoor;
-			}
-		}
-		return null;
+		return puntenSpoor;
 	}
 	
 	public boolean heeftStamleden(ISpeler speler) throws RemoteException {
@@ -81,6 +65,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return false;
 	}
 
+	@Override
 	public List<ILocatie> getLocaties() {
 		return locaties;
 	}
@@ -91,7 +76,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	@Override
 	public ISpoor[] getSporen() throws RemoteException {
-		return sporen;
+		return new ISpoor[] { puntenSpoor, voedselSpoor };
 	}
 
 }

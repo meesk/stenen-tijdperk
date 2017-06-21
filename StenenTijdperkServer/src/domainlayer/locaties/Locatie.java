@@ -6,7 +6,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import domainlayer.Speelbord;
 import domainlayer.Stamlid;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
@@ -26,7 +25,6 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	private List<Point> cirkels;
 	protected List<IStamlid> stamleden;
 	private List<ILocatieObserver> observers;
-	protected Speelbord speelbord;
 
 	public Locatie(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
 		this.x = x;
@@ -51,12 +49,14 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		return true;
 	}
 
+	@Override
 	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
 
 	public void addObserver(LocatieView observer) {
 		observers.add(observer);
 	}
 
+	@Override
 	public void notifyObservers() {
 		for (ILocatieObserver observer : observers) {
 			try {
@@ -74,10 +74,12 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	// Nog speler specifiek maken
+	@Override
 	public List<IStamlid> getStamleden() {
 		return stamleden;
 	}
 
+	@Override
 	public List<IStamlid> getStamleden(ISpeler speler) throws RemoteException {
 
 		List<IStamlid> lijstSpelerStamleden = new ArrayList<>();
@@ -89,22 +91,27 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
 	}
 
+	@Override
 	public int getX() {
 		return x;
 	}
 
+	@Override
 	public int getY() {
 		return y;
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}
 
+	@Override
 	public int getHeight() {
 		return height;
 	}
 
+	@Override
 	public List<Point> getCirkels() {
 		return cirkels;
 	}
@@ -118,6 +125,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		stamleden.add(stamlid);
 	}
 
+	@Override
 	public void plaatsStamleden(ISpeler speler, int aantal) throws RemoteException {
 		for (int i = 0; i < aantal; i++) {
 			plaatsStamlid(speler);
@@ -125,6 +133,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		notifyObservers();
 	}
 	
+	@Override
 	public void verwijderStamlid(IStamlid stamlid) throws RemoteException {
 		int index = -1;
 		for (IStamlid s : stamleden) {
@@ -135,6 +144,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		stamleden.remove(index);
 	}
 
+	@Override
 	public void registerObserver(ILocatieObserver observer) {
 		observers.add(observer);
 	}

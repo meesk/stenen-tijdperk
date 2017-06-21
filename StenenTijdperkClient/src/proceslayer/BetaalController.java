@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 
-import domainlayer.Tableau;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import presentationlayer.BetaalView;

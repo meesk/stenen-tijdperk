@@ -6,12 +6,7 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.List;
 
-import domainlayer.Tableau;
-import domainlayer.enums.Kleur;
 import domainlayer.enums.SpelStatus;
-import presentationlayer.EindView;
-import presentationlayer.LobbyView;
-import presentationlayer.SpelView;
 import presentationlayer.skeleton.ISpelObserver;
 
 /**
@@ -51,4 +46,6 @@ public interface ISpel extends Remote {
 	public boolean getVoeden() throws RemoteException;
 
 	public SpelStatus getStatus() throws RemoteException;
+
+	public void eindeSpel() throws RemoteException;
 }

@@ -38,6 +38,7 @@ public class DobbelsteenView extends Pane implements IDobbelsteenObserver {
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public void modelChanged(IDobbelsteen model) {
 		// Het voorkomen van Thread-problemen.
 		Platform.runLater(() -> {

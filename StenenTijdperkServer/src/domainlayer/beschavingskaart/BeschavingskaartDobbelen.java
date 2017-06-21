@@ -11,11 +11,11 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
+import stenentijdperk.StenenTijdperk;
 
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
-import domainlayer.Stamlid;
 import domainlayer.Tableau;
 
 public class BeschavingskaartDobbelen extends Beschavingskaart {
@@ -46,7 +46,7 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 		//ontvangen middelen aan de hand van de gegooide ogen.
 		//int in gebruik gereedschap aanpassen
 		this.tableau.gebruikGereedschap(1);
-		int totaalOgen = this.speelbord.getSpel().getDobbelsteenWorp().getTotaal();
+		int totaalOgen = StenenTijdperk.getSpel().getDobbelsteenWorp().getTotaal();
 
 		this.tableau.ontvangMiddelen(this.getMiddel(), totaalOgen / this.getMiddel().getWaarde());
 
@@ -71,14 +71,17 @@ public class BeschavingskaartDobbelen extends Beschavingskaart {
 		return status;
 	}
 
+	@Override
 	public void setStatus(BeschavingskaartStatus status){
 		this.status = status;
 	}
 
+	@Override
 	public String getAsset() {
 		return asset;
 	}
 
+	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

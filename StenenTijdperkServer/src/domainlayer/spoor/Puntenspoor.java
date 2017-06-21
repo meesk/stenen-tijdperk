@@ -8,9 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import domainlayer.skeleton.ISpeler;
-import java.util.HashMap;
-import java.util.Map;
-import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
 import presentationlayer.skeleton.ISpoorObserver;
 
@@ -33,7 +30,7 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 		observers = new ArrayList<>();
 		initPunten();
 	}
-	
+
 	private void initPunten() {
 		punten = new Point[30+20+30+20];
 		for (int i = 0; i < 31; i++) {
@@ -60,6 +57,7 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 		markeerstenen.put(speler.getKleur(), markeerstenen.get(speler.getKleur()) + aantal);
 	}
 
+	@Override
 	public int getProductie(ISpeler speler) {
 		return markeerstenen.get(speler);
 	}
@@ -73,10 +71,11 @@ public class Puntenspoor extends UnicastRemoteObject implements ISpoor {
 	public Map<String, Integer> getMarkeerstenen() throws RemoteException {
 		return markeerstenen;
 	}
-	
+
+	@Override
 	public int getMarkeerSteen(ISpeler speler) throws RemoteException {
-		return markeerstenen.get(speler);
-		
+		return markeerstenen.get(speler.getKleur());
+
 	}
 
 	@Override

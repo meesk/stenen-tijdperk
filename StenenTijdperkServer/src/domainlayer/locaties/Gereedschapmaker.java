@@ -2,14 +2,8 @@ package domainlayer.locaties;
 
 import java.awt.Point;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import domainlayer.Stamlid;
-import domainlayer.Tableau;
 import domainlayer.skeleton.ISpeler;
-import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 
 /**
@@ -30,11 +24,11 @@ public class Gereedschapmaker extends Locatie {
 		if (gereedschap < 4) {
 			tableau.geefGereedschapFiche();
 		}
-		else if (gereedschap < 16) {
+		else if (gereedschap < 12) {
 			tableau.verhoogGereedschap();
 		}
 		// Teruggeven Stamleden
-		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+		/*List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
 			try {
 				return s.getSpeler() == speler;
 			} catch (RemoteException e) {
@@ -49,7 +43,7 @@ public class Gereedschapmaker extends Locatie {
 		tableau.notifyObservers();
 
 		// Update Views (locatie)
-		super.notifyObservers();
+		super.notifyObservers();*/
 	}
 
 }

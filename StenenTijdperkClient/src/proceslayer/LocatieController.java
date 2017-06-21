@@ -6,7 +6,6 @@ import java.util.List;
 
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
-import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.BetaalView;
@@ -65,13 +64,16 @@ public class LocatieController {
 				stamleden.add(stamlid);
 			}
 		}
+		if (stamleden.size() == 0) {
+			return; // speler heeft geen stamleden op locatie
+		}
 		spel.getDobbelsteenWorp().werp(stamleden.size());
+		model.uitvoerenActie(speler);
 		for (IStamlid stamlid : stamleden) {
 			model.verwijderStamlid(stamlid);
 		}
 		speler.getTableau().ontvangStamleden(stamleden);
 		StenenTijdperk.getSpeler().getTableau().notifyObservers();
-		model.uitvoerenActie(speler);
 		spel.fases();
 	}
 	

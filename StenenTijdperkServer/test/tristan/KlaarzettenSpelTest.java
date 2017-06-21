@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import domainlayer.Speler;
 import domainlayer.Stamlid;
 import domainlayer.Tableau;
 import domainlayer.enums.Middel;

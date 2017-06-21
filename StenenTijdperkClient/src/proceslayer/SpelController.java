@@ -1,8 +1,6 @@
 package proceslayer;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
-
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.spoor.ISpoor;
 import presentationlayer.EindView;
@@ -41,11 +39,13 @@ public class SpelController {
 	}
 
 	public void onOpslaanButtonClick() throws IOException {
-		// model.opslaan();
-		for (ISpoor spoor : model.getSpeelbord().getSporen()) {
-			spoor.verhoogPunten(StenenTijdperk.getSpeler(), 1);
-			spoor.notifyObservers();
-		}
+		model.opslaan();
+//		for (ISpoor spoor : model.getSpeelbord().getSporen()) {
+//			spoor.verhoogPunten(StenenTijdperk.getSpeler(), 1);
+//			spoor.notifyObservers();
+//		}
+
+
 		// alleen afsluitene van de applicatie nog.
 	}
 }

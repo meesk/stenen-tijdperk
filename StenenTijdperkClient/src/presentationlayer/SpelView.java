@@ -97,6 +97,7 @@ public class SpelView extends Stage implements ISpelObserver {
 		StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
 	}
 
+	@Override
 	public void modelChanged(ISpel spel) throws RemoteException {
 		Platform.runLater(() -> {
 			try {

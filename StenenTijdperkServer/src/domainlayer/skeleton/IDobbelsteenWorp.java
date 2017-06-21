@@ -20,4 +20,6 @@ public interface IDobbelsteenWorp extends Remote {
 	public void werp(int aantal) throws RemoteException;
 	/** @return	Alle dobbelstenen die onderdeel zijn van deze worp. */
 	public IDobbelsteen[] getDobbelstenen() throws RemoteException;
+	public int getTotaal() throws RemoteException;
+	public void setTotaal(int i) throws RemoteException;
 }

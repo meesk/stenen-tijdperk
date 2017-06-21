@@ -1,25 +1,20 @@
 package domainlayer;
 
 import java.rmi.RemoteException;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
-import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
-import domainlayer.beschavingskaart.Beschavingskaart;
-import domainlayer.enums.Kleur;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelerStatus;
-import domainlayer.skeleton.ISpeler;
-import javafx.scene.paint.Color;
-import presentationlayer.LobbyView;
 import presentationlayer.skeleton.ISpelObserver;
 
 /**
@@ -53,76 +48,102 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.klaar = false;
 		this.kleur = kleur;
 		tableau = new Tableau(this);
-		this.status = status.GEEN_BEURT;
+		this.status = SpelerStatus.GEEN_BEURT;
 		this.voeden = false;
 		for (ISpoor spoor : spel.getSpeelbord().getSporen()) {
 			spoor.addSpeler(this);
 		}
 	}
-	
+
+	@Override
 	public ILocatie getLaatsteLocatie() {
 		return laatsteLocatie;
 	}
-	
+
+	@Override
 	public void setLaatsteLocatie(ILocatie laatsteLocatie) {
 		this.laatsteLocatie = laatsteLocatie;
 	}
 
+	@Override
 	public int ophalenGegevens() throws RemoteException {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.
 		int stamleden = tableau.getStamleden().size(); // Hier is stamleden ook nodig inverband met de beschavingskaart.
 
-		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
+		//		List<Beschavingskaart> spelerBeschavingsKaarten = tableau.getKaarten();
 		Map<Middel, Integer> middelen = tableau.getMiddelen();
-		int puntenspoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
+		int puntenSpoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
 
-		int telling = puntenspoor +
-				middelen.get(Middel.HOUT) +
+		int telling = middelen.get(Middel.HOUT) +
 				middelen.get(Middel.LEEM) +
 				middelen.get(Middel.STEEN) +
-				middelen.get(Middel.GOUD);
-		// nog de huttegels + beschavingskaarten
+				middelen.get(Middel.GOUD) +
+				puntenSpoor;
+		// puntenspoor + berekening van beschavingskaarten nog.
 
 		return telling;
 	}
 
+	@Override
 	public int extraGegevens() throws RemoteException {
-		int stamleden = tableau.getStamleden().size(); // dit is om het aantal stamleden erbij op te tellen.
+		List<ILocatie> locaties = this.getSpel().getSpeelbord().getLocaties();
+		List<IStamlid> spelBordStamleden = new ArrayList<IStamlid>();
+		int totaalStamleden = 0;
+
+		for(ILocatie locatie : locaties){
+			spelBordStamleden.addAll(locatie.getStamleden());
+		}
+
+		for(IStamlid stamlid : spelBordStamleden){
+			if(stamlid.getSpeler().getKleur().equals(this.getKleur())){
+				totaalStamleden++;
+			}
+		}
+
+		totaalStamleden += tableau.getStamleden().size();
+
 		int totaalGereedschap = tableau.getTotaalGereedschap();
 		int granenspoor = this.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(this);
 
-		int telling =
-				stamleden +
+
+		int telling = totaalStamleden +
 				totaalGereedschap +
 				granenspoor;
 
 		return telling;
 	}
 
+	@Override
 	public String getKleur() throws RemoteException {
 		return kleur;
 	}
 
+	@Override
 	public String getNaam() {
 		return naam;
 	}
 
+	@Override
 	public LocalDate getGeboorteDatum() {
 		return geboorteDatum;
 	}
 
+	@Override
 	public boolean getSpasme() {
 		return isSpastisch;
 	}
 
-	public Spel getSpel() {
+	@Override
+	public ISpel getSpel() {
 		return spel;
 	}
 
+	@Override
 	public boolean isKlaar() {
 		return klaar;
 	}
 
+	@Override
 	public ITableau getTableau() throws RemoteException {
 		return tableau;
 	}
@@ -132,10 +153,12 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.klaar = true;
 	}
 
+	@Override
 	public void setStatus(SpelerStatus status) {
 		this.status = status;
 	}
 
+	@Override
 	public SpelerStatus getStatus() {
 		return status;
 	}

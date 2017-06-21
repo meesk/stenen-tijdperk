@@ -5,10 +5,8 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 import domainlayer.Spel;
-import domainlayer.Tableau;
 import domainlayer.enums.SpelerStatus;
 import domainlayer.skeleton.locaties.ILocatie;
-import javafx.scene.paint.Color;
 
 /**
  * ISpeler.java
@@ -32,7 +30,7 @@ public interface ISpeler extends Remote {
 
 	public ITableau getTableau() throws RemoteException;
 
-	public Spel getSpel() throws RemoteException;
+	public ISpel getSpel() throws RemoteException;
 
 	public void klaarVoorSpeler() throws RemoteException;
 

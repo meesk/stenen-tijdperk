@@ -5,7 +5,6 @@ import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.IDobbelsteen;
 import domainlayer.skeleton.IDobbelsteenWorp;
-import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import presentationlayer.skeleton.IDobbelsteenWorpObserver;
@@ -64,6 +63,7 @@ public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpObserve
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public void modelChanged(IDobbelsteenWorp model) throws RemoteException {
 		IDobbelsteen[] models = model.getDobbelstenen();
 		for (int i = 0; i < 10; i++) {

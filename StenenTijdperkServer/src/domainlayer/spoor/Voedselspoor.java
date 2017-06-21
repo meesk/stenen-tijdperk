@@ -31,7 +31,7 @@ public class Voedselspoor extends UnicastRemoteObject implements ISpoor {
 		observers = new ArrayList<>();
 		initPunten();
 	}
-	
+
 	private void initPunten() {
 		punten = new Point[11];
 		for (int i = 0; i < 11; i++) {
@@ -51,12 +51,14 @@ public class Voedselspoor extends UnicastRemoteObject implements ISpoor {
 
 
 
+	@Override
 	public Map<String, Integer> getMarkeerstenen() {
 		return markeerstenen;
 	}
 
-	public int getProductie(ISpeler speler) {
-		return markeerstenen.get(speler);
+	@Override
+	public int getProductie(ISpeler speler) throws RemoteException {
+		return markeerstenen.get(speler.getKleur());
 	}
 
 	public void verhoogProductie(ISpeler speler) throws RemoteException {
@@ -66,7 +68,7 @@ public class Voedselspoor extends UnicastRemoteObject implements ISpoor {
 
 	@Override
 	public int getMarkeerSteen(ISpeler speler) throws RemoteException {
-		return markeerstenen.get(speler);
+		return markeerstenen.get(speler.getKleur());
 	}
 
 	@Override
