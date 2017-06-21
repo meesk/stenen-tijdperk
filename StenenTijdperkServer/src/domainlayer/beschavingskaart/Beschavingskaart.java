@@ -17,15 +17,19 @@ import domainlayer.skeleton.ISpeler;
 */
 
 
-public abstract class Beschavingskaart extends Locatie {
-	public Beschavingskaart(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
-		super(x, y, width, height, cirkels);
-	}
+public class Beschavingskaart extends Locatie {	
 
 	protected String asset;
 	protected IBeschavingskaartAchtergrond achtergrond;
 	protected BeschavingskaartStatus status;
 	protected int kosten;
+	private int index;
+
+	
+	public Beschavingskaart(int x, int y, int width, int height, List<Point> cirkels, int index) throws RemoteException {
+		super(x, y, width, height, cirkels);
+		this.index = index;
+	}
 
 	public Beschavingskaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		super(-1, 436, 94, 133, null);
@@ -42,11 +46,10 @@ public abstract class Beschavingskaart extends Locatie {
 		return asset;
 	}
 
-	public abstract BeschavingskaartStatus getStatus();
-	public abstract void setStatus(BeschavingskaartStatus status);
-	@Override
-	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
-	public abstract int getKosten();
+//	public abstract BeschavingskaartStatus getStatus();
+//	public abstract void setStatus(BeschavingskaartStatus status);
+	
+//	public abstract int getKosten();
 
 	@Override
 	public void betaalMiddelen(){
@@ -55,6 +58,11 @@ public abstract class Beschavingskaart extends Locatie {
 
 	public void betalling(){
 
+	}
+	@Override
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 

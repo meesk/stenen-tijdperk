@@ -1,6 +1,11 @@
 package domainlayer.beschavingskaart;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 /**
 * @Author Alex de Bruin, s1103096
@@ -9,18 +14,18 @@ import java.rmi.RemoteException;
 * Dit is de contructor voor de dobbeltabel beschavingskaart waar een speler dobbelt en alle spelers een dobbelsteen kiezen.
 */
 
-import domainlayer.enums.BeschavingskaartStatus;
-import domainlayer.skeleton.ISpeler;
 
+public class BeschavingskaartDobbeltabel extends UnicastRemoteObject implements IBeschavingskaart {
 
-public class BeschavingskaartDobbeltabel extends Beschavingskaart {
-
+	
+	private int kosten;
+	private String asset;
+	private IBeschavingskaartAchtergrond achtergrond;
+	private BeschavingskaartStatus status;
 
 	BeschavingskaartDobbeltabel(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
-		super(asset, achtergrond, status, kosten);
 		this.achtergrond = achtergrond;
 		this.asset = asset;
-
 	}
 
 	@Override

@@ -11,7 +11,7 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.enums.Beschaving;
 
-public class BeschavingskaartZand implements IBeschavingskaartAchtergrond{
+public class BeschavingskaartZand implements IBeschavingskaartAchtergrond {
 
 
 	private int factor;
@@ -23,4 +23,4 @@ public class BeschavingskaartZand implements IBeschavingskaartAchtergrond{
 
 	}
 
-	}
+}

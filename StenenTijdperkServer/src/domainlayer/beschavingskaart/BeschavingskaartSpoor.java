@@ -14,21 +14,27 @@ import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.spoor.ISpoor;
 import stenentijdperk.StenenTijdperk;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class BeschavingskaartSpoor extends Beschavingskaart{
+public class BeschavingskaartSpoor extends UnicastRemoteObject implements IBeschavingskaart{
 
 	private int waarde;
+	private int kosten;
+	private BeschavingskaartStatus status;
+	private String asset;
+	private IBeschavingskaartAchtergrond achtergrond;
 
 	BeschavingskaartSpoor(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
-	 super(asset, achtergrond, status, kosten);
 	 this.waarde = waarde;
+	 this.asset = asset;
 	}
 
 	@Override
@@ -52,17 +58,17 @@ public class BeschavingskaartSpoor extends Beschavingskaart{
 			puntenspoor.verhoogPunten(speler, 1);
 		}
 		// verwijderen stamleden
-		ITableau tableau = speler.getTableau();
-		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
-			try {
-				return s.getSpeler() == speler;
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}).collect(Collectors.toList());
-		tableau.ontvangStamleden(stamleden);
-		super.verwijderStamleden(stamleden);
+//		ITableau tableau = speler.getTableau();
+//		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+//			try {
+//				return s.getSpeler() == speler;
+//			} catch (RemoteException e) {
+//				e.printStackTrace();
+//				return false;
+//			}
+//		}).collect(Collectors.toList());
+//		tableau.ontvangStamleden(stamleden);
+//		super.verwijderStamleden(stamleden);
 
 		// Beschavingskaart naar tableau
 		//moet denk niet hier

@@ -1,6 +1,13 @@
 package domainlayer.beschavingskaart;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
+import domainlayer.dobbelstenen.DobbelsteenWorp;
+import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.skeleton.IDobbelsteenWorp;
+import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 /**
 * @Author Alex de Bruin, s1103096
@@ -11,26 +18,21 @@ package domainlayer.beschavingskaart;
 * Dit is de constructor voor de gereedschapskaart die naast het tableau komt te liggen.
 */
 
-import java.rmi.RemoteException;
 
-import domainlayer.dobbelstenen.DobbelsteenWorp;
-import domainlayer.enums.BeschavingskaartStatus;
-import domainlayer.skeleton.IDobbelsteenWorp;
-import domainlayer.skeleton.ISpeler;
-
-
-public class BeschavingskaartGereedschap extends Beschavingskaart {
+public class BeschavingskaartGereedschap extends UnicastRemoteObject implements IBeschavingskaart {
 
 	private BeschavingskaartStatus status;
 	private int waarde;
 	private boolean naastTableau = false;
+	private int kosten;
+	private String asset;
+	private IBeschavingskaartAchtergrond achtergrond;
 	
-
-
+	
 	BeschavingskaartGereedschap(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean naastTableau) throws RemoteException{
-		super(asset, achtergrond, status, kosten );
 		this.naastTableau = naastTableau;
 		this.waarde = waarde;
+		this.asset = asset;
 
 	}
 

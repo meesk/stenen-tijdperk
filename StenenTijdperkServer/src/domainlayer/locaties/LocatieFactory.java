@@ -73,10 +73,16 @@ public class LocatieFactory {
 		locaties.add(new Gereedschapmaker(418, 280, 125, 98, Arrays.asList(
 			new Point(54, 23)
 		)));
+		// Huttegels
 		locaties.add(new HuttegelLocatie(91, 476, 82, 90, Arrays.asList(new Point(26, 18)), 0));
 		locaties.add(new HuttegelLocatie(175, 476, 82, 90, Arrays.asList(new Point(26, 18)), 1));
 		locaties.add(new HuttegelLocatie(259, 476, 82, 90, Arrays.asList(new Point(26, 18)), 2));
 		locaties.add(new HuttegelLocatie(343, 476, 82, 90, Arrays.asList(new Point(26, 18)), 3));
+		// Beschavingskaarten
+		locaties.add(new Beschavingskaart(463, 438, 85, 145, Arrays.asList(new Point(26, 18)), 0));
+		locaties.add(new Beschavingskaart(560, 438, 85, 145, Arrays.asList(new Point(26, 18)), 1));
+		locaties.add(new Beschavingskaart(653, 438, 85, 145, Arrays.asList(new Point(26, 18)), 2));
+		locaties.add(new Beschavingskaart(749, 440, 85, 145, Arrays.asList(new Point(26, 18)), 3));
 	}
 	
 	private ArrayList<Point> generatePoints(int aantal){

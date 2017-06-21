@@ -10,21 +10,28 @@ package domainlayer.beschavingskaart;
  */
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 
-public class BeschavingskaartMiddel extends Beschavingskaart {
+public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBeschavingskaart {
 
 
-	private int Waarde;
+	private int waarde;
 	private Middel[] middel;
+	private int kosten;
+	private BeschavingskaartStatus status;
+	private String asset;
+	private IBeschavingskaartAchtergrond achtergrond;
 
-	public BeschavingskaartMiddel(String asset, int Waarde,  IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, Middel... middel) throws RemoteException {
-		super(asset, achtergrond, status, kosten);
-		this.Waarde = Waarde;
+	public BeschavingskaartMiddel(String asset, int waarde,  IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, Middel... middel) throws RemoteException {
+		this.waarde = waarde;
 		this.middel = middel;
+		this.asset = asset;
 	}
 
 	@Override
@@ -53,7 +60,7 @@ public class BeschavingskaartMiddel extends Beschavingskaart {
 	}
 
 	public int getWaarde() {
-		return Waarde;
+		return waarde;
 	}
 
 	@Override

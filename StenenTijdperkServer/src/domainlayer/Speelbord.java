@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import domainlayer.beschavingskaart.BeschavingskaartFactory;
 import domainlayer.huttegels.HuttegelFactory;
 import domainlayer.locaties.LocatieFactory;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
@@ -33,6 +35,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	private ISpoor puntenSpoor;
 	private ILocatie laatstGekozenLcatie;
 	private List<IHuttegel>[] huttegels;
+	private List<IBeschavingskaart>[] beschavingskaarten;
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
@@ -40,6 +43,20 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		voedselSpoor = new Voedselspoor();
 		puntenSpoor = new Puntenspoor();
 		initHuttegels();
+		initBeschavingskaarten();
+	}
+	
+	private void initBeschavingskaarten(){
+		beschavingskaarten = new List[4];
+		for(int i = 0; i < 4; i++){
+			beschavingskaarten[i] = new ArrayList<>();
+		}
+		List<IBeschavingskaart> beschavingskaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
+		Collections.shuffle(beschavingskaarten);
+		for(int i = 0; i < 4; i++){
+			this.beschavingskaarten[i].add(beschavingskaarten.get(i));
+		}
+
 	}
 	
 	private void initHuttegels() {
@@ -56,6 +73,10 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	
 	public List<IHuttegel>[] getHuttegels() {
 		return huttegels;
+	}
+	
+	public List<IBeschavingskaart>[] getBeschavingskaarten(){
+		return beschavingskaarten;
 	}
 
 	public void setLaatstGekozenLocatie(ILocatie locatie) {

@@ -11,20 +11,27 @@ package domainlayer.beschavingskaart;
  */
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 
-public class BeschavingskaartNaarKeuze extends Beschavingskaart {
+public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IBeschavingskaart {
 
 	private boolean isNaastTableau;
 	private Middel middelen;
+	private int kosten;
+	private BeschavingskaartStatus status;
+	private String asset;
+	private IBeschavingskaartAchtergrond achtergrond;
 
 	public BeschavingskaartNaarKeuze(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean isNaastTableau, Middel middelen) throws RemoteException{
-		super(asset, achtergrond, status, kosten);
 		this.isNaastTableau = isNaastTableau;
 		this.middelen = middelen;
+		this.asset = asset;
 	}
 
 	@Override

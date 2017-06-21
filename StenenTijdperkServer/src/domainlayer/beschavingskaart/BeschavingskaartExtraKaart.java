@@ -1,9 +1,15 @@
 package domainlayer.beschavingskaart;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-/**@Author Alex de Bruin, s1103096
-*@Version 0.1
+import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.skeleton.ISpeler;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+
+/**
+* @author Alex de Bruin, s1103096
+* @version 0.1
 *
 *<br>
 * <br>
@@ -11,18 +17,18 @@ import java.rmi.RemoteException;
 */
 
 
-import domainlayer.enums.BeschavingskaartStatus;
-import domainlayer.skeleton.ISpeler;
+public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements IBeschavingskaart {
 
 
-public class BeschavingskaartExtraKaart extends Beschavingskaart {
-
-
+	private IBeschavingskaartAchtergrond achtergrond;
+	private String asset;
+	private int kosten;
+	private BeschavingskaartStatus status;
 
 	BeschavingskaartExtraKaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
-		super(asset, achtergrond, status, kosten);
 		this.achtergrond = achtergrond;
 		this.asset = asset;
+		this.kosten = kosten;
 }
 
 	@Override
