@@ -16,7 +16,6 @@ import domainlayer.skeleton.IStamlid;
 public class Stamlid extends UnicastRemoteObject implements IStamlid {
 	private ISpeler speler;
 
-
 	public Stamlid(ISpeler speler) throws RemoteException {
 		this.speler = speler;
 	}

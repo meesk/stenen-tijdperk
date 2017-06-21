@@ -53,16 +53,14 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private boolean klaarVoorStart = false;
 	private boolean voeden;
 
-	private List<ISpelObserver> lobbyObservers;
-	private List<ISpelObserver> spelViewObservers;
+	private List<ISpelObserver> observers;
 
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
 		speelbord = new Speelbord(this);
 		dobbelsteenWorp = new DobbelsteenWorp();
 
-		lobbyObservers = new ArrayList<ISpelObserver>();
-		spelViewObservers = new ArrayList<ISpelObserver>();
+		observers = new ArrayList<>();
 	}
 
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
@@ -93,8 +91,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		boolean winnaarBepaald = false;
 
-		int highest = -9999; // int mag geen null zijn en aangezien je min kan hebben in het spel, vandaar.
-		int secondHighest = -9999;
+		int highest = Integer.MIN_VALUE; // int mag geen null zijn en aangezien je min kan hebben in het spel, vandaar.
+		int secondHighest = Integer.MIN_VALUE;
 
 		for(int i = 0; i < spelers.size(); i++) {
 			if(spelerPuntenTotaal.get(spelers.get(i).getNaam()) > highest || highest == -9999) {
@@ -157,7 +155,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		if(this.spelers.size() > 1 ) {
 			for(int i = 0; i < this.spelers.size(); i++) { // zolang i kleiner is dan het aantal spelers.
-				if(this.spelers.get(i).getKlaar()) {
+				if(this.spelers.get(i).isKlaar()) {
 					ready++;
 				}
 			}
@@ -186,11 +184,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	private void notifyObservers() throws RemoteException {
-		for(ISpelObserver observer : lobbyObservers) {
-			observer.modelChanged(this);
-		}
-
-		for(ISpelObserver observer : spelViewObservers) {
+		for(ISpelObserver observer : observers) {
 			observer.modelChanged(this);
 		}
 	}
@@ -200,18 +194,18 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 *fase 2 is het spelen van het spel
 	 *fase 3 is het eind view
 	 * */
+	
+	private void geefVolgendeBeurt() {
+		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+	}
 
 	public void fases() throws RemoteException {
 
-		System.out.println("fases()");
-
-		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+		geefVolgendeBeurt();
 		for (ISpeler speler : spelers) {
 			speler.getTableau().notifyObservers();
 		}
-
-		System.out.println("beurtSpeler = " + beurtSpeler.getNaam());
-
+		
 		if(status.equals(status.PLAATSEN_STAMLEDEN)) {
 			int stamledenOpTableau = 0;
 			for(ISpeler speler : spelers) {
@@ -220,7 +214,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			if( stamledenOpTableau > 0) {
 				
 				while (beurtSpeler.getTableau().getStamleden().size() == 0) {
-					beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
+					geefVolgendeBeurt();
 				}
 				
 				
@@ -313,12 +307,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return voeden;
 	}
 
-	public void registerLobbyView(ISpelObserver observer) throws RemoteException {
-		lobbyObservers.add(observer);
-	}
-
-	public void registerSpelView(ISpelObserver observer) throws RemoteException {
-		spelViewObservers.add(observer);
+	public void registerObserver(ISpelObserver observer) throws RemoteException {
+		observers.add(observer);
+		notifyObservers();
 	}
 
 	@Override

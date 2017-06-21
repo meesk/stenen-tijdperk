@@ -39,7 +39,7 @@ public class SpelView extends Stage implements ISpelObserver {
 			throws Exception {
 
 		UnicastRemoteObject.exportObject(this, 0);
-		model.registerSpelView(this);
+		model.registerObserver(this);
 
 		Pane pane = new Pane();
 
@@ -76,37 +76,37 @@ public class SpelView extends Stage implements ISpelObserver {
 		Scene scene = new Scene(pane);
 		this.setScene(scene);
 	}
+	
+	private void toonSpelView(ISpel spel) throws RemoteException {
+		grid.add(new TableauView(true, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
+		List<ISpeler> spelers = spel.getSpelerLijst();
+		spelers.remove(StenenTijdperk.getSpeler());
+		for (int i = 1; i <= spelers.size(); i++) {
+			grid.add(new TableauView(spelers.get(i - 1).getTableau()), i, 1);
+		}
+		for (int i = 3; i > spelers.size(); i--) {
+			grid.add(new TableauView(null), i, 1);
+		}
+		this.show();
+		this.sizeToScene();
+	}
+	
+	private void toonBetaalView(ISpel spel) throws RemoteException { 
+		BetaalView bv = new BetaalView(true, false, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
+		bv.show();
+		StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
+	}
 
 	public void modelChanged(ISpel spel) throws RemoteException {
 		Platform.runLater(() -> {
 			try {
 				if (spel.getStart() && !this.isShowing()) {
-					this.setHeight(965);
-					this.setWidth(1000);
-					this.show();
-					grid.add(new TableauView(true, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
-					List<ISpeler> spelers = spel.getSpelerLijst();
-					spelers.remove(StenenTijdperk.getSpeler());
-					for (int i = 1; i <= spelers.size(); i++) {
-						grid.add(new TableauView(spelers.get(i - 1).getTableau()), i, 1);
-					}
-					for (int i = 3; i > spelers.size(); i--) {
-						grid.add(new TableauView(null), i, 1);
-					}
-					this.sizeToScene();
+					toonSpelView(spel);
 				}
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		});
-		// Open betaalview voor laatste fase
-		Platform.runLater(() -> {
-			try {
 				if (spel.getVoeden()) {
-					BetaalView bv = new BetaalView(true, false, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
-					bv.show();
-					StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
+					toonBetaalView(spel);
 				}
+
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}

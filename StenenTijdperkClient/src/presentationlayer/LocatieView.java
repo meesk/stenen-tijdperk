@@ -40,12 +40,6 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 		rectangle.setOnMouseClicked(e -> controller.onKiesLocatie());
 
 		pane = new Pane();
-		/*
-		 * for (Point point : model.getCirkels()) { Image poppetje = new
-		 * Image("file:assets/gele_poppetje.png"); ImageView imageView = new
-		 * ImageView(poppetje); imageView.relocate(point.getX(), point.getY());
-		 * pane.getChildren().add(imageView); }
-		 */
 		this.getChildren().add(pane);
 		this.getChildren().add(rectangle);
 		this.setLayoutX(model.getX());

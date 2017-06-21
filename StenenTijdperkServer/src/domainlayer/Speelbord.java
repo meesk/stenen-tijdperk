@@ -20,7 +20,7 @@ import domainlayer.spoor.Puntenspoor;
 import domainlayer.spoor.Voedselspoor;
 
 /**
- * Speelbord.java <br>
+ * Speelbord.java
  * Een klasse waar het speelbord wordt aangemaakt.
  *
  * @author	Erwin Olie, s1103026
@@ -29,7 +29,6 @@ import domainlayer.spoor.Voedselspoor;
 public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	private Spel spel;
-
 
 	private List<ILocatie> locaties;
 	private ISpoor[] sporen;

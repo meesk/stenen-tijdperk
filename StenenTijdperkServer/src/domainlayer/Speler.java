@@ -115,7 +115,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		return spel;
 	}
 
-	public boolean getKlaar() {
+	public boolean isKlaar() {
 		return klaar;
 	}
 

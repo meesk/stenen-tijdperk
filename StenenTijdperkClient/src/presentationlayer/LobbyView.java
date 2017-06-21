@@ -62,7 +62,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 		
 		UnicastRemoteObject.exportObject(this, 0);
 
-		model.registerLobbyView(this);
+		model.registerObserver(this);
 		controller.registerView(this);
 
 		BorderPane borderpane = new BorderPane();
@@ -214,6 +214,41 @@ public class LobbyView extends Stage implements ISpelObserver {
 		this.isSpastisch.setSelected(true);
 		this.geboorteDatumPicker.setValue(LocalDate.of(2015, 07, 20));
 	}
+	
+	private void updateKleuren(ISpel model) throws RemoteException {
+		for (RadioButton rb : kleurButtons) {
+			if (rb.isDisabled()) {
+				continue;
+			}
+			for (ISpeler speler : model.getSpelerLijst()) {
+				if (!speler.getKleur().equals(rb.getText())) {
+					continue;
+				}
+				rb.setDisable(true);
+				if (rb.isSelected() && !voorNaamField.isDisabled()) {
+					for (RadioButton nrb : kleurButtons) {
+						if (nrb.isDisabled()) {
+							continue;
+						}
+						nrb.fire();
+						break;
+					}
+				}
+			}
+		}
+	}
+	
+	private void updateProgress(ISpel model) throws RemoteException {
+		int aantalKlaar = 0;
+		for (ISpeler speler : model.getSpelerLijst()) {
+			if (speler.isKlaar()) {
+				aantalKlaar++;
+			}
+		}
+		
+		pb.setProgress((double) aantalKlaar / model.getSpelerLijst().size());
+		spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
+	}
 
 	public void modelChanged(ISpel model) throws RemoteException {
 		Platform.runLater(() -> {
@@ -222,39 +257,9 @@ public class LobbyView extends Stage implements ISpelObserver {
 					this.close();
 					return;
 				}
-				int aantalKlaar = 0;
-
-				for (int i = 0; i < model.getSpelerLijst().size(); i++) {
-					if (model.getSpelerLijst().get(i).getKlaar()) {
-						aantalKlaar++;
-					}
-				}
-
-				double progressIndicator = (double) aantalKlaar / model.getSpelerLijst().size();
-				pb.setProgress(progressIndicator);
-				spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
-
-				// deze code is lelijk maar werkt heel goed <3
-				for (RadioButton rb : kleurButtons) {
-					if (rb.isDisabled()) {
-						continue;
-					}
-					for (ISpeler speler : model.getSpelerLijst()) {
-						if (!speler.getKleur().equals(rb.getText())) {
-							continue;
-						}
-						rb.setDisable(true);
-						if (rb.isSelected() && !voorNaamField.isDisabled()) {
-							for (RadioButton nrb : kleurButtons) {
-								if (nrb.isDisabled()) {
-									continue;
-								}
-								nrb.fire();
-								break;
-							}
-						}
-					}
-				}
+				
+				updateProgress(model);
+				updateKleuren(model);
 
 			} catch (RemoteException e) {
 				e.printStackTrace();

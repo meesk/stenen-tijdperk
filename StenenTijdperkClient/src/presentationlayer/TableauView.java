@@ -151,66 +151,73 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
+	
+	private void tekenTableau(ITableau tableau) throws RemoteException {
+		achtergrond.setEffect(null);
+		switch (tableau.getSpeler().getKleur()) {
+		case "Rood" : achtergrond.setEffect(new InnerShadow(3, Color.RED)); break;
+		case "Blauw" : achtergrond.setEffect(new InnerShadow(3, Color.BLUE)); break;
+		case "Geel" : achtergrond.setEffect(new InnerShadow(3, Color.YELLOW)); break;
+		case "Groen" : achtergrond.setEffect(new InnerShadow(3, Color.GREEN)); break;
+		}
+		if (StenenTijdperk.getSpel().getBeurtSpeler().equals(tableau.getSpeler())) {
+			switch (tableau.getSpeler().getKleur()) {
+			case "Rood" : achtergrond.setEffect(new InnerShadow(80, Color.DARKRED)); break;
+			case "Blauw" : achtergrond.setEffect(new InnerShadow(80, Color.DARKBLUE)); break;
+			case "Geel" : achtergrond.setEffect(new InnerShadow(80, Color.DARKGOLDENROD)); break;
+			case "Groen" : achtergrond.setEffect(new InnerShadow(80, Color.DARKGREEN)); break;
+			}
+		}
+	}
+	
+	private void tekenStamleden(ITableau tableau) throws RemoteException {
+		middelPane.getChildren().clear();
+		for (int i = 0; i < tableau.getStamleden().size(); i++) {
+
+			Image image =  new Image("file:assets/stamlid_" + tableau.getSpeler().getKleur() + ".png");
+			ImageView imageView = new ImageView(image);
+
+			imageView.setFitHeight(image.getHeight() * scale);
+			imageView.setFitWidth(image.getWidth() * scale);
+			imageView.relocate(100 * scale + i * 30 * scale, 0);
+			
+			middelPane.getChildren().add(imageView);
+		};
+	}
+	
+	private void tekenGereedschap(ITableau tableau) throws RemoteException {
+		int[] gereedschap = tableau.getGereedschap();
+		boolean[] gereedschapGebruikt = tableau.getGereedschapGebruikt();
+		for (int i = 0; i < gereedschap.length; i++) {
+			this.gereedschap[i].setImage(new Image("file:assets/gereedschap/" + gereedschap[i] + ".png"));
+			this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
+		}
+	}
+	
+	private void tekenHuttegels(ITableau tableau) throws RemoteException {
+		List<IHuttegel> huttegels = tableau.getHuttegels();
+		for (int i = 0; i < huttegels.size(); i++) {
+			try {
+				this.huttegels[i % 5].setImage(new Image("file:assets/huttegels/" + huttegels.get(i).getAsset()));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void tekenNaam(ITableau tableau) throws RemoteException {
+		naam.setStyle("-fx-font-color:" + tableau.getSpeler().getKleur() + ";");
+		naam.setText(tableau.getSpeler().getNaam());
+	}
 
 	public void modelChanged(ITableau tableau) throws RemoteException {
 		Platform.runLater(() -> {
 			try {
-
-				achtergrond.setEffect(null);
-				switch (tableau.getSpeler().getKleur()) {
-				case "Rood" : achtergrond.setEffect(new InnerShadow(3, Color.RED)); break;
-				case "Blauw" : achtergrond.setEffect(new InnerShadow(3, Color.BLUE)); break;
-				case "Geel" : achtergrond.setEffect(new InnerShadow(3, Color.YELLOW)); break;
-				case "Groen" : achtergrond.setEffect(new InnerShadow(3, Color.GREEN)); break;
-				}
-				if (StenenTijdperk.getSpel().getBeurtSpeler().equals(tableau.getSpeler())) {
-					switch (tableau.getSpeler().getKleur()) {
-					case "Rood" : achtergrond.setEffect(new InnerShadow(80, Color.DARKRED)); break;
-					case "Blauw" : achtergrond.setEffect(new InnerShadow(80, Color.DARKBLUE)); break;
-					case "Geel" : achtergrond.setEffect(new InnerShadow(80, Color.DARKGOLDENROD)); break;
-					case "Groen" : achtergrond.setEffect(new InnerShadow(80, Color.DARKGREEN)); break;
-					}
-				}
-				
-				middelPane.getChildren().clear();
-				for (int i = 0; i < tableau.getStamleden().size(); i++) {
-
-					Image image =  new Image("file:assets/stamlid_" + tableau.getSpeler().getKleur() + ".png");
-					ImageView imageView = new ImageView(image);
-
-					imageView.setFitHeight(image.getHeight() * scale);
-					imageView.setFitWidth(image.getWidth() * scale);
-					imageView.relocate(100 * scale + i * 30 * scale, 0);
-					
-					middelPane.getChildren().add(imageView);
-				};
-				
-				
-				
-				int[] gereedschap = tableau.getGereedschap();
-				boolean[] gereedschapGebruikt = tableau.getGereedschapGebruikt();
-				for (int i = 0; i < gereedschap.length; i++) {
-					this.gereedschap[i].setImage(new Image("file:assets/gereedschap/" + gereedschap[i] + ".png"));
-					this.gereedschap[i].setRotate(gereedschapGebruikt[i] ? 90 : 0);
-				}
-				
-				
-
-				List<IHuttegel> huttegels = tableau.getHuttegels();
-				for (int i = 0; i < huttegels.size(); i++) {
-					try {
-						this.huttegels[i % 5].setImage(new Image("file:assets/huttegels/" + huttegels.get(i).getAsset()));
-					} catch (RemoteException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				
-				
-				
-				System.out.println(tableau.getSpeler().getKleur());
-				naam.setStyle("-fx-font-color:" + tableau.getSpeler().getKleur() + ";");
-				naam.setText(tableau.getSpeler().getNaam());
+				tekenTableau(tableau);
+				tekenStamleden(tableau);
+				tekenGereedschap(tableau);
+				tekenHuttegels(tableau);
+				tekenNaam(tableau);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
