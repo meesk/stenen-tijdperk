@@ -24,9 +24,41 @@ public class MiddelLocatie extends Locatie {
 	}
 
 	// ISpeler of Speler in uitvoerenActie() parameters?
-	/** 14 Verzamelen Middelen 
+	/** 14 Verzamelen Middelen
 	 * @throws RemoteException **/
-	public void uitvoerenActie(Speler speler) throws RemoteException {
+//	public void uitvoerenActie(Speler speler) throws RemoteException {
+//		// Teruggeven Stamleden
+//		ITableau tableau = null;
+//		try {
+//			tableau = speler.getTableau();
+//		} catch (RemoteException e1) {
+//			e1.printStackTrace();
+//		}
+//		/*List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
+//			try {
+//				return s.getSpeler() == speler;
+//			} catch (RemoteException e1) {
+//				e1.printStackTrace();
+//				return false;
+//			}
+//		}).collect(Collectors.toList());
+//		tableau.ontvangStamleden(stamleden);
+//		super.verwijderStamleden(stamleden);*/
+//
+//		// Middelen Toevoegen
+//		try {
+//			tableau.ontvangMiddelen(middel, speler.getSpel().getDobbelsteenWorp().getTotaal() / middel.getWaarde());
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//
+//		// Update Views
+//		//super.notifyObservers();
+//		//tableau.notifyObservers();
+//	}
+
+	@Override
+	public void uitvoerenActie(ISpeler speler) {
 		// Teruggeven Stamleden
 		ITableau tableau = null;
 		try {
@@ -55,10 +87,6 @@ public class MiddelLocatie extends Locatie {
 		// Update Views
 		//super.notifyObservers();
 		//tableau.notifyObservers();
-	}
-
-	@Override
-	public void uitvoerenActie(ISpeler speler) {
 		// TODO Auto-generated method stub
 	}
 }

@@ -39,13 +39,13 @@ public class SpelController {
 	}
 
 	public void onOpslaanButtonClick() throws IOException {
-		// model.opslaan();
-		for (ISpoor spoor : model.getSpeelbord().getSporen()) {
-			spoor.verhoogPunten(StenenTijdperk.getSpeler(), 1);
-			spoor.notifyObservers();
-		}
+		model.opslaan();
+//		for (ISpoor spoor : model.getSpeelbord().getSporen()) {
+//			spoor.verhoogPunten(StenenTijdperk.getSpeler(), 1);
+//			spoor.notifyObservers();
+//		}
 
-		model.eindeSpel();
+
 		// alleen afsluitene van de applicatie nog.
 	}
 }

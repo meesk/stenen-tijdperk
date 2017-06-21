@@ -18,6 +18,7 @@ import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.enums.SpelerStatus;
+import domainlayer.locaties.MiddelLocatie;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.locaties.ILocatie;
@@ -116,9 +117,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	@Override
 	public void opslaan() throws IOException {
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("spel.ser")));
-		oos.writeObject(this);
-		oos.close();
+//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("spel.ser")));
+//		oos.writeObject(this);
+//		oos.close();
+
+		for(int k = 0; k < this.spelers.size(); k++ ) {
+			System.out.println(spelers.get(k).getTableau().getMiddelen());
+		}
 	}
 
 	public void laden() throws IOException, ClassNotFoundException {
@@ -226,6 +231,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private void faseUitvoerenActie() throws RemoteException {
 		int aantalStamleden = 0;
+
 		for (ILocatie locatie : speelbord.getLocaties()) {
 			aantalStamleden += locatie.getStamleden().size();
 		}
@@ -234,6 +240,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			volgendeBeurt();
 			faseVoedenStamleden();
 			return;
+		} else {
+			
 		}
 
 		while (!speelbord.heeftStamleden(beurtSpeler)) {
