@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import presentationlayer.skeleton.ITableauObserver;
 import proceslayer.BetaalController;
 import stenentijdperk.StenenTijdperk;
@@ -75,8 +76,6 @@ public class BetaalView extends Stage implements ITableauObserver {
 		Button betalenButton = new Button("Betalen middelen");
 		betalenButton.setOnMouseClicked(e -> controller.onButtonPressed());
 
-		betalenButton.setOnAction(e -> this.close());
-
 		if (voeden) {
 			gridPane.add(voedsel, 0, 1);
 			gridPane.add(inputVoedsel, 0, 2);
@@ -88,6 +87,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
 			hbox.getChildren().add(verliesPuntenButton);
 			borderPane.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
+			this.initStyle(StageStyle.UNDECORATED);
 		}
 
 		hbox.getChildren().add(betalenButton);
@@ -107,6 +107,7 @@ public class BetaalView extends Stage implements ITableauObserver {
 		}
 
 		if (toonStamleden) {
+			betalenButton.setOnAction(e -> this.close());
 			gridPane.add(stamleden, 1, 1);
 			gridPane.add(inputStamleden, 1, 2);
 		}
