@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
+import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.locaties.ILocatie;
 
@@ -59,7 +61,7 @@ public class LocatieFactory {
 			new Point(80, 24),
 			new Point(56, 38)
 		), Middel.GOUD));
-		locaties.add(new MiddelLocatie(94, 69, 127, 220, generatePoints(40), Middel.VOEDSEL));
+		locaties.add(new MiddelLocatie(94, 80, 127, 220, generatePoints(40), Middel.VOEDSEL));
 		locaties.add(new Akker(247, 327, 75, 61, Arrays.asList(
 			new Point(28, 2)
 		)));
@@ -76,12 +78,11 @@ public class LocatieFactory {
 	
 	private ArrayList<Point> generatePoints(int aantal){
 		ArrayList<Point> points = new ArrayList<Point>();
-		int x = 5;
-		int y = 20;
+
 		for(int i = 0; i < aantal; i++){
+			int x = ThreadLocalRandom.current().nextInt(5, 120 + 1);
+			int y = ThreadLocalRandom.current().nextInt(5, 220 + 1);
 			points.add(new Point(x,y));
-			x += 5;
-			y += 10;
 		}
 		return points;
 	}

@@ -1,6 +1,9 @@
 package domainlayer.beschavingskaart;
 
+import java.awt.Point;
 import java.rmi.RemoteException;
+import java.util.List;
+
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
@@ -15,8 +18,8 @@ import domainlayer.skeleton.ISpeler;
 
 
 public abstract class Beschavingskaart extends Locatie {
-	public Beschavingskaart() throws RemoteException {
-		super(-1, -1, -1, -1, null);
+	public Beschavingskaart(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
+		super(x, y, width, height, cirkels);
 	}
 
 	protected String asset;

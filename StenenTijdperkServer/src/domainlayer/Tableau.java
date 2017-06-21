@@ -175,7 +175,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		for (Entry<Middel, Integer> entry : middelen.entrySet()) {
 			// Verwijder de middelen uit de lijst van middelen van het tableau
 		    this.middelen.replace(entry.getKey(), this.middelen.get(entry.getKey()), this.middelen.get(entry.getKey()) - entry.getValue());
-		    System.out.println("Nieuwe middelen: " + this.middelen.get(entry.getKey()));
 		}
 	}
 
@@ -202,8 +201,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	    // Check of er genoeg middelen zijn ingevult
 		int aantal = stamleden.size() - speler.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(speler);
-		System.out.println("speler voedselspoor: " + speler.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(speler));
-	    if (aantal != aantalMiddelen){
+		if (aantal != aantalMiddelen){
 	    	return false;
 	    }
 
