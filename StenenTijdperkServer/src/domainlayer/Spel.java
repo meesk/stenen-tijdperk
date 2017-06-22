@@ -160,7 +160,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 		notifyObservers();
 
-		puntenGeschiedenis.put(speler.getNaam(), new ArrayList<Integer>());
+		puntenGeschiedenis.put(speler.getKleur(), new ArrayList<Integer>());
 		return speler;
 	}
 
