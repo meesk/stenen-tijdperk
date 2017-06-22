@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 
 import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.beschavingskaart.BeschavingskaartFactory;
+import domainlayer.beschavingskaart.BeschavingskaartGras;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
@@ -86,7 +87,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public void ontvangenBeschavingskaarten(IBeschavingskaart kaart) {
-		kaarten.add(BeschavingskaartFactory.getInstance().getBeschavingskaart(1));
+		kaarten.add(kaart);
 	}
 
 	@Override
@@ -277,7 +278,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public List<IBeschavingskaart> getKaarten() {
-		return kaarten;
+			return kaarten;
 	}
 
 	@Override
@@ -307,6 +308,11 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	@Override
 	public void geefHuttegel(IHuttegel huttegel) throws RemoteException {
 		huttegels.add(huttegel);
+		notifyObservers();
+	}
+
+	public void geefBeschavingskaart(IBeschavingskaart beschavingskaart) throws RemoteException {
+		kaarten.add(beschavingskaart);
 		notifyObservers();
 	}
 }

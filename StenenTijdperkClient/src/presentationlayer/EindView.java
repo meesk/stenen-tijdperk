@@ -80,6 +80,7 @@ public class EindView extends Stage {
 //		data4.getData().add(new XYChart.Data<Number, Number>(31, 78));
 //		data4.getData().add(new XYChart.Data<Number, Number>(45, 98));
 //
+
 		// Safety type?
 	//	lineChart.getData().addAll(seriesList.get(0));
 
@@ -88,5 +89,15 @@ public class EindView extends Stage {
 		Scene scene = new Scene(vbox, 400, 400);
 		this.setTitle("Einde");
 		this.setScene(scene);
+
+//		// Safety type?
+//		lineChart.getData().addAll(seriesList.get(0));
+//
+//		vbox.getChildren().addAll(uitreiking, lineChart);
+//		vbox.setAlignment(Pos.CENTER);
+//		Scene scene = new Scene(vbox, 400, 400);
+//		this.setTitle("Einde");
+//		this.setScene(scene);
+
 	}
 }

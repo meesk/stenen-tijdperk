@@ -45,7 +45,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		initHuttegels();
 		initBeschavingskaarten();
 	}
-	
+
 	private void initBeschavingskaarten(){
 		beschavingskaarten = new List[4];
 		for(int i = 0; i < 4; i++){
@@ -58,7 +58,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		}
 
 	}
-	
+
 	private void initHuttegels() {
 		huttegels = new List[4];
 		for (int i = 0; i < 4; i++) {
@@ -70,11 +70,11 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 			this.huttegels[i / 7].add(huttegels.get(i));
 		}
 	}
-	
+
 	public List<IHuttegel>[] getHuttegels() {
 		return huttegels;
 	}
-	
+
 	public List<IBeschavingskaart>[] getBeschavingskaarten(){
 		return beschavingskaarten;
 	}
@@ -86,7 +86,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	public ILocatie getLaatstGekozenLocatie() {
 		return laatstGekozenLcatie;
 	}
-	
+
 	@Override
 	public ISpoor getVoedselspoor() {
 		return voedselSpoor;
@@ -96,7 +96,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	public ISpoor getPuntenspoor() {
 		return puntenSpoor;
 	}
-	
+
 	public boolean heeftStamleden(ISpeler speler) throws RemoteException {
 		for (ILocatie locatie : locaties) {
 			for (IStamlid stamlid : locatie.getStamleden()) {
@@ -127,6 +127,13 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		IHuttegel huttegel = huttegels[index].get(0);
 		huttegels[index].remove(0);
 		return huttegel;
+	}
+
+	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
+		IBeschavingskaart beschavingskaart = beschavingskaarten[index].get(0);
+		beschavingskaarten[index].remove(0);
+		return beschavingskaart;
+
 	}
 
 }

@@ -35,6 +35,8 @@ public interface ITableau extends Remote {
 
 	public void ontvangMiddel(Middel middel) throws RemoteException;
 
+	public void ontvangenBeschavingskaarten(IBeschavingskaart kaart) throws RemoteException;
+
 	public void notifyObservers() throws RemoteException;
 
 	public int getTotaalGereedschap() throws RemoteException;
@@ -62,6 +64,8 @@ public interface ITableau extends Remote {
 	public void setBetaalt(boolean betaalt) throws RemoteException;
 
 	public void geefHuttegel(IHuttegel huttegel) throws RemoteException;
+
+	public void geefBeschavingskaart(IBeschavingskaart beschavingskaart) throws RemoteException;
 
 	public List<IBeschavingskaart> getKaarten() throws RemoteException;
 

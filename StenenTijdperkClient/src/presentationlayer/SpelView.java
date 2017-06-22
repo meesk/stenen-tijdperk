@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ISpelObserver;
-import proceslayer.BetaalController;
+//import proceslayer.BetaalController;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
 import stenentijdperk.StenenTijdperk;
@@ -92,9 +92,9 @@ public class SpelView extends Stage implements ISpelObserver {
 	}
 	
 	private void toonBetaalView(ISpel spel) throws RemoteException { 
-		BetaalView bv = new BetaalView(true, false, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
-		bv.show();
-		StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
+		//BetaalView bv = new BetaalView(true, false, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
+		//bv.show();
+		//StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
 	}
 
 	@Override
@@ -103,6 +103,9 @@ public class SpelView extends Stage implements ISpelObserver {
 			try {
 				if (spel.getStart() && !this.isShowing()) {
 					toonSpelView(spel);
+					//String message = String.format("Je moet in totaal %d middelen betalen.", StenenTijdperk.getsp);
+					//BetaalView betaal = new BetaalView(StenenTijdperk.getSpeler().getTableau(), message, true, true, false, true);
+					//betaal.showAndWait();
 				}
 				if (spel.getVoeden()) {
 					toonBetaalView(spel);

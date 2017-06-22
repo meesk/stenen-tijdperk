@@ -66,6 +66,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		initGereedschap();
 		initHuttegels();
+		initBeschavingskaarten();
 
 		textPane = new Pane();
 		textPane.setPrefHeight(this.getHeight());
@@ -152,15 +153,17 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	private void initBeschavingskaarten() {
 		Pane pane = new Pane();
-
-		beschavingskaarten = new ImageView[1];
-		for(int i = 0; i < 1; i++) {
+		System.out.println("initBeschavingskaart wordt doorlopen");
+		beschavingskaarten = new ImageView[8];
+		for(int i = 0; i < beschavingskaarten.length; i++) {
 		Image image = new Image("file:assets/beschavingskaarten/back.png");
 		ImageView imageView = new ImageView(image);
 
-		imageView.setFitHeight(image.getHeight() / 6 / 100 * 102 * scale);
-		imageView.setFitWidth(image.getWidth() / 6 / 100 * 102 * scale);
-		imageView.relocate( 495, 35);
+		imageView.setFitHeight(image.getHeight() / 4 / 100 * 95 * scale);
+		imageView.setFitWidth(image.getWidth() / 4 / 50 * 51 * scale);
+		//imageView.relocate( 400, 35);
+		imageView.setTranslateX(360);
+		imageView.setTranslateY(18);
 
 		beschavingskaarten[i] = imageView;
 
@@ -285,9 +288,20 @@ public class TableauView extends StackPane implements ITableauObserver {
 		}
 	}
 
+
 	private void tekenBeschavingskaart(ITableau tableau) throws RemoteException {
-		for(int i = 0; i < 1; i++) {
-			this.beschavingskaarten[i].setImage(new Image("file:assets/beschavingskaarten/back.png"));
+		System.out.println("beschavingskaartenTekenen");
+		List<IBeschavingskaart> beschavingskaarten = tableau.getKaarten();
+		for(int i = 0; i < beschavingskaarten.size(); i++) {
+			System.out.println("1");
+			System.out.println(this.beschavingskaarten.length);
+			System.out.println("2");
+			System.out.println(tableau.getKaarten().size());
+			System.out.println("3");
+			System.out.println(tableau.getKaarten().get(i));
+			System.out.println("4");
+			System.out.println(tableau.getKaarten().get(i).getAsset());
+			this.beschavingskaarten[i].setImage(new Image("file:assets/beschavingskaarten/" + tableau.getKaarten().get(i).getAsset()));
 		}
 	}
 	private void tekenNaam(ITableau tableau) throws RemoteException {
@@ -312,6 +326,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 				tekenStamleden(tableau);
 				tekenGereedschap(tableau);
 				tekenHuttegels(tableau);
+				System.out.println("beschavingskaart tekenen aanroepen");
 				tekenBeschavingskaart(tableau);
 				tekenNaam(tableau);
 				tekenMiddelen(tableau);
