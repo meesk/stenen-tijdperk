@@ -70,5 +70,4 @@ public class DobbelsteenWorpView extends Pane implements IDobbelsteenWorpObserve
 			dobbelstenen[i].modelChanged(models[i]);
 		}
 	}
-
 }

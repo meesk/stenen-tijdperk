@@ -7,7 +7,7 @@ import domainlayer.skeleton.IDobbelsteen;
 
 /**
  * Dobbelsteen.java<br>
- * Het model van de Dobbelsteen.
+ * Het model van de dobbelsteen.
  *
  * @author Erwin Olie, s1103026
  * @version 1.0

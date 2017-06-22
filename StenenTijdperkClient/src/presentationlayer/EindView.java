@@ -3,14 +3,11 @@ package presentationlayer;
 import java.rmi.RemoteException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpel;
-import domainlayer.skeleton.ISpeler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -33,6 +30,11 @@ import proceslayer.SpelController;
  */
 public class EindView extends Stage {
 
+	/**
+	 * Het initialiseren van de view van het einde.
+	 * @param spelController	De controller van het spel.
+	 * @param model			    Het model van het spel.
+	 */
 	@SuppressWarnings("unchecked")
 	public EindView(SpelController spelController, ISpel model) throws RemoteException {
 
@@ -56,6 +58,7 @@ public class EindView extends Stage {
 
 		Map<String, List<Integer>> puntenGeschiedenis = model.getPuntenGeschiedenis();
 
+		@SuppressWarnings("rawtypes")
 		List<XYChart.Series> seriesList = new ArrayList<Series>();
 
 		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {

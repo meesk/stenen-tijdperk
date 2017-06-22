@@ -23,11 +23,11 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 	private int kosten;
 	private BeschavingskaartStatus status;
 
-	BeschavingskaartExtraKaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
+	BeschavingskaartExtraKaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException {
 		this.achtergrond = achtergrond;
 		this.asset = asset;
 		this.kosten = kosten;
-}
+	}
 
 	@Override
 	public int getKosten() {
