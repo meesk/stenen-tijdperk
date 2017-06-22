@@ -24,7 +24,7 @@ public class BeschavingskaartFactory {
 	private static BeschavingskaartFactory instance;
 	private List<IBeschavingskaart> beschavingskaarten;
 
-	/** Het initializeren van dit model. */
+	/** Het initialiseren van dit model. */
 	public BeschavingskaartFactory() throws RemoteException{
 		beschavingskaarten = new ArrayList<IBeschavingskaart>() {{
 

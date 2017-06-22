@@ -21,14 +21,24 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ITableauObserver;
 
+/**
+ * BetaalView.java
+ * De view van het betalen van middelen.
+ *
+ * @author Mees Kluivers, s1102358
+ * @author Erwin Olie, s1103026
+ * @version 1.0
+ */
+
 public class BetaalView extends Stage implements ITableauObserver {
 
 	private boolean minPunten;
 	private Map<String, Spinner<Integer>> spinners;
 
+	/** Het initialiseren van deze view. */
 	public BetaalView(ITableau tableau, String message, boolean voedsel, boolean grondstoffen, boolean stamleden,
 			boolean minPunten) throws RemoteException {
-		
+
 		UnicastRemoteObject.exportObject(this, 0);
 
 		this.minPunten = false;
@@ -66,9 +76,8 @@ public class BetaalView extends Stage implements ITableauObserver {
 			Button punten = new Button("-10 Punten");
 			punten.setOnAction(e -> {
 			this.minPunten = true;
-			 this.close();
-			}
-			);
+			this.close();
+			});
 			buttonBox.getChildren().add(punten);
 		}
 		context.getChildren().add(buttonBox);
@@ -127,15 +136,13 @@ public class BetaalView extends Stage implements ITableauObserver {
 	public int getGoud() {
 		return spinners.get("goud").getValue();
 	}
-	
+
 	public boolean isMinPunten() {
 		return this.minPunten;
 	}
 
 	@Override
 	public void modelChanged(ITableau model) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
 
+	}
 }

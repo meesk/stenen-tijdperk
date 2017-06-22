@@ -11,7 +11,7 @@ import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 
 /**
  * DobbelsteenWorp.java<br>
- * Het model van de DobbelsteenWorp.
+ * Het model van de dobbelsteenworp.
  *
  * @author Erwin Olie, s1103026
  * @version 1.0
