@@ -1,6 +1,7 @@
 package presentationlayer;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,16 +19,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import presentationlayer.skeleton.ITableauObserver;
 
-public class BetaalView extends Stage {
+public class BetaalView extends Stage implements ITableauObserver {
 
 	private boolean minPunten;
 	private Map<String, Spinner<Integer>> spinners;
 
 	public BetaalView(ITableau tableau, String message, boolean voedsel, boolean grondstoffen, boolean stamleden,
 			boolean minPunten) throws RemoteException {
+		
+		UnicastRemoteObject.exportObject(this, 0);
 
-		minPunten = false;
+		this.minPunten = false;
 		spinners = new HashMap<>();
 
 		VBox context = new VBox(10);
@@ -60,7 +64,11 @@ public class BetaalView extends Stage {
 		HBox buttonBox = new HBox(bevestigen);
 		if (minPunten) {
 			Button punten = new Button("-10 Punten");
-			punten.setOnAction(e -> this.minPunten = true);
+			punten.setOnAction(e -> {
+			this.minPunten = true;
+			 this.close();
+			}
+			);
 			buttonBox.getChildren().add(punten);
 		}
 		context.getChildren().add(buttonBox);
@@ -121,7 +129,13 @@ public class BetaalView extends Stage {
 	}
 	
 	public boolean isMinPunten() {
-		return minPunten;
+		return this.minPunten;
+	}
+
+	@Override
+	public void modelChanged(ITableau model) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
