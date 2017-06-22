@@ -23,7 +23,7 @@ public class DobbelsteenView extends Pane implements IDobbelsteenObserver {
 	private ImageView imageView;
 	/** De locatie van de dobbelsteen-afbeeldingen. */
 	private final String RESOURCE = "file:assets/dobbelstenen/%d.png";
-
+	
 	/** Het initialiseren van de view van de dobbelsteen. */
 	public DobbelsteenView() throws RemoteException {
 		// Maak deze klasse toegankelijk voor RMI.
@@ -32,6 +32,8 @@ public class DobbelsteenView extends Pane implements IDobbelsteenObserver {
 		// Het inladen van de image van de dobbelsteen.
 		Image image = new Image(String.format(RESOURCE, 0));
 		imageView = new ImageView(image);
+		imageView.setFitHeight(image.getHeight() * 0.75);
+		imageView.setFitWidth(image.getWidth() * 0.75);
 
 		// Het toevoegen van de image aan de pane.
 		this.getChildren().add(imageView);

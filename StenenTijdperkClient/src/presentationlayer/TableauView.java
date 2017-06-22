@@ -87,7 +87,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		textPane.getChildren().add(naam);
 		this.getChildren().add(textPane);
 
-		if (scale == 0.3) {
+		if (scale == 0.26) {
 			initLargeTableau(model);
 		}
 

@@ -37,6 +37,10 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	private List<IHuttegel>[] huttegels;
 	private IBeschavingskaart[] beschavingskaarten;
 	private List<IBeschavingskaart> kaarten;
+//	private List<IBeschavingskaart>[] beschavingskaarten;
+//	private List<IBeschavingskaart> alleKaarten;
+//	int index;
+
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
@@ -45,6 +49,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		puntenSpoor = new Puntenspoor();
 		initHuttegels();
 		initBeschavingskaarten();
+	//	this.index = 4;
 	}
 
 	public List<IBeschavingskaart> getKaarten() {
@@ -56,15 +61,17 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		beschavingskaarten = new IBeschavingskaart[4];
 		if(beschavingskaarten[1] == null) {
 			doorSchuiven();
+
 		}
 	}
 
 	public void doorSchuiven() {
 		for(int i = 0; i < 4; i++){
-			System.out.println("Kaartenworden doorgeschoven");
+			System.out.println("Kaarten worden doorgeschoven");
 			this.beschavingskaarten[i] = kaarten.get(i);
 		}
 	}
+
 
 	private void initHuttegels() {
 		huttegels = new List[4];
@@ -149,5 +156,10 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		IHuttegel huttegel = huttegels[index].get(0);
 		return huttegel;
 	}
+
+//	public void addBeschavingskaart(int index){
+//		this.beschavingskaarten[index].add(alleKaarten.get(this.index));
+//		index++;
+//	}
 
 }
