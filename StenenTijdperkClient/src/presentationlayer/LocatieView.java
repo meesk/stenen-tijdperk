@@ -83,13 +83,13 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 						pane.getChildren().add(imageView);
 					}
 				}
-				
+
 				//@@ LELIJK X2
 				int[] bLoc = new int[] { 463, 560, 653, 749 };
 				for (int i = 0; i < bLoc.length; i++) {
 					if (model.getX() == bLoc[i] && model.getY() == 438 && model.getWidth() == 85 && model.getHeight() == 145) {
 						System.out.println("beschavingskaart!" + i);
-						IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().getBeschavingskaarten()[i].get(0);
+						IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().getBeschavingskaarten()[i];
 						Image x = new Image("file:assets/beschavingskaarten/" + beschavingskaart.getAsset());
 						System.out.println("assets b " + beschavingskaart.getAsset());
 						ImageView imageView = new ImageView(x);
@@ -101,7 +101,7 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 						pane.getChildren().add(imageView);
 					}
 				}
-				
+
 				for (int i = 0; i < stamleden.size(); i++) {
 					Point point = cirkels.get(i);
 					Image poppetje = new Image("file:assets/stamlid_" + stamleden.get(i).getSpeler().getKleur() + ".png");

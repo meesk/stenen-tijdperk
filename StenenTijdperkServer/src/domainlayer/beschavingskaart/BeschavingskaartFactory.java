@@ -52,17 +52,6 @@ public class BeschavingskaartFactory {
 			add(new BeschavingskaartGereedschap("gereedschap/01.png", 2, new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("gereedschap/02.png", 3, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("gereedschap/03.png", 4, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
-			add(new BeschavingskaartGereedschapFiche("gereedschap/nieuw/01.png", new BeschavingskaartGras(Symbool.KUNST), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/01.png", new BeschavingskaartGras(Symbool.SCHRIFT), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/02.png", new BeschavingskaartGras(Symbool.ZONNEWIJZER), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/05.png", new BeschavingskaartGras(Symbool.WIEL), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/10.png", new BeschavingskaartGras(Symbool.POTTENBAKKEN), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/03.png", new BeschavingskaartZand(1, Beschaving.HUTTENBOUWERS), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/04.png", new BeschavingskaartZand(2, Beschaving.BOEREN), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/06.png", new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/07.png", new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/08.png", new BeschavingskaartZand(1, Beschaving.BOEREN), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartDobbeltabel("dobbel/09.png", new BeschavingskaartZand(2, Beschaving.HUTTENBOUWERS), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartNaarKeuze("grondstof/keuze/01.png", new BeschavingskaartGras(Symbool.MEDICIJNEN), BeschavingskaartStatus.VRIJ, 0, false, null));
 		}};
 	}

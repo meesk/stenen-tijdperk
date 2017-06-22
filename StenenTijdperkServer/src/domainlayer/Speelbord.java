@@ -35,7 +35,8 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	private ISpoor puntenSpoor;
 	private ILocatie laatstGekozenLcatie;
 	private List<IHuttegel>[] huttegels;
-	private List<IBeschavingskaart>[] beschavingskaarten;
+	private IBeschavingskaart[] beschavingskaarten;
+	private List<IBeschavingskaart> kaarten;
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
@@ -46,18 +47,23 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		initBeschavingskaarten();
 	}
 
-
+	public List<IBeschavingskaart> getKaarten() {
+		return kaarten;
+	}
 	private void initBeschavingskaarten(){
-		beschavingskaarten = new List[4];
-		for(int i = 0; i < 4; i++){
-			beschavingskaarten[i] = new ArrayList<>();
+		kaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
+		Collections.shuffle(kaarten);
+		beschavingskaarten = new IBeschavingskaart[4];
+		if(beschavingskaarten[1] == null) {
+			doorSchuiven();
 		}
-		List<IBeschavingskaart> beschavingskaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
-		Collections.shuffle(beschavingskaarten);
-		for(int i = 0; i < 4; i++){
-			this.beschavingskaarten[i].add(beschavingskaarten.get(i));
-		}
+	}
 
+	public void doorSchuiven() {
+		for(int i = 0; i < 4; i++){
+			System.out.println("Kaartenworden doorgeschoven");
+			this.beschavingskaarten[i] = kaarten.get(i);
+		}
 	}
 
 	private void initHuttegels() {
@@ -76,7 +82,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return huttegels;
 	}
 
-	public List<IBeschavingskaart>[] getBeschavingskaarten(){
+	public IBeschavingskaart[] getBeschavingskaarten(){
 		return beschavingskaarten;
 	}
 
@@ -132,8 +138,9 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 
 	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
-		IBeschavingskaart beschavingskaart = beschavingskaarten[index].get(0);
-		beschavingskaarten[index].remove(0);
+		IBeschavingskaart beschavingskaart = beschavingskaarten[index];
+		beschavingskaarten[index] = null;
+		kaarten.remove(index);
 		return beschavingskaart;
 	}
 

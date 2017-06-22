@@ -15,7 +15,7 @@ public interface ISpeelbord extends Remote {
 	public ISpoor[] getSporen() throws RemoteException;
 	public ISpoor getPuntenspoor() throws RemoteException;
 	public List<IHuttegel>[] getHuttegels() throws RemoteException;
-	public List<IBeschavingskaart>[] getBeschavingskaarten() throws RemoteException;
+	public IBeschavingskaart[] getBeschavingskaarten() throws RemoteException;
 	public IHuttegel popHuttegel(int index) throws RemoteException;
 	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException;
 	public IHuttegel getHuttegel(int index) throws RemoteException;
