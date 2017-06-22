@@ -75,7 +75,6 @@ public class StenenTijdperk extends Application {
 		// Het definieren van de views
 		LobbyView lobbyView = new LobbyView(lobbyController, spel);
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, spel.getDobbelsteenWorp(), spel);
-		EindView eindView = new EindView(spelController, spel);
 
 		//lobbyController.registerSpelView(spelView);
 

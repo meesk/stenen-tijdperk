@@ -17,7 +17,6 @@ public class BeschavingskaartLocatie extends Locatie{
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
