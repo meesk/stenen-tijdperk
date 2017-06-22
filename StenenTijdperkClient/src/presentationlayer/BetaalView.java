@@ -87,8 +87,7 @@ public class BetaalView extends Stage {
 
 		// Maak de relevante spinner aan
 		Spinner<Integer> spinner = new Spinner<Integer>();
-		SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, hoeveelheid,
-				0);
+		SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, hoeveelheid, 0);
 		spinner.setValueFactory(valueFactory);
 
 		box.getChildren().add(spinner);
@@ -120,7 +119,7 @@ public class BetaalView extends Stage {
 	public int getGoud() {
 		return spinners.get("goud").getValue();
 	}
-
+	
 	public boolean isMinPunten() {
 		return minPunten;
 	}

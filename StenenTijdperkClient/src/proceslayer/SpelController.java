@@ -1,7 +1,11 @@
 package proceslayer;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+
 import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.spoor.ISpoor;
 import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
@@ -39,13 +43,14 @@ public class SpelController {
 	}
 
 	public void onOpslaanButtonClick() throws IOException {
-		model.opslaan();
+		view = new EindView(this, model);
+		this.view.show();
+		
+		//model.opslaan();
 //		for (ISpoor spoor : model.getSpeelbord().getSporen()) {
 //			spoor.verhoogPunten(StenenTijdperk.getSpeler(), 1);
 //			spoor.notifyObservers();
 //		}
-
-
 		// alleen afsluitene van de applicatie nog.
 	}
 }

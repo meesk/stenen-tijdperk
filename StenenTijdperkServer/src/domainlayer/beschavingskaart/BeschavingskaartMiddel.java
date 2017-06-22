@@ -2,11 +2,10 @@ package domainlayer.beschavingskaart;
 
 /**
  * @author Alex de Bruin, s1103096
- * @version 0.1
+ * @author Enzo Campfens, s1102421
+ * @version 0.2
  *
- * <br>
-* <br>
-* dit is de veelvoudige klassen die voedsel en grondstoffen die op de kaart staan aan de speler geven.
+ * dit is de veelvoudige klassen die voedsel en grondstoffen die op de kaart staan aan de speler geven.
  */
 
 import java.rmi.RemoteException;
@@ -22,13 +21,13 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 
 
 	private int waarde;
-	private Middel[] middel;
+	private Middel middel;
 	private int kosten;
 	private BeschavingskaartStatus status;
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
 
-	public BeschavingskaartMiddel(String asset, int waarde,  IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, Middel... middel) throws RemoteException {
+	public BeschavingskaartMiddel(String asset, int waarde,  IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, Middel middel) throws RemoteException {
 		this.waarde = waarde;
 		this.middel = middel;
 		this.asset = asset;
@@ -40,8 +39,12 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
-
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		
+		System.out.println("*** beschavingskaartmiddel test ***");
+		System.out.println("Aantal : " + waarde + ", middel : " + middel);
+		
+		speler.getTableau().ontvangMiddelen(middel, waarde);
 	}
 
 	@Override
@@ -66,10 +69,6 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 	@Override
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
-	}
-
-	public Middel[] getMiddel() {
-		return middel;
 	}
 
 }

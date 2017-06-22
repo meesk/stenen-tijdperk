@@ -8,16 +8,17 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 /**
-* @Author Alex de Bruin, s1103096
-* @Version 0.1
+* BeschavingskaartDobbeltabel.java
+* De klasse waarin deze specifieke kaart wordt aangemaakt.
 *
-* Dit is de contructor voor de dobbeltabel beschavingskaart waar een speler dobbelt en alle spelers een dobbelsteen kiezen.
+* @author Alex de Bruin, s1103096
+* @author Tristan Caspers, s1102755
+* @version 1.0
 */
-
 
 public class BeschavingskaartDobbeltabel extends UnicastRemoteObject implements IBeschavingskaart {
 
-	
+
 	private int kosten;
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
@@ -35,8 +36,8 @@ public class BeschavingskaartDobbeltabel extends UnicastRemoteObject implements 
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
+		// Sequentiediagram 16
 	}
-
 
 	@Override
 	public BeschavingskaartStatus getStatus() {
