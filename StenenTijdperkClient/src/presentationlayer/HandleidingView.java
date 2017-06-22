@@ -38,7 +38,7 @@ public class HandleidingView extends Stage {
 
 		// Zet de titel van de PrimaryStage en dat de PrimaryStage altijd on top moet zijn.
 		// en daarna wordt de Scene in de PrimaryStage gezet.
-		this.setTitle("Handleiding");
+		this.setTitle("Het Stenen Tijdperk: Handleiding");
 		this.setAlwaysOnTop(true);
 		this.setScene(scene);
 	}

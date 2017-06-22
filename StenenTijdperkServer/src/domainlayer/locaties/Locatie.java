@@ -16,7 +16,7 @@ import presentationlayer.skeleton.ILocatieObserver;
 /**
  * @author Erwin Olie, s1103026
  * @author Tristan Caspers, s1102755
- * @version	0.2
+ * @version	1.0
  */
 public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
@@ -132,7 +132,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		}
 		notifyObservers();
 	}
-	
+
 	@Override
 	public void verwijderStamlid(IStamlid stamlid) throws RemoteException {
 		int index = -1;
