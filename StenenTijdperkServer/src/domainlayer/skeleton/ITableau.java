@@ -14,7 +14,7 @@ import presentationlayer.skeleton.ITableauObserver;
 
 /**
  * @author Erwin Olie, s1103026
- * @version 0.3
+ * @version 1.0
  */
 
 public interface ITableau extends Remote {
@@ -68,6 +68,9 @@ public interface ITableau extends Remote {
 	public void geefBeschavingskaart(IBeschavingskaart beschavingskaart) throws RemoteException;
 
 	public List<IBeschavingskaart> getKaarten() throws RemoteException;
+
+	void geefBeschavingskaarten(IBeschavingskaart kaart) throws RemoteException;
+
 
 }
 

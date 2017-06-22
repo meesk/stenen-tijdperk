@@ -20,9 +20,11 @@ public class HuttegelLocatie extends Locatie {
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-		IHuttegel huttegel = StenenTijdperk.getSpel().getSpeelbord().popHuttegel(index);
-		speler.getTableau().geefHuttegel(huttegel);
-		huttegel.uitvoerenActie(speler);
+		IHuttegel huttegel = StenenTijdperk.getSpel().getSpeelbord().getHuttegel(index);
+		if (huttegel.uitvoerenActie(speler)) {
+			StenenTijdperk.getSpel().getSpeelbord().popHuttegel(index);
+			speler.getTableau().geefHuttegel(huttegel);
+		}
 		super.notifyObservers();
 	}
 

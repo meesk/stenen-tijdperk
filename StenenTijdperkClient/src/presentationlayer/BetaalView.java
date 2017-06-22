@@ -1,6 +1,7 @@
 package presentationlayer;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 import domainlayer.enums.Middel;
@@ -17,16 +18,29 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import presentationlayer.skeleton.ITableauObserver;
 
-public class BetaalView extends Stage {
+/**
+ * BetaalView.java
+ * De view van het betalen van middelen.
+ *
+ * @author Mees Kluivers, s1102358
+ * @author Erwin Olie, s1103026
+ * @version 1.0
+ */
+
+public class BetaalView extends Stage implements ITableauObserver {
 
 	private boolean minPunten;
 	private Map<String, Spinner<Integer>> spinners;
 
+	/** Het initialiseren van deze view. */
 	public BetaalView(ITableau tableau, String message, boolean voedsel, boolean grondstoffen, boolean stamleden,
 			boolean minPunten) throws RemoteException {
 
-		minPunten = false;
+		UnicastRemoteObject.exportObject(this, 0);
+
+		this.minPunten = false;
 		spinners = new HashMap<>();
 
 		VBox context = new VBox(10);
@@ -59,7 +73,10 @@ public class BetaalView extends Stage {
 		HBox buttonBox = new HBox(bevestigen);
 		if (minPunten) {
 			Button punten = new Button("-10 Punten");
-			punten.setOnAction(e -> this.minPunten = true);
+			punten.setOnAction(e -> {
+			this.minPunten = true;
+			this.close();
+			});
 			buttonBox.getChildren().add(punten);
 		}
 		context.getChildren().add(buttonBox);
@@ -119,7 +136,11 @@ public class BetaalView extends Stage {
 	}
 
 	public boolean isMinPunten() {
-		return minPunten;
+		return this.minPunten;
 	}
 
+	@Override
+	public void modelChanged(ITableau model) throws RemoteException {
+
+	}
 }

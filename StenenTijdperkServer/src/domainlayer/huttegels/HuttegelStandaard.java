@@ -2,6 +2,8 @@ package domainlayer.huttegels;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
+import java.util.Map;
 
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
@@ -29,18 +31,30 @@ public class HuttegelStandaard extends UnicastRemoteObject implements IHuttegel 
 			waarde += middel.getWaarde();
 		}
 	}
+	
+	private Map<Middel, Integer> getMiddelMap() {
+		Map<Middel, Integer> result = new HashMap<Middel, Integer>();
+		result.put(Middel.HOUT, 0);
+		result.put(Middel.LEEM, 0);
+		result.put(Middel.STEEN, 0);
+		result.put(Middel.GOUD, 0);
+		for (Middel middel : middelen) {
+			result.put(middel, result.get(middel) + 1);
+		}
+		return result;
+	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
-		for (Middel middel : middelen) {
-			try {
-				speler.getTableau().ontvangMiddel(middel);
-			} catch (RemoteException e) {
-				e.printStackTrace();
+	public boolean uitvoerenActie(ISpeler speler) throws RemoteException {
+		Map<Middel, Integer> cost = getMiddelMap();
+		for (Middel middel : cost.keySet()) {
+			if (cost.get(middel) > speler.getTableau().getMiddelen().get(middel)) {
+				return false;
 			}
 		}
 		berekenWaarde();
-		//@@TODO: toevoegen waarde aan puntenspoor
+		speler.getSpel().getSpeelbord().getPuntenspoor().verhoogPunten(speler, waarde);
+		return true;
 	}
 
 	@Override

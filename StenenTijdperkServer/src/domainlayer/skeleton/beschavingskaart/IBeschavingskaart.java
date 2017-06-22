@@ -20,5 +20,4 @@ public interface IBeschavingskaart extends Remote {
 	public String getAsset() throws RemoteException;
 
 	public IBeschavingskaartAchtergrond getAchtergrond() throws RemoteException;
-
 }

@@ -86,7 +86,9 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return stamleden;
 	}
 
-	public void ontvangenBeschavingskaarten(IBeschavingskaart kaart) {
+	@Override
+	public void geefBeschavingskaarten(IBeschavingskaart kaart) {
+
 		kaarten.add(kaart);
 	}
 
@@ -279,6 +281,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	public List<IBeschavingskaart> getKaarten() {
 			return kaarten;
+
 	}
 
 	@Override
@@ -314,5 +317,11 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void geefBeschavingskaart(IBeschavingskaart beschavingskaart) throws RemoteException {
 		kaarten.add(beschavingskaart);
 		notifyObservers();
+	}
+
+	@Override
+	public void ontvangenBeschavingskaarten(IBeschavingskaart kaart) throws RemoteException {
+		// TODO Auto-generated method stub
+
 	}
 }
