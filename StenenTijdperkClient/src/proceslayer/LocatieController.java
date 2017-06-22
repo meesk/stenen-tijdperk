@@ -9,7 +9,7 @@ import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.BetaalView;
-import presentationlayer.GereedschapView;
+//import presentationlayer.GereedschapView;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
 
@@ -32,7 +32,7 @@ public class LocatieController {
 	public void registerView(LocatieView view) {
 		this.view = view;
 	}
-	
+
 	private void plaatsenStamleden(ISpel spel, ISpeler speler) throws RemoteException {
 		if (speler.getLaatsteLocatie() != null && speler.getLaatsteLocatie().equals(model)) {
 			return; // deze locatie is vorige ronde gekozen
@@ -71,8 +71,8 @@ public class LocatieController {
 		if (model.isWorpNodig()) {
 			spel.getDobbelsteenWorp().werp(stamleden.size());
 			if (StenenTijdperk.getSpeler().getTableau().getTotaalGereedschap() > 0) {
-				GereedschapView gereedschapView = new GereedschapView(speler.getTableau());
-				gereedschapView.showAndWait();
+				//GereedschapView gereedschapView = new GereedschapView(speler.getTableau());
+				//gereedschapView.showAndWait();
 			}
 		}
 		model.uitvoerenActie(speler);
@@ -83,7 +83,7 @@ public class LocatieController {
 		StenenTijdperk.getSpeler().getTableau().notifyObservers();
 		spel.fases();
 	}
-	
+
 	public void onKiesLocatie() {
 
 		try {
