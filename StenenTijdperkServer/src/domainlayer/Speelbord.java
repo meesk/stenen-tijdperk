@@ -46,7 +46,8 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		initBeschavingskaarten();
 	}
 
-	public void initBeschavingskaarten(){
+
+	private void initBeschavingskaarten(){
 		beschavingskaarten = new List[4];
 		for(int i = 0; i < 4; i++){
 			beschavingskaarten[i] = new ArrayList<>();
@@ -127,6 +128,13 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		IHuttegel huttegel = huttegels[index].get(0);
 		huttegels[index].remove(0);
 		return huttegel;
+	}
+
+
+	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
+		IBeschavingskaart beschavingskaart = beschavingskaarten[index].get(0);
+		beschavingskaarten[index].remove(0);
+		return beschavingskaart;
 	}
 
 	@Override

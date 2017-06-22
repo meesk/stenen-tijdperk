@@ -59,7 +59,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	private RadioButton[] kleurButtons;
 
 	public LobbyView(LobbyController controller, ISpel model) throws RemoteException {
-		
+
 		UnicastRemoteObject.exportObject(this, 0);
 
 		model.registerObserver(this);
@@ -177,7 +177,8 @@ public class LobbyView extends Stage implements ISpelObserver {
 		// TODO: dit is voor het gemak, MOET later worden weg worden gehaald.
 		setLobbyGegevens();
 
-		Scene scene = new Scene(borderpane);
+		Scene scene = new Scene(borderpane, 900, 800);
+		this.setTitle("Het Stenen Tijdperk: Lobby");
 		setScene(scene);
 	}
 

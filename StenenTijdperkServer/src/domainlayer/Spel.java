@@ -76,14 +76,14 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		try {
 			for (int i = 0; i < spelers.size(); i++) {
 				// per speler het totaal aantal punten eerste telling, weg gestopt onder naam.
-				spelerPuntenTotaal.put(spelers.get(i).getNaam(), spelers.get(i).ophalenGegevens());
+				spelerPuntenTotaal.put(spelers.get(i).getKleur(), spelers.get(i).ophalenGegevens());
 			}
 
 			// Als bepaalWinnaar false is dan wordt hieronder de 2de telling gedaan.
 			if (!bepaalWinnaar(spelerPuntenTotaal)) {
 				for (int k = 0; k < spelers.size(); k++) {
-					int temp = spelerPuntenTotaal.get(spelers.get(k).getNaam()) + spelers.get(k).extraGegevens();
-					spelerPuntenTotaal.put(spelers.get(k).getNaam(), temp);
+					int temp = spelerPuntenTotaal.get(spelers.get(k).getKleur()) + spelers.get(k).extraGegevens();
+					spelerPuntenTotaal.put(spelers.get(k).getKleur(), temp);
 				}
 			}
 
@@ -96,8 +96,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		for(int i = 0; i < spelers.size(); i++) {
 			System.out.println("spelers gegevens : " + spelers.get(i).ophalenGegevens());
-			System.out.println("Spelers naam : " + spelers.get(i).getNaam());
-			puntenGeschiedenis.get(spelers.get(i).getNaam()).add(spelers.get(i).ophalenGegevens());
+			System.out.println("Spelers naam : " + spelers.get(i).getKleur());
+			puntenGeschiedenis.get(spelers.get(i).getKleur()).add(spelers.get(i).ophalenGegevens());
 		}
 	}
 
@@ -113,9 +113,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		int secondHighest		= Integer.MIN_VALUE;
 
 		for (int i = 0; i < spelers.size(); i++) {
-			if (spelerPuntenTotaal.get(spelers.get(i).getNaam()) > highest || spelerPuntenTotaal.get(spelers.get(i).getNaam()) == highest) {
+			if (spelerPuntenTotaal.get(spelers.get(i).getKleur()) > highest || spelerPuntenTotaal.get(spelers.get(i).getKleur()) == highest) {
 				secondHighest = highest;
-				highest = spelerPuntenTotaal.get(spelers.get(i).getNaam());
+				highest = spelerPuntenTotaal.get(spelers.get(i).getKleur());
 			}
 		}
 
@@ -160,7 +160,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 		notifyObservers();
 
-		puntenGeschiedenis.put(speler.getNaam(), new ArrayList<Integer>());
+		puntenGeschiedenis.put(speler.getKleur(), new ArrayList<Integer>());
 		return speler;
 	}
 

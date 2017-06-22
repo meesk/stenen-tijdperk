@@ -6,6 +6,7 @@ import java.util.List;
 
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -35,6 +36,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 	private double scale = 1.00;
 	private ImageView[] gereedschap;
 	private ImageView[] huttegels;
+	private ImageView[] beschavingskaarten;
 	private Label naam;
 	private Pane middelPane;
 	private Pane textPane;
@@ -53,7 +55,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.scale = scale;
 
 		initTableau(model);
@@ -64,13 +66,14 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		initGereedschap();
 		initHuttegels();
-		
+		initBeschavingskaarten();
+
 		textPane = new Pane();
 		textPane.setPrefHeight(this.getHeight());
 		textPane.setPrefWidth(this.getWidth());
-		
+
 		initMiddelen();
-		
+
 		middelPane = new Pane();
 		middelPane.setPrefWidth(this.getWidth());
 		middelPane.setPrefHeight(this.getHeight());
@@ -83,7 +86,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		naam.setLayoutY(65.0 * scale);
 		textPane.getChildren().add(naam);
 		this.getChildren().add(textPane);
-		
+
 		if (scale == 0.3) {
 			initLargeTableau(model);
 		}
@@ -96,7 +99,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
-	
+
 	private void initGereedschap() {
 		Pane pane = new Pane();
 
@@ -116,19 +119,19 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		this.getChildren().add(pane);
 	}
-	
+
 	private void initMiddelen(){
-		
+
 		middelen = new GridPane();
-		
+
 		middelen.setHgap(15 * scale);
-		
+
 		voedsel = new Label();
 		hout = new Label();
 		leem = new Label();
 		steen = new Label();
 		goud = new Label();
-		
+
 		voedsel.setFont(Font.font(36 * scale));
 		hout.setFont(Font.font(36 * scale));
 		leem.setFont(Font.font(36 * scale));
@@ -140,14 +143,37 @@ public class TableauView extends StackPane implements ITableauObserver {
 		middelen.add(leem, 3, 0);
 		middelen.add(steen, 4, 0);
 		middelen.add(goud, 5, 0);
-		
+
 		middelen.setMinHeight(10 * scale);
 		middelen.setLayoutX(100.0 * scale);
 		middelen.setLayoutY(100.0 * scale);
 		textPane.getChildren().add(middelen);
-		
+
 	}
-	
+
+	private void initBeschavingskaarten() {
+		Pane pane = new Pane();
+		System.out.println("initBeschavingskaart wordt doorlopen");
+		beschavingskaarten = new ImageView[8];
+		for(int i = 0; i < beschavingskaarten.length; i++) {
+		Image image = new Image("file:assets/beschavingskaarten/back.png");
+		ImageView imageView = new ImageView(image);
+
+		imageView.setFitHeight(image.getHeight() / 4 / 100 * 95 * scale);
+		imageView.setFitWidth(image.getWidth() / 4 / 50 * 51 * scale);
+		//imageView.relocate( 400, 35);
+		imageView.setTranslateX(360);
+		imageView.setTranslateY(18);
+
+		beschavingskaarten[i] = imageView;
+
+		pane.getChildren().add(imageView);
+		}
+
+		this.getChildren().add(pane);
+
+	}
+
 	private void initHuttegels() {
 		Pane pane = new Pane();
 
@@ -167,7 +193,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		this.getChildren().add(pane);
 	}
-	
+
 	private void initTableau(ITableau model) {
 		Image image = new Image("file:assets/tableau.png");
 		if (model == null) {
@@ -195,7 +221,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		achtergrond = imageView;
 	}
-	
+
 	private void initLargeTableau(ITableau model) {
 		largeTableau = new Stage();
 		Scene scene = new Scene(new TableauView(1.5, model));
@@ -262,18 +288,34 @@ public class TableauView extends StackPane implements ITableauObserver {
 		}
 	}
 
+
+	private void tekenBeschavingskaart(ITableau tableau) throws RemoteException {
+		System.out.println("beschavingskaartenTekenen");
+		List<IBeschavingskaart> beschavingskaarten = tableau.getKaarten();
+		for(int i = 0; i < beschavingskaarten.size(); i++) {
+			System.out.println("1");
+			System.out.println(this.beschavingskaarten.length);
+			System.out.println("2");
+			System.out.println(tableau.getKaarten().size());
+			System.out.println("3");
+			System.out.println(tableau.getKaarten().get(i));
+			System.out.println("4");
+			System.out.println(tableau.getKaarten().get(i).getAsset());
+			this.beschavingskaarten[i].setImage(new Image("file:assets/beschavingskaarten/" + tableau.getKaarten().get(i).getAsset()));
+		}
+	}
 	private void tekenNaam(ITableau tableau) throws RemoteException {
 		naam.setStyle("-fx-font-color:" + tableau.getSpeler().getKleur() + ";");
 		naam.setText(tableau.getSpeler().getNaam());
 	}
-	
+
 	private void tekenMiddelen(ITableau tableau) throws RemoteException{
 		voedsel.setText(tableau.getMiddelen().get(Middel.VOEDSEL).toString());
 		hout.setText(tableau.getMiddelen().get(Middel.HOUT).toString());
 		leem.setText(tableau.getMiddelen().get(Middel.LEEM).toString());
 		steen.setText(tableau.getMiddelen().get(Middel.STEEN).toString());
 		goud.setText(tableau.getMiddelen().get(Middel.GOUD).toString());
-		
+
 	}
 
 	@Override
@@ -284,6 +326,8 @@ public class TableauView extends StackPane implements ITableauObserver {
 				tekenStamleden(tableau);
 				tekenGereedschap(tableau);
 				tekenHuttegels(tableau);
+				System.out.println("beschavingskaart tekenen aanroepen");
+				tekenBeschavingskaart(tableau);
 				tekenNaam(tableau);
 				tekenMiddelen(tableau);
 			} catch (RemoteException e) {

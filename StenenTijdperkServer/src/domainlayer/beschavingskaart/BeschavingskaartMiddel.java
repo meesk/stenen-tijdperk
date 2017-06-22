@@ -40,11 +40,11 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-		
+
 		System.out.println("*** beschavingskaartmiddel test ***");
 		System.out.println("Aantal : " + waarde + ", middel : " + middel);
-		
 		speler.getTableau().ontvangMiddelen(middel, waarde);
+		speler.getTableau().ontvangenBeschavingskaarten(this);
 	}
 
 	@Override

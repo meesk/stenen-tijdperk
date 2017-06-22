@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import domainlayer.beschavingskaart.Beschavingskaart;
+import domainlayer.beschavingskaart.BeschavingskaartFactory;
+import domainlayer.beschavingskaart.BeschavingskaartGras;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
@@ -86,6 +88,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	@Override
 	public void geefBeschavingskaarten(IBeschavingskaart kaart) {
+
 		kaarten.add(kaart);
 	}
 
@@ -277,7 +280,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	public List<IBeschavingskaart> getKaarten() {
-		return kaarten;
+			return kaarten;
+
 	}
 
 	@Override
@@ -308,5 +312,16 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void geefHuttegel(IHuttegel huttegel) throws RemoteException {
 		huttegels.add(huttegel);
 		notifyObservers();
+	}
+
+	public void geefBeschavingskaart(IBeschavingskaart beschavingskaart) throws RemoteException {
+		kaarten.add(beschavingskaart);
+		notifyObservers();
+	}
+
+	@Override
+	public void ontvangenBeschavingskaarten(IBeschavingskaart kaart) throws RemoteException {
+		// TODO Auto-generated method stub
+
 	}
 }

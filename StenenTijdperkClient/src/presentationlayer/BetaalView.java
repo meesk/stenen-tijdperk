@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
-
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
 import javafx.scene.Scene;
@@ -108,7 +107,6 @@ public class BetaalView extends Stage implements ITableauObserver {
 		spinner.setValueFactory(valueFactory);
 
 		box.getChildren().add(spinner);
-
 		spinners.put(naam, spinner);
 		return box;
 	}
