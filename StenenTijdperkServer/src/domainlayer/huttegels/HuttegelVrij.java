@@ -28,8 +28,8 @@ public class HuttegelVrij extends UnicastRemoteObject implements IHuttegel {
 	}
 	
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
-		//
+	public boolean uitvoerenActie(ISpeler speler) {
+		return true;
 	}
 
 	@Override

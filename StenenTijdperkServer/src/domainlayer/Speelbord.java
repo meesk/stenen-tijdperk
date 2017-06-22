@@ -129,4 +129,10 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return huttegel;
 	}
 
+	@Override
+	public IHuttegel getHuttegel(int index) throws RemoteException {
+		IHuttegel huttegel = huttegels[index].get(0);
+		return huttegel;
+	}
+
 }
