@@ -41,9 +41,9 @@ import domainlayer.skeleton.ISpel;
  * @version 1.0
  */
 public class StenenTijdperk {
-	
+
 	private static ISpel spel;
-	
+
 	/** De main method die de modellen registreert in het register. */
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		// Het initialiseren van een nieuw spel.
@@ -56,7 +56,7 @@ public class StenenTijdperk {
 
 		System.out.println("Server started...");
 	}
-	
+
 	public static ISpel getSpel() {
 		return spel;
 	}
