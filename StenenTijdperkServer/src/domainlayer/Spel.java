@@ -55,7 +55,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
 	private boolean voeden;
-	
+
 	private Map<String, List<Integer>> puntenGeschiedenis;
 
 	private List<ISpelObserver> observers;
@@ -91,9 +91,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void vulPuntenGeschiedenis() {
-		
+
 	}
 
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
@@ -180,7 +180,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					ready++;
 				}
 			}
-			// Deel van Sequentie Diagram 7: Klaarzetten Spel
+
 			if (ready == this.spelers.size()) {
 				for (int i = 0; i < spelers.size(); i++) {
 					spelers.get(i).getTableau().ontvangMiddelen(Middel.VOEDSEL, 12); // 12
@@ -248,7 +248,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			faseVoedenStamleden();
 			return;
 		} else {
-			
+
 		}
 
 		while (!speelbord.heeftStamleden(beurtSpeler)) {
