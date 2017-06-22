@@ -95,6 +95,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	public void vulPuntenGeschiedenis() throws RemoteException {
 		
 		for(int i = 0; i < spelers.size(); i++) {
+			System.out.println("spelers gegevens : " + spelers.get(i).ophalenGegevens());
+			System.out.println("Spelers naam : " + spelers.get(i).getNaam());
 			puntenGeschiedenis.get(spelers.get(i).getNaam()).add(spelers.get(i).ophalenGegevens());
 		}
 	}

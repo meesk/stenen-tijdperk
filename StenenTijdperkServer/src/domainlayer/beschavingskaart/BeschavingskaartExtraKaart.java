@@ -8,14 +8,13 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 /**
-* @author Alex de Bruin, s1103096
-* @version 0.1
+* BeschavingskaartExtraKaart.java
+* De klasse waarin deze specifieke kaart wordt aangemaakt.
 *
-*<br>
-* <br>
-* Dit is de constructor voor de extra kaart pakken kaart, de speler krijgt een extra gesloten kaart.
+* @author Alex de Bruin, s1103096
+* @author Tristan Caspers, s1102755
+* @version 1.0
 */
-
 
 public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements IBeschavingskaart {
 
@@ -33,13 +32,12 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 
 	@Override
 	public int getKosten() {
-		// TODO Auto-generated method stub
 		return kosten;
 	}
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) {
-
+		// SequentieDiagram 22
 	}
 
 	@Override
