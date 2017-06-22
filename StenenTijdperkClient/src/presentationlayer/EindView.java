@@ -1,5 +1,7 @@
 package presentationlayer;
 
+import java.rmi.RemoteException;
+
 import domainlayer.skeleton.ISpel;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,6 +10,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import proceslayer.SpelController;
 
@@ -20,7 +23,7 @@ import proceslayer.SpelController;
  */
 public class EindView extends Stage {
 
-	public EindView(SpelController spelController, ISpel model) {
+	public EindView(SpelController spelController, ISpel model) throws RemoteException {
 
 		spelController.registerView(this);
 
@@ -30,6 +33,7 @@ public class EindView extends Stage {
 		Label uitreiking = new Label();
 		uitreiking.setText("Speler ... heeft gewonnen!"); // Nog maken
 		uitreiking.setStyle("-fx-font-size: 22px");
+		uitreiking.setTextFill(Color.WHITE);
 
 		NumberAxis xAxis = new NumberAxis();
 		xAxis.setLabel("Ronde");
@@ -51,7 +55,6 @@ public class EindView extends Stage {
 		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
 
 		// Aanmaken van datapunten
-		// for (int i = 0; i < aantalRondes.size(); i++) {} // Nog maken
 		data1.getData().add(new XYChart.Data<Number, Number>(1, 34));
 		data1.getData().add(new XYChart.Data<Number, Number>(2, 78));
 		data2.getData().add(new XYChart.Data<Number, Number>(34, 0));
@@ -66,7 +69,6 @@ public class EindView extends Stage {
 
 		vbox.getChildren().addAll(uitreiking, lineChart);
 		vbox.setAlignment(Pos.CENTER);
-		vbox.setStyle("-fx-background-color: #6A5b34");
 		Scene scene = new Scene(vbox, 400, 400);
 		this.setTitle("Einde");
 		this.setScene(scene);
