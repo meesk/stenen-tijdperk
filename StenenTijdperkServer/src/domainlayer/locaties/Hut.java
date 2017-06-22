@@ -26,9 +26,19 @@ public class Hut extends Locatie {
 		List<ILocatie> locaties = speler.getSpel().getSpeelbord().getLocaties();
 		List<IStamlid> stamleden = new ArrayList<IStamlid>();
 		int aantalStamleden = 0;
+		int aantalleden = 0;
 		
 		for(ILocatie l : locaties){
 			stamleden.addAll(l.getStamleden());
+			if(l.getX() == 318){
+				List<IStamlid> hutStamleden = l.getStamleden();
+				for(IStamlid s : hutStamleden){
+					if(s.getSpeler().getKleur().equals(speler.getKleur())){
+						aantalleden++;
+					}
+					
+				}
+			}
 		}
 		
 		for(IStamlid s : stamleden){
@@ -39,7 +49,7 @@ public class Hut extends Locatie {
 		
 		aantalStamleden += tableau.getStamleden().size();
 		
-		if (aantalStamleden < 10) {
+		if (aantalStamleden < 10 && aantalleden == 2) {
 			tableau.krijgStamlid();
 		}
 
