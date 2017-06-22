@@ -61,7 +61,7 @@ public class StenenTijdperk extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Het definieren van het model
 
-		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
+		spel = (ISpel) Naming.lookup("rmi://145.101.81.249/Spel");
 		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
 		// ...

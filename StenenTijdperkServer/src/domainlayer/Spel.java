@@ -281,6 +281,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	private void faseVoedenStamleden() throws RemoteException {
+		
+		for(ISpeler speler : spelers) {
+			speler.setLaatsteLocatie(null);
+		}
+		
 		setVoeden(true);
 		vulPuntenGeschiedenis();
 		notifyObservers();
