@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.geometry.Pos;
@@ -31,6 +33,7 @@ import proceslayer.SpelController;
  */
 public class EindView extends Stage {
 
+	@SuppressWarnings("unchecked")
 	public EindView(SpelController spelController, ISpel model) throws RemoteException {
 
 		spelController.registerView(this);
@@ -44,47 +47,41 @@ public class EindView extends Stage {
 
 		NumberAxis xAxis = new NumberAxis();
 		xAxis.setLabel("Ronde");
+		xAxis.setTickLabelFill(Color.WHITE);
 		xAxis.setMinorTickVisible(false);
 		NumberAxis yAxis = new NumberAxis();
 		yAxis.setLabel("Punten");
+		yAxis.setTickLabelFill(Color.WHITE);
 		yAxis.setMinorTickVisible(false);
-
-		Map<String, Integer> spelerPunten = new HashMap();
-
-		for (int i = 0; i < model.getSpelerLijst().size(); i++) {
-			// per speler het totaal aantal punten eerste telling, weg gestopt onder naam.
-			spelerPunten.put(model.getSpelerLijst().get(i).getNaam(), model.getSpelerLijst().get(i).ophalenGegevens());
-		}
-
+		
+		Map<String, List<Integer>> puntenGeschiedenis = model.getPuntenGeschiedenis();
+	
 		List<XYChart.Series> seriesList = new ArrayList<Series>();
 
-		for(int i=0; i < model.getSpelerLijst().size(); i++){
-			XYChart.Series<Number, Number> series = new XYChart.Series();
-			series.setName(model.getSpelerLijst().get(i).getNaam());
+		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {
+			XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
+			series.setName(entry.getKey());
 			seriesList.add(series);
 		}
-
-		for(int l = 0; l < testData.size(); l++) {
-			seriesList.get(0).getData().add(new XYChart.Data<Number, Number>(l, testData.get(l)));
+		
+		int loop = 0;
+		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {
+			for(int l = 0; l < puntenGeschiedenis.get(entry.getKey()).size(); l++) {
+				seriesList.get(loop).getData().add(new XYChart.Data<Number, Number>(l, puntenGeschiedenis.get(entry.getKey()).get(l)));
+			}
+			loop++;
 		}
 
 		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
 
-		// Aanmaken van datapunten
-		data1.getData().add(new XYChart.Data<Number, Number>(1, 34));
-		data1.getData().add(new XYChart.Data<Number, Number>(2, 78));
-		data2.getData().add(new XYChart.Data<Number, Number>(34, 0));
-		data2.getData().add(new XYChart.Data<Number, Number>(2, 20));
-		data3.getData().add(new XYChart.Data<Number, Number>(2, 50));
-		data3.getData().add(new XYChart.Data<Number, Number>(3, 65));
-		data4.getData().add(new XYChart.Data<Number, Number>(31, 78));
-		data4.getData().add(new XYChart.Data<Number, Number>(45, 98));
-
 		// Safety type?
-		lineChart.getData().addAll(seriesList.get(0));
+		for(int q = 0; q < seriesList.size(); q++) {
+			lineChart.getData().addAll(seriesList.get(q));
+		}
 
 		vbox.getChildren().addAll(uitreiking, lineChart);
 		vbox.setAlignment(Pos.CENTER);
+		vbox.setStyle("-fx-background-color: #6A5b34");
 		Scene scene = new Scene(vbox, 400, 400);
 		this.setTitle("Einde");
 		this.setScene(scene);
