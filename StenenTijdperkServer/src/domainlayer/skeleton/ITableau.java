@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import domainlayer.Stamlid;
+import domainlayer.beschavingskaart.Beschavingskaart;
 import domainlayer.enums.Middel;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import presentationlayer.skeleton.ITableauObserver;
 
@@ -50,16 +52,18 @@ public interface ITableau extends Remote {
 	public List<IHuttegel> getHuttegels() throws RemoteException;
 
 	public boolean verliesPunten() throws RemoteException;
-	
+
 	public Map<Middel, Integer> getMiddelen() throws RemoteException;
 
 	public IStamlid popStamlid() throws RemoteException;
-	
+
 	public boolean getBetaalt() throws RemoteException;
-	
+
 	public void setBetaalt(boolean betaalt) throws RemoteException;
 
 	public void geefHuttegel(IHuttegel huttegel) throws RemoteException;
+
+	public List<IBeschavingskaart> getKaarten() throws RemoteException;
 
 }
 

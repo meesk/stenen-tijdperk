@@ -64,26 +64,26 @@ public class EindView extends Stage {
 			seriesList.add(series);
 		}
 
-		for(int l = 0; l < testData.size(); l++) {
-			seriesList.get(0).getData().add(new XYChart.Data<Number, Number>(l, testData.get(l)));
-		}
-
-		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
-
-		// Aanmaken van datapunten
-		data1.getData().add(new XYChart.Data<Number, Number>(1, 34));
-		data1.getData().add(new XYChart.Data<Number, Number>(2, 78));
-		data2.getData().add(new XYChart.Data<Number, Number>(34, 0));
-		data2.getData().add(new XYChart.Data<Number, Number>(2, 20));
-		data3.getData().add(new XYChart.Data<Number, Number>(2, 50));
-		data3.getData().add(new XYChart.Data<Number, Number>(3, 65));
-		data4.getData().add(new XYChart.Data<Number, Number>(31, 78));
-		data4.getData().add(new XYChart.Data<Number, Number>(45, 98));
-
+//		for(int l = 0; l < testData.size(); l++) {
+//			seriesList.get(0).getData().add(new XYChart.Data<Number, Number>(l, testData.get(l)));
+//		}
+//
+//		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+//
+//		// Aanmaken van datapunten
+//		data1.getData().add(new XYChart.Data<Number, Number>(1, 34));
+//		data1.getData().add(new XYChart.Data<Number, Number>(2, 78));
+//		data2.getData().add(new XYChart.Data<Number, Number>(34, 0));
+//		data2.getData().add(new XYChart.Data<Number, Number>(2, 20));
+//		data3.getData().add(new XYChart.Data<Number, Number>(2, 50));
+//		data3.getData().add(new XYChart.Data<Number, Number>(3, 65));
+//		data4.getData().add(new XYChart.Data<Number, Number>(31, 78));
+//		data4.getData().add(new XYChart.Data<Number, Number>(45, 98));
+//
 		// Safety type?
-		lineChart.getData().addAll(seriesList.get(0));
+	//	lineChart.getData().addAll(seriesList.get(0));
 
-		vbox.getChildren().addAll(uitreiking, lineChart);
+	//	vbox.getChildren().addAll(uitreiking, lineChart);
 		vbox.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(vbox, 400, 400);
 		this.setTitle("Einde");
