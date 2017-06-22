@@ -36,7 +36,13 @@ public class BeschavingskaartDobbeltabel extends UnicastRemoteObject implements 
 
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-		speler.getSpel().getDobbelsteenWorp();
+		// Speler haalt stamlid van de kaart af
+		// Speler betaalt de kaart
+		// Uitvoeren Actie
+		// Speler werpt dobbelstenen
+		// Speler kiest een dobbelsteen uit, deze dobbelsteen wordt onbeschikbaar gemaakt
+		// De overige spelers kiezen er ook één uit
+		// Speler krijgt de kaart op zijn tableau
 	}
 
 	@Override

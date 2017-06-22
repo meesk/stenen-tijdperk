@@ -29,7 +29,7 @@ import proceslayer.SpelController;
  *
  * @author Tristan Caspers, s1102755
  * @author Enzo Campfens, s1102421
- * @version 1.7005
+ * @version 1.8
  */
 public class EindView extends Stage {
 
@@ -53,9 +53,9 @@ public class EindView extends Stage {
 		yAxis.setLabel("Punten");
 		yAxis.setTickLabelFill(Color.WHITE);
 		yAxis.setMinorTickVisible(false);
-		
+
 		Map<String, List<Integer>> puntenGeschiedenis = model.getPuntenGeschiedenis();
-	
+
 		List<XYChart.Series> seriesList = new ArrayList<Series>();
 
 		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {
@@ -63,7 +63,7 @@ public class EindView extends Stage {
 			series.setName(entry.getKey());
 			seriesList.add(series);
 		}
-		
+
 		int loop = 0;
 		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {
 			for(int l = 0; l < puntenGeschiedenis.get(entry.getKey()).size(); l++) {
