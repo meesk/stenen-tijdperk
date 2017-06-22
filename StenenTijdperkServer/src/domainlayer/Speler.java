@@ -79,7 +79,6 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 				middelen.get(Middel.STEEN) +
 				middelen.get(Middel.GOUD) +
 				puntenSpoor;
-		// puntenspoor + berekening van beschavingskaarten nog.
 
 		return telling;
 	}

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.geometry.Pos;
@@ -45,23 +47,20 @@ public class EindView extends Stage {
 		yAxis.setLabel("Punten");
 		yAxis.setMinorTickVisible(false);
 
-		Map<String, Integer> spelerPunten = new HashMap();
-
-		for (int i = 0; i < model.getSpelerLijst().size(); i++) {
-			// per speler het totaal aantal punten eerste telling, weg gestopt onder naam.
-			spelerPunten.put(model.getSpelerLijst().get(i).getNaam(), model.getSpelerLijst().get(i).ophalenGegevens());
-		}
+		Map<String, List<Integer>> puntenGeschiedenis = model.getPuntenGeschiedenis();
 
 		List<XYChart.Series> seriesList = new ArrayList<Series>();
 
-		for(int i=0; i < model.getSpelerLijst().size(); i++){
+		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {
 			XYChart.Series<Number, Number> series = new XYChart.Series();
-			series.setName(model.getSpelerLijst().get(i).getNaam());
+			series.setName(entry.getKey());
 			seriesList.add(series);
 		}
 
-		for(int l = 0; l < testData.size(); l++) {
-			seriesList.get(0).getData().add(new XYChart.Data<Number, Number>(l, testData.get(l)));
+		for(int k = 0; k < seriesList.size(); k++) {
+			for(int l = 0; l < puntenGeschiedenis.get(k).size(); l++) {
+				seriesList.get(k).getData().add(new XYChart.Data<Number, Number>(l, puntenGeschiedenis.get(k).get(l)));
+			}
 		}
 
 		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
@@ -78,7 +77,9 @@ public class EindView extends Stage {
 		//		data4.getData().add(new XYChart.Data<Number, Number>(45, 98));
 
 		// Safety type?
-		lineChart.getData().addAll(seriesList.get(0));
+		for(int q = 0; q < seriesList.size(); q++) {
+			lineChart.getData().addAll(seriesList.get(q));
+		}
 
 		vbox.getChildren().addAll(uitreiking, lineChart);
 		vbox.setAlignment(Pos.CENTER);

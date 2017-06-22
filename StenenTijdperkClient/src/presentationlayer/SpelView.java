@@ -87,12 +87,14 @@ public class SpelView extends Stage implements ISpelObserver {
 		for (int i = 3; i > spelers.size(); i--) {
 			grid.add(new TableauView(0.3, null), i, 1);
 		}
+		this.setResizable(false);
 		this.show();
 		this.sizeToScene();
 	}
 	
 	private void toonBetaalView(ISpel spel) throws RemoteException { 
 		BetaalView bv = new BetaalView(true, false, new BetaalController(StenenTijdperk.getSpeler().getTableau()));
+		bv.setResizable(false);
 		bv.show();
 		StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
 	}
