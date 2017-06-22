@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-import domainlayer.enums.Kleur;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.application.Platform;
@@ -49,7 +48,6 @@ public class LobbyView extends Stage implements ISpelObserver {
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
 	private CheckBox isSpastisch;
-	private Kleur kleur;
 	private RadioButton radRood, radGroen, radBlauw, radGeel;
 	private final ToggleGroup group;
 	private LocalDate localDate;
