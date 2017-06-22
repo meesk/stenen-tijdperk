@@ -46,4 +46,9 @@ public class Gereedschapmaker extends Locatie {
 		super.notifyObservers();*/
 	}
 
+	@Override
+	public boolean isWorpNodig() throws RemoteException {
+		return false;
+	}
+
 }

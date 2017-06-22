@@ -71,6 +71,11 @@ public class Beschavingskaart extends Locatie {
 
 	}
 
+	@Override
+	public boolean isWorpNodig() throws RemoteException {
+		return false;
+	}
+
 
 }
 

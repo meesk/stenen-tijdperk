@@ -157,6 +157,11 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return huttegel;
 	}
 
+	@Override
+	public void addBeschavingskaart(int index) throws RemoteException {
+		// TODO Auto-generated method stub
+	}
+
 //	public void addBeschavingskaart(int index){
 //		this.beschavingskaarten[index].add(alleKaarten.get(this.index));
 //		index++;

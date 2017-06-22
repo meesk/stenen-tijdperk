@@ -14,7 +14,7 @@ import presentationlayer.skeleton.IDobbelsteenWorpObserver;
  * Het model van de dobbelsteenworp.
  *
  * @author Erwin Olie, s1103026
- * @version 1.0
+ * @version 1.1
  */
 public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteenWorp {
 	private static final long serialVersionUID = 1L;
@@ -49,6 +49,7 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 		for (int i = aantal; i < 10; i++) {
 			dobbelstenen[i].reset();
 		}
+		berekenTotaal();
 		// Model is veranderd, meld dit aan de observers.
 		notifyObservers();
 	}
@@ -72,18 +73,24 @@ public class DobbelsteenWorp extends UnicastRemoteObject implements IDobbelsteen
 	public IDobbelsteen[] getDobbelstenen() {
 		return dobbelstenen;
 	}
-
+	
 	@Override
 	public int getTotaal() throws RemoteException {
+		return totaal;
+	}
+
+	public void addTotaal(int gereedschapGebruikt) throws RemoteException {
+		totaal += gereedschapGebruikt;
+		notifyObservers();
+	}
+
+	@Override
+	public void berekenTotaal() throws RemoteException {
 		totaal = 0;
 		for (IDobbelsteen dobbelsteen : dobbelstenen) {
 			totaal += dobbelsteen.getOgen();
 		}
-		return totaal;
-	}
-
-	public void setTotaal(int gereedschapGebruikt) {
-		totaal += gereedschapGebruikt;
+		notifyObservers();
 	}
 
 
