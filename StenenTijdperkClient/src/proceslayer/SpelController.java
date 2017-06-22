@@ -43,9 +43,10 @@ public class SpelController {
 	}
 
 	public void onOpslaanButtonClick() throws IOException {
-		view = new EindView(this, model);
-		this.view.show();
+		//view = new EindView(this, model);
+		//this.view.show();
 		
+		StenenTijdperk.getSpeler().getTableau().geefGereedschapFiche();
 		//model.opslaan();
 //		for (ISpoor spoor : model.getSpeelbord().getSporen()) {
 //			spoor.verhoogPunten(StenenTijdperk.getSpeler(), 1);

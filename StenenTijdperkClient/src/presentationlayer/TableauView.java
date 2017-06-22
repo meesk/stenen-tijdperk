@@ -87,7 +87,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		textPane.getChildren().add(naam);
 		this.getChildren().add(textPane);
 
-		if (scale == 0.3) {
+		if (scale == 0.26) {
 			initLargeTableau(model);
 		}
 
@@ -99,7 +99,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
-
+ 
 	private void initGereedschap() {
 		Pane pane = new Pane();
 
@@ -162,8 +162,8 @@ public class TableauView extends StackPane implements ITableauObserver {
 		imageView.setFitHeight(image.getHeight() / 4 / 100 * 95 * scale);
 		imageView.setFitWidth(image.getWidth() / 4 / 50 * 51 * scale);
 		//imageView.relocate( 400, 35);
-		imageView.setTranslateX(360);
-		imageView.setTranslateY(18);
+		imageView.setTranslateX(360*scale);
+		imageView.setTranslateY(18*scale);
 
 		beschavingskaarten[i] = imageView;
 

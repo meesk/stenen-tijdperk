@@ -42,8 +42,8 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 		// Speler krijgt een random kaart van de stapel van het speelbord op zijn tableau
 		// Speler krijgt kaart op zijn tableau
 
-		speler.getTableau().geefBeschavingskaarten(speler.getSpel().getSpeelbord().getBeschavingskaarten()[1].get(1));
-		System.out.println("Willekeurige beschavingskaart toegevoegd aan tableau");
+//		speler.getTableau().geefBeschavingskaarten(speler.getSpel().getSpeelbord().getBeschavingskaarten()[1]);
+//		System.out.println("Willekeurige beschavingskaart toegevoegd aan tableau");
 	}
 
 	@Override

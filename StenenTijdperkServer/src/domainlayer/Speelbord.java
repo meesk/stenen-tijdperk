@@ -35,7 +35,12 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	private ISpoor puntenSpoor;
 	private ILocatie laatstGekozenLcatie;
 	private List<IHuttegel>[] huttegels;
-	private List<IBeschavingskaart>[] beschavingskaarten;
+	private IBeschavingskaart[] beschavingskaarten;
+	private List<IBeschavingskaart> kaarten;
+//	private List<IBeschavingskaart>[] beschavingskaarten;
+//	private List<IBeschavingskaart> alleKaarten;
+//	int index;
+
 
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
@@ -44,21 +49,29 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		puntenSpoor = new Puntenspoor();
 		initHuttegels();
 		initBeschavingskaarten();
+	//	this.index = 4;
 	}
 
-
+	public List<IBeschavingskaart> getKaarten() {
+		return kaarten;
+	}
 	private void initBeschavingskaarten(){
-		beschavingskaarten = new List[4];
-		for(int i = 0; i < 4; i++){
-			beschavingskaarten[i] = new ArrayList<>();
-		}
-		List<IBeschavingskaart> beschavingskaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
-		Collections.shuffle(beschavingskaarten);
-		for(int i = 0; i < 4; i++){
-			this.beschavingskaarten[i].add(beschavingskaarten.get(i));
-		}
+		kaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
+		Collections.shuffle(kaarten);
+		beschavingskaarten = new IBeschavingskaart[4];
+		if(beschavingskaarten[1] == null) {
+			doorSchuiven();
 
+		}
 	}
+
+	public void doorSchuiven() {
+		for(int i = 0; i < 4; i++){
+			System.out.println("Kaarten worden doorgeschoven");
+			this.beschavingskaarten[i] = kaarten.get(i);
+		}
+	}
+
 
 	private void initHuttegels() {
 		huttegels = new List[4];
@@ -76,7 +89,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return huttegels;
 	}
 
-	public List<IBeschavingskaart>[] getBeschavingskaarten(){
+	public IBeschavingskaart[] getBeschavingskaarten(){
 		return beschavingskaarten;
 	}
 
@@ -132,8 +145,9 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 
 	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
-		IBeschavingskaart beschavingskaart = beschavingskaarten[index].get(0);
-		beschavingskaarten[index].remove(0);
+		IBeschavingskaart beschavingskaart = beschavingskaarten[index];
+		beschavingskaarten[index] = null;
+		kaarten.remove(index);
 		return beschavingskaart;
 	}
 
@@ -142,5 +156,15 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		IHuttegel huttegel = huttegels[index].get(0);
 		return huttegel;
 	}
+
+	@Override
+	public void addBeschavingskaart(int index) throws RemoteException {
+		// TODO Auto-generated method stub
+	}
+
+//	public void addBeschavingskaart(int index){
+//		this.beschavingskaarten[index].add(alleKaarten.get(this.index));
+//		index++;
+//	}
 
 }

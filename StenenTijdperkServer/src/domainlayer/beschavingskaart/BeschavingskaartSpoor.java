@@ -55,7 +55,7 @@ public class BeschavingskaartSpoor extends UnicastRemoteObject implements IBesch
 		} else {
 			ISpeelbord speelbord = StenenTijdperk.getSpel().getSpeelbord();
 			ISpoor puntenspoor = speelbord.getPuntenspoor();
-			puntenspoor.verhoogPunten(speler, 1);
+			puntenspoor.verhoogPunten(speler, 3);
 		}
 		// verwijderen stamleden
 //		ITableau tableau = speler.getTableau();

@@ -91,4 +91,9 @@ public class MiddelLocatie extends Locatie {
 		//tableau.notifyObservers();
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public boolean isWorpNodig() throws RemoteException {
+		return true;
+	}
 }

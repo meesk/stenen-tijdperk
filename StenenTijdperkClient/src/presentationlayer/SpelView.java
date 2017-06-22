@@ -62,10 +62,12 @@ public class SpelView extends Stage implements ISpelObserver {
 
 		// De knop en de knop action voor de handleiding.
 		Button handleidingButton = new Button("Handleiding");
+		handleidingButton.setPrefSize(128, 145);
 		handleidingButton.setOnAction(e -> spelController.onHandleidingButtonClick());
 		grid.add(handleidingButton, 2, 3);
 
 		Button opslaan = new Button("Opslaan");
+		opslaan.setPrefSize(128, 145);
 		opslaan.setOnAction(e -> {
 			try {
 				spelController.onOpslaanButtonClick();
@@ -85,10 +87,10 @@ public class SpelView extends Stage implements ISpelObserver {
 		List<ISpeler> spelers = spel.getSpelerLijst();
 		spelers.remove(StenenTijdperk.getSpeler());
 		for (int i = 1; i <= spelers.size(); i++) {
-			grid.add(new TableauView(0.3, spelers.get(i - 1).getTableau()), i, 1);
+			grid.add(new TableauView(0.26, spelers.get(i - 1).getTableau()), i, 1);
 		}
 		for (int i = 3; i > spelers.size(); i--) {
-			grid.add(new TableauView(0.3, null), i, 1);
+			grid.add(new TableauView(0.26, null), i, 1);
 		}
 		this.setResizable(false);
 		this.show();

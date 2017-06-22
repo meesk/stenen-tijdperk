@@ -53,7 +53,7 @@ public class BeschavingskaartGereedschap extends UnicastRemoteObject implements 
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		IDobbelsteenWorp dw = speler.getSpel().getDobbelsteenWorp();
 		// Voeg 1 extra oog aan de worp toe
-		dw.setTotaal(1);
+		//dw.addTotaal(1);
 	}
 
 	@Override
