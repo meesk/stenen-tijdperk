@@ -21,6 +21,7 @@ public class SpoorView extends StackPane implements ISpoorObserver {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		this.setPickOnBounds(false);
 	}
 
 	@Override
