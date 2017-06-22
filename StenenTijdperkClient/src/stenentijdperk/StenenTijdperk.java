@@ -81,7 +81,7 @@ public class StenenTijdperk extends Application {
 		// Het voorbereiden en tonen van de stage.
 		lobbyView.setResizable(false);
 		lobbyView.show();
-		
+
 	}
 
 	public static ISpel getSpel() {
