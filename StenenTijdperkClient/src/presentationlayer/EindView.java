@@ -61,18 +61,20 @@ public class EindView extends Stage {
 		@SuppressWarnings("rawtypes")
 		List<XYChart.Series> seriesList = new ArrayList<Series>();
 
+		int naamLoop = 0;
 		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {
 			XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
-			series.setName(entry.getKey());
+			series.setName(model.getSpelerLijst().get(naamLoop).getNaam());
 			seriesList.add(series);
+			naamLoop++;
 		}
 
-		int loop = 0;
+		int puntenLoop = 0;
 		for (Entry<String, List<Integer>> entry : puntenGeschiedenis.entrySet()) {
 			for(int l = 0; l < puntenGeschiedenis.get(entry.getKey()).size(); l++) {
-				seriesList.get(loop).getData().add(new XYChart.Data<Number, Number>(l, puntenGeschiedenis.get(entry.getKey()).get(l)));
+				seriesList.get(puntenLoop).getData().add(new XYChart.Data<Number, Number>(l, puntenGeschiedenis.get(entry.getKey()).get(l)));
 			}
-			loop++;
+			puntenLoop++;
 		}
 
 		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);

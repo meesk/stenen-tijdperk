@@ -68,13 +68,15 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	@Override
 	public int ophalenGegevens() throws RemoteException {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.
-		
+
 		int stamleden = 0;
 		int puntenSpoor = 0;
-		
+
 		stamleden = tableau.getStamleden().size(); // Hier is stamleden ook nodig inverband met de beschavingskaart.
 		Map<Middel, Integer> middelen = tableau.getMiddelen();
 		puntenSpoor = this.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(this);
+
+		System.out.println("punten spoor : " + puntenSpoor);
 
 		int telling = middelen.get(Middel.HOUT) +
 				middelen.get(Middel.LEEM) +
