@@ -86,7 +86,7 @@ public class EindView extends Stage {
 		vbox.setAlignment(Pos.CENTER);
 		vbox.setStyle("-fx-background-color: #6A5b34");
 		Scene scene = new Scene(vbox, 400, 400);
-		this.setTitle("Einde");
+		this.setTitle("Het Stenen Tijdperk: Einde");
 		this.setScene(scene);
 	}
 }
