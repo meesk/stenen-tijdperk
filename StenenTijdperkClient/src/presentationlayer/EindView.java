@@ -2,12 +2,19 @@ package presentationlayer;
 
 import java.rmi.RemoteException;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import domainlayer.skeleton.ISpel;
+import domainlayer.skeleton.ISpeler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,14 +26,14 @@ import proceslayer.SpelController;
  * Een klasse die alle informatie bevat om de eind view te maken.
  *
  * @author Tristan Caspers, s1102755
- * @version 1.6
+ * @author Enzo Campfens, s1102421
+ * @version 1.7005
  */
 public class EindView extends Stage {
 
 	public EindView(SpelController spelController, ISpel model) throws RemoteException {
 
 		spelController.registerView(this);
-
 		VBox vbox = new VBox(15);
 
 		// De prijsuitreiking
@@ -42,15 +49,24 @@ public class EindView extends Stage {
 		yAxis.setLabel("Punten");
 		yAxis.setMinorTickVisible(false);
 
-		// Check toevoegen voor aantal spelers
-		XYChart.Series<Number, Number> data1 = new XYChart.Series<Number, Number>();
-		data1.setName("Speler 1");
-		XYChart.Series<Number, Number> data2 = new XYChart.Series<Number, Number>();
-		data2.setName("Speler 2");
-		XYChart.Series<Number, Number> data3 = new XYChart.Series<Number, Number>();
-		data3.setName("Speler 3");
-		XYChart.Series<Number, Number> data4 = new XYChart.Series<Number, Number>();
-		data4.setName("Speler 4");
+		Map<String, Integer> spelerPunten = new HashMap();
+
+		for (int i = 0; i < model.getSpelerLijst().size(); i++) {
+			// per speler het totaal aantal punten eerste telling, weg gestopt onder naam.
+			spelerPunten.put(model.getSpelerLijst().get(i).getNaam(), model.getSpelerLijst().get(i).ophalenGegevens());
+		}
+
+		List<XYChart.Series> seriesList = new ArrayList<Series>();
+
+		for(int i=0; i < model.getSpelerLijst().size(); i++){
+			XYChart.Series<Number, Number> series = new XYChart.Series();
+			series.setName(model.getSpelerLijst().get(i).getNaam());
+			seriesList.add(series);
+		}
+
+		for(int l = 0; l < testData.size(); l++) {
+			seriesList.get(0).getData().add(new XYChart.Data<Number, Number>(l, testData.get(l)));
+		}
 
 		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
 
@@ -65,7 +81,7 @@ public class EindView extends Stage {
 		data4.getData().add(new XYChart.Data<Number, Number>(45, 98));
 
 		// Safety type?
-		lineChart.getData().addAll(data1, data2, data3, data4);
+		lineChart.getData().addAll(seriesList.get(0));
 
 		vbox.getChildren().addAll(uitreiking, lineChart);
 		vbox.setAlignment(Pos.CENTER);
