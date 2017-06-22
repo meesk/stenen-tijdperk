@@ -1,172 +1,128 @@
 package presentationlayer;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
+import java.util.Map;
 
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ITableau;
-import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.TextAlignment;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import presentationlayer.skeleton.ITableauObserver;
-import proceslayer.BetaalController;
-import stenentijdperk.StenenTijdperk;
 
-/**
- * BetaalView.java<br>
- * Een klasse die alle informatie bevat om de betaal view te maken.
- *
- * @author Mees Kluivers, s1102358
- * @version 1.0
- */
+public class BetaalView extends Stage {
 
-public class BetaalView extends Stage implements ITableauObserver {
+	private boolean minPunten;
+	private Map<String, Spinner<Integer>> spinners;
 
-	private Spinner<Integer> inputVoedsel = new Spinner<Integer>();
-	private Spinner<Integer> inputHout = new Spinner<Integer>();
-	private Spinner<Integer> inputLeem = new Spinner<Integer>();
-	private Spinner<Integer> inputSteen = new Spinner<Integer>();
-	private Spinner<Integer> inputGoud = new Spinner<Integer>();
-	private Spinner<Integer> inputStamleden = new Spinner<Integer>();
-	private Label aantalBetalen;
+	public BetaalView(ITableau tableau, String message, boolean voedsel, boolean grondstoffen, boolean stamleden,
+			boolean minPunten) throws RemoteException {
 
-	public BetaalView(boolean voeden, boolean toonStamleden, BetaalController controller) throws RemoteException {
+		minPunten = false;
+		spinners = new HashMap<>();
 
-		BorderPane borderPane = new BorderPane();
+		VBox context = new VBox(10);
 
-		UnicastRemoteObject.exportObject(this,0);
+		Label infoLabel = new Label(message);
+		infoLabel.setFont(Font.font(32));
+		HBox infoBox = new HBox(infoLabel);
+		context.getChildren().add(infoBox);
 
-
-		controller.registerView(this);
-
-		GridPane gridPane = new GridPane();
-
-		Label voedsel = new Label("voedsel");
-		Label hout = new Label("hout");
-		Label leem = new Label("leem");
-		Label steen = new Label("steen");
-		Label goud = new Label("goud");
-		Label stamleden = new Label("stamleden");
-
-		SpinnerValueFactory<Integer> valueVoedsel = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
-		SpinnerValueFactory<Integer> valueHout = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
-		SpinnerValueFactory<Integer> valueLeem = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
-		SpinnerValueFactory<Integer> valueSteen = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
-		SpinnerValueFactory<Integer> valueGoud = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
-		SpinnerValueFactory<Integer> valueStamleden = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
-
-		inputVoedsel.setValueFactory(valueVoedsel);
-		inputHout.setValueFactory(valueHout);
-		inputLeem.setValueFactory(valueLeem);
-		inputSteen.setValueFactory(valueSteen);
-		inputGoud.setValueFactory(valueGoud);
-		inputStamleden.setValueFactory(valueGoud);
-
-		HBox hbox = new HBox();
-
-		Button betalenButton = new Button("Plaatsen");
-		betalenButton.setOnMouseClicked(e -> controller.onButtonPressed());
-
-		if (voeden) {
-			gridPane.add(voedsel, 0, 1);
-			gridPane.add(inputVoedsel, 0, 2);
-			aantalBetalen = new Label("moetietsstaandenkik");
-			aantalBetalen.setTextAlignment(TextAlignment.CENTER);
-			aantalBetalen.setStyle("-fx-font-size: 15pt;");
-			betalenButton.setText("Betalen middelen");
-			borderPane.setTop(aantalBetalen);
-			Button verliesPuntenButton = new Button("Verlies 10 punten");
-			verliesPuntenButton.setOnMouseClicked(e -> controller.onVerliesPuntenPressed());
-			hbox.getChildren().add(verliesPuntenButton);
-			BorderPane.setAlignment(verliesPuntenButton, Pos.BOTTOM_LEFT);
-			this.initStyle(StageStyle.UNDECORATED);
+		HBox betaalBox = new HBox();
+		if (voedsel) {
+			VBox voedselSpinner = initSpinner("voedsel", tableau.getMiddelen().get(Middel.VOEDSEL));
+			betaalBox.getChildren().add(voedselSpinner);
 		}
-
-		hbox.getChildren().add(betalenButton);
-
-		if (!toonStamleden) {
-			gridPane.add(hout, 1, 1);
-			gridPane.add(inputHout, 1, 2);
-
-			gridPane.add(leem, 2, 1);
-			gridPane.add(inputLeem, 2, 2);
-
-			gridPane.add(steen, 3, 1);
-			gridPane.add(inputSteen, 3, 2);
-
-			gridPane.add(goud, 4, 1);
-			gridPane.add(inputGoud, 4, 2);
+		if (grondstoffen) {
+			VBox houtSpinner = initSpinner("hout", tableau.getMiddelen().get(Middel.HOUT));
+			VBox leemSpinner = initSpinner("leem", tableau.getMiddelen().get(Middel.LEEM));
+			VBox steenSpinner = initSpinner("steen", tableau.getMiddelen().get(Middel.STEEN));
+			VBox goudSpinner = initSpinner("goud", tableau.getMiddelen().get(Middel.GOUD));
+			betaalBox.getChildren().addAll(houtSpinner, leemSpinner, steenSpinner, goudSpinner);
 		}
-
-		if (toonStamleden) {
-			betalenButton.setOnAction(e -> this.close());
-			gridPane.add(stamleden, 1, 1);
-			gridPane.add(inputStamleden, 1, 2);
+		if (stamleden) {
+			VBox stamlidSpinner = initSpinner("stamleden", tableau.getStamleden().size());
+			betaalBox.getChildren().add(stamlidSpinner);
 		}
+		context.getChildren().add(betaalBox);
 
-		gridPane.setAlignment(Pos.CENTER);
+		Button bevestigen = new Button("Bevestigen");
+		bevestigen.setOnAction(e -> this.close());
+		HBox buttonBox = new HBox(bevestigen);
+		if (minPunten) {
+			Button punten = new Button("-10 Punten");
+			punten.setOnAction(e -> this.minPunten = true);
+			buttonBox.getChildren().add(punten);
+		}
+		context.getChildren().add(buttonBox);
 
-
-		// Zet de titel van de PrimaryStage en dat de PrimaryStage altijd on top moet zijn.
-		// en daarna wordt de Scene in de PrimaryStage gezet.
-		this.setTitle("Betalen middelen");
+		context.setStyle("-fx-background-color: #6a5b34");
+		Scene scene = new Scene(context);
 		this.setAlwaysOnTop(true);
-
-		borderPane.setCenter(gridPane);
-		borderPane.setBottom(hbox);
-		BorderPane.setAlignment(betalenButton, Pos.BOTTOM_RIGHT);
-
-		borderPane.setStyle("-fx-background-color: #6a5b34");
-
-		Scene scene = new Scene(borderPane);
-
 		this.setScene(scene);
 	}
 
-	public int getVoedsel() {
-		return inputVoedsel.getValue();
-	}
+	private VBox initSpinner(String naam, int hoeveelheid) {
+		VBox box = new VBox();
 
-	public int getHout() {
-		return inputHout.getValue();
-	}
+		// Maak de afbeelding aan
+		Image image = new Image("file:assets/betaal_icons/" + naam + ".png");
+		ImageView imageView = new ImageView(image);
+		box.getChildren().add(imageView);
 
-	public int getLeem() {
-		return inputLeem.getValue();
-	}
+		// Maak de beschrijving aan, bijvoorbeeld: "goud: (3)"
+		String text = String.format("%s: (%d)", naam, hoeveelheid);
+		Label beschrijving = new Label(text);
+		beschrijving.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
+		box.getChildren().add(beschrijving);
 
-	public int getSteen() {
-		return inputSteen.getValue();
-	}
+		// Maak de relevante spinner aan
+		Spinner<Integer> spinner = new Spinner<Integer>();
+		SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, hoeveelheid,
+				0);
+		spinner.setValueFactory(valueFactory);
 
-	public int getGoud() {
-		return inputGoud.getValue();
-	}
+		box.getChildren().add(spinner);
 
-	@Override
-	public void modelChanged(ITableau model) throws RemoteException {
-		Platform.runLater(() -> {
-			try{
-				int stamleden = model.getStamleden().size();
-				int voedselspoor = StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
-				aantalBetalen.setText("Aantal te betalen middelen : " + (stamleden - voedselspoor));
-			}catch(RemoteException ex){
-
-			}
-		});
-
+		spinners.put(naam, spinner);
+		return box;
 	}
 
 	public int getStamleden() {
-		return inputStamleden.getValue();
+		return spinners.get("stamleden").getValue();
 	}
+
+	public int getVoedsel() {
+		return spinners.get("voedsel").getValue();
+	}
+
+	public int getHout() {
+		return spinners.get("hout").getValue();
+	}
+
+	public int getLeem() {
+		return spinners.get("leem").getValue();
+	}
+
+	public int getSteen() {
+		return spinners.get("steen").getValue();
+	}
+
+	public int getGoud() {
+		return spinners.get("goud").getValue();
+	}
+
+	public boolean isMinPunten() {
+		return minPunten;
+	}
+
 }

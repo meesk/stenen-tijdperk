@@ -42,7 +42,7 @@ public class LocatieController {
 		}
 		int aantal = -1;
 		while (aantal == -1 || aantal > plaats) {
-			BetaalView betaalView = new BetaalView(false, true, new BetaalController(speler.getTableau()));
+			BetaalView betaalView = new BetaalView(speler.getTableau(), "Selecteer een aantal stamleden om te plaatsen", false, false, true, false);
 			betaalView.showAndWait();
 			aantal = betaalView.getStamleden();
 		}
