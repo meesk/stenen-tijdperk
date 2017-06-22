@@ -55,7 +55,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
 	private boolean voeden;
-	
+
 	private Map<String, List<Integer>> puntenGeschiedenis;
 
 	private List<ISpelObserver> observers;
@@ -91,9 +91,18 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			e.printStackTrace();
 		}
 	}
-	
-	public void vulPuntenGeschiedenis() {
-		
+
+	public void vulPuntenGeschiedenis() throws RemoteException {
+
+		for(int i = 0; i < spelers.size(); i++) {
+			System.out.println("spelers gegevens : " + spelers.get(i).ophalenGegevens());
+			System.out.println("Spelers naam : " + spelers.get(i).getNaam());
+			puntenGeschiedenis.get(spelers.get(i).getNaam()).add(spelers.get(i).ophalenGegevens());
+		}
+	}
+
+	public Map<String, List<Integer>> getPuntenGeschiedenis() {
+		return this.puntenGeschiedenis;
 	}
 
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
@@ -124,9 +133,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	@Override
 	public void opslaan() throws IOException {
-//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("spel.ser")));
-//		oos.writeObject(this);
-//		oos.close();
+		//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("spel.ser")));
+		//		oos.writeObject(this);
+		//		oos.close();
 
 		for(int k = 0; k < this.spelers.size(); k++ ) {
 			System.out.println(spelers.get(k).getTableau().getMiddelen());
@@ -150,6 +159,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			spelers.add(speler);
 		}
 		notifyObservers();
+
+		puntenGeschiedenis.put(speler.getNaam(), new ArrayList<Integer>());
 		return speler;
 	}
 
@@ -174,22 +185,22 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		if (this.spelers.size() > 1) {
 			for (int i = 0; i < this.spelers.size(); i++) { // zolang i kleiner
-															// is dan het aantal
-															// spelers.
+				// is dan het aantal
+				// spelers.
 				if (this.spelers.get(i).isKlaar()) {
 					ready++;
 				}
 			}
-			// Deel van Sequentie Diagram 7: Klaarzetten Spel
+
 			if (ready == this.spelers.size()) {
 				for (int i = 0; i < spelers.size(); i++) {
 					spelers.get(i).getTableau().ontvangMiddelen(Middel.VOEDSEL, 12); // 12
-																						// voedsel
-																						// krijgen
+					// voedsel
+					// krijgen
 					for (int j = 0; j <= 4; j++) {
 						spelers.get(i).getTableau().krijgStamlid(); // 5
-																	// stamleden
-																	// krijgen
+						// stamleden
+						// krijgen
 					}
 				}
 
@@ -248,7 +259,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			faseVoedenStamleden();
 			return;
 		} else {
-			
+
 		}
 
 		while (!speelbord.heeftStamleden(beurtSpeler)) {
@@ -260,7 +271,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		int i = 0;
 		for (ISpeler s  : spelers){
 			if(s.getTableau().getBetaalt() == true){
-			i++;
+				i++;
 			}
 		}
 		if(i == spelers.size()){
@@ -271,6 +282,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private void faseVoedenStamleden() throws RemoteException {
 		setVoeden(true);
+		vulPuntenGeschiedenis();
 		notifyObservers();
 		status = SpelStatus.PLAATSEN_STAMLEDEN;
 		volgendeBeurt();

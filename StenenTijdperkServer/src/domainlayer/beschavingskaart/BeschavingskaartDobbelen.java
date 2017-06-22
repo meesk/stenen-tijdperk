@@ -55,7 +55,7 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 		int totaalOgen = StenenTijdperk.getSpel().getDobbelsteenWorp().getTotaal();
 
 		this.tableau.ontvangMiddelen(this.getMiddel(), totaalOgen / this.getMiddel().getWaarde());
-		
+
 		// verwijderen stamleden
 //		ITableau tableau = speler.getTableau();
 //		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {

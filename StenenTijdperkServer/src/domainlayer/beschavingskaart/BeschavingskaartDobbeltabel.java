@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+import stenentijdperk.StenenTijdperk;
 
 /**
 * BeschavingskaartDobbeltabel.java
@@ -17,7 +18,6 @@ import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 */
 
 public class BeschavingskaartDobbeltabel extends UnicastRemoteObject implements IBeschavingskaart {
-
 
 	private int kosten;
 	private String asset;
@@ -35,8 +35,8 @@ public class BeschavingskaartDobbeltabel extends UnicastRemoteObject implements 
 	}
 
 	@Override
-	public void uitvoerenActie(ISpeler speler) {
-		// Sequentiediagram 16
+	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		speler.getSpel().getDobbelsteenWorp();
 	}
 
 	@Override

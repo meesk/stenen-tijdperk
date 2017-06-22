@@ -27,8 +27,8 @@ public class BeschavingskaartGereedschap extends UnicastRemoteObject implements 
 	private int kosten;
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
-	
-	
+
+
 	BeschavingskaartGereedschap(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean naastTableau) throws RemoteException{
 		this.naastTableau = naastTableau;
 		this.waarde = waarde;

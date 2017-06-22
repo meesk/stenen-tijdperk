@@ -1,9 +1,12 @@
 package domainlayer.beschavingskaart;
 
 /**
+ * BeschavingskaartFactory.java
  * Dit is de factory die alle kaarten aan maakt en waar de kaarten hun specifieke eigenschappen krijgen.
+ *
  * @author Alex de Bruin, s1103096
- * @version 0.1
+ * @author Tristan Caspers, s1102755
+ * @version 1.0
  */
 
 import java.util.ArrayList;
@@ -14,24 +17,22 @@ import domainlayer.enums.Beschaving;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.enums.Symbool;
-import domainlayer.huttegels.HuttegelFactory;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 public class BeschavingskaartFactory {
 
 	private static BeschavingskaartFactory instance;
 	private List<IBeschavingskaart> beschavingskaarten;
-	private List<Beschavingskaart> randomList;
 
-
+	/** Het initializeren van dit model. */
 	public BeschavingskaartFactory() throws RemoteException{
 		beschavingskaarten = new ArrayList<IBeschavingskaart>() {{
 
 			add(new BeschavingskaartSpoor("punten/01.png",3, new BeschavingskaartGras(Symbool.MUZIEK), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartSpoor("punten/02.png",3, new BeschavingskaartGras(Symbool.MUZIEK), BeschavingskaartStatus.VRIJ , 0));
 			add(new BeschavingskaartSpoor("punten/03.png",3, new BeschavingskaartZand(3, Beschaving.HUTTENBOUWERS), BeschavingskaartStatus.VRIJ, 0));
-			add(new BeschavingskaartSpoor("productie/02.png",1, new BeschavingskaartZand(1, Beschaving.BOEREN), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartSpoor("productie/01.png",1, new BeschavingskaartGras(Symbool.ZONNEWIJZER), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartSpoor("productie/02.png",1, new BeschavingskaartZand(1, Beschaving.BOEREN), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartMiddel("grondstof/01.png", 1, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0, Middel.GOUD));
 			add(new BeschavingskaartMiddel("grondstof/02.png", 1, new BeschavingskaartZand(1, Beschaving.BOEREN), BeschavingskaartStatus.VRIJ, 0, Middel.STEEN));
 			add(new BeschavingskaartMiddel("grondstof/03.png", 1, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0, Middel.STEEN));
@@ -69,11 +70,12 @@ public class BeschavingskaartFactory {
 	public IBeschavingskaart getBeschavingskaart(int plaats) {
 		return beschavingskaarten.get(plaats);
 	}
-	
+
 	public List<IBeschavingskaart> getBeschavingskaarten(){
 		return beschavingskaarten;
 	}
-	
+
+
 	public static BeschavingskaartFactory getInstance() {
 		if (instance == null) {
 			try {

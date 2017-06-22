@@ -90,12 +90,14 @@ public class SpelView extends Stage implements ISpelObserver {
 		for (int i = 3; i > spelers.size(); i--) {
 			grid.add(new TableauView(0.3, null), i, 1);
 		}
+		this.setResizable(false);
 		this.show();
 		this.sizeToScene();
 	}
 	
 	private void toonBetaalView(ISpel spel) throws RemoteException { 
-		BetaalView bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen te betalen", true, true, false, true);
+		int betalen = StenenTijdperk.getSpeler().getTableau().getStamleden().size() - StenenTijdperk.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
+		BetaalView bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen om te betalen : " + betalen, true, true, false, true);
 		Map<Middel, Integer> middelen;
 		boolean min;
 		do {

@@ -51,4 +51,6 @@ public interface ISpel extends Remote {
 	public void eindeSpel() throws RemoteException;
 
 	public void notifyEverything() throws RemoteException;
+	
+	public Map<String, List<Integer>> getPuntenGeschiedenis() throws RemoteException;
 }

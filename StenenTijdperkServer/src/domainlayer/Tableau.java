@@ -14,6 +14,7 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import domainlayer.spoor.Puntenspoor;
 import presentationlayer.skeleton.ITableauObserver;
@@ -32,7 +33,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private List<IStamlid> stamleden;
 	private Speler speler;
 	private Map<Middel, Integer> middelen;
-	private List<Beschavingskaart> kaarten;
+	private List<IBeschavingskaart> kaarten;
 	private List<IHuttegel> huttegels;
 	private List<ITableauObserver> observers;
 	private boolean heeftBetaalt;
@@ -83,7 +84,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return stamleden;
 	}
 
-	public void ontvangenBeschavingskaarten(Beschavingskaart kaart) {
+	@Override
+	public void geefBeschavingskaarten(IBeschavingskaart kaart) {
 		kaarten.add(kaart);
 	}
 
@@ -274,7 +276,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		return middelen;
 	}
 
-	public List<Beschavingskaart> getKaarten() {
+	public List<IBeschavingskaart> getKaarten() {
 		return kaarten;
 	}
 
