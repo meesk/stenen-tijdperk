@@ -96,7 +96,7 @@ public class SpelView extends Stage implements ISpelObserver {
 	}
 	
 	private void toonBetaalView(ISpel spel) throws RemoteException { 
-		int betalen = StenenTijdperk.getSpeler().getTableau().getStamleden().size() - StenenTijdperk.getSpel().getSpeelbord().getPuntenspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
+		int betalen = StenenTijdperk.getSpeler().getTableau().getStamleden().size() - StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
 		BetaalView bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen om te betalen : " + betalen, true, true, false, true);
 		Map<Middel, Integer> middelen;
 		boolean min;
