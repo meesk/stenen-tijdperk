@@ -169,8 +169,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	/**
 	 * Kijkt of middelen genoeg zijn, en of het tableau deze middelen heeft.
-	 * @author Mees Kluivers, s1102358
-	 * @param middelen
+	 * @param middelen het aantal middelen dat in het betaalscherm is ingevoerd
 	 * @return boolean true (stamleden gevoed), false (stamleden niet gevoed)
 	 * @throws RemoteException
 	 */
@@ -201,8 +200,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	/**
-	 * @author Mees Kluivers, s1102358
-	 * @param middelen
+	 * 
+	 * @param middelen het aantal middelen dat er betaald moet worden
 	 * @return true (betaald), false (niet betaald)
 	 */
 	public boolean betalen(Map<Middel, Integer> middelen){
