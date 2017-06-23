@@ -56,7 +56,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private List<ISpelObserver> observers;
 
 	/**
-	 * Het initialiseren van het model Spel
+	 * Het initialiseren van het model Spel.
 	 * @throws RemoteException
 	 */
 	public Spel() throws RemoteException {
@@ -95,7 +95,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	/**
-	 * Punten geschiedenis bijhouden
+	 * Punten geschiedenis bijhouden.
 	 * @throws RemoteException
 	 */
 	public void vulPuntenGeschiedenis() throws RemoteException {
@@ -114,7 +114,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	/**
 	 * Bepalen van de winnaar
 	 * @param spelerPuntenTotaal
-	 * @return boolean  winnaar wel of niet bepaald
+	 * @return boolean  winnaar wel of niet bepaald.
 	 * @throws RemoteException
 	 */
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
@@ -161,6 +161,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		ois.close();
 	}
 
+	/**
+	 * Het aanmaken van een nieuwe speler van een spel
+	 */
 	@Override
 	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean b, String kleur)
 			throws RemoteException {
@@ -191,6 +194,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return this.spelers;
 	}
 
+	/**
+	 * Check het aantal spelers in een spel
+	 */
 	@Override
 	public void checkSpelers() throws RemoteException {
 		int ready = 0;
@@ -241,6 +247,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
 	}
 
+	/**
+	 * Het uitvoeren van de fase plaatsenstamleden.
+	 * @throws RemoteException
+	 */
 	private void fasePlaatsenStamleden() throws RemoteException {
 		int aantalStamleden = 0;
 		for (ISpeler speler : spelers) {
@@ -259,6 +269,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	}
 
+	/**
+	 * Het uitvoeren van een actie op een locatie.
+	 * @throws RemoteException
+	 */
 	private void faseUitvoerenActie() throws RemoteException {
 		int aantalStamleden = 0;
 
@@ -279,19 +293,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	private boolean checkBetaalt() throws RemoteException{
-		int i = 0;
-		for (ISpeler s  : spelers){
-			if(s.getTableau().getBetaalt() == true){
-				i++;
-			}
-		}
-		if(i == spelers.size()){
-			return true;
-		}
-		return false;
-	}
-
+	/**
+	 * Het uitvoeren van de fase voeden stameden.
+	 * @throws RemoteException
+	 */
 	private void faseVoedenStamleden() throws RemoteException {
 
 		System.out.println("FaseVoedenStamleden");
@@ -344,6 +349,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	/**
+	 * Verander de statussen van heeftbeurt of geenbeurt.
+	 * @throws RemoteException
+	 */
 	private void updateStatussen() throws RemoteException {
 		// update de status van de spelers
 		for (ISpeler speler : spelers) {
@@ -355,6 +364,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	/**
+	 * Bepalen van de fase.
+	 */
 	@Override
 	public void fases() throws RemoteException {
 		switch (status) {

@@ -16,6 +16,11 @@ import domainlayer.skeleton.IStamlid;
 public class Stamlid extends UnicastRemoteObject implements IStamlid {
 	private ISpeler speler;
 
+	/**
+	 * Het initialiseren van een stamlid
+	 * @param speler  De speler die hoort bij een speler
+	 * @throws RemoteException
+	 */
 	public Stamlid(ISpeler speler) throws RemoteException {
 		this.speler = speler;
 	}

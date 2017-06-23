@@ -43,6 +43,12 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	private int[] gereedschap;
 	private boolean[] gereedschapGebruikt;
 
+	
+	/**
+	 * Het initialiseren van het tableau model
+	 * @param speler  De speler van het tableau
+	 * @throws RemoteException
+	 */
 	public Tableau(Speler speler) throws RemoteException {
 		this.speler = speler;
 		stamleden = new LinkedList<>();
@@ -199,29 +205,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	}
 
 	/**
-	 * 
-	 * @param middelen het aantal middelen dat er betaald moet worden
-	 * @return true (betaald), false (niet betaald)
+	 * Verlies 10 punten op het voedselspoor
 	 */
-	public boolean betalen(Map<Middel, Integer> middelen){
-
-	    List<Integer> values = new ArrayList<Integer>(middelen.values());
-	    List<Integer> values1 = new ArrayList<Integer>(this.middelen.values());
-	    Integer aantalMiddelen = 0;
-	    for (int i = 0; i < values.size(); i++) {
-		    // Check of er niet teveel middelen zijn ingevult
-	    	if (!(values.get(i) <= values1.get(i)))
-	    		return false;
-
-    		aantalMiddelen = values.get(i);
-	    }
-
-	    if (stamleden.size() != aantalMiddelen)
-	    	return false;
-
-		return true;
-	}
-
 	@Override
 	public boolean verliesPunten(){
 		try {

@@ -24,6 +24,7 @@ import domainlayer.spoor.Voedselspoor;
  * Een klasse waar het speelbord wordt aangemaakt.
  *
  * @author	Erwin Olie, s1103026
+ * @author  Mees Kluivers, s1102358
  * @version	1.2
  */
 public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
@@ -37,9 +38,6 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	private List<IHuttegel>[] huttegels;
 	private IBeschavingskaart[] beschavingskaarten;
 	private List<IBeschavingskaart> kaarten;
-//	private List<IBeschavingskaart>[] beschavingskaarten;
-//	private List<IBeschavingskaart> alleKaarten;
-//	int index;
 
 	/**
 	 * Het initialiseren van het model speelbord
@@ -72,6 +70,9 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		}
 	}
 
+	/**
+	 * Schuift de beschavingskaarten door op het speelbord
+	 */
 	public void doorSchuiven() {
 		for(int i = 0; i < 4; i++){
 			System.out.println("Kaarten worden doorgeschoven");
@@ -80,6 +81,9 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	}
 
 
+	/**
+	 * Het aanmaken van de lijst van 
+	 */
 	private void initHuttegels() {
 		huttegels = new List[4];
 		for (int i = 0; i < 4; i++) {
@@ -126,6 +130,9 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return puntenSpoor;
 	}
 
+	/*
+	 * Check of een speler stamleden heeft op een locatie
+	 */
 	public boolean heeftStamleden(ISpeler speler) throws RemoteException {
 		for (ILocatie locatie : locaties) {
 			for (IStamlid stamlid : locatie.getStamleden()) {
@@ -159,18 +166,21 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	}
 
 
+	/*
+	 * 
+	 * @see domainlayer.skeleton.ISpeelbord#popBeschavingskaart(int)
+	 */
 	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
-		System.out.println("1");
-		System.out.println(beschavingskaarten[index]);
 		IBeschavingskaart beschavingskaart = beschavingskaarten[index];
-		System.out.println(beschavingskaarten[index]);
 		beschavingskaarten[index] = null;
-		System.out.println(kaarten.get(index));
 		kaarten.remove(index);
-		System.out.println(kaarten.get(index));
 		return beschavingskaart;
 	}
 
+	/*
+	 * 
+	 * @see domainlayer.skeleton.ISpeelbord#getHuttegel(int)
+	 */
 	@Override
 	public IHuttegel getHuttegel(int index) throws RemoteException {
 		IHuttegel huttegel = huttegels[index].get(0);
