@@ -53,9 +53,10 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 		//int in gebruik gereedschap aanpassen
 	//	this.tableau.gebruikGereedschap(1);
 
-		StenenTijdperk.getSpel().getDobbelsteenWorp().werp(2);
-		this.tableau.ontvangMiddelen(this.getMiddel(), StenenTijdperk.getSpel().getDobbelsteenWorp().getTotaal() / this.getMiddel().getWaarde());
-		tableau.ontvangenBeschavingskaarten(this);
+	//	StenenTijdperk.getSpel().getDobbelsteenWorp().werp(2);
+	//	this.tableau.ontvangMiddelen(this.getMiddel(), StenenTijdperk.getSpel().getDobbelsteenWorp().getTotaal() / this.getMiddel().getWaarde());
+	//	tableau.ontvangenBeschavingskaarten(this);
+
 
 		// verwijderen stamleden
 //		ITableau tableau = speler.getTableau();
