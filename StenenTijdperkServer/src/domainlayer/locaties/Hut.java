@@ -39,8 +39,10 @@ public class Hut extends Locatie {
 		int aantalStamleden = 0;
 		int aantalleden = 0;
 		
+		// Pak alle stamleden van het bord
 		for(ILocatie l : locaties){
 			stamleden.addAll(l.getStamleden());
+			// Pake alle stamleden van de hut
 			if(l.getX() == 318){
 				List<IStamlid> hutStamleden = l.getStamleden();
 				for(IStamlid s : hutStamleden){

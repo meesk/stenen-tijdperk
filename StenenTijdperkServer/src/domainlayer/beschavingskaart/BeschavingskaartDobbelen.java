@@ -15,10 +15,11 @@ import java.util.stream.Collectors;
 import domainlayer.Tableau;
 
 /**
+ * BeschavingskaartDobbelen.java
+ * De klasse waar deze specifieke kaart wordt aangemaakt
  * @author Alex de Bruin, s1103096
- * @version 1.0
+ * @version 3.0
  *
- * Dit is de constructor voor de beschavingskaart <br> waar je met een dobbelsteen moet gooien om een aantal middelen te verkrijgen.
  */
 
 public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBeschavingskaart {
@@ -31,6 +32,14 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	private BeschavingskaartStatus status;
 	private IBeschavingskaartAchtergrond achtergrond;
 
+	/**
+	 * De Constructor voor deze specifieke kaart
+	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
+	 * @param middel  Het middel waar voor gedobbeld kan worden
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart
+	 */
 	public BeschavingskaartDobbelen(String asset, Middel middel, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException {
 		this.asset = asset;
 		this.middel = middel;
@@ -48,6 +57,7 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		//ontvangen middelen aan de hand van de gegooide ogen.
 		//int in gebruik gereedschap aanpassen

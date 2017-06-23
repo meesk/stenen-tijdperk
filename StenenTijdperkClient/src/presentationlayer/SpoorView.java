@@ -12,8 +12,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import presentationlayer.skeleton.ISpoorObserver;
 
+/**
+ * SpoorView.java<br>
+ * De klasse die alle informatie bevat om het spoorview te maken
+ * @author Erwin Olie, s1103026
+ * @version 1.0
+ *
+ */
 public class SpoorView extends StackPane implements ISpoorObserver {
 
+	/**
+	 * Het initialiseren van de view
+	 * @param spoor  Het model van de view (ISpoor)
+	 * @throws RemoteException
+	 */
 	public SpoorView(ISpoor spoor) throws RemoteException {
 		UnicastRemoteObject.exportObject(this, 0);
 		try {
@@ -24,6 +36,9 @@ public class SpoorView extends StackPane implements ISpoorObserver {
 		this.setPickOnBounds(false);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modelChanged(ISpoor spoor) throws RemoteException {
 		Platform.runLater(() -> {

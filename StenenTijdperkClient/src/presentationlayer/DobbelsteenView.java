@@ -24,7 +24,11 @@ public class DobbelsteenView extends Pane implements IDobbelsteenObserver {
 	/** De locatie van de dobbelsteen-afbeeldingen. */
 	private final String RESOURCE = "file:assets/dobbelstenen/%d.png";
 	
-	/** Het initialiseren van de view van de dobbelsteen. */
+	/**
+	 *  Het initialiseren van de view van de dobbelsteen.
+	 *  @throws RemoteException 
+	 *
+	 */
 	public DobbelsteenView() throws RemoteException {
 		// Maak deze klasse toegankelijk voor RMI.
 		UnicastRemoteObject.exportObject(this, 0);

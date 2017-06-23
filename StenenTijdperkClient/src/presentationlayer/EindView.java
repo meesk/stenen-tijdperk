@@ -34,6 +34,7 @@ public class EindView extends Stage {
 	 * Het initialiseren van de view van het einde.
 	 * @param spelController	De controller van het spel.
 	 * @param model			    Het model van het spel.
+	 * @throws RemoteException
 	 */
 	public EindView(SpelController spelController, ISpel model) throws RemoteException {
 

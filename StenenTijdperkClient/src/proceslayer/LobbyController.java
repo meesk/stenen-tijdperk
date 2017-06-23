@@ -29,7 +29,7 @@ public class LobbyController {
 	
 	/**Registreerd het spel in de controller
 	 * 
-	 * @param spel
+	 * @param spel  Het model van het spel
 	 */
 	public LobbyController(ISpel spel) {
 		this.spel = spel;
@@ -37,7 +37,7 @@ public class LobbyController {
 
 
 	/**Registreerd de lobby view in de controller
-	 * @param view
+	 * @param view  De view die geregistreerd wordt.
 	 */
 	public void registerView(LobbyView view) {
 		this.view = view;

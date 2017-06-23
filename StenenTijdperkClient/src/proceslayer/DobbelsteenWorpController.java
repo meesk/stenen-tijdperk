@@ -16,7 +16,10 @@ public class DobbelsteenWorpController {
 	/** Het model dat word weergegeven in de view. */
 	private IDobbelsteenWorp model;
 
-	/** Het setten van het model. */
+	/** 
+	 * Het setten van het model. 
+	 * @param model  het model IDobbelsteenWorp
+	 */
 	public DobbelsteenWorpController(IDobbelsteenWorp model) {
 		this.model = model;
 	}

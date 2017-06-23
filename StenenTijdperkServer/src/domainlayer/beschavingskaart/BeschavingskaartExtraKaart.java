@@ -13,7 +13,7 @@ import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 *
 * @author Alex de Bruin, s1103096
 * @author Tristan Caspers, s1102755
-* @version 1.0
+* @version 3.0
 */
 
 public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements IBeschavingskaart {
@@ -23,6 +23,12 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 	private int kosten;
 	private BeschavingskaartStatus status;
 
+	/**De constructor van deze kaart
+	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart
+	 */
 	BeschavingskaartExtraKaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException {
 		this.achtergrond = achtergrond;
 		this.asset = asset;
@@ -35,6 +41,7 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Speler haalt stamlid van de kaart af
 		// Speler betaalt de kaart
@@ -42,7 +49,7 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 		// Speler krijgt een random kaart van de stapel van het speelbord op zijn tableau
 		// Speler krijgt kaart op zijn tableau
 
-//		speler.getTableau().geefBeschavingskaarten(speler.getSpel().getSpeelbord().getBeschavingskaarten()[1]);
+		speler.getTableau().geefBeschavingskaarten(speler.getSpel().getSpeelbord().getBeschavingskaarten()[1]);
 //		System.out.println("Willekeurige beschavingskaart toegevoegd aan tableau");
 	}
 

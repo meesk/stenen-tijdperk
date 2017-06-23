@@ -1,10 +1,11 @@
 package domainlayer.beschavingskaart;
 
 /**
-*  Dit is de constructor voor de andere gereedschapskaart waar de speler een gereedschaps fische krijgt.
+*BeschavingskaartGereedschapFische.java
+* De klasse waar deze specifieke kaart wordt aangemaakt
 *
 * @author Alex de Bruin, s1103096
-* @version 0.1
+* @version 3.0
 */
 
 import java.rmi.RemoteException;
@@ -24,6 +25,12 @@ public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implem
 	private BeschavingskaartStatus status;
 	private int kosten;
 
+	/**
+	 * De contructor van deze speciefieke kaart
+	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart*/
 	BeschavingskaartGereedschapFiche(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		this.asset = asset;
 		this.achtergrond = achtergrond;
@@ -37,6 +44,7 @@ public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implem
 	}
 
 	@Override
+	/**{@inheritDoc} */
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		ITableau tableau = speler.getTableau();
 		// Verhoog het gereedschap op het tableau van de speler

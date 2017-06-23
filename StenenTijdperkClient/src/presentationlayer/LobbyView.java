@@ -44,26 +44,7 @@ import proceslayer.LobbyController;
  * @author Erwin Olie, s1103026
  * @version 1.2
  */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
+
 public class LobbyView extends Stage implements ISpelObserver {
 
 	private TextField voorNaamField;
@@ -216,7 +197,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	
 	/**Eerst wordt er gekeken of er een kleur is geselecteerd en daarna returned het de kleur of een lege string.
 	 * 
-	 * @return
+	 * @return String  geeft de kleur terug
 	 */
 	public String getKleur() {
 		if (group.getSelectedToggle() != null) {
