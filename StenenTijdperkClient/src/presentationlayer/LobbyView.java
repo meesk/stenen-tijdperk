@@ -173,7 +173,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 		borderpane.setCenter(gridPaneForm);
 
 		// TODO: dit is voor het gemak, MOET later worden weg worden gehaald.
-		setLobbyGegevens();
+		//setLobbyGegevens();
 
 		Scene scene = new Scene(borderpane, 900, 800);
 		this.setTitle("Het Stenen Tijdperk: Lobby");
