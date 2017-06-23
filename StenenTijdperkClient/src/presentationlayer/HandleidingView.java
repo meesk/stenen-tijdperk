@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 
 public class HandleidingView extends Stage {
 
+	
+	/**
+	 * Het initialiseren van de HandleidingView
+	 */
 	public HandleidingView() {
 
 		// Scrollpane gemaakt zodat er gescrolled kan worden in de handleiding.

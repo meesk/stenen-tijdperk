@@ -44,26 +44,7 @@ import proceslayer.LobbyController;
  * @author Erwin Olie, s1103026
  * @version 1.2
  */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
-/**
- * @author Enzo
- *
- */
+
 public class LobbyView extends Stage implements ISpelObserver {
 
 	private TextField voorNaamField;

@@ -10,7 +10,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * GereedschapView.java<br>
+ * De view voor het tonen van de gereedschap
+ * @author Erwin Olie, s1103026
+ * @version 1.0
+ *
+ */
+
 public class GereedschapView extends Stage {
+	
+	/**
+	 * Het initialiseren van de GereedschapView
+	 * @param tableau  Het model van de view (ITableau)
+	 * @throws RemoteException
+	 */
 
 	public GereedschapView(ITableau tableau) throws RemoteException {
 		 
