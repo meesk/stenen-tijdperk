@@ -45,14 +45,16 @@ import proceslayer.SpelController;
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @version	1.0
-*/
+ */
 public class StenenTijdperk extends Application {
 
 	private static ISpel spel;
 	private static ISpeler speler;
+	private static String ip;
 
 	/** De main method dies de JavaFX applicatie opstart. */
 	public static void main(String[] args) {
+		ip = args[0];
 		launch(args);
 	}
 
@@ -60,9 +62,9 @@ public class StenenTijdperk extends Application {
 	/** {@inheritDoc} */
 	public void start(Stage primaryStage) throws Exception {
 		// Het definieren van het model
-		
-		//spel = (ISpel) Naming.lookup("rmi://145.101.81.97/Spel");
-		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
+
+		spel = (ISpel) Naming.lookup("rmi://"+ip+"/Spel");
+		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
 		// ...
 		HandleidingView handleidingPane = new HandleidingView();
