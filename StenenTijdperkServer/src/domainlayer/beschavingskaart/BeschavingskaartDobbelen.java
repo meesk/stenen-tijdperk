@@ -3,28 +3,19 @@ package domainlayer.beschavingskaart;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
-import domainlayer.skeleton.IStamlid;
-import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
-import stenentijdperk.StenenTijdperk;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
-import java.util.stream.Collectors;
 import domainlayer.Tableau;
 
 /**
- * BeschavingskaartDobbelen.java
  * De klasse waar deze specifieke kaart wordt aangemaakt
  * @author Alex de Bruin, s1103096
  * @version 3.0
- *
  */
-
 public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBeschavingskaart {
-
 
 	private int kosten;
 	private Middel middel;
@@ -49,61 +40,52 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public int getKosten() {
 		return kosten;
 	}
 
+	/**
+	 * Verander hoeveel middelen de beschavingskaart kost.
+	 * @param kosten  De nieuwe kosten.
+	 */
 	public void setKosten(int kosten) {
-
+		// TODO
 	}
 
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+		// TODO
 		//ontvangen middelen aan de hand van de gegooide ogen.
 		//int in gebruik gereedschap aanpassen
-	//	this.tableau.gebruikGereedschap(1);
-
-	//	StenenTijdperk.getSpel().getDobbelsteenWorp().werp(2);
-	//	this.tableau.ontvangMiddelen(this.getMiddel(), StenenTijdperk.getSpel().getDobbelsteenWorp().getTotaal() / this.getMiddel().getWaarde());
-	//	tableau.ontvangenBeschavingskaarten(this);
-
-
-		// verwijderen stamleden
-//		ITableau tableau = speler.getTableau();
-//		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
-//			try {
-//				return s.getSpeler() == speler;
-//			} catch (RemoteException e) {
-//				e.printStackTrace();
-//				return false;
-//			}
-//		}).collect(Collectors.toList());
-//		tableau.ontvangStamleden(stamleden);
-//		super.verwijderStamleden(stamleden);
-
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public BeschavingskaartStatus getStatus() {
 		return status;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void setStatus(BeschavingskaartStatus status){
 		this.status = status;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public String getAsset() {
 		return asset;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}
 
+	/** @return Het middel waarom gedobbeld kan worden. */
 	public Middel getMiddel() {
 		return middel;
 	}

@@ -34,15 +34,14 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	private List<ILocatie> locaties;
 	private ISpoor voedselSpoor;
 	private ISpoor puntenSpoor;
-	private ILocatie laatstGekozenLcatie;
+	ILocatie laatstGekozenLcatie;
 	private List<IHuttegel>[] huttegels;
-	private IBeschavingskaart[] beschavingskaarten;
+	public IBeschavingskaart[] beschavingskaarten;
 	private List<IBeschavingskaart> kaarten;
 
 	/**
 	 * Het initialiseren van het model speelbord
 	 * @param spel  Het model spel
-	 * @throws RemoteException
 	 */
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
@@ -53,37 +52,30 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		initBeschavingskaarten();
 	}
 
+	/** @return Alle beschavingskaarten in het spel. */
 	public List<IBeschavingskaart> getKaarten() {
 		return kaarten;
 	}
 	
-	/**
-	 * Maakt een nieuwe lijst aan met beschavingskaarten
-	 */
+	/** Maakt een nieuwe lijst aan met beschavingskaarten. */
 	private void initBeschavingskaarten(){
 		kaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
 		Collections.shuffle(kaarten);
 		beschavingskaarten = new IBeschavingskaart[4];
 		if(beschavingskaarten[1] == null) {
-			doorSchuiven();
-
+			doorschuiven();
 		}
 	}
 
-	/**
-	 * Schuift de beschavingskaarten door op het speelbord
-	 */
-	public void doorSchuiven() {
+	/** Schuift de beschavingskaarten door op het speelbord */
+	public void doorschuiven() {
 		for(int i = 0; i < 4; i++){
 			System.out.println("Kaarten worden doorgeschoven");
 			this.beschavingskaarten[i] = kaarten.get(i);
 		}
 	}
 
-
-	/**
-	 * Het aanmaken van de lijst van 
-	 */
+	/** Het aanmaken van de lijst van huttegels */
 	private void initHuttegels() {
 		huttegels = new List[4];
 		for (int i = 0; i < 4; i++) {
@@ -96,26 +88,27 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		}
 	}
 
+	@Override
+	/**{@inheritDoc}*/
 	public List<IHuttegel>[] getHuttegels() {
 		return huttegels;
 	}
 
+	@Override
+	/**{@inheritDoc}*/
 	public IBeschavingskaart[] getBeschavingskaarten(){
 		return beschavingskaarten;
 	}
-
-	public void setBeschavingskaarten() {
-		for (int i = 0; i < 4; i++) {
-			if (beschavingskaarten[i] != null) {
-				beschavingskaarten[i] = null;
-			}
-		}
-	}
-
+	
+	/**
+	 * Verander de laatst gekozen locatie van de speler.
+	 * @param locatie  De laatste locatie.
+	 */
 	public void setLaatstGekozenLocatie(ILocatie locatie) {
 		this.laatstGekozenLcatie = locatie;
 	}
 
+	/** @return De laatst gekozen locatie */
 	public ILocatie getLaatstGekozenLocatie() {
 		return laatstGekozenLcatie;
 	}
@@ -132,9 +125,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return puntenSpoor;
 	}
 
-	/*
-	 * Check of een speler stamleden heeft op een locatie
-	 */
+	/** Check of een speler stamleden heeft op een locatie */
 	public boolean heeftStamleden(ISpeler speler) throws RemoteException {
 		for (ILocatie locatie : locaties) {
 			for (IStamlid stamlid : locatie.getStamleden()) {
@@ -152,10 +143,6 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return locaties;
 	}
 
-	public Spel getSpel() {
-		return spel;
-	}
-
 	@Override
 	/** {@inheritDoc} */
 	public ISpoor[] getSporen() throws RemoteException {
@@ -170,14 +157,14 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return huttegel;
 	}
 
-
+	@Override
+	/** {@inheritDoc} */
 	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
 		IBeschavingskaart beschavingskaart = beschavingskaarten[index];
 		beschavingskaarten[index] = null;
 		kaarten.remove(index);
 		return beschavingskaart;
 	}
-
 
 	@Override
 	/** {@inheritDoc} */
