@@ -160,9 +160,14 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 
 	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
+		System.out.println("1");
+		System.out.println(beschavingskaarten[index]);
 		IBeschavingskaart beschavingskaart = beschavingskaarten[index];
+		System.out.println(beschavingskaarten[index]);
 		beschavingskaarten[index] = null;
+		System.out.println(kaarten.get(index));
 		kaarten.remove(index);
+		System.out.println(kaarten.get(index));
 		return beschavingskaart;
 	}
 
