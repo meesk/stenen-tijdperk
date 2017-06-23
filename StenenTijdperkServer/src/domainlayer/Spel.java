@@ -307,6 +307,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		setVoeden(true);
 		vulPuntenGeschiedenis();
 
+		for(ISpeler speler : spelers) {
+			System.out.println(speler.getTableau().getKaarten().size());
+		}
 
 		if (this.getSpeelbord().getKaarten().size() >= 4) {
 			System.out.println("ik kom in deze loop");

@@ -25,6 +25,11 @@ public interface IBeschavingskaart extends Remote {
 	public void uitvoerenActie(ISpeler speler) throws RemoteException;
 
 
+	/**
+	 * De methode die de status van de beschavingskaart opvraagd
+	 * @return  de status die de beschavingskaart op dit moment heeft
+	 *
+	 */
 	public BeschavingskaartStatus getStatus() throws RemoteException;
 
 

@@ -44,9 +44,9 @@ import proceslayer.SpelController;
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
- * 
+ *
  * @version	1.0
- * 
+ *
  */
 public class StenenTijdperk extends Application {
 
@@ -54,12 +54,12 @@ public class StenenTijdperk extends Application {
 	private static ISpeler speler;
 	private static String ip;
 
-	/** 
+	/**
 	 * De main method dies de JavaFX applicatie opstart.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ip = args[0];
+	//	ip = args[0];
 		launch(args);
 	}
 
@@ -68,7 +68,7 @@ public class StenenTijdperk extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Het definieren van het model
 
-		spel = (ISpel) Naming.lookup("rmi://"+ip+"/Spel");
+		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
 		// ...
@@ -90,8 +90,8 @@ public class StenenTijdperk extends Application {
 		lobbyView.show();
 
 	}
-	
-	
+
+
 	/**
 	 * getter voor het spel dat geinitializeerd is door de server.
 	 * @return ISpel  het model ISpel
@@ -100,7 +100,7 @@ public class StenenTijdperk extends Application {
 		return spel;
 	}
 
-	
+
 	/**
 	 * getter voor het speler ophalen van de huidige client.
 	 * @return  ISpeler  het model ISpel
@@ -109,7 +109,7 @@ public class StenenTijdperk extends Application {
 		return speler;
 	}
 
-	
+
 	/**
 	 * Geeft de client een specifieke speler.
 	 * @param spelSpeler  De speler op te setten
