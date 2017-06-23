@@ -1,12 +1,12 @@
 package domainlayer.beschavingskaart;
 
 /**
-* @Author Alex de Bruin, s1103096
-* @Version 0.1
-*
-* <br>
-* <br>
+ * BeschavingskaartSpoor.java
 * Dit is de constructor die de kaarten die Voedselspoor punten dragen en kaarten die puntenSpoor puntendragen aanmaakt.
+* @author Alex de Bruin, s1103096
+* @version 3.0
+*
+
 */
 
 import domainlayer.enums.BeschavingskaartStatus;
@@ -32,6 +32,15 @@ public class BeschavingskaartSpoor extends UnicastRemoteObject implements IBesch
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
 
+	/**
+	 * De constructoor van deze speciefieke Beschavingskaart
+	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart
+	 * @param waarde  de waarde waarmee het spoor opgehoogd moet worden
+	 * @throws RemoteException
+	 */
 	BeschavingskaartSpoor(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 	 this.waarde = waarde;
 	 this.asset = asset;
@@ -43,6 +52,9 @@ public class BeschavingskaartSpoor extends UnicastRemoteObject implements IBesch
 	}
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		//actie uitvoeren
 		if(waarde == 1){

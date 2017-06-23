@@ -5,6 +5,7 @@ package domainlayer.beschavingskaart;
 * De klasse waar deze specifieke kaart wordt aangemaakt
 *
 * @author Alex de Bruin, s1103096
+* @author Mees Kluivers, s1102358
 * @version 3.0
 */
 

@@ -3,8 +3,8 @@ package domainlayer.beschavingskaart;
 /**
  * BeschavingskaartGras.java
 * Dit is de klasse die een gras kaart de juiste achtergrond assets meegeeft
-*@Author Alex de Bruin, s1103096
-*@Version 3.0
+*@author Alex de Bruin, s1103096
+*@version 3.0
 */
 
 import domainlayer.enums.Symbool;

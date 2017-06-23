@@ -2,8 +2,10 @@ package domainlayer.beschavingskaart;
 
 
 /**
+ * BeschavingskaartNaarKeuze.java
+ * De klasse waar deze specifieke kaart wordt aangemaakt
  * @author Alex de Bruin
- * @version 0.1
+ * @version 3.0
  *
  * <br>
 * <br>
@@ -27,7 +29,15 @@ public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IB
 	private BeschavingskaartStatus status;
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
-
+	/**
+	 * De constructoor van deze specifieke kaart
+	 * @param waarde  de waarde van het gereedschap dat meegegeven wordt
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart
+	 * @param isNaastTableau  is de boolean die aangeeft of de beschavingskaart naast het tableau ligt of niet
+	 * @param middelen  de middelen ie de speler kiest als hij de kaart wil gebruiken
+	 */
 	public BeschavingskaartNaarKeuze(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean isNaastTableau, Middel middelen) throws RemoteException{
 		this.isNaastTableau = isNaastTableau;
 		this.middelen = middelen;
