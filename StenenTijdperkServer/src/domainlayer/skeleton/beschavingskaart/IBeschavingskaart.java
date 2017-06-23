@@ -1,5 +1,4 @@
 package domainlayer.skeleton.beschavingskaart;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import domainlayer.enums.BeschavingskaartStatus;
@@ -12,6 +11,10 @@ import domainlayer.skeleton.ISpeler;
  */
 public interface IBeschavingskaart extends Remote {
 
+	/**
+	 * @return int  kosten ophalen van de beschavingskaart
+	 * @throws RemoteException
+	 */
 	/** @return De prijs die de kaart kost. */
 	public int getKosten() throws RemoteException;
 

@@ -23,20 +23,24 @@ public class SpeelbordView extends Pane {
 	 * @param model  Het model van de view (ISpeelbord)
 	 */
 	public SpeelbordView(ISpeelbord model) {
+		
 		// Het tekenen van de afbeelding van het speelbord
 		Image image = new Image("file:assets/speelbord.jpg");
 		ImageView imageView = new ImageView(image);
 		this.getChildren().add(imageView);
 
 		try {
+			
 			// Het tekenen van de locaties op het speelbord.
 			for (ILocatie locatie : model.getLocaties()) {
 				this.getChildren().add(new LocatieView(locatie, new LocatieController(locatie)));
 			}
+			
 			// Het tekenen van de sporen op het speelbord.
 			for (ISpoor spoor : model.getSporen()) {
 				this.getChildren().add(new SpoorView(spoor));
 			}
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

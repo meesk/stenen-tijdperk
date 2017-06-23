@@ -27,7 +27,7 @@ public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IB
 
 	/**
 	 * De constructoor van deze specifieke kaart
-	 * @param waarde  de waarde van het gereedschap dat meegegeven wordt
+	 * @param asset  de url van de afbeelding
 	 * @param achtergrond  het soort achtergrond dat de kaart heeft
 	 * @param status  is de kaart vrij of niet vrij
 	 * @param kosten  wat kost de kaart

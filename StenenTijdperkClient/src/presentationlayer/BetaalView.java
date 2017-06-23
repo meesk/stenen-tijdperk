@@ -26,9 +26,8 @@ import presentationlayer.skeleton.ITableauObserver;
  *
  * @author Mees Kluivers, s1102358
  * @author Erwin Olie, s1103026
- * @version 1.0
+ * @version 3.0
  */
-
 public class BetaalView extends Stage implements ITableauObserver {
 
 	private boolean minPunten;
@@ -36,14 +35,12 @@ public class BetaalView extends Stage implements ITableauObserver {
 
 	/**
 	 * De constructor van de betaalview
-	 * 
 	 * @param tableau  Het model van de view
 	 * @param message  De text die getoond moet worden op het scherm
 	 * @param voedsel  Optie om voedsel te tonen op het scherm
 	 * @param grondstoffen  Optie om grondstoffen te tonen op het scherm
 	 * @param stamleden  Optie om stamleden te tonen op het scherm
 	 * @param minPunten  Optie om de -10 punten te tonen op het scherm
-	 * @throws RemoteException
 	 */
 	public BetaalView(ITableau tableau, String message, boolean voedsel, boolean grondstoffen, boolean stamleden,
 			boolean minPunten) throws RemoteException {
@@ -127,40 +124,44 @@ public class BetaalView extends Stage implements ITableauObserver {
 		return box;
 	}
 
+	/** @return De geselecteerde hoeveelheid stamleden. */
 	public int getStamleden() {
 		return spinners.get("stamleden").getValue();
 	}
 
+	/** @return De geselecteerde hoeveelheid voedsel. */
 	public int getVoedsel() {
 		return spinners.get("voedsel").getValue();
 	}
 
+	/** @return De geselecteerde hoeveelheid hot. */
 	public int getHout() {
 		return spinners.get("hout").getValue();
 	}
 
+	/** @return De geselecteerde hoeveelheid leem. */
 	public int getLeem() {
 		return spinners.get("leem").getValue();
 	}
 
+	/** @return De geselecteerde hoeveelheid steen. */
 	public int getSteen() {
 		return spinners.get("steen").getValue();
 	}
 
+	/** @return De geselecteerde hoeveelheid goud. */
 	public int getGoud() {
 		return spinners.get("goud").getValue();
 	}
 
+	/** @return Of dat er de -10 punten knop is gebruikt. */
 	public boolean isMinPunten() {
 		return this.minPunten;
 	}
 
-	/** 
-	 * {@inheritDoc}
-	 * 
-	 */
 	@Override
+	/** {@inheritDoc} */
 	public void modelChanged(ITableau model) throws RemoteException {
-
+		//
 	}
 }

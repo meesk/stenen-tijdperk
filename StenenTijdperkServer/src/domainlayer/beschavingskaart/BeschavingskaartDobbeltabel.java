@@ -8,6 +8,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
+
 /**
 * De klasse waarin deze specifieke kaart wordt aangemaakt.
 *

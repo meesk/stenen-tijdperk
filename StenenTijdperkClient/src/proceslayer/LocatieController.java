@@ -15,10 +15,10 @@ import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
 
 /**
- * LocatieController.java De controller voor de locatie.
+ * De controller voor de locatie.
  *
  * @author Tristan Caspers, s1102755
- * @version 0.1
+ * @version 3.0
  */
 public class LocatieController {
 
@@ -27,12 +27,16 @@ public class LocatieController {
 
 	/** 
 	 * Het setten van het model. 
-	 * @param model  het model ILocatie
+	 * @param model  Het model ILocatie
 	 */
 	public LocatieController(ILocatie model) {
 		this.model = model;
 	}
 
+	/**
+	 * Het registreren van een nieuwe view.
+	 * @param view  De view die geregistreerd word.
+	 */
 	public void registerView(LocatieView view) {
 		this.view = view;
 	}

@@ -7,20 +7,16 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * HandleidingPane.java
  * Hier wordt de handleiding in allerlei panes gezet en in een Scene en PrimaryStage gezet.
  *
  * @author Enzo Campfens, s1102421
- * @version 1.0
- *
+ * @version 3.0
  */
 
 public class HandleidingView extends Stage {
 
 	
-	/**
-	 * Het initialiseren van de HandleidingView
-	 */
+	/** Het initialiseren van de HandleidingView */
 	public HandleidingView() {
 
 		// Scrollpane gemaakt zodat er gescrolled kan worden in de handleiding.
@@ -47,3 +43,4 @@ public class HandleidingView extends Stage {
 		this.setScene(scene);
 	}
 }
+

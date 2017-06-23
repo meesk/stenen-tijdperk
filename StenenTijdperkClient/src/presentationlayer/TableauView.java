@@ -9,7 +9,6 @@ import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.huttegels.IHuttegel;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.InnerShadow;
@@ -25,12 +24,11 @@ import presentationlayer.skeleton.ITableauObserver;
 import stenentijdperk.StenenTijdperk;
 
 /**
- * TableauView.java<br>
  * Een klasse die alle informatie bevat om de tableau view te maken.
  *
  * @author Erwin Olie, s1103026
  * @author Mees Kluivers, s1102358
- * @version 1.0
+ * @version 3.0
  */
 public class TableauView extends StackPane implements ITableauObserver {
 
@@ -322,10 +320,8 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
+	/** {@inheritDoc} */
 	public void modelChanged(ITableau tableau) throws RemoteException {
 		Platform.runLater(() -> {
 			try {

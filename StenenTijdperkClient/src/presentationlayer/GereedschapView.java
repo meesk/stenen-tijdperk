@@ -16,7 +16,6 @@ import javafx.stage.Stage;
  * @author Erwin Olie, s1103026
  * @version 3.0
  */
-
 public class GereedschapView extends Stage {
 	
 	/**

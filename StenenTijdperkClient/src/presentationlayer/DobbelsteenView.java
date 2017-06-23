@@ -35,8 +35,8 @@ public class DobbelsteenView extends Pane implements IDobbelsteenObserver {
 		this.getChildren().add(imageView);
 	}
 
-	/** {@inheritDoc} */
 	@Override
+	/** {@inheritDoc} */
 	public void modelChanged(IDobbelsteen model) {
 		Platform.runLater(() -> {
 			try {
@@ -49,3 +49,4 @@ public class DobbelsteenView extends Pane implements IDobbelsteenObserver {
 		});
 	}
 }
+

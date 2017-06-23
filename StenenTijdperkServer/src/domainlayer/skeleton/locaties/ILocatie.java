@@ -13,7 +13,7 @@ import presentationlayer.skeleton.ILocatieObserver;
 /**
  * Deze interface kan door de RMI worden gebruikt om locatie-gegevens
  * op te halen.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @version 3.0
  */
@@ -48,7 +48,7 @@ public interface ILocatie extends Remote {
 	 * @param observer  De observer die geregistreerd moet worden.
 	 */
 	public void registerObserver(ILocatieObserver observer) throws RemoteException;
-	
+
 	/**
 	 * Het uitvoeren van een speciale actie die hoort bij de locatie.
 	 * @param speler  De speler wiens actie word uitgevoerd.
@@ -75,5 +75,11 @@ public interface ILocatie extends Remote {
 	 * moet worden geworpen. */
 	public boolean isWorpNodig() throws RemoteException;
 
-	
+
+	/**
+	 * Reset de beschavingskaarten op het speelbord.
+	 * @param speelbord  Het relevante speelbord.
+	 */
+	public void resetBeschavingskaarten(Speelbord speelbord) throws RemoteException;
+
 }

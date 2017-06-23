@@ -35,7 +35,7 @@ public interface ISpeler extends Remote {
 	/** @return  Het spel waaraan de speler deelneemt. */
 	public ISpel getSpel() throws RemoteException;
 
-	/** @return  Het aangeven dat de speler klaar is om te beginnen. */
+	/** Het aangeven dat de speler klaar is om te beginnen. */
 	public void setSpelerKlaar() throws RemoteException;
 
 	/** @return  De hoeveelheid punten van de speler. */

@@ -3,11 +3,13 @@ package domainlayer.beschavingskaart;
 import domainlayer.enums.Symbool;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
+
 /**
  * Dit is de klasse die een gras kaart de juiste achtergrond assets meegeeft
  * @author Alex de Bruin, s1103096
  * @version 3.0
  */
+
 
 public class BeschavingskaartGras implements IBeschavingskaartAchtergrond {
 

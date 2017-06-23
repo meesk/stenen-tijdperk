@@ -1,4 +1,4 @@
-package proceslayer;
+	package proceslayer;
 
 import java.rmi.RemoteException;
 
@@ -17,7 +17,6 @@ import stenentijdperk.StenenTijdperk;
  * @author Mees Kluivers, s1102358
  * @version 3.0
  */
-
 public class LobbyController {
 
 	private ISpel spel;
