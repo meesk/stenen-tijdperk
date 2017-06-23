@@ -121,11 +121,13 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public ISpoor getVoedselspoor() {
 		return voedselSpoor;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public ISpoor getPuntenspoor() {
 		return puntenSpoor;
 	}
@@ -145,6 +147,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public List<ILocatie> getLocaties() {
 		return locaties;
 	}
@@ -154,11 +157,13 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public ISpoor[] getSporen() throws RemoteException {
 		return new ISpoor[] { puntenSpoor, voedselSpoor };
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public IHuttegel popHuttegel(int index) throws RemoteException {
 		IHuttegel huttegel = huttegels[index].get(0);
 		huttegels[index].remove(0);
@@ -166,10 +171,6 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	}
 
 
-	/*
-	 * 
-	 * @see domainlayer.skeleton.ISpeelbord#popBeschavingskaart(int)
-	 */
 	public IBeschavingskaart popBeschavingskaart(int index) throws RemoteException {
 		IBeschavingskaart beschavingskaart = beschavingskaarten[index];
 		beschavingskaarten[index] = null;
@@ -177,11 +178,9 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return beschavingskaart;
 	}
 
-	/*
-	 * 
-	 * @see domainlayer.skeleton.ISpeelbord#getHuttegel(int)
-	 */
+
 	@Override
+	/** {@inheritDoc} */
 	public IHuttegel getHuttegel(int index) throws RemoteException {
 		IHuttegel huttegel = huttegels[index].get(0);
 		return huttegel;
