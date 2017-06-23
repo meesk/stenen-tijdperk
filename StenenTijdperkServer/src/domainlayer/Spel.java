@@ -23,7 +23,6 @@ import domainlayer.skeleton.spoor.ISpoor;
 import presentationlayer.skeleton.ISpelObserver;
 
 /**
- * Spel.java<br>
  * De klasse waar alle elementen tot 1 spel worden gevoegd.
  *
  * @author Erwin Olie, s1103026
@@ -31,17 +30,12 @@ import presentationlayer.skeleton.ISpelObserver;
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @author Alex de Bruin, s1103096
- * @version 1.0
+ * @version 3.0
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private ISpeler beurtSpeler;
 	private Speelbord speelbord;
-
-	@Override
-	public Speelbord getSpeelbord() {
-		return speelbord;
-	}
 
 	private DobbelsteenWorp dobbelsteenWorp;
 	private List<ISpeler> spelers;
@@ -55,10 +49,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private List<ISpelObserver> observers;
 
-	/**
-	 * Het initialiseren van het model Spel.
-	 * @throws RemoteException
-	 */
+	/** Het initialiseren van het model Spel. */
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
 		speelbord = new Speelbord(this);
@@ -68,10 +59,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		observers = new ArrayList<>();
 	}
 
-	/**
-	 * Functie voor de telling van het einde van het spel
-	 */
-	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
+	@Override
+	/** {@inheritDoc} */
+	public void eindeSpel() {
 
 		Map<String, Integer> spelerPuntenTotaal = new HashMap();
 
@@ -94,6 +84,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+
+	@Override
+	/**{@inheritDoc}*/
+	public Speelbord getSpeelbord() {
+		return speelbord;
+	}
+	
 	/**
 	 * Punten geschiedenis bijhouden.
 	 * @throws RemoteException
@@ -115,7 +112,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 * Bepalen van de winnaar
 	 * @param spelerPuntenTotaal
 	 * @return boolean  winnaar wel of niet bepaald.
-	 * @throws RemoteException
 	 */
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
 
@@ -139,12 +135,15 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public DobbelsteenWorp getDobbelsteenWorp() {
 		return dobbelsteenWorp;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void opslaan() throws IOException {
+		// TODO
 		//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("spel.ser")));
 		//		oos.writeObject(this);
 		//		oos.close();
@@ -154,21 +153,21 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	/** Het inladen van een opgeslagen spelbestand. */
 	public void laden() throws IOException, ClassNotFoundException {
+		// TODO
 		FileInputStream fis = new FileInputStream("spel.ser");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		Spel spel = (Spel) ois.readObject();
 		ois.close();
 	}
 
-	/**
-	 * Het aanmaken van een nieuwe speler van een spel
-	 */
 	@Override
-	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean b, String kleur)
+	/** {@inheritDoc} */
+	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur)
 			throws RemoteException {
 
-		Speler speler = new Speler(this, view, naam, geboorteDatum, b, kleur);
+		Speler speler = new Speler(this, view, naam, geboorteDatum, isSpastisch, kleur);
 
 		synchronized (spelers) {
 			spelers.add(speler);
@@ -180,24 +179,25 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public int getAangegevenSpelers() {
 		return aangegevenSpelers;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public boolean getStart() {
 		return this.klaarVoorStart;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public List<ISpeler> getSpelerLijst() {
 		return this.spelers;
 	}
 
-	/**
-	 * Check het aantal spelers in een spel
-	 */
 	@Override
+	/** {@inheritDoc} */
 	public void checkSpelers() throws RemoteException {
 		int ready = 0;
 
@@ -238,19 +238,19 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	/** Update het model bij alle observers. */
 	private void notifyObservers() throws RemoteException {
 		for (ISpelObserver observer : observers) {
 			observer.modelChanged(this);
 		}
 	}
+	
+	/** Geef de beurt voor naar de volgende speler. */
 	private void volgendeBeurt() {
 		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
 	}
 
-	/**
-	 * Het uitvoeren van de fase plaatsenstamleden.
-	 * @throws RemoteException
-	 */
+	/** Het uitvoeren van de fase plaatsenstamleden. */
 	private void fasePlaatsenStamleden() throws RemoteException {
 		int aantalStamleden = 0;
 		for (ISpeler speler : spelers) {
@@ -266,13 +266,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		while (beurtSpeler.getTableau().getStamleden().size() == 0) {
 			volgendeBeurt();
 		}
-
 	}
 
-	/**
-	 * Het uitvoeren van een actie op een locatie.
-	 * @throws RemoteException
-	 */
+	/** Het uitvoeren van een actie op een locatie. */
 	private void faseUitvoerenActie() throws RemoteException {
 		int aantalStamleden = 0;
 
@@ -293,13 +289,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	/**
-	 * Het uitvoeren van de fase voeden stameden.
-	 * @throws RemoteException
-	 */
+	/** Het uitvoeren van de fase voeden stameden. */
 	private void faseVoedenStamleden() throws RemoteException {
-
-		System.out.println("FaseVoedenStamleden");
+		
 		for(ISpeler speler : spelers) {
 			speler.setLaatsteLocatie(null);
 		}
@@ -309,15 +301,14 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 
 		if (this.getSpeelbord().getKaarten().size() >= 4) {
-			System.out.println("ik kom in deze loop");
-			this.getSpeelbord().setBeschavingskaarten();
+			this.getSpeelbord().laatstGekozenLcatie.resetBeschavingskaarten(this.getSpeelbord());
 			try {
 				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.getSpeelbord().doorSchuiven();
+			this.getSpeelbord().doorschuiven();
 			status = status.PLAATSEN_STAMLEDEN;
 
 		} else {
@@ -349,10 +340,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	/**
-	 * Verander de statussen van heeftbeurt of geenbeurt.
-	 * @throws RemoteException
-	 */
+	/** Verander de statussen van heeftbeurt of geenbeurt. */
 	private void updateStatussen() throws RemoteException {
 		// update de status van de spelers
 		for (ISpeler speler : spelers) {
@@ -364,10 +352,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
-	/**
-	 * Bepalen van de fase.
-	 */
 	@Override
+	/** {@inheritDoc} */
 	public void fases() throws RemoteException {
 		switch (status) {
 		case PLAATSEN_STAMLEDEN:
@@ -386,28 +372,37 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	}
 
+	/**
+	 * Update of dat de er nog gevoed moet worden of niet.
+	 * @param b  Of dat de stamleden gevoed moeten worden.
+	 */
 	public void setVoeden(boolean b) {
 		voeden = b;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public boolean getVoeden() {
 		return voeden;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void registerObserver(ISpelObserver observer) throws RemoteException {
 		observers.add(observer);
 		notifyObservers();
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public ISpeler getBeurtSpeler() {
 		return beurtSpeler;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public SpelStatus getStatus() throws RemoteException {
 		return status;
 	}
 }
+

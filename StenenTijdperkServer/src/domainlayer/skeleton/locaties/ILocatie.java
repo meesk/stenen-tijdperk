@@ -5,6 +5,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import domainlayer.Speelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import presentationlayer.skeleton.ILocatieObserver;
@@ -73,4 +74,12 @@ public interface ILocatie extends Remote {
 	/** @return Een boolean die aangeeft of er met dobbelstenen
 	 * moet worden geworpen. */
 	public boolean isWorpNodig() throws RemoteException;
+
+	default void resetBeschavingskaarten(Speelbord speelbord) {
+		for (int i = 0; i < 4; i++) {
+			if (speelbord.beschavingskaarten[i] != null) {
+				speelbord.beschavingskaarten[i] = null;
+			}
+		}
+	}
 }

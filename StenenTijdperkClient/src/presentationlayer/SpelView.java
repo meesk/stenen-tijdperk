@@ -1,6 +1,5 @@
 package presentationlayer;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
@@ -19,18 +18,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import presentationlayer.skeleton.ISpelObserver;
-//import proceslayer.BetaalController;
 import proceslayer.DobbelsteenWorpController;
 import proceslayer.SpelController;
 import stenentijdperk.StenenTijdperk;
 
 /**
- * SpelView.java<br>
  * Het bestand met alle informatie om het spelbord te tekenen.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
- * @version 1.0
+ * @version 3.0
  */
 
 public class SpelView extends Stage implements ISpelObserver {
@@ -45,7 +42,6 @@ public class SpelView extends Stage implements ISpelObserver {
 	 * @param dobbelsteenWorpController De controller voor het afhandelen van de worp
 	 * @param dobbelsteenWorp Het model voor het werpen van dobbelstenen
 	 * @param model  Het model van de view (ISpel)
-	 * @throws Exception
 	 */
 	public SpelView(ISpeelbord speelbord, SpelController spelController,
 			DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp, ISpel model)
@@ -79,11 +75,7 @@ public class SpelView extends Stage implements ISpelObserver {
 		Button opslaan = new Button("Opslaan");
 		opslaan.setPrefSize(128, 145);
 		opslaan.setOnAction(e -> {
-			try {
-				spelController.onOpslaanButtonClick();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			spelController.onOpslaanButtonClick();
 		});
 		grid.add(opslaan, 3, 3);
 
@@ -95,7 +87,6 @@ public class SpelView extends Stage implements ISpelObserver {
 	/**
 	 * Deze functie weergeeft alle TableauViews
 	 * @param spel Het model van de view
-	 * @throws RemoteException
 	 */
 	private void toonSpelView(ISpel spel) throws RemoteException {
 		grid.add(new TableauView(1.0, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
@@ -115,7 +106,6 @@ public class SpelView extends Stage implements ISpelObserver {
 	/**
 	 * Deze functie toont de BetaalView voor het voeden van stamleden
 	 * @param spel Het model van de view
-	 * @throws RemoteException
 	 */
 	private void toonBetaalView(ISpel spel) throws RemoteException { 
 		int betalen = StenenTijdperk.getSpeler().getTableau().getStamleden().size() - StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
@@ -152,10 +142,8 @@ public class SpelView extends Stage implements ISpelObserver {
 		StenenTijdperk.getSpel().notifyEverything();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
+	/** {@inheritDoc} */
 	public void modelChanged(ISpel spel) throws RemoteException {
 		Platform.runLater(() -> {
 			try {

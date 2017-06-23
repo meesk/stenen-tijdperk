@@ -34,15 +34,14 @@ import presentationlayer.skeleton.ISpelObserver;
 import proceslayer.LobbyController;
 
 /**
- * LobbyView.java
- * Een klasse die alle informatie bevat om de Lobby view te maken.
+ * Een klasse die alle informatie bevat om de Lobby view te maken.<br>
  * Het wordt allemaal in een scene gezet en daarna op de stage gezet waar deze classe van extends.
  *
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @author Erwin Olie, s1103026
- * @version 1.2
+ * @version 3.0
  */
 
 public class LobbyView extends Stage implements ISpelObserver {
@@ -50,9 +49,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	private TextField voorNaamField;
 	private DatePicker geboorteDatumPicker;
 	private CheckBox isSpastisch;
-	private RadioButton radRood, radGroen, radBlauw, radGeel;
 	private final ToggleGroup group;
-	private LocalDate localDate;
 	private Button klaarBtn;
 	private ProgressBar pb;
 	private Label spelersAantalLbl;
@@ -174,30 +171,29 @@ public class LobbyView extends Stage implements ISpelObserver {
 		borderpane.getChildren().add(stackPane);
 		borderpane.setCenter(gridPaneForm);
 
-		// TODO: dit is voor het gemak, MOET later worden weg worden gehaald.
-		//setLobbyGegevens();
-
 		Scene scene = new Scene(borderpane, 900, 800);
 		this.setTitle("Het Stenen Tijdperk: Lobby");
 		setScene(scene);
 	}
 
+	/** @return De ingevulde naam. */
 	public String getNaam() {
 		return voorNaamField.getText();
 	}
 
+	/** @return De ingevulde geboortedatum. */
 	public LocalDate getGeboorteDatum() {
 		return geboorteDatumPicker.getValue();
 	}
 
+	/** @return Of de spastisch-knop is aangevinkt. */
 	public boolean getIsSpastisch() {
 		return isSpastisch.isSelected();
 	}
-
 	
-	/**Eerst wordt er gekeken of er een kleur is geselecteerd en daarna returned het de kleur of een lege string.
-	 * 
-	 * @return String  geeft de kleur terug
+	/**
+	 * Eerst wordt er gekeken of er een kleur is geselecteerd en daarna returned het de kleur of een lege string.
+	 * @return String  De kleur van de gekoze radiobutton.
 	 */
 	public String getKleur() {
 		if (group.getSelectedToggle() != null) {
@@ -206,36 +202,25 @@ public class LobbyView extends Stage implements ISpelObserver {
 		}
 		return "";
 	}
-
 	
-	/**
-	 * Disabled de knop na klikken waar op geklikt wordt als je klaar bent
-	 */
+	/** Disabled de knop na klikken waar op geklikt wordt als je klaar bent */
 	public void disableButton() {
 		this.klaarBtn.setDisable(true);
 	}
-
 	
-	/**
-	 * Disabled alle invul velden die de speler kan invullen.
-	 */
+	/** Disabled alle invul velden die de speler kan invullen. */
 	public void disableSpelerInfo() {
 		this.geboorteDatumPicker.setDisable(true);
 		this.isSpastisch.setDisable(true);
 		this.voorNaamField.setDisable(true);
 	}
-
 	
-	/**
-	 * Verandert de text van de knop van "Maak speler" naar "Beginnen!"
-	 */
+	/** Verandert de text van de knop van "Maak speler" naar "Beginnen!" */
 	public void veranderKnopTextBeginnen() {
 		this.klaarBtn.setText("Beginnen!");
 	}
 
-	/**
-	 * Verandert det text van de knop van "Beginnen!" naar "Moment geduld a.u.b
-	 */
+	/** Verandert det text van de knop van "Beginnen!" naar "Moment geduld a.u.b */
 	public void veranderKnopTextWachten() {
 		this.klaarBtn.setText("Moment geduld aub...");
 	}
@@ -244,8 +229,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 	 * Als 2 mensen een kleur hebben gekozen en 1tje klikt op speler maken 
 	 * dan wordt die kleur gedisabled voor andere spelers zodat dat de enige persoon is met die kleur.
 	 * 
-	 * @param model
-	 * @throws RemoteException
+	 * @param model  Het model waar de info uit verkregen word.
 	 */
 	private void updateKleuren(ISpel model) throws RemoteException {
 		for (RadioButton rb : kleurButtons) {
@@ -282,10 +266,8 @@ public class LobbyView extends Stage implements ISpelObserver {
 		spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
 	}
 
-	/* Dit update de lobbyView voor de rest van de spelers.
-	 * @see presentationlayer.skeleton.ISpelObserver#modelChanged(domainlayer.skeleton.ISpel)
-	 */
 	@Override
+	/** {@inheritDoc} */
 	public void modelChanged(ISpel model) throws RemoteException {
 		Platform.runLater(() -> {
 			try {

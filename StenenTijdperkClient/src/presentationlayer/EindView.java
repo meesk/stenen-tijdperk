@@ -21,19 +21,18 @@ import javafx.stage.Stage;
 import proceslayer.SpelController;
 
 /**
- * EindView.java
  * Een klasse die alle informatie bevat om de eind view te maken.
  *
  * @author Tristan Caspers, s1102755
  * @author Enzo Campfens, s1102421
- * @version 1.8
+ * @version 3.0
  */
 public class EindView extends Stage {
 
 	/**
 	 * Het initialiseren van de view van het einde.
-	 * @param spelController	De controller van het spel.
-	 * @param model			    Het model van het spel.
+	 * @param spelController  De controller van het spel.
+	 * @param model  Het model van het spel.
 	 * @throws RemoteException
 	 */
 	public EindView(SpelController spelController, ISpel model) throws RemoteException {
@@ -91,3 +90,4 @@ public class EindView extends Stage {
 		this.setScene(scene);
 	}
 }
+

@@ -31,32 +31,31 @@ import domainlayer.Spel;
 import domainlayer.skeleton.ISpel;
 
 /**
- * StenenTijdperk.java
  * Een simpele Main-klasse waar de RMI server word opgezet.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
+ * @author Alex de Bruin, s1103096
  * @author Tristan Caspers, s1102755
- * @version 1.0
+ * @version 3.0
  */
 public class StenenTijdperk {
 
 	private static ISpel spel;
 
-	/** De main method die de modellen registreert in het register. */
+	/** Hier word de server opgezet. */
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
-		// Het initialiseren van een nieuw spel.
 		spel = new Spel();
-
+		
 		// Het opzetten van het RMI register.
 		LocateRegistry.createRegistry(1099);
-		// Het registreren van het spel.
 		Naming.rebind("Spel", spel);
 
 		System.out.println("Server started...");
 	}
 
+	/** @return Het spel dat nu gaande is. */
 	public static ISpel getSpel() {
 		return spel;
 	}

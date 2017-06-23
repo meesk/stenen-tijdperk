@@ -15,10 +15,10 @@ import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
 
 /**
- * LocatieController.java De controller voor de locatie.
+ * De controller voor de locatie.
  *
  * @author Tristan Caspers, s1102755
- * @version 0.1
+ * @version 3.0
  */
 public class LocatieController {
 
@@ -27,12 +27,16 @@ public class LocatieController {
 
 	/** 
 	 * Het setten van het model. 
-	 * @param model  het model ILocatie
+	 * @param model  Het model ILocatie
 	 */
 	public LocatieController(ILocatie model) {
 		this.model = model;
 	}
 
+	/**
+	 * Het registreren van een nieuwe view.
+	 * @param view  De view die geregistreerd word.
+	 */
 	public void registerView(LocatieView view) {
 		this.view = view;
 	}
@@ -41,7 +45,6 @@ public class LocatieController {
 	 * De functie waarin plaatsen stamleden wordt uitgevoerd.
 	 * @param spel  Het model Spel
 	 * @param speler  Het model Speler
-	 * @throws RemoteException
 	 */
 	private void plaatsenStamleden(ISpel spel, ISpeler speler) throws RemoteException {
 		if (speler.getLaatsteLocatie() != null && speler.getLaatsteLocatie().equals(model)) {
@@ -100,9 +103,7 @@ public class LocatieController {
 		spel.fases();
 	}
 
-	/**
-	 * De functie voor het afhandelen van een locatie
-	 */
+	/** De functie voor het afhandelen van een locatie */
 	public void onKiesLocatie() {
 
 		try {
