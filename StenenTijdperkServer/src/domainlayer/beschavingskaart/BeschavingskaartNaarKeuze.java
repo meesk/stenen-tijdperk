@@ -1,6 +1,5 @@
 package domainlayer.beschavingskaart;
 
-
 /**
  * BeschavingskaartNaarKeuze.java
  * De klasse waar deze specifieke kaart wordt aangemaakt
@@ -20,7 +19,6 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
-
 public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IBeschavingskaart {
 
 	private boolean isNaastTableau;
@@ -29,16 +27,26 @@ public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IB
 	private BeschavingskaartStatus status;
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
+
 	/**
 	 * De constructoor van deze specifieke kaart
-	 * @param waarde  de waarde van het gereedschap dat meegegeven wordt
-	 * @param achtergrond  het soort achtergrond dat de kaart heeft
-	 * @param status  is de kaart vrij of niet vrij
-	 * @param kosten  wat kost de kaart
-	 * @param isNaastTableau  is de boolean die aangeeft of de beschavingskaart naast het tableau ligt of niet
-	 * @param middelen  de middelen ie de speler kiest als hij de kaart wil gebruiken
+	 * 
+	 * @param waarde
+	 *            de waarde van het gereedschap dat meegegeven wordt
+	 * @param achtergrond
+	 *            het soort achtergrond dat de kaart heeft
+	 * @param status
+	 *            is de kaart vrij of niet vrij
+	 * @param kosten
+	 *            wat kost de kaart
+	 * @param isNaastTableau
+	 *            is de boolean die aangeeft of de beschavingskaart naast het
+	 *            tableau ligt of niet
+	 * @param middelen
+	 *            de middelen ie de speler kiest als hij de kaart wil gebruiken
 	 */
-	public BeschavingskaartNaarKeuze(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean isNaastTableau, Middel middelen) throws RemoteException{
+	public BeschavingskaartNaarKeuze(String asset, IBeschavingskaartAchtergrond achtergrond,
+			BeschavingskaartStatus status, int kosten, boolean isNaastTableau, Middel middelen) throws RemoteException {
 		this.isNaastTableau = isNaastTableau;
 		this.middelen = middelen;
 		this.asset = asset;
@@ -64,6 +72,7 @@ public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IB
 	public void setStatus(BeschavingskaartStatus status) {
 		this.status = status;
 	}
+
 	public boolean isNaastTableau() {
 		return isNaastTableau;
 	}
@@ -85,6 +94,5 @@ public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IB
 	public Middel getMiddelen() {
 		return middelen;
 	}
-
 
 }

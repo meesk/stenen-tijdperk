@@ -30,9 +30,16 @@ public interface IDobbelsteenWorp extends Remote {
 	/** @return Alle dobbelstenen die onderdeel zijn van deze worp. */
 	public IDobbelsteen[] getDobbelstenen() throws RemoteException;
 
+	/** @return De totale waarde van de worp. */
 	public int getTotaal() throws RemoteException;
 
+	/** Het (her-)berekenen van de totale waarde van de worp. */
 	public void berekenTotaal() throws RemoteException;
 
-	public void addTotaal(int i) throws RemoteException;
+	/**
+	 * Het toevoegen van een aantal ogen aan de totale worpwaarde.
+	 * @param aantal  Het aantal ogen dat word toegevoegd.
+	 */
+	public void addTotaal(int aantal) throws RemoteException;
 }
+

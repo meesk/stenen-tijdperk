@@ -165,10 +165,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	 * Het aanmaken van een nieuwe speler van een spel
 	 */
 	@Override
-	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean b, String kleur)
+	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur)
 			throws RemoteException {
 
-		Speler speler = new Speler(this, view, naam, geboorteDatum, b, kleur);
+		Speler speler = new Speler(this, view, naam, geboorteDatum, isSpastisch, kleur);
 
 		synchronized (spelers) {
 			spelers.add(speler);
