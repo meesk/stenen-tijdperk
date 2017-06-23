@@ -26,4 +26,5 @@ public interface ILocatie extends Remote {
 	public void plaatsStamleden(ISpeler speler, int aantal) throws RemoteException;
 	public void verwijderStamlid(IStamlid stamlid) throws RemoteException;
 	public void notifyObservers() throws RemoteException;
+	public boolean isWorpNodig() throws RemoteException;
 }

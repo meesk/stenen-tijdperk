@@ -28,4 +28,9 @@ public class HuttegelLocatie extends Locatie {
 		super.notifyObservers();
 	}
 
+	@Override
+	public boolean isWorpNodig() throws RemoteException {
+		return false;
+	}
+
 }

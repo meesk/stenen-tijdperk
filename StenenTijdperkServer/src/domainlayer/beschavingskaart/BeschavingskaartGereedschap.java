@@ -56,9 +56,11 @@ public class BeschavingskaartGereedschap extends UnicastRemoteObject implements 
 		} else {
 		IDobbelsteenWorp dw = speler.getSpel().getDobbelsteenWorp();
 		// Voeg 1 extra oog aan de worp toe
-		dw.setTotaal(1);
+		dw.addTotaal(1);
+	//	dw.setTotaal(1);
 		}
-	}
+
+		}
 
 	@Override
 	public BeschavingskaartStatus getStatus() {

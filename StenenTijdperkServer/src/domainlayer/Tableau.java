@@ -146,29 +146,13 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		verhoogGereedschap();
 	}
 
-	/**
-	 * Methode zorgt ervoor dat de gereedschaps punten opgeteld worden bij de dobbelstenen
-	 * @author Alex de Bruin, s1103096
-	 * @param positie
-	 */
-	public void gebruikGereedschap(int plaats/* de plaats dat op geklikt is*/) throws RemoteException {
-		plaats -= 1;
-		this.speler.getSpel().getDobbelsteenWorp().setTotaal(gereedschap[plaats]);
-
-
-	}
-
-	/**
-	 * Deze methode zet het gereedschap op gebruikt.
-	 *
-	 * @author Alex de Bruin, s1103096
-	 */
-
-	public void setGereedschapStatus(int positie) {
-		gereedschapGebruikt[positie] = true;
-
+	public void gebruikGereedschap(int index) throws RemoteException {
+		speler.getSpel().getDobbelsteenWorp().addTotaal(gereedschap[index]);
+		gereedschapGebruikt[index] = true;
 		notifyObservers();
+
 	}
+	
 	@Override
 	public void resetGereedschapStatus() throws RemoteException {
 		for(int i = 0; i < getGereedschapGebruikt().length; i++)
