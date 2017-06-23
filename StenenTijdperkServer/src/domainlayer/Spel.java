@@ -8,11 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
@@ -282,23 +284,47 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private void faseVoedenStamleden() throws RemoteException {
 
+		System.out.println("FaseVoedenStamleden");
 		for(ISpeler speler : spelers) {
 			speler.setLaatsteLocatie(null);
 		}
 
 		setVoeden(true);
 		vulPuntenGeschiedenis();
+<<<<<<< HEAD
+
+
+		if (this.getSpeelbord().getKaarten().size() >= 4) {
+			System.out.println("ik kom in deze loop");
+			this.getSpeelbord().setBeschavingskaarten();
+			try {
+				TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.getSpeelbord().doorSchuiven();
+			status = status.PLAATSEN_STAMLEDEN;
+
+		} else {
+			status = status.BEPALEN_WINNAAR;
+		}
+=======
 		this.getSpeelbord().doorSchuiven();
+>>>>>>> 528002fc8550fbd7f261007d254fe07714f1e007
 
 		// reset de status van het gereedschap
 		for (ISpeler speler : spelers) {
 			speler.getTableau().resetGereedschapStatus();
 		}
+<<<<<<< HEAD
+=======
 
+>>>>>>> 528002fc8550fbd7f261007d254fe07714f1e007
 		notifyObservers();
-		status = SpelStatus.PLAATSEN_STAMLEDEN;
 		volgendeBeurt();
 		fases();
+		System.out.println(status);
 	}
 
 	public void notifyEverything() throws RemoteException {

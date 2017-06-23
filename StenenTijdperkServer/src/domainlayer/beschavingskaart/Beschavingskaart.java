@@ -68,7 +68,7 @@ public class Beschavingskaart extends Locatie {
 		// Betaalview om de kaart te kopen van een x (1, 2, 3 of 4) aantal grondstoffen
 		speler.getTableau().geefBeschavingskaart(beschavingskaart);
 		beschavingskaart.uitvoerenActie(speler);
-		StenenTijdperk.getSpel().getSpeelbord().addBeschavingskaart(index);
+		StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		super.notifyObservers();
 
 	}

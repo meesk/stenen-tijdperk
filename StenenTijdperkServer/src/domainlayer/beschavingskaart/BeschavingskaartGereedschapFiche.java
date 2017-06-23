@@ -18,7 +18,7 @@ import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implements IBeschavingskaart {
 
-	
+
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
 	private BeschavingskaartStatus status;
@@ -44,7 +44,7 @@ public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implem
 		if (gereedschap < 4) {
 			tableau.geefGereedschapFiche();
 		}
-		else if (gereedschap < 16) {
+		else if (gereedschap < 12) {
 			tableau.verhoogGereedschap();
 		}
 		tableau.notifyObservers();

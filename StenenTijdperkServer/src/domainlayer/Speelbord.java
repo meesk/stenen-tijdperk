@@ -93,6 +93,14 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return beschavingskaarten;
 	}
 
+	public void setBeschavingskaarten() {
+		for (int i = 0; i < 4; i++) {
+			if (beschavingskaarten[i] != null) {
+				beschavingskaarten[i] = null;
+			}
+		}
+	}
+
 	public void setLaatstGekozenLocatie(ILocatie locatie) {
 		this.laatstGekozenLcatie = locatie;
 	}
@@ -157,10 +165,10 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return huttegel;
 	}
 
-	@Override
-	public void addBeschavingskaart(int index) throws RemoteException {
+	//@Override
+	//public void addBeschavingskaart(int index) throws RemoteException {
 		// TODO Auto-generated method stub
-	}
+//	}
 
 //	public void addBeschavingskaart(int index){
 //		this.beschavingskaarten[index].add(alleKaarten.get(this.index));
