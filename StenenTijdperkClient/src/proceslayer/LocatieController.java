@@ -41,7 +41,6 @@ public class LocatieController {
 	 * De functie waarin plaatsen stamleden wordt uitgevoerd.
 	 * @param spel  Het model Spel
 	 * @param speler  Het model Speler
-	 * @throws RemoteException
 	 */
 	private void plaatsenStamleden(ISpel spel, ISpeler speler) throws RemoteException {
 		if (speler.getLaatsteLocatie() != null && speler.getLaatsteLocatie().equals(model)) {
@@ -100,9 +99,7 @@ public class LocatieController {
 		spel.fases();
 	}
 
-	/**
-	 * De functie voor het afhandelen van een locatie
-	 */
+	/** De functie voor het afhandelen van een locatie */
 	public void onKiesLocatie() {
 
 		try {

@@ -11,11 +11,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * GereedschapView.java<br>
  * De view voor het tonen van de gereedschap
+ * 
  * @author Erwin Olie, s1103026
- * @version 1.0
- *
+ * @version 3.0
  */
 
 public class GereedschapView extends Stage {
@@ -23,9 +22,7 @@ public class GereedschapView extends Stage {
 	/**
 	 * Het initialiseren van de GereedschapView
 	 * @param tableau  Het model van de view (ITableau)
-	 * @throws RemoteException
 	 */
-
 	public GereedschapView(ITableau tableau) throws RemoteException {
 		 
 		int[] gereedschap = tableau.getGereedschap();
@@ -37,6 +34,7 @@ public class GereedschapView extends Stage {
 			if (gereedschap[i] == 0) {
 				continue;
 			}
+			// Het aanmaken en manipuleren van de afbeelding van de fiches.
 			Image image = new Image("file:assets/gereedschap/" + gereedschap[i] + ".png");
 			ImageView imageView = new ImageView(image);
 
@@ -46,6 +44,7 @@ public class GereedschapView extends Stage {
 			imageView.setRotate(gereedschapGebruikt[i] ? 90 : 0);
 			
 			if (!gereedschapGebruikt[i]) {
+				// De gereedschap inzetbaar maken
 				final int index = i;
 				imageView.setOnMouseClicked(e -> {
 					try {
@@ -61,6 +60,7 @@ public class GereedschapView extends Stage {
 			context.getChildren().add(imageView);
 		}
 		
+		// Het aanmaken van de bevestig-button
 		Button bevestigen = new Button("Bevestigen");
 		bevestigen.setPrefSize(110,  110);
 		bevestigen.setOnAction(e -> this.close());
