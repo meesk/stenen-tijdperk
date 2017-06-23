@@ -24,6 +24,7 @@ public class LocatieFactory {
 	private static LocatieFactory instance;
 	private List<ILocatie> locaties;
 
+	/** Hier worden alle locaties aangemaakt. */
 	public LocatieFactory() throws RemoteException {
 		locaties = new ArrayList<>();
 		
