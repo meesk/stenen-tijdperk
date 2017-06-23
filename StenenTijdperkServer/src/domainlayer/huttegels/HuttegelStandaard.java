@@ -54,6 +54,7 @@ public class HuttegelStandaard extends UnicastRemoteObject implements IHuttegel 
 		}
 		berekenWaarde();
 		speler.getSpel().getSpeelbord().getPuntenspoor().verhoogPunten(speler, waarde);
+		speler.getTableau().verwijderMiddelen(cost);
 		return true;
 	}
 
