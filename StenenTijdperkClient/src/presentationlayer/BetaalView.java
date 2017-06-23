@@ -34,7 +34,17 @@ public class BetaalView extends Stage implements ITableauObserver {
 	private boolean minPunten;
 	private Map<String, Spinner<Integer>> spinners;
 
-	/** Het initialiseren van deze view. */
+	/**
+	 * De constructor van de betaalview
+	 * 
+	 * @param tableau  Het model van de view
+	 * @param message  De text die getoond moet worden op het scherm
+	 * @param voedsel  Optie om voedsel te tonen op het scherm
+	 * @param grondstoffen  Optie om grondstoffen te tonen op het scherm
+	 * @param stamleden  Optie om stamleden te tonen op het scherm
+	 * @param minPunten  Optie om de -10 punten te tonen op het scherm
+	 * @throws RemoteException
+	 */
 	public BetaalView(ITableau tableau, String message, boolean voedsel, boolean grondstoffen, boolean stamleden,
 			boolean minPunten) throws RemoteException {
 
@@ -87,6 +97,12 @@ public class BetaalView extends Stage implements ITableauObserver {
 		this.setScene(scene);
 	}
 
+	/**
+	 * Initialiseren van alle spinners op de betaalview
+	 * @param naam  De naam van de spinner
+	 * @param hoeveelheid  De maximale hoeveelheid van een spinner
+	 * @return VBox  alle spinners met hun namen
+	 */
 	private VBox initSpinner(String naam, int hoeveelheid) {
 		VBox box = new VBox();
 
@@ -139,6 +155,10 @@ public class BetaalView extends Stage implements ITableauObserver {
 		return this.minPunten;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * 
+	 */
 	@Override
 	public void modelChanged(ITableau model) throws RemoteException {
 

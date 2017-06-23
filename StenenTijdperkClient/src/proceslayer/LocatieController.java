@@ -9,6 +9,7 @@ import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.BetaalView;
+import presentationlayer.GereedschapView;
 //import presentationlayer.GereedschapView;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
@@ -71,8 +72,8 @@ public class LocatieController {
 		if (model.isWorpNodig()) {
 			spel.getDobbelsteenWorp().werp(stamleden.size());
 			if (StenenTijdperk.getSpeler().getTableau().getTotaalGereedschap() > 0) {
-				//GereedschapView gereedschapView = new GereedschapView(speler.getTableau());
-				//gereedschapView.showAndWait();
+				GereedschapView gereedschapView = new GereedschapView(speler.getTableau());
+				gereedschapView.showAndWait();
 			}
 		}
 		model.uitvoerenActie(speler);

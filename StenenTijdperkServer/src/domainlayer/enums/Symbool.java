@@ -1,11 +1,12 @@
 package domainlayer.enums;
 
 /**
- * Deze enum Bevat alle Symbolen die voor kunnen komen op een beschavingskaart.
- * @Author: Alex de Bruin, s1103096
- * @Version: 0.1
+ * Deze enumerator bezit de soorten smbolen die op een beschavingskaart kunnen
+ * staan.
+ * 
+ * @author Alex de Bruin, s1103096
+ * @version 3.0
  */
-
 public enum Symbool {
 	SCHRIFT, ZONNEWIJZER, WIEL, POTTENBAKKEN, KUNST, MEDICIJNEN, MUZIEK, WEEFGETOUW
 }

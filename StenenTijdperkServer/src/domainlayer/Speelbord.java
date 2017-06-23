@@ -49,12 +49,18 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		puntenSpoor = new Puntenspoor();
 		initHuttegels();
 		initBeschavingskaarten();
-	//	this.index = 4;
 	}
 
 	public List<IBeschavingskaart> getKaarten() {
 		return kaarten;
 	}
+	
+	/**
+	 * @author Mees Kluivers, s1102358
+	 * @version 0.1
+	 * 
+	 * Maakt een nieuwe lijst aan met beschavingskaarten
+	 */
 	private void initBeschavingskaarten(){
 		kaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
 		Collections.shuffle(kaarten);

@@ -30,6 +30,7 @@ import stenentijdperk.StenenTijdperk;
  * maken.
  *
  * @author Erwin Olie, s1103026
+ * @author Mees Kluivers, s1102358
  * @version 1.0
  */
 
@@ -37,6 +38,12 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 
 	private StackPane pane;
 
+	/**
+	 * Het initaliseren van de LocatieView
+	 * @param model  Het model van de view (ILocatie)
+	 * @param controller  De controller van de view (LocatieController)
+	 * @throws RemoteException
+	 */
 	public LocatieView(ILocatie model, LocatieController controller) throws RemoteException {
 		UnicastRemoteObject.exportObject(this, 0);
 
@@ -57,6 +64,9 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modelChanged(ILocatie model) throws RemoteException {
 

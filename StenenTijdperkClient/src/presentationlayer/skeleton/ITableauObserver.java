@@ -13,5 +13,10 @@ import domainlayer.skeleton.ITableau;
  * @version 1.0
  */
 public interface ITableauObserver extends Remote {
+	/**
+	 * Veranderingen van het model doorzetten in de view
+	 * @param model Het model van de view (ITableau)
+	 * @throws RemoteException
+	 */
 	public void modelChanged(ITableau model) throws RemoteException;
 }
