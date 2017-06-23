@@ -290,16 +290,9 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 
 	private void tekenBeschavingskaart(ITableau tableau) throws RemoteException {
-		System.out.println("beschavingskaartenTekenen");
 		List<IBeschavingskaart> beschavingskaarten = tableau.getKaarten();
 		for(int i = 0; i < beschavingskaarten.size(); i++) {
-			System.out.println("1");
-			System.out.println(this.beschavingskaarten.length);
-			System.out.println("2");
-			System.out.println(tableau.getKaarten().size());
-			System.out.println("3");
-			System.out.println(tableau.getKaarten().get(i));
-			System.out.println("4");
+
 			System.out.println(tableau.getKaarten().get(i).getAsset());
 			this.beschavingskaarten[i].setImage(new Image("file:assets/beschavingskaarten/" + tableau.getKaarten().get(i).getAsset()));
 		}
@@ -326,7 +319,6 @@ public class TableauView extends StackPane implements ITableauObserver {
 				tekenStamleden(tableau);
 				tekenGereedschap(tableau);
 				tekenHuttegels(tableau);
-				System.out.println("beschavingskaart tekenen aanroepen");
 				tekenBeschavingskaart(tableau);
 				tekenNaam(tableau);
 				tekenMiddelen(tableau);

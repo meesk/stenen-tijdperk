@@ -282,17 +282,27 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private void faseVoedenStamleden() throws RemoteException {
 
+		System.out.println("FaseVoedenStamleden");
 		for(ISpeler speler : spelers) {
 			speler.setLaatsteLocatie(null);
 		}
 
 		setVoeden(true);
 		vulPuntenGeschiedenis();
-		this.getSpeelbord().doorSchuiven();
+
+		if (this.getSpeelbord().getKaarten().size() >= 4) {
+			System.out.println("ik kom in deze loop");
+			this.getSpeelbord().setBeschavingskaarten();
+			this.getSpeelbord().doorSchuiven();
+			status = status.PLAATSEN_STAMLEDEN;
+
+		} else {
+			status = status.BEPALEN_WINNAAR;
+		}
 		notifyObservers();
-		status = SpelStatus.PLAATSEN_STAMLEDEN;
 		volgendeBeurt();
 		fases();
+		System.out.println(status);
 	}
 
 	public void notifyEverything() throws RemoteException {

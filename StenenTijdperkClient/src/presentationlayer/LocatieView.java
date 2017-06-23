@@ -90,6 +90,7 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 					if (model.getX() == bLoc[i] && model.getY() == 438 && model.getWidth() == 85 && model.getHeight() == 145) {
 						System.out.println("beschavingskaart!" + i);
 						IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().getBeschavingskaarten()[i];
+						if (beschavingskaart != null) {
 						Image x = new Image("file:assets/beschavingskaarten/" + beschavingskaart.getAsset());
 						System.out.println("assets b " + beschavingskaart.getAsset());
 						ImageView imageView = new ImageView(x);
@@ -99,6 +100,7 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 						imageView.setTranslateY(0);
 						StackPane.setAlignment(imageView, Pos.TOP_LEFT);
 						pane.getChildren().add(imageView);
+						}
 					}
 				}
 

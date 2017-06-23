@@ -93,6 +93,14 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return beschavingskaarten;
 	}
 
+	public void setBeschavingskaarten() {
+		for (int i = 0; i < 4; i++) {
+			if (beschavingskaarten[i] != null) {
+				beschavingskaarten[i] = null;
+			}
+		}
+	}
+
 	public void setLaatstGekozenLocatie(ILocatie locatie) {
 		this.laatstGekozenLcatie = locatie;
 	}
