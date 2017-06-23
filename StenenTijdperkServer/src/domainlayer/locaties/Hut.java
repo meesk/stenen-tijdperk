@@ -10,16 +10,27 @@ import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.locaties.ILocatie;
 
 /**
- * @author Erwin Olie, s1103026
- * @version	0.2
+ * Deze klasse wordt gebruikt om een hut-locatie aan te maken.
+ * 
+ * @author Mees Kluivers, s1102358
+ * @version 3.0
  */
 public class Hut extends Locatie {
 
+	/**
+	 * Deze constructor zet een hut-locatie klaar.
+	 * @param x  De X-positie van de locatie.
+	 * @param y  De Y-positie van de locatie.
+	 * @param width  De breedte van de locatie.
+	 * @param height  De hoogte van de locatie.
+	 * @param cirkels  Alle punten waar de cirkels zich bevinden.
+	 */
 	public Hut(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
 		super(x, y, width, height, cirkels);
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen aantal stamleden
 		ITableau tableau = speler.getTableau();
@@ -56,6 +67,7 @@ public class Hut extends Locatie {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public boolean isWorpNodig() throws RemoteException {
 		return false;
 	}

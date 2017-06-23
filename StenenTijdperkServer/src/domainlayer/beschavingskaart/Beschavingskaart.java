@@ -48,20 +48,6 @@ public class Beschavingskaart extends Locatie {
 		return asset;
 	}
 
-//	public abstract BeschavingskaartStatus getStatus();
-//	public abstract void setStatus(BeschavingskaartStatus status);
-
-//	public abstract int getKosten();
-
-	@Override
-	public void betaalMiddelen() {
-
-	}
-
-	public void betaling() {
-
-	}
-
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);

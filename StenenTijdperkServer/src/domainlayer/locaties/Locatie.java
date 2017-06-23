@@ -14,18 +14,28 @@ import presentationlayer.LocatieView;
 import presentationlayer.skeleton.ILocatieObserver;
 
 /**
+ * Deze klasse wordt gebruikt om locaties op het speelbord te definiëren en te gebruiken.
+ * 
  * @author Erwin Olie, s1103026
  * @author Tristan Caspers, s1102755
- * @version	1.0
+ * @version 3.0
  */
 public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
 	private int x, y;
 	private int width, height;
 	private List<Point> cirkels;
-	protected List<IStamlid> stamleden;
+	private List<IStamlid> stamleden;
 	private List<ILocatieObserver> observers;
 
+	/**
+	 * Deze constructor zet het locatie-model klaar.
+	 * @param x  De X-positie van de locatie.
+	 * @param y  De Y-positie van de locatie.
+	 * @param width  De breedte van de locatie.
+	 * @param height  De hoogte van de locatie.
+	 * @param cirkels  Alle punten waar de cirkels zich bevinden.
+	 */
 	public Locatie(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
 		this.x = x;
 		this.y = y;
@@ -35,7 +45,12 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		stamleden = new ArrayList<>();
 		observers = new ArrayList<>();
 	}
-
+	
+	/**
+	 * Het plaatsen van een stamlid op de locatie.
+	 * @param stamlid  De stamlid die geplaatst moet worden.
+	 * @return Een boolean of de stamlid geplaatst mag worden.
+	 */
 	public boolean plaatsStamlid(Stamlid stamlid) {
 		if (stamleden.size() + 1 > cirkels.size()) {
 			return false;
@@ -50,13 +65,11 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
 
-	public void addObserver(LocatieView observer) {
-		observers.add(observer);
-	}
-
 	@Override
+	/** {@inheritDoc} */
 	public void notifyObservers() {
 		for (ILocatieObserver observer : observers) {
 			try {
@@ -67,19 +80,24 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		}
 	}
 
+	/**
+	 * Het verwijderen van stamleden.
+	 * @param stamleden  De stamleden die verwijderd moeten worden.
+	 */
 	public void verwijderStamleden(List<IStamlid> stamleden) {
 		for (IStamlid stamlid : stamleden) {
 			this.stamleden.remove(stamlid);
 		}
 	}
-
-	// Nog speler specifiek maken
+	
 	@Override
+	/** {@inheritDoc} */
 	public List<IStamlid> getStamleden() {
 		return stamleden;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public List<IStamlid> getStamleden(ISpeler speler) throws RemoteException {
 
 		List<IStamlid> lijstSpelerStamleden = new ArrayList<>();
@@ -92,40 +110,42 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public int getX() {
 		return x;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public int getY() {
 		return y;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public int getWidth() {
 		return width;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public int getHeight() {
 		return height;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public List<Point> getCirkels() {
 		return cirkels;
 	}
-
-	public void betaalMiddelen() {
-
-	}
-
+	
 	private void plaatsStamlid(ISpeler speler) throws RemoteException {
 		IStamlid stamlid = speler.getTableau().popStamlid();
 		stamleden.add(stamlid);
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void plaatsStamleden(ISpeler speler, int aantal) throws RemoteException {
 		for (int i = 0; i < aantal; i++) {
 			plaatsStamlid(speler);
@@ -134,6 +154,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void verwijderStamlid(IStamlid stamlid) throws RemoteException {
 		int index = -1;
 		for (IStamlid s : stamleden) {
@@ -145,6 +166,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void registerObserver(ILocatieObserver observer) {
 		observers.add(observer);
 	}

@@ -9,17 +9,27 @@ import domainlayer.skeleton.spoor.ISpoor;
 import stenentijdperk.StenenTijdperk;
 
 /**
+ * Deze klasse wordt gebruikt om een akker-locatie aan te maken.
+ * 
  * @author Erwin Olie, s1103026
- * @version 0.3
+ * @version 3.0
  */
 public class Akker extends Locatie {
 
+	/**
+	 * Deze constructor zet een akker-locatie klaar.
+	 * @param x  De X-positie van de locatie.
+	 * @param y  De Y-positie van de locatie.
+	 * @param width  De breedte van de locatie.
+	 * @param height  De hoogte van de locatie.
+	 * @param cirkels  Alle punten waar de cirkels zich bevinden.
+	 */
 	public Akker(int x, int y, int width, int height, List<Point> cirkels) throws RemoteException {
 		super(x, y, width, height, cirkels);
 	}
 
 	@Override
-	/** @see Sequentie Diagram: 10 Gebruiken Akker **/
+	/** {@inheritDoc} */
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		// Verhogen Voedselspoor
 		ISpeelbord speelbord = StenenTijdperk.getSpel().getSpeelbord();
@@ -28,33 +38,10 @@ public class Akker extends Locatie {
 		if (productie < 10) {
 			voedselspoor.verhoogPunten(speler, 1);
 		}
-
-		// Teruggeven Stamleden
-		/*ITableau tableau = speler.getTableau();
-		List<IStamlid> stamleden = super.stamleden.stream().filter(s -> {
-			try {
-				return s.getSpeler() == speler;
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
-		})
-				.collect(Collectors.toList());
-		tableau.ontvangStamleden(stamleden);
-		super.verwijderStamleden(stamleden);*/
-
-		// Update Views (locatie)
-		/*super.notifyObservers();
-
-		// Update Views (tableau)
-		tableau.notifyObservers();
-
-		// Update Views (voedselspoor)
-		voedselspoor.notifyObservers();*/
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public boolean isWorpNodig() throws RemoteException {
 		return false;
 	}
