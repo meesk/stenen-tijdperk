@@ -13,5 +13,10 @@ import domainlayer.skeleton.spoor.ISpoor;
  * @version 1.0
  */
 public interface ISpoorObserver extends Remote {
+	/**
+	 * Veranderingen van het model doorzetten in de view
+	 * @param model  Het model dat is veranderd (ISpoor)
+	 * @throws RemoteException
+	 */
 	public void modelChanged(ISpoor model) throws RemoteException;
 }

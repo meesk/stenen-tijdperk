@@ -37,6 +37,16 @@ public class SpelView extends Stage implements ISpelObserver {
 
 	private GridPane grid;
 
+	/**
+	 * Het initaliseren van de view van het spel<br>
+	 * Deze view bevat alle elementen die op het scherm staan met het spele van het spel.
+	 * @param speelbord  Het model van het speelbord 
+	 * @param spelController De controller van de view
+	 * @param dobbelsteenWorpController De controller voor het afhandelen van de worp
+	 * @param dobbelsteenWorp Het model voor het werpen van dobbelstenen
+	 * @param model  Het model van de view (ISpel)
+	 * @throws Exception
+	 */
 	public SpelView(ISpeelbord speelbord, SpelController spelController,
 			DobbelsteenWorpController dobbelsteenWorpController, IDobbelsteenWorp dobbelsteenWorp, ISpel model)
 			throws Exception {
@@ -82,6 +92,11 @@ public class SpelView extends Stage implements ISpelObserver {
 		this.setScene(scene);
 	}
 	
+	/**
+	 * Deze functie weergeeft alle TableauViews
+	 * @param spel Het model van de view
+	 * @throws RemoteException
+	 */
 	private void toonSpelView(ISpel spel) throws RemoteException {
 		grid.add(new TableauView(1.0, StenenTijdperk.getSpeler().getTableau()), 0, 1, 1, 3);
 		List<ISpeler> spelers = spel.getSpelerLijst();
@@ -97,6 +112,11 @@ public class SpelView extends Stage implements ISpelObserver {
 		this.sizeToScene();
 	}
 	
+	/**
+	 * Deze functie toont de BetaalView voor het voeden van stamleden
+	 * @param spel Het model van de view
+	 * @throws RemoteException
+	 */
 	private void toonBetaalView(ISpel spel) throws RemoteException { 
 		int betalen = StenenTijdperk.getSpeler().getTableau().getStamleden().size() - StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
 		BetaalView bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen om te betalen : " + betalen, true, true, false, true);
@@ -132,6 +152,9 @@ public class SpelView extends Stage implements ISpelObserver {
 		StenenTijdperk.getSpel().notifyEverything();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modelChanged(ISpel spel) throws RemoteException {
 		Platform.runLater(() -> {
