@@ -105,7 +105,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
- 
+
 
 	private void initGereedschap() {
 		Pane pane = new Pane();
@@ -162,9 +162,10 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	private void initBeschavingskaarten() {
 		Pane pane = new Pane();
-		beschavingskaarten = new ImageView[8];
+		beschavingskaarten = new ImageView[38];
+
 		for(int i = 0; i < beschavingskaarten.length; i++) {
-		Image image = new Image("file:assets/beschavingskaarten/back.png");
+		Image image = new Image("file:assets/beschavingskaarten/null.png");
 		ImageView imageView = new ImageView(image);
 
 		imageView.setFitHeight(image.getHeight() / 4 / 100 * 95 * scale);
@@ -304,7 +305,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 	private void tekenBeschavingskaart(ITableau tableau) throws RemoteException {
 		List<IBeschavingskaart> beschavingskaarten = tableau.getKaarten();
 		for(int i = 0; i < beschavingskaarten.size(); i++) {
-			this.beschavingskaarten[i].setImage(new Image("file:assets/beschavingskaarten/" + tableau.getKaarten().get(i).getAsset()));
+			this.beschavingskaarten[i].setImage(new Image("file:assets/beschavingskaarten/back.png"));
 		}
 	}
 	private void tekenNaam(ITableau tableau) throws RemoteException {

@@ -304,7 +304,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 
 		if (this.getSpeelbord().getKaarten().size() >= 4) {
-			this.getSpeelbord().laatstGekozenLcatie.resetBeschavingskaarten(this.getSpeelbord());
+			this.getSpeelbord().resetBeschavingskaarten();
 			try {
 				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {

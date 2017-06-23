@@ -58,14 +58,11 @@ public class StenenTijdperk extends Application {
 	private static ISpeler speler;
 	private static String ip;
 
-<<<<<<< HEAD
+
 	/**
 	 * De main method dies de JavaFX applicatie opstart.
 	 * @param args
-	 */
-=======
-	/** Hier word de applicatie klaargezet. */
->>>>>>> 457339db35ed5762b4ad7d028b48ea5741f6e687
+*/
 	public static void main(String[] args) {
 	//	ip = args[0];
 		launch(args);
@@ -74,19 +71,12 @@ public class StenenTijdperk extends Application {
 	@Override
 	/** Hier word de client opgezet. */
 	public void start(Stage primaryStage) throws Exception {
-<<<<<<< HEAD
+
 		// Het definieren van het model
 
 		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
-		// ...
-=======
-		
-		// Het definiëren van het model
-		spel = (ISpel) Naming.lookup("rmi://" + ip + "/Spel");
-		
->>>>>>> 457339db35ed5762b4ad7d028b48ea5741f6e687
 		HandleidingView handleidingPane = new HandleidingView();
 
 		// Het definiëren van enkele controllers
@@ -97,7 +87,7 @@ public class StenenTijdperk extends Application {
 		// Het definiëren van enkele views
 		LobbyView lobbyView = new LobbyView(lobbyController, spel);
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, spel.getDobbelsteenWorp(), spel);
-		
+
 		// Het voorbereiden en tonen van de client
 		lobbyView.setResizable(false);
 		lobbyView.show();

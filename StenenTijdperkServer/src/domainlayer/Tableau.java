@@ -169,7 +169,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		gereedschapGebruikt[index] = true;
 		notifyObservers();
 	}
-	
+
 	@Override
 	/**{@inheritDoc}*/
 	public void resetGereedschapStatus() throws RemoteException {
@@ -187,7 +187,34 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		    this.middelen.replace(entry.getKey(), this.middelen.get(entry.getKey()), this.middelen.get(entry.getKey()) - entry.getValue());
 		}
 	}
-	
+	/**
+	 * Het betalen van een beschavingskaart
+	 * @param  middelen  de gekozen middelen om te betalen
+	 * @param  Kosten  de kosten van de kaart
+	 * @return  of het betalen van de kaart succesvol was of niet
+	 *
+	 */
+	public boolean betalenBeschavingskaart(Map<Middel, Integer> middelen, int Kosten) throws RemoteException {
+		Integer aantalMiddelen = 0;
+
+		for (Entry<Middel, Integer> entry : this.middelen.entrySet()) {
+			if (entry.getValue() < middelen.get(entry.getKey())) {
+				return false;
+			}
+			aantalMiddelen += middelen.get(entry.getKey());
+		}
+
+		int kosten = Kosten;
+		if (kosten != aantalMiddelen) {
+			return false;
+		}
+
+		verwijderMiddelen(middelen);
+
+		notifyObservers();
+		return true;
+	}
+
 	@Override
 	/**{@inheritDoc}*/
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException{

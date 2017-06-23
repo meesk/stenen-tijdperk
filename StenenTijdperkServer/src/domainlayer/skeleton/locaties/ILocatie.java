@@ -75,11 +75,5 @@ public interface ILocatie extends Remote {
 	 * moet worden geworpen. */
 	public boolean isWorpNodig() throws RemoteException;
 
-	default void resetBeschavingskaarten(Speelbord speelbord) {
-		for (int i = 0; i < 4; i++) {
-			if (speelbord.beschavingskaarten[i] != null) {
-				speelbord.beschavingskaarten[i] = null;
-			}
-		}
-	}
+	
 }

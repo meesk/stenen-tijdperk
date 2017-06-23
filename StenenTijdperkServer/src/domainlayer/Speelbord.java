@@ -100,6 +100,10 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return beschavingskaarten;
 	}
 
+	public IBeschavingskaart getBeschavingskaart(int index){
+		return beschavingskaarten[index];
+	}
+
 	/**
 	 * Verander de laatst gekozen locatie van de speler.
 	 * @param locatie  De laatste locatie.
