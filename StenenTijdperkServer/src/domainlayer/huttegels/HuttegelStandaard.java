@@ -18,13 +18,19 @@ public class HuttegelStandaard extends UnicastRemoteObject implements IHuttegel 
 	private String asset;
 	private int waarde;
 	private Middel[] middelen;
-
+	
+	/**
+	 * Deze constructor zet een standaard-huttegel klaar.
+	 * @param asset  De url van de asset.
+	 * @param middelen  De middelen die betaald moeten worden voor deze teegl.
+	 */
 	public HuttegelStandaard(String asset, Middel... middelen) throws RemoteException {
 		this.asset = asset;
 		this.middelen = middelen;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void berekenWaarde() {
 		waarde = 0;
 		for (Middel middel : middelen) {
@@ -45,7 +51,9 @@ public class HuttegelStandaard extends UnicastRemoteObject implements IHuttegel 
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public boolean uitvoerenActie(ISpeler speler) throws RemoteException {
+		// Het controleren of er genoeg middelen zijn.
 		Map<Middel, Integer> cost = getMiddelMap();
 		for (Middel middel : cost.keySet()) {
 			if (cost.get(middel) > speler.getTableau().getMiddelen().get(middel)) {
@@ -59,6 +67,7 @@ public class HuttegelStandaard extends UnicastRemoteObject implements IHuttegel 
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public String getAsset() throws RemoteException {
 		return asset;
 	}

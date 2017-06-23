@@ -1,14 +1,10 @@
 package domainlayer;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,14 +16,11 @@ import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.enums.SpelerStatus;
-import domainlayer.locaties.MiddelLocatie;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
-import presentationlayer.EindView;
 import presentationlayer.skeleton.ISpelObserver;
-import proceslayer.SpelController;
 
 /**
  * Spel.java<br>
@@ -62,6 +55,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private List<ISpelObserver> observers;
 
+	/**
+	 * Het initialiseren van het model Spel
+	 * @throws RemoteException
+	 */
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
 		speelbord = new Speelbord(this);
@@ -71,6 +68,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		observers = new ArrayList<>();
 	}
 
+	/**
+	 * Functie voor de telling van het einde van het spel
+	 */
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
 
 		Map<String, Integer> spelerPuntenTotaal = new HashMap();
@@ -94,6 +94,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	/**
+	 * Punten geschiedenis bijhouden
+	 * @throws RemoteException
+	 */
 	public void vulPuntenGeschiedenis() throws RemoteException {
 
 		for(int i = 0; i < spelers.size(); i++) {
@@ -107,6 +111,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return this.puntenGeschiedenis;
 	}
 
+	/**
+	 * Bepalen van de winnaar
+	 * @param spelerPuntenTotaal
+	 * @return boolean  winnaar wel of niet bepaald
+	 * @throws RemoteException
+	 */
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
 
 		boolean winnaarBepaald 	= false;
@@ -363,123 +373,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		notifyEverything();
 
 	}
-
-	// public void fases() throws RemoteException {
-	//
-	// geefVolgendeBeurt();
-	// for (ISpeler speler : spelers) {
-	// speler.getTableau().notifyObservers();
-	// }
-	//
-	// if (status.equals(SpelStatus.PLAATSEN_STAMLEDEN)) {
-	// int stamledenOpTableau = 0;
-	// for(ISpeler speler : spelers) {
-	// stamledenOpTableau += speler.getTableau().getStamleden().size();
-	// }
-	// if( stamledenOpTableau > 0) {
-	//
-	// while (beurtSpeler.getTableau().getStamleden().size() == 0) {
-	// geefVolgendeBeurt();
-	// }
-	//
-	//
-	// /*if
-	// (spelers.get(spelers.indexOf(beurtSpeler)).getTableau().getStamleden().size()
-	// > 0) {
-	// // voer plaatsen stamleden uit
-	//
-	// } else {
-	//
-	// beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) %
-	// spelers.size());
-	// for(int j = 0; j <= spelers.size(); j++){
-	// if(spelers.get(j) != spelers.get(spelers.indexOf(beurtSpeler))) {
-	// spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
-	// }
-	// }
-	// }*/
-	//
-	// } else {
-	// status = status.UITVOEREN_ACTIE;
-	// }
-	// } else if (status.equals(status.UITVOEREN_ACTIE)) {
-	// int stamledenOpSpeelbord = 0;
-	// for(int j = 0; j < spelers.size(); j++) {
-	// stamledenOpSpeelbord +=
-	// this.speelbord.getLocaties().get(j).getStamleden().size();
-	// }
-	// if(stamledenOpSpeelbord > 0) {
-	//
-	//
-	// //checken of de speler die stamleden wil plaatsen aan de beurt is
-	// /*int stamledenOpLocatieSpeler = 0;
-	// for(int k = 0; k < speelbord.getLocaties().size(); k++) {
-	// stamledenOpLocatieSpeler +=
-	// speelbord.getLaatstGekozenLocatie().getStamleden(beurtSpeler).size();
-	// }
-	// if(stamledenOpLocatieSpeler > 0) {
-	// //uitvoeren actie
-	// }*/
-	// } else {
-	// /*beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler)) + 1 %
-	// spelers.size());
-	// for(int j = 0; j < spelers.size(); j++){
-	// if(spelers.get(j) != spelers.get(spelers.indexOf(beurtSpeler))) {
-	// spelers.get(j).setStatus(SpelerStatus.GEEN_BEURT);
-	// }
-	// }*/
-	// }
-	// } else if(status.equals(status.VOEDEN_STAMLEDEN)) {
-	// //voedenStamleden
-	// setVoeden(true);
-	// notifyObservers();
-	//
-	// // resetten gereedschap
-	// for(int i = 0; i < spelers.size(); i++){
-	// spelers.get(i).getTableau().resetGereedschapStatus();
-	// }
-	// // ophalen beschavingskaarten en huttegels
-	// int aantalKaarten = 0;
-	// int aantalHutten = 0;
-	// for(int i = 0; i < speelbord.getLocaties().size(); i++) {
-	// if (speelbord.getLocaties().get(i) instanceof Beschavingskaart) {
-	// aantalKaarten =+ 1;
-	// }
-	// if (speelbord.getLocaties().get(i) instanceof IHuttegel) {
-	// aantalHutten += 1;
-	// }
-	// }
-	// //kaarten doorschuiven als niet vier instanties van beschavingskaart
-	// liggen
-	// if(aantalKaarten < 4) {
-	// aantalKaarten = 0;
-	// for (int i = 0; 1 < speelbord.getLocaties().size(); i++) {
-	// if(speelbord.getLocaties().get(i) instanceof Beschavingskaart){
-	// aantalKaarten += 1;
-	// }
-	// }
-	// if(aantalKaarten < 4) {
-	// status = status.BEPALEN_WINNAAR;
-	// }
-	// }
-	// // als niet alle huttegel plekken vol liggen kijken of spel gestopt moet
-	// worden deze ronde of volgende ronde
-	// if(aantalHutten < 4 ) {
-	// if(laatsteRonde == true){
-	// status = status.BEPALEN_WINNAAR;
-	// } else {
-	// laatsteRonde = true;
-	// }
-	// }
-	// }
-	//
-	// for (ILocatie locatie : speelbord.getLocaties()) {
-	// locatie.notifyObservers();
-	// }
-	// for (ISpeler speler : spelers) {
-	// speler.getTableau().notifyObservers();
-	// }
-	// }
 
 	public void setVoeden(boolean b) {
 		voeden = b;

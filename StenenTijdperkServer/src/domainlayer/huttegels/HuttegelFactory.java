@@ -8,19 +8,26 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.huttegels.IHuttegel;
 
 /**
+ * Deze factory maakt alle huttegels aan voor het spel.
+ * 
  * @author Erwin Olie, s1103026
- * @version 0.1
+ * @version 3.0
  */
 public class HuttegelFactory {
 
 	private static HuttegelFactory instance;
 	private List<IHuttegel> huttegels;
 
+	/** Hier worden alle huttegels aangemaakt. */
 	public HuttegelFactory() throws RemoteException {
 		huttegels = new ArrayList<IHuttegel>();
+		
+		// Dit zijn de vrij-huttegels
 		huttegels.add(new HuttegelVrij("vrij/01.png", 1, 7));
 		huttegels.add(new HuttegelVrij("vrij/02.png", 1, 7));
 		huttegels.add(new HuttegelVrij("vrij/03.png", 1, 7));
+		
+		// Dit zijn de kies-huttegels
 		huttegels.add(new HuttegelKiezen("kiezen/01.png", 5, 4));
 		huttegels.add(new HuttegelKiezen("kiezen/02.png", 4, 4));
 		huttegels.add(new HuttegelKiezen("kiezen/03.png", 4, 3));
@@ -30,6 +37,7 @@ public class HuttegelFactory {
 		huttegels.add(new HuttegelKiezen("kiezen/07.png", 4, 1));
 		huttegels.add(new HuttegelKiezen("kiezen/08.png", 5, 2));
 
+		// Dit zijn de standaard-huttegels
 		huttegels.add(new HuttegelStandaard("standaard/01.png", Middel.LEEM, Middel.STEEN, Middel.STEEN));
 		huttegels.add(new HuttegelStandaard("standaard/02.png", Middel.HOUT, Middel.LEEM, Middel.STEEN));
 		huttegels.add(new HuttegelStandaard("standaard/03.png", Middel.HOUT, Middel.HOUT, Middel.STEEN));
@@ -48,11 +56,16 @@ public class HuttegelFactory {
 		huttegels.add(new HuttegelStandaard("standaard/16.png", Middel.HOUT, Middel.LEEM, Middel.LEEM));
 		huttegels.add(new HuttegelStandaard("standaard/17.png", Middel.HOUT, Middel.HOUT, Middel.LEEM));
 	}
-	
+
+	/** @return Alle huttegels beschikbaar in het spel. */
 	public List<IHuttegel> getHuttegels() {
 		return huttegels;
 	}
 
+	/**
+	 * Deze methode zorgt dat op een singleton-wijze de factory verkregen word.
+	 * @return De instance van de factory van de huttegels.
+	 */
 	public static HuttegelFactory getInstance() {
 		if (instance == null) {
 			try {
@@ -63,5 +76,5 @@ public class HuttegelFactory {
 		}
 		return instance;
 	}
-
 }
+
