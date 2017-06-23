@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * HandleidingPane.java<br>
+ * HandleidingPane.java
  * Hier wordt de handleiding in allerlei panes gezet en in een Scene & PrimaryStage gezet.
  *
  * @author Enzo Campfens, s1102421

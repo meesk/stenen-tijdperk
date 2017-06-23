@@ -26,18 +26,27 @@ public class LobbyController {
 	private int klikCounter = 0;
 	private SpelView spelview;
 
+	
+	/**Registreerd het spel in de controller
+	 * 
+	 * @param spel
+	 */
 	public LobbyController(ISpel spel) {
 		this.spel = spel;
 	}
 
-//	public void registerSpelView(SpelView spelView) {
-//		this.spelview = spelView;
-//	}
 
+	/**Registreerd de lobby view in de controller
+	 * @param view
+	 */
 	public void registerView(LobbyView view) {
 		this.view = view;
 	}
 
+	/**
+	 * Dit voert alle acties uit in de lobbyView de achter de knop hangen zoals "Maak Speler!" en "Beginnen!"
+	 * @throws RemoteException
+	 */
 	public void OnButtonClick() throws RemoteException {
 
 		if(!view.getNaam().trim().isEmpty() && view.getGeboorteDatum() != null && view.getKleur() != null && spel.getSpelerLijst().size() < 4 && klikCounter == 0) {
@@ -46,7 +55,7 @@ public class LobbyController {
 			view.disableSpelerInfo();
 			klikCounter++;
 		} else if(klikCounter == 1) {
-			StenenTijdperk.getSpeler().klaarVoorSpeler();
+			StenenTijdperk.getSpeler().setSpelerKlaar();
 			view.veranderKnopTextWachten();
 			view.disableButton();
 			spel.checkSpelers();

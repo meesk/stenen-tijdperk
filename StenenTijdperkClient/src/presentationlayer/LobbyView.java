@@ -34,14 +34,35 @@ import presentationlayer.skeleton.ISpelObserver;
 import proceslayer.LobbyController;
 
 /**
- * LobbyView.java<br>
+ * LobbyView.java
  * Een klasse die alle informatie bevat om de Lobby view te maken.
+ * Het wordt allemaal in een scene gezet en daarna op de stage gezet waar deze classe van extends.
  *
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
  * @author Erwin Olie, s1103026
  * @version 1.2
+ */
+/**
+ * @author Enzo
+ *
+ */
+/**
+ * @author Enzo
+ *
+ */
+/**
+ * @author Enzo
+ *
+ */
+/**
+ * @author Enzo
+ *
+ */
+/**
+ * @author Enzo
+ *
  */
 public class LobbyView extends Stage implements ISpelObserver {
 
@@ -185,14 +206,18 @@ public class LobbyView extends Stage implements ISpelObserver {
 	}
 
 	public LocalDate getGeboorteDatum() {
-		localDate = geboorteDatumPicker.getValue();
-		return localDate;
+		return geboorteDatumPicker.getValue();
 	}
 
 	public boolean getIsSpastisch() {
 		return isSpastisch.isSelected();
 	}
 
+	
+	/**Eerst wordt er gekeken of er een kleur is geselecteerd en daarna returned het de kleur of een lege string.
+	 * 
+	 * @return
+	 */
 	public String getKleur() {
 		if (group.getSelectedToggle() != null) {
 			RadioButton selectedRadio = (RadioButton) group.getSelectedToggle();
@@ -201,30 +226,46 @@ public class LobbyView extends Stage implements ISpelObserver {
 		return "";
 	}
 
+	
+	/**
+	 * Disabled de knop na klikken waar op geklikt wordt als je klaar bent
+	 */
 	public void disableButton() {
 		this.klaarBtn.setDisable(true);
 	}
 
+	
+	/**
+	 * Disabled alle invul velden die de speler kan invullen.
+	 */
 	public void disableSpelerInfo() {
 		this.geboorteDatumPicker.setDisable(true);
 		this.isSpastisch.setDisable(true);
 		this.voorNaamField.setDisable(true);
 	}
 
+	
+	/**
+	 * Verandert de text van de knop van "Maak speler" naar "Beginnen!"
+	 */
 	public void veranderKnopTextBeginnen() {
 		this.klaarBtn.setText("Beginnen!");
 	}
 
+	/**
+	 * Verandert det text van de knop van "Beginnen!" naar "Moment geduld a.u.b
+	 */
 	public void veranderKnopTextWachten() {
 		this.klaarBtn.setText("Moment geduld aub...");
 	}
 
-	public void setLobbyGegevens() { // tijdelijk, scheelt tijd met invullen
-		this.voorNaamField.setText("Henk");
-		this.isSpastisch.setSelected(true);
-		this.geboorteDatumPicker.setValue(LocalDate.of(2015, 07, 20));
-	}
-
+	/**
+	 * Als 2 mensen een kleur hebben gekozen en 1tje klikt op speler maken 
+	 * dan wordt die kleur gedisabled voor andere spelers zodat dat de enige persoon is met die kleur.
+	 * 
+	 * @param model
+	 * @throws RemoteException
+	 */
 	private void updateKleuren(ISpel model) throws RemoteException {
 		for (RadioButton rb : kleurButtons) {
 			if (rb.isDisabled()) {
@@ -248,7 +289,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 		}
 	}
 
-	private void updateProgress(ISpel model) throws RemoteException {
+	private void updateProgressBar(ISpel model) throws RemoteException {
 		int aantalKlaar = 0;
 		for (ISpeler speler : model.getSpelerLijst()) {
 			if (speler.isKlaar()) {
@@ -260,6 +301,9 @@ public class LobbyView extends Stage implements ISpelObserver {
 		spelersAantalLbl.setText(aantalKlaar + " van de " + model.getSpelerLijst().size());
 	}
 
+	/* Dit update de lobbyView voor de rest van de spelers.
+	 * @see presentationlayer.skeleton.ISpelObserver#modelChanged(domainlayer.skeleton.ISpel)
+	 */
 	@Override
 	public void modelChanged(ISpel model) throws RemoteException {
 		Platform.runLater(() -> {
@@ -269,7 +313,7 @@ public class LobbyView extends Stage implements ISpelObserver {
 					return;
 				}
 
-				updateProgress(model);
+				updateProgressBar(model);
 				updateKleuren(model);
 
 			} catch (RemoteException e) {
