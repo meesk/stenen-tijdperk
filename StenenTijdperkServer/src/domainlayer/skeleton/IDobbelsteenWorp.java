@@ -14,7 +14,7 @@ import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 public interface IDobbelsteenWorp extends Remote {
 	/**
 	 * Het toevoegen van een observer,
-	 * @param view
+	 * @param observer  De observer die word toegevoegd.
 	 */
 	public void addObserver(IDobbelsteenWorpObserver observer) throws RemoteException;
 

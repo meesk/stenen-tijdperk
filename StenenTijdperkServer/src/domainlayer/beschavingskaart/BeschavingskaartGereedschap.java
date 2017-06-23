@@ -48,7 +48,7 @@ public class BeschavingskaartGereedschap extends UnicastRemoteObject implements 
 
 	/**
 	 * Update of de kaart naast het tableau is neergelegd.
-	 * @param isNaastTableau  Of de kaart naast het tableau word gelegd.
+	 * @param naastTableau  Of de kaart naast het tableau word gelegd.
 	 */
 	public void setNaastTableau(boolean naastTableau){
 		this.naastTableau = naastTableau;
