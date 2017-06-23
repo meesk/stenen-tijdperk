@@ -15,17 +15,16 @@ public class TableauController {
 	private ITableau model;
 	private TableauView view;
 
-	/** Het setten van het model. */
+	/** 
+	 * Het iniitaliseren van de controller.
+	 * @param model  het model ITableau
+	 */
 	public TableauController(ITableau model) {
 		this.model = model;
 	}
 
 	public void registerView(TableauView view) {
 		this.view = view;
-	}
-
-	public void onButtonPressed() {
-		//setGereedschapStatus(boolean status, int positie);
 	}
 
 }

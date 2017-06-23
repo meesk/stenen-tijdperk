@@ -3,3 +3,5 @@
 .recommenders/*
 StenenTijdperkServer/spel.ser
 .settings/*
+StenenTijdperkServer/doc/*
+StenenTijdperkClient/doc/*

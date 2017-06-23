@@ -13,9 +13,10 @@ import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
  * BeschavingskaartGereedschap.java
  * De klasse waar deze specifieke kaart wordt aangemaakt
  *
- * @Author Alex de Bruin, s1103096
- * @Version 3.0
+ * @author Alex de Bruin, s1103096
+ * @version 3.0
  */
+
 
 
 public class BeschavingskaartGereedschap extends UnicastRemoteObject implements IBeschavingskaart {

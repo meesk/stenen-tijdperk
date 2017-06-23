@@ -25,7 +25,10 @@ public class LocatieController {
 	private ILocatie model;
 	private LocatieView view;
 
-	/** Het setten van het model. */
+	/** 
+	 * Het setten van het model. 
+	 * @param model  het model ILocatie
+	 */
 	public LocatieController(ILocatie model) {
 		this.model = model;
 	}
@@ -34,6 +37,12 @@ public class LocatieController {
 		this.view = view;
 	}
 
+	/**
+	 * De functie waarin plaatsen stamleden wordt uitgevoerd.
+	 * @param spel  Het model Spel
+	 * @param speler  Het model Speler
+	 * @throws RemoteException
+	 */
 	private void plaatsenStamleden(ISpel spel, ISpeler speler) throws RemoteException {
 		if (speler.getLaatsteLocatie() != null && speler.getLaatsteLocatie().equals(model)) {
 			return; // deze locatie is vorige ronde gekozen
@@ -59,6 +68,12 @@ public class LocatieController {
 		spel.fases();
 	}
 
+	/**
+	 * De functie om een actie uit te voeren op het spel
+	 * @param spel  Het model Spel
+	 * @param speler  Het model Speler
+	 * @throws RemoteException
+	 */
 	private void uitvoerenActie(ISpel spel, ISpeler speler) throws RemoteException {
 		List<IStamlid> stamleden = new ArrayList<>();
 		for (IStamlid stamlid : model.getStamleden()) {
@@ -85,6 +100,9 @@ public class LocatieController {
 		spel.fases();
 	}
 
+	/**
+	 * De functie voor het afhandelen van een locatie
+	 */
 	public void onKiesLocatie() {
 
 		try {

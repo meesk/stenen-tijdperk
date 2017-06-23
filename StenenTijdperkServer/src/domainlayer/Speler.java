@@ -152,7 +152,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	}
 
 	@Override
-	public void klaarVoorSpeler() throws RemoteException {
+	public void setSpelerKlaar() throws RemoteException {
 		this.klaar = true;
 	}
 

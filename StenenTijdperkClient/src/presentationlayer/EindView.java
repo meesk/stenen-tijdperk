@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import proceslayer.SpelController;
 
 /**
- * EindView.java<br>
+ * EindView.java
  * Een klasse die alle informatie bevat om de eind view te maken.
  *
  * @author Tristan Caspers, s1102755
@@ -34,8 +34,8 @@ public class EindView extends Stage {
 	 * Het initialiseren van de view van het einde.
 	 * @param spelController	De controller van het spel.
 	 * @param model			    Het model van het spel.
+	 * @throws RemoteException
 	 */
-	@SuppressWarnings("unchecked")
 	public EindView(SpelController spelController, ISpel model) throws RemoteException {
 
 		spelController.registerView(this);
@@ -58,7 +58,6 @@ public class EindView extends Stage {
 
 		Map<String, List<Integer>> puntenGeschiedenis = model.getPuntenGeschiedenis();
 
-		@SuppressWarnings("rawtypes")
 		List<XYChart.Series> seriesList = new ArrayList<Series>();
 
 		int naamLoop = 0;

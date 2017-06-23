@@ -65,19 +65,11 @@ public class Beschavingskaart extends Locatie {
 		return asset;
 	}
 
+
 //	public abstract BeschavingskaartStatus getStatus();
 //	public abstract void setStatus(BeschavingskaartStatus status);
 
 //	public abstract int getKosten();
-
-
-	@Override
-	/**
-	 * betaal middelen??
-	 */
-	public void betaalMiddelen() {
-
-	}
 
 	/***/
 	public void betaling() {

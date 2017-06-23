@@ -13,11 +13,11 @@ import domainlayer.huttegels.HuttegelLocatie;
 import domainlayer.skeleton.locaties.ILocatie;
 
 /**
- * LocatieFactory.java<br>
- * Een klasse waar de locaties worden toegevoegd.
- *
+ * Deze factory maakt alle locaties aan voor het spel.
+ * 
  * @author Erwin Olie, s1103026
- * @version 1.0
+ * @author Mees Kluivers, s1102358
+ * @version 3.0
  */
 public class LocatieFactory {
 
@@ -26,6 +26,8 @@ public class LocatieFactory {
 
 	public LocatieFactory() throws RemoteException {
 		locaties = new ArrayList<>();
+		
+		// Dit is het Bos
 		locaties.add(new MiddelLocatie(280, 117, 100, 117, Arrays.asList(
 			new Point(13, 2),
 			new Point(40, 8),
@@ -35,6 +37,8 @@ public class LocatieFactory {
 			new Point(40, 44),
 			new Point(52, 61)
 		), Middel.HOUT));
+		
+		// Dit is de Leemgroeve
 		locaties.add(new MiddelLocatie(412, 113, 143, 83, Arrays.asList(
 			new Point(74, 4),
 			new Point(46, 9),
@@ -44,6 +48,8 @@ public class LocatieFactory {
 			new Point(40, 27),
 			new Point(107, 28)
 		), Middel.LEEM));
+		
+		// Dit is de Steengroeve
 		locaties.add(new MiddelLocatie(714, 109, 121, 121, Arrays.asList(
 			new Point(24, 5),
 			new Point(54, 6),
@@ -53,6 +59,8 @@ public class LocatieFactory {
 			new Point(78, 45),
 			new Point(68, 67)
 		), Middel.STEEN));
+		
+		// Dit is de Rivier
 		locaties.add(new MiddelLocatie(614, 236, 127, 94, Arrays.asList(
 			new Point(59, 1),
 			new Point(30, 3),
@@ -62,29 +70,45 @@ public class LocatieFactory {
 			new Point(80, 24),
 			new Point(56, 38)
 		), Middel.GOUD));
+		
+		// Dit is de Jacht
 		locaties.add(new MiddelLocatie(94, 80, 127, 220, generatePoints(40), Middel.VOEDSEL));
+		
+		// Dit is de Akker
 		locaties.add(new Akker(247, 327, 75, 61, Arrays.asList(
 			new Point(28, 2)
 		)));
+		
+		// Dit is de Hut
 		locaties.add(new Hut(318, 399, 97, 62, Arrays.asList(
 			new Point(47, 8),
 			new Point(20, 13)
 		)));
+		
+		// Dit is de Gereedschapmaker
 		locaties.add(new Gereedschapmaker(418, 280, 125, 98, Arrays.asList(
 			new Point(54, 23)
 		)));
-		// Huttegels
+		
+		// Dit zijn de Huttegels
 		locaties.add(new HuttegelLocatie(91, 476, 82, 90, Arrays.asList(new Point(26, 18)), 0));
 		locaties.add(new HuttegelLocatie(175, 476, 82, 90, Arrays.asList(new Point(26, 18)), 1));
 		locaties.add(new HuttegelLocatie(259, 476, 82, 90, Arrays.asList(new Point(26, 18)), 2));
 		locaties.add(new HuttegelLocatie(343, 476, 82, 90, Arrays.asList(new Point(26, 18)), 3));
-		// Beschavingskaarten
+		
+		// Dit zijn de Beschavingskaarten
 		locaties.add(new Beschavingskaart(463, 438, 85, 145, Arrays.asList(new Point(26, 18)), 0));
 		locaties.add(new Beschavingskaart(560, 438, 85, 145, Arrays.asList(new Point(26, 18)), 1));
 		locaties.add(new Beschavingskaart(653, 438, 85, 145, Arrays.asList(new Point(26, 18)), 2));
 		locaties.add(new Beschavingskaart(749, 438, 85, 145, Arrays.asList(new Point(26, 18)), 3));
 	}
 	
+	
+	/**
+	 * Het genereren van willekeurige cirkel-punten voor de Jacht.
+	 * @param aantal  Het aantal punten dat je wilt genereren.
+	 * @return Een lijst met random punten voor de jacht.
+	 */
 	private ArrayList<Point> generatePoints(int aantal){
 		ArrayList<Point> points = new ArrayList<Point>();
 
@@ -96,6 +120,10 @@ public class LocatieFactory {
 		return points;
 	}
 
+	/**
+	 * Deze methode zorgt dat op een singleton-wijze de factory verkregen word.
+	 * @return De instance van de factory van de locaties.
+	 */
 	public static LocatieFactory getInstance() {
 		if (instance == null) {
 			try {
@@ -107,6 +135,7 @@ public class LocatieFactory {
 		return instance;
 	}
 
+	/** @return Alle locaties op het speelbord. */
 	public List<ILocatie> getLocaties() {
 		return locaties;
 	}

@@ -13,7 +13,7 @@ import presentationlayer.skeleton.ISpoorObserver;
 
 /**	@author Alex de Bruin, s1103096
  *  <br>Erwin olie. s1103026
- * 	@Version 0.1
+ * 	@version 0.1
  *
  * <br>
  * <br>

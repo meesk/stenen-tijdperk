@@ -32,7 +32,7 @@ public interface ISpeler extends Remote {
 
 	public ISpel getSpel() throws RemoteException;
 
-	public void klaarVoorSpeler() throws RemoteException;
+	public void setSpelerKlaar() throws RemoteException;
 
 	public int ophalenGegevens() throws RemoteException;
 

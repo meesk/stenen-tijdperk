@@ -37,14 +37,16 @@ import proceslayer.LobbyController;
 import proceslayer.SpelController;
 
 /**
- * StenenTijdperk.java<br>
+ * StenenTijdperk.java
  * Een simpele Main-klasse waar de client word opgezet.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
+ * 
  * @version	1.0
+ * 
  */
 public class StenenTijdperk extends Application {
 
@@ -52,7 +54,10 @@ public class StenenTijdperk extends Application {
 	private static ISpeler speler;
 	private static String ip;
 
-	/** De main method dies de JavaFX applicatie opstart. */
+	/** 
+	 * De main method dies de JavaFX applicatie opstart.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		ip = args[0];
 		launch(args);
@@ -85,16 +90,31 @@ public class StenenTijdperk extends Application {
 		lobbyView.show();
 
 	}
-
+	
+	
+	/**
+	 * getter voor het spel dat geinitializeerd is door de server.
+	 * @return ISpel  het model ISpel
+	 */
 	public static ISpel getSpel() {
 		return spel;
 	}
 
+	
+	/**
+	 * getter voor het speler ophalen van de huidige client.
+	 * @return  ISpeler  het model ISpel
+	 */
 	public static ISpeler getSpeler() {
 		return speler;
 	}
 
-	public static void setSpeler(ISpeler s) {
-		speler = s;
+	
+	/**
+	 * Geeft de client een specifieke speler.
+	 * @param spelSpeler  De speler op te setten
+	 */
+	public static void setSpeler(ISpeler spelSpeler) {
+		speler = spelSpeler;
 	}
 }
