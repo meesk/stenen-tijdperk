@@ -40,6 +40,16 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	private boolean voeden;
 	private ILocatie laatsteLocatie;
 
+	/**
+	 * Het initialiseren van een speler.
+	 * @param spel  het model (Spel)
+	 * @param view  De observer van de view
+	 * @param naam  De naam van de speler
+	 * @param geboorteDatum  De geboortedatum van de speler
+	 * @param isSpastisch  wel of niet spastisch
+	 * @param kleur  de kleur van de speler
+	 * @throws RemoteException
+	 */
 	public Speler(Spel spel, ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
 		this.naam = naam;
 		this.geboorteDatum = geboorteDatum;
@@ -65,6 +75,10 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 		this.laatsteLocatie = laatsteLocatie;
 	}
 
+	/*
+	 * Ophalen van de gegevens van de speler
+	 * @see domainlayer.skeleton.ISpeler#ophalenGegevens()
+	 */
 	@Override
 	public int ophalenGegevens() throws RemoteException {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.

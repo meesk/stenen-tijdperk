@@ -5,7 +5,7 @@ package domainlayer.beschavingskaart;
  * De klasse waar deze specifieke kaart wordt aangemaakt
  * @author Alex de Bruin, s1103096
  * @author Enzo Campfens, s1102421
- * @version 0.2
+ * @version 3.0
  */
 
 import java.rmi.RemoteException;
