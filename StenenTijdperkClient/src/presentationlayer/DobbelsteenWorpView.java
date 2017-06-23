@@ -37,6 +37,7 @@ public class DobbelsteenWorpView extends StackPane implements IDobbelsteenWorpOb
 	 * Het initialiseren van de view van de dobbelsteenworp.
 	 * @param dobbelsteenWorp			Het model van de dobbelstenworp.
 	 * @param dobbelsteenWorpController	De controller van de dobbelsteenworp.
+	 * @throws RemoteException
 	 */
 	public DobbelsteenWorpView(IDobbelsteenWorp dobbelsteenWorp, DobbelsteenWorpController dobbelsteenWorpController) throws RemoteException {
 		// Maak deze klasse toegankelijk voor RMI.

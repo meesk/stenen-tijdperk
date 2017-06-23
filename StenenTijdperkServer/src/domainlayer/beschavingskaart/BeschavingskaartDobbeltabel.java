@@ -41,7 +41,7 @@ public class BeschavingskaartDobbeltabel extends UnicastRemoteObject implements 
 		// Uitvoeren Actie
 		// Speler werpt dobbelstenen
 		// Speler kiest een dobbelsteen uit, deze dobbelsteen wordt onbeschikbaar gemaakt
-		// De overige spelers kiezen er ook één uit
+		// De overige spelers kiezen er ook een uit
 		// Speler krijgt de kaart op zijn tableau
 	}
 

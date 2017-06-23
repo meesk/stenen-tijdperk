@@ -15,7 +15,10 @@ public class TableauController {
 	private ITableau model;
 	private TableauView view;
 
-	/** Het iniitaliseren van de controller. */
+	/** 
+	 * Het iniitaliseren van de controller.
+	 * @param model  het model ITableau
+	 */
 	public TableauController(ITableau model) {
 		this.model = model;
 	}

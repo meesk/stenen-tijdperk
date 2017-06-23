@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 /**
  * HandleidingPane.java
- * Hier wordt de handleiding in allerlei panes gezet en in een Scene & PrimaryStage gezet.
+ * Hier wordt de handleiding in allerlei panes gezet en in een Scene en PrimaryStage gezet.
  *
  * @author Enzo Campfens, s1102421
  * @version 1.0

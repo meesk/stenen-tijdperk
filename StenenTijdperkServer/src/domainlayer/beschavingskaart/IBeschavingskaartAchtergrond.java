@@ -1,7 +1,8 @@
 package domainlayer.beschavingskaart;
 
-/**@Author Alex de Bruin, s1103096
-*@Version 0.1
+/**
+* @author Alex de Bruin, s1103096
+*@version 0.1
 *
 *<br>
 * <br>

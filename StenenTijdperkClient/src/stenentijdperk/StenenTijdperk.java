@@ -54,7 +54,10 @@ public class StenenTijdperk extends Application {
 	private static ISpeler speler;
 	private static String ip;
 
-	/** De main method dies de JavaFX applicatie opstart. */
+	/** 
+	 * De main method dies de JavaFX applicatie opstart.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		ip = args[0];
 		launch(args);
@@ -91,7 +94,7 @@ public class StenenTijdperk extends Application {
 	
 	/**
 	 * getter voor het spel dat geinitializeerd is door de server.
-	 * @return
+	 * @return ISpel  het model ISpel
 	 */
 	public static ISpel getSpel() {
 		return spel;
@@ -100,7 +103,7 @@ public class StenenTijdperk extends Application {
 	
 	/**
 	 * getter voor het speler ophalen van de huidige client.
-	 * @return
+	 * @return  ISpeler  het model ISpel
 	 */
 	public static ISpeler getSpeler() {
 		return speler;
@@ -109,7 +112,7 @@ public class StenenTijdperk extends Application {
 	
 	/**
 	 * Geeft de client een specifieke speler.
-	 * @param s
+	 * @param spelSpeler  De speler op te setten
 	 */
 	public static void setSpeler(ISpeler spelSpeler) {
 		speler = spelSpeler;
