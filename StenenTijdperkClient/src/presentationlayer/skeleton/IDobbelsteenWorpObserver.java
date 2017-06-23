@@ -13,5 +13,11 @@ import domainlayer.skeleton.IDobbelsteenWorp;
  * @version 1.0
  */
 public interface IDobbelsteenWorpObserver extends Remote {
+	
+	/**
+	 * Veranderingen van het model doorzetten in de view
+	 * @param model  Het model dat veranderd is (IDobbelsteenWorp)
+	 * @throws RemoteException
+	 */
 	public void modelChanged(IDobbelsteenWorp model) throws RemoteException;
 }

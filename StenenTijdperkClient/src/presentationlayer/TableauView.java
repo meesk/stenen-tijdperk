@@ -49,6 +49,11 @@ public class TableauView extends StackPane implements ITableauObserver {
 	private Label goud;
 	private Stage largeTableau;
 
+	/**
+	 * Het initialiseren van de TableauView voor het tonen van een tableau
+	 * @param scale  De scale van het scherm
+	 * @param model  Het model van de view (ITableau)
+	 */
 	public TableauView(double scale, ITableau model) {
 		try {
 			UnicastRemoteObject.exportObject(this, 0);
@@ -100,6 +105,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		}
 	}
  
+
 	private void initGereedschap() {
 		Pane pane = new Pane();
 
@@ -119,6 +125,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		this.getChildren().add(pane);
 	}
+
 
 	private void initMiddelen(){
 
@@ -151,6 +158,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	}
 
+
 	private void initBeschavingskaarten() {
 		Pane pane = new Pane();
 		beschavingskaarten = new ImageView[8];
@@ -172,6 +180,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	}
 
+
 	private void initHuttegels() {
 		Pane pane = new Pane();
 
@@ -191,6 +200,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 		this.getChildren().add(pane);
 	}
+
 
 	private void initTableau(ITableau model) {
 		Image image = new Image("file:assets/tableau.png");
@@ -220,6 +230,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		achtergrond = imageView;
 	}
 
+
 	private void initLargeTableau(ITableau model) {
 		largeTableau = new Stage();
 		Scene scene = new Scene(new TableauView(1.5, model));
@@ -232,6 +243,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 		});
 		this.getChildren().add(enlargeButton);
 	}
+
 
 	private void tekenTableau(ITableau tableau) throws RemoteException {
 		achtergrond.setEffect(null);
@@ -250,6 +262,7 @@ public class TableauView extends StackPane implements ITableauObserver {
 			}
 		}
 	}
+
 
 	private void tekenStamleden(ITableau tableau) throws RemoteException {
 		middelPane.getChildren().clear();
@@ -307,6 +320,9 @@ public class TableauView extends StackPane implements ITableauObserver {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void modelChanged(ITableau tableau) throws RemoteException {
 		Platform.runLater(() -> {
