@@ -15,6 +15,7 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
 
 public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBeschavingskaart {

@@ -1,4 +1,4 @@
-package domainlayer.beschavingskaart;
+package domainlayer.skeleton.beschavingskaart;
 
 /**
 * Dit is de interface van de kaarten die de achtergronden verzorgen

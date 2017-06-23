@@ -16,6 +16,7 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
 
 public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implements IBeschavingskaart {

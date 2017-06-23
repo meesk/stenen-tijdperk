@@ -8,6 +8,7 @@ package domainlayer.beschavingskaart;
 */
 
 import domainlayer.enums.Beschaving;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
 public class BeschavingskaartZand implements IBeschavingskaartAchtergrond {
 

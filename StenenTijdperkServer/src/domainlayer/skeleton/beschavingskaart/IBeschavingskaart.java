@@ -3,19 +3,22 @@ package domainlayer.skeleton.beschavingskaart;
 /**
  * IBeschavingskaart.java
  * De klasse waarmee over rmi gecomuniceert wordt
- * @author Mees Kluivers
+ * @author Mees Kluivers, s1102358
  * @version 3.0
  * */
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import domainlayer.beschavingskaart.IBeschavingskaartAchtergrond;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
 public interface IBeschavingskaart extends Remote {
 
-
+	/**
+	 * 
+	 * @return int  kosten ophalen van de beschavingskaart
+	 * @throws RemoteException
+	 */
 	public int getKosten() throws RemoteException;
 
 	/**

@@ -8,6 +8,7 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
 /**
  * BeschavingskaartGereedschap.java
