@@ -53,4 +53,9 @@ public class Akker extends Locatie {
 		// Update Views (voedselspoor)
 		voedselspoor.notifyObservers();*/
 	}
+
+	@Override
+	public boolean isWorpNodig() throws RemoteException {
+		return false;
+	}
 }

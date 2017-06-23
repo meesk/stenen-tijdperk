@@ -5,10 +5,16 @@ import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.skeleton.IDobbelsteen;
 import domainlayer.skeleton.IDobbelsteenWorp;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import presentationlayer.skeleton.IDobbelsteenWorpObserver;
 import proceslayer.DobbelsteenWorpController;
 
@@ -19,8 +25,9 @@ import proceslayer.DobbelsteenWorpController;
  * @author	Erwin Olie, s1103026
  * @version	1.0
  */
-public class DobbelsteenWorpView extends VBox implements IDobbelsteenWorpObserver {
+public class DobbelsteenWorpView extends StackPane implements IDobbelsteenWorpObserver {
 
+	private Label totaal;
 	/** De views van de dobbelstenen binnen dit gebied. */
 	private DobbelsteenView[] dobbelstenen;
 	/** De controller waar de acties naar worden gestuurd. */
@@ -60,7 +67,16 @@ public class DobbelsteenWorpView extends VBox implements IDobbelsteenWorpObserve
 
 		// Het samenvoegen van de views.
 		//flowPane.getChildren().add(button);
-		this.getChildren().addAll(context);
+		
+		VBox container = new VBox();
+		container.getChildren().addAll(context);
+		this.getChildren().add(container);
+		
+		totaal = new Label("= 0");
+		totaal.setFont(Font.font(42));
+		totaal.setTextFill(Color.DARKTURQUOISE);
+		StackPane.setAlignment(totaal, Pos.CENTER_LEFT);
+		this.getChildren().add(totaal);
 	}
 
 	/** {@inheritDoc} */
@@ -70,5 +86,13 @@ public class DobbelsteenWorpView extends VBox implements IDobbelsteenWorpObserve
 		for (int i = 0; i < 10; i++) {
 			dobbelstenen[i].modelChanged(models[i]);
 		}
+		Platform.runLater(() -> {
+			try {
+				totaal.setText("= " + model.getTotaal());
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		});
+//
 	}
 }

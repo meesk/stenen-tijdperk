@@ -15,6 +15,7 @@ import stenentijdperk.StenenTijdperk;
 * Een klasse waarbij de beschavingskaarten algemeen worden aangemaakt.
 *
 * @author Alex de Bruin, s1103096
+* @author Tristan Caspers, s1102755
 * @version 1.0
 */
 
@@ -26,7 +27,6 @@ public class Beschavingskaart extends Locatie {
 	protected BeschavingskaartStatus status;
 	protected int kosten;
 	private int index;
-
 
 	public Beschavingskaart(int x, int y, int width, int height, List<Point> cirkels, int index) throws RemoteException {
 		super(x, y, width, height, cirkels);
@@ -40,11 +40,11 @@ public class Beschavingskaart extends Locatie {
 		this.status = status;
 		this.kosten = kosten;
 	}
-	public IBeschavingskaartAchtergrond getAchtergrond(){
+	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}
 
-	public String getAsset(){
+	public String getAsset() {
 		return asset;
 	}
 
@@ -54,22 +54,28 @@ public class Beschavingskaart extends Locatie {
 //	public abstract int getKosten();
 
 	@Override
-	public void betaalMiddelen(){
+	public void betaalMiddelen() {
 
 	}
 
-	public void betalling(){
+	public void betaling() {
 
 	}
+
 	@Override
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
+		// Betaalview om de kaart te kopen van een x (1, 2, 3 of 4) aantal grondstoffen
 		speler.getTableau().geefBeschavingskaart(beschavingskaart);
 		beschavingskaart.uitvoerenActie(speler);
+		StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		super.notifyObservers();
 
 	}
 
-
+	@Override
+	public boolean isWorpNodig() throws RemoteException {
+		return false;
+	}
 }
 

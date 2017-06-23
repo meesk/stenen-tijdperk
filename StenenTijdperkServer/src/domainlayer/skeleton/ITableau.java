@@ -71,5 +71,9 @@ public interface ITableau extends Remote {
 
 	void geefBeschavingskaarten(IBeschavingskaart kaart) throws RemoteException;
 
+	public void gebruikGereedschap(int i) throws RemoteException;
+
+	public void verwijderMiddelen(Map<Middel, Integer> cost) throws RemoteException;
+
 }
 
