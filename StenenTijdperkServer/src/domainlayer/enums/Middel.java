@@ -1,14 +1,13 @@
 package domainlayer.enums;
 
 /**
- * MiddelEnum.java
- * De enumerable die gaat over de verschillende type middelen.
+ * Deze enumerator bezit de verschillende soorten middelen die spelers kunnen
+ * bezitten.
  * 
  * @author Erwin Olie, s1103026
- * @version 0.1
+ * @version 3.0
  */
 public enum Middel {
-	// De soorten middelen met hun waarde
 	VOEDSEL(2), HOUT(3), LEEM(4), STEEN(5), GOUD(6);
 
 	private int waarde;
