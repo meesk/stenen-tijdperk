@@ -51,7 +51,7 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		//ontvangen middelen aan de hand van de gegooide ogen.
 		//int in gebruik gereedschap aanpassen
-		this.tableau.gebruikGereedschap(1);
+		//this.tableau.gebruikGereedschap(1);
 		int totaalOgen = StenenTijdperk.getSpel().getDobbelsteenWorp().getTotaal();
 		this.tableau.ontvangMiddelen(this.getMiddel(), totaalOgen / this.getMiddel().getWaarde());
 

@@ -289,12 +289,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		setVoeden(true);
 		vulPuntenGeschiedenis();
 		this.getSpeelbord().doorSchuiven();
-		
+
 		// reset de status van het gereedschap
 		for (ISpeler speler : spelers) {
 			speler.getTableau().resetGereedschapStatus();
 		}
-		
+
 		notifyObservers();
 		status = SpelStatus.PLAATSEN_STAMLEDEN;
 		volgendeBeurt();
@@ -340,7 +340,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			faseVoedenStamleden();
 			break;
 		}
-		
+
 		updateStatussen();
 		notifyEverything();
 
