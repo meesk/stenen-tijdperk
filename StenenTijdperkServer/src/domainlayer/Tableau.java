@@ -88,7 +88,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 
 	@Override
 	public void geefBeschavingskaarten(IBeschavingskaart kaart) {
-
 		kaarten.add(kaart);
 	}
 

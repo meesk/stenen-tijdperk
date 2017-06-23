@@ -291,7 +291,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		setVoeden(true);
 		vulPuntenGeschiedenis();
-<<<<<<< HEAD
 
 
 		if (this.getSpeelbord().getKaarten().size() >= 4) {
@@ -309,18 +308,11 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		} else {
 			status = status.BEPALEN_WINNAAR;
 		}
-=======
-		this.getSpeelbord().doorSchuiven();
->>>>>>> 528002fc8550fbd7f261007d254fe07714f1e007
 
 		// reset de status van het gereedschap
 		for (ISpeler speler : spelers) {
 			speler.getTableau().resetGereedschapStatus();
 		}
-<<<<<<< HEAD
-=======
-
->>>>>>> 528002fc8550fbd7f261007d254fe07714f1e007
 		notifyObservers();
 		volgendeBeurt();
 		fases();
