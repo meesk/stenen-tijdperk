@@ -315,8 +315,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 		notifyObservers();
 		volgendeBeurt();
-		fases();
 		System.out.println(status);
+		fases();
 	}
 
 	public void notifyEverything() throws RemoteException {
