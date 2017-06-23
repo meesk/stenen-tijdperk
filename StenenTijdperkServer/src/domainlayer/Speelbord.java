@@ -157,9 +157,4 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		return huttegel;
 	}
 
-//	public void addBeschavingskaart(int index){
-//		this.beschavingskaarten[index].add(alleKaarten.get(this.index));
-//		index++;
-//	}
-
 }

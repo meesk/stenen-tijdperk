@@ -71,6 +71,5 @@ public interface ITableau extends Remote {
 
 	void geefBeschavingskaarten(IBeschavingskaart kaart) throws RemoteException;
 
-
 }
 

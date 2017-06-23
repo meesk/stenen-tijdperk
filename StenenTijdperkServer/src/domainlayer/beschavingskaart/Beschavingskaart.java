@@ -66,7 +66,6 @@ public class Beschavingskaart extends Locatie {
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		speler.getTableau().geefBeschavingskaart(beschavingskaart);
 		beschavingskaart.uitvoerenActie(speler);
-		StenenTijdperk.getSpel().getSpeelbord().addBeschavingskaart(index);
 		super.notifyObservers();
 
 	}
