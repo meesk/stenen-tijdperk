@@ -3,7 +3,6 @@ package domainlayer.skeleton.beschavingskaart;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import domainlayer.beschavingskaart.IBeschavingskaartAchtergrond;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 

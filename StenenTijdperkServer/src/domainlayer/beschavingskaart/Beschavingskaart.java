@@ -8,6 +8,7 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 import stenentijdperk.StenenTijdperk;
 
 /**
