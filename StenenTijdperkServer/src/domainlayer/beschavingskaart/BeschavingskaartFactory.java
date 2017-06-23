@@ -6,7 +6,7 @@ package domainlayer.beschavingskaart;
  *
  * @author Alex de Bruin, s1103096
  * @author Tristan Caspers, s1102755
- * @version 1.0
+ * @version 3.0
  */
 
 import java.util.ArrayList;
@@ -24,10 +24,22 @@ public class BeschavingskaartFactory {
 	private static BeschavingskaartFactory instance;
 	private List<IBeschavingskaart> beschavingskaarten;
 
-	/** Het initialiseren van dit model. */
+	/**
+	 * Het initialiseren van dit model.
+	 */
 	public BeschavingskaartFactory() throws RemoteException{
 		beschavingskaarten = new ArrayList<IBeschavingskaart>() {{
 
+			add(new BeschavingskaartDobbeltabel("dobbel/01.png", new BeschavingskaartGras(Symbool.SCHRIFT), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/02.png", new BeschavingskaartGras(Symbool.ZONNEWIJZER), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/03.png", new BeschavingskaartZand(1, Beschaving.HUTTENBOUWERS), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/04.png", new BeschavingskaartZand(2, Beschaving.BOEREN), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/05.png", new BeschavingskaartGras(Symbool.WIEL), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/06.png", new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/07.png", new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/08.png", new BeschavingskaartZand(1, Beschaving.BOEREN), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/09.png", new BeschavingskaartZand(2, Beschaving.HUTTENBOUWERS), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbeltabel("dobbel/10.png", new BeschavingskaartGras(Symbool.POTTENBAKKEN), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartSpoor("punten/01.png",3, new BeschavingskaartGras(Symbool.MUZIEK), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartSpoor("punten/02.png",3, new BeschavingskaartGras(Symbool.MUZIEK), BeschavingskaartStatus.VRIJ , 0));
 			add(new BeschavingskaartSpoor("punten/03.png",3, new BeschavingskaartZand(3, Beschaving.HUTTENBOUWERS), BeschavingskaartStatus.VRIJ, 0));
@@ -46,9 +58,9 @@ public class BeschavingskaartFactory {
 			add(new BeschavingskaartMiddel("voedsel/06.png", 1, new BeschavingskaartGras(Symbool.WEEFGETOUW), BeschavingskaartStatus.VRIJ, 0, Middel.VOEDSEL));
 			add(new BeschavingskaartMiddel("voedsel/07.png", 3, new BeschavingskaartGras(Symbool.WEEFGETOUW), BeschavingskaartStatus.VRIJ, 0, Middel.VOEDSEL));
 			add(new BeschavingskaartExtraKaart("kaart/01.png", new BeschavingskaartGras(Symbool.SCHRIFT), BeschavingskaartStatus.VRIJ, 0));
-		//	add(new BeschavingskaartDobbelen("grondstof/worp/01.png", Middel.STEEN, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
-		//	add(new BeschavingskaartDobbelen("grondstof/worp/02.png", Middel.HOUT, new BeschavingskaartZand(2, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
-		//	add(new BeschavingskaartDobbelen("grondstof/worp/03.png", Middel.GOUD, new BeschavingskaartGras(Symbool.KUNST), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbelen("grondstof/worp/01.png", Middel.STEEN, new BeschavingskaartZand(1, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbelen("grondstof/worp/02.png", Middel.HOUT, new BeschavingskaartZand(2, Beschaving.MEDICIJNMANNEN), BeschavingskaartStatus.VRIJ, 0));
+			add(new BeschavingskaartDobbelen("grondstof/worp/03.png", Middel.GOUD, new BeschavingskaartGras(Symbool.KUNST), BeschavingskaartStatus.VRIJ, 0));
 			add(new BeschavingskaartGereedschap("gereedschap/01.png", 2, new BeschavingskaartZand(2, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("gereedschap/02.png", 3, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("gereedschap/03.png", 4, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
@@ -64,7 +76,7 @@ public class BeschavingskaartFactory {
 		return beschavingskaarten;
 	}
 
-
+/**hier wordt een instance gemaakt als er nog geen is en wordt die teruggegeven*/
 	public static BeschavingskaartFactory getInstance() {
 		if (instance == null) {
 			try {

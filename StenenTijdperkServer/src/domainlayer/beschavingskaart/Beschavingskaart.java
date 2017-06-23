@@ -16,7 +16,7 @@ import stenentijdperk.StenenTijdperk;
 *
 * @author Alex de Bruin, s1103096
 * @author Tristan Caspers, s1102755
-* @version 1.0
+* @version 3.0
 */
 
 
@@ -27,12 +27,29 @@ public class Beschavingskaart extends Locatie {
 	protected BeschavingskaartStatus status;
 	protected int kosten;
 	private int index;
+/**
+ * Deze beschavingskaart constructoor wordt gebruikt om een locatie aan te maken van het type beschavingskaart
+ * @param x  De horizontale waarde van de beschavingskaart op het speelbord
+ * @param y  de verticale waarde van de beschavingskaart op het spelbord
+ * @param width  de wijdte van de kaart
+ * @param height  de hoogte van de kaart
+ * @param cirkels  het aantal plaatsen dat de kaart heeft
+ * @param index  de plek waar de kaart ligt op het speelbord
+ */
 
 	public Beschavingskaart(int x, int y, int width, int height, List<Point> cirkels, int index) throws RemoteException {
 		super(x, y, width, height, cirkels);
 		this.index = index;
 	}
 
+	/**
+	 * Deze beschavingskaart constructoor wordt gebruikt om een beschavingskaart te maken
+	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart
+	 *
+	 */
 	public Beschavingskaart(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		super(-1, 436, 94, 133, null);
 		this.asset = asset;
@@ -53,16 +70,22 @@ public class Beschavingskaart extends Locatie {
 
 //	public abstract int getKosten();
 
+
 	@Override
+	/**
+	 * betaal middelen??
+	 */
 	public void betaalMiddelen() {
 
 	}
 
+	/***/
 	public void betaling() {
 
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		// Betaalview om de kaart te kopen van een x (1, 2, 3 of 4) aantal grondstoffen
@@ -74,6 +97,7 @@ public class Beschavingskaart extends Locatie {
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public boolean isWorpNodig() throws RemoteException {
 		return false;
 	}

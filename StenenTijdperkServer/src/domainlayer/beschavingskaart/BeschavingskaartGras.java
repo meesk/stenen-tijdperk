@@ -1,18 +1,21 @@
 package domainlayer.beschavingskaart;
 
 /**
-* Dit is de klasse waar alle kaarten op extenden als ze een groene achtergrond hebben
+ * BeschavingskaartGras.java
+* Dit is de klasse die een gras kaart de juiste achtergrond assets meegeeft
 *@Author Alex de Bruin, s1103096
-*@Version 0.1
+*@Version 3.0
 */
 
 import domainlayer.enums.Symbool;
 
-
 public class BeschavingskaartGras implements IBeschavingskaartAchtergrond {
 
 	private Symbool symbool;
-
+/**
+ * de constructor van de gras achtergrond
+ * @param symbool  Dit is een enumeration die een symbool meegeeft die belangrijk is voor de eindberekening
+ */
 	BeschavingskaartGras(Symbool symbool){
 		this.symbool = symbool;
 	}

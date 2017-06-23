@@ -10,13 +10,12 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 
 /**
-* @Author Alex de Bruin, s1103096
-* @Version 0.1
-*
-* <br>
-* <br>
-* Dit is de constructor voor de gereedschapskaart die naast het tableau komt te liggen.
-*/
+ * BeschavingskaartGereedschap.java
+ * De klasse waar deze specifieke kaart wordt aangemaakt
+ *
+ * @Author Alex de Bruin, s1103096
+ * @Version 3.0
+ */
 
 
 public class BeschavingskaartGereedschap extends UnicastRemoteObject implements IBeschavingskaart {
@@ -29,6 +28,14 @@ public class BeschavingskaartGereedschap extends UnicastRemoteObject implements 
 	private IBeschavingskaartAchtergrond achtergrond;
 
 
+	/**De contructor van de speciefieke kaart
+	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
+	 * @param waarde  de waarde van het gereedschap dat meegegeven wordt
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart
+	 * @param naastTableau  de boolean die aangeeft of de kaart naast het tableau ligt of niet
+	 */
 	BeschavingskaartGereedschap(String asset, int waarde, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, boolean naastTableau) throws RemoteException{
 		this.naastTableau = naastTableau;
 		this.waarde = waarde;
@@ -50,6 +57,8 @@ public class BeschavingskaartGereedschap extends UnicastRemoteObject implements 
 	}
 
 	@Override
+	/**{@inheritDoc}
+	 */
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 		if( naastTableau == false) {
 			naastTableau = true;

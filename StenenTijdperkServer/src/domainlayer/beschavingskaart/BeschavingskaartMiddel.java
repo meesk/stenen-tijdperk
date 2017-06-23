@@ -1,11 +1,11 @@
 package domainlayer.beschavingskaart;
 
 /**
+ * BeschavingskaartMiddel.java
+ * De klasse waar deze specifieke kaart wordt aangemaakt
  * @author Alex de Bruin, s1103096
  * @author Enzo Campfens, s1102421
  * @version 0.2
- *
- * dit is de veelvoudige klassen die voedsel en grondstoffen die op de kaart staan aan de speler geven.
  */
 
 import java.rmi.RemoteException;
@@ -27,6 +27,15 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
 
+	/**
+	 * De constructoor van de Speciefieke kaart
+	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
+	 * @param waarde  de waarde van de middelen die de speler ontvangt
+	 * @param achtergrond  het soort achtergrond dat de kaart heeft
+	 * @param status  is de kaart vrij of niet vrij
+	 * @param kosten  wat kost de kaart
+	 * @param middel  het middel dat de speler met deze kaart kan kopen
+	 */
 	public BeschavingskaartMiddel(String asset, int waarde,  IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten, Middel middel) throws RemoteException {
 		this.waarde = waarde;
 		this.middel = middel;
@@ -39,6 +48,7 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 
 		System.out.println("*** beschavingskaartmiddel test ***");
