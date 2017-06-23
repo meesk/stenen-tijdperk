@@ -29,6 +29,7 @@ import stenentijdperk.StenenTijdperk;
  * Een klasse die alle informatie bevat om de tableau view te maken.
  *
  * @author Erwin Olie, s1103026
+ * @author Mees Kluivers, s1102358
  * @version 1.0
  */
 public class TableauView extends StackPane implements ITableauObserver {

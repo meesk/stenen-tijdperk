@@ -21,6 +21,10 @@ import proceslayer.LocatieController;
  */
 public class SpeelbordView extends Pane {
 
+	/**
+	 * Het initaliseren van het SpeelbordView
+	 * @param model  Het model van de view (ISpeelbord)
+	 */
 	public SpeelbordView(ISpeelbord model) {
 		Image image = new Image("file:assets/speelbord.jpg");
 		ImageView imageView = new ImageView(image);
