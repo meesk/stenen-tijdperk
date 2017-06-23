@@ -1,13 +1,5 @@
 package domainlayer.beschavingskaart;
 
-/**
- * BeschavingskaartMiddel.java
- * De klasse waar deze specifieke kaart wordt aangemaakt
- * @author Alex de Bruin, s1103096
- * @author Enzo Campfens, s1102421
- * @version 3.0
- */
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -15,10 +7,17 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
+
+/**
+ * De klasse waar deze specifieke kaart wordt aangemaakt
+ * @author Alex de Bruin, s1103096
+ * @author Enzo Campfens, s1102421
+ * @version 3.0
+ */
 
 public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBeschavingskaart {
-
 
 	private int waarde;
 	private Middel middel;
@@ -43,6 +42,7 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public int getKosten() {
 		return kosten;
 	}
@@ -50,33 +50,35 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-
-		System.out.println("*** beschavingskaartmiddel test ***");
-		System.out.println("Aantal : " + waarde + ", middel : " + middel);
 		speler.getTableau().ontvangMiddelen(middel, waarde);
 		speler.getTableau().ontvangenBeschavingskaarten(this);
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public BeschavingskaartStatus getStatus() {
 		return status;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public void setStatus(BeschavingskaartStatus status) {
 		this.status = status;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public String getAsset() {
 		return asset;
 	}
 
+	/** @return De waarde van de beschavingskaart. */
 	public int getWaarde() {
 		return waarde;
 	}
 
 	@Override
+	/** {@inheritDoc} */
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

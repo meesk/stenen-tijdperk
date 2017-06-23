@@ -18,14 +18,13 @@ import domainlayer.enums.SpelerStatus;
 import presentationlayer.skeleton.ISpelObserver;
 
 /**
- * Speler.java<br>
  * Een klasse waar de spelers worden aangemaakt.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
  * @author Tristan Caspers, s1102755
- * @version	1.1
+ * @version	3.0
  */
 public class Speler extends UnicastRemoteObject implements ISpeler {
 
@@ -48,7 +47,6 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	 * @param geboorteDatum  De geboortedatum van de speler
 	 * @param isSpastisch  wel of niet spastisch
 	 * @param kleur  de kleur van de speler
-	 * @throws RemoteException
 	 */
 	public Speler(Spel spel, ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur) throws RemoteException {
 		this.naam = naam;
@@ -66,20 +64,19 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public ILocatie getLaatsteLocatie() {
 		return laatsteLocatie;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void setLaatsteLocatie(ILocatie laatsteLocatie) {
 		this.laatsteLocatie = laatsteLocatie;
 	}
 
-	/*
-	 * Ophalen van de gegevens van de speler
-	 * @see domainlayer.skeleton.ISpeler#ophalenGegevens()
-	 */
 	@Override
+	/**{@inheritDoc}*/
 	public int ophalenGegevens() throws RemoteException {
 		// Alles wordt opgehaald wat nodig is voor de eerste telling.
 
@@ -102,6 +99,7 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public int extraGegevens() throws RemoteException {
 		List<ILocatie> locaties = this.getSpel().getSpeelbord().getLocaties();
 		List<IStamlid> spelBordStamleden = new ArrayList<IStamlid>();
@@ -131,53 +129,63 @@ public class Speler extends UnicastRemoteObject implements ISpeler {
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public String getKleur() throws RemoteException {
 		return kleur;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public String getNaam() {
 		return naam;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public LocalDate getGeboorteDatum() {
 		return geboorteDatum;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public boolean getSpasme() {
 		return isSpastisch;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public ISpel getSpel() {
 		return spel;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public boolean isKlaar() {
 		return klaar;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public ITableau getTableau() throws RemoteException {
 		return tableau;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void setSpelerKlaar() throws RemoteException {
 		this.klaar = true;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public void setStatus(SpelerStatus status) {
 		this.status = status;
 	}
 
 	@Override
+	/**{@inheritDoc}*/
 	public SpelerStatus getStatus() {
 		return status;
 	}
-
 }
+

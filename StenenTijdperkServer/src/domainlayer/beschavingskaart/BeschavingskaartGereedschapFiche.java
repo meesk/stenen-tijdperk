@@ -1,14 +1,5 @@
 package domainlayer.beschavingskaart;
 
-/**
-*BeschavingskaartGereedschapFische.java
-* De klasse waar deze specifieke kaart wordt aangemaakt
-*
-* @author Alex de Bruin, s1103096
-* @author Mees Kluivers, s1102358
-* @version 3.0
-*/
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -16,10 +7,17 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
+import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 
+/**
+* De klasse waar deze specifieke kaart wordt aangemaakt
+*
+* @author Alex de Bruin, s1103096
+* @author Mees Kluivers, s1102358
+* @version 3.0
+*/
 
 public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implements IBeschavingskaart {
-
 
 	private String asset;
 	private IBeschavingskaartAchtergrond achtergrond;
@@ -31,15 +29,18 @@ public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implem
 	 * @param asset  een string waarde die de verwijzing naar de afbeelding afmaakt
 	 * @param achtergrond  het soort achtergrond dat de kaart heeft
 	 * @param status  is de kaart vrij of niet vrij
-	 * @param kosten  wat kost de kaart*/
-	BeschavingskaartGereedschapFiche(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
+	 * @param kosten  wat kost de kaart
+	 */
+	public BeschavingskaartGereedschapFiche(String asset, IBeschavingskaartAchtergrond achtergrond, BeschavingskaartStatus status, int kosten) throws RemoteException{
 		this.asset = asset;
 		this.achtergrond = achtergrond;
 		this.status = status;
 		this.kosten = kosten;
 
 	}
+
 	@Override
+	/**{@inheritDoc} */
 	public int getKosten() {
 		return kosten;
 	}
@@ -59,22 +60,25 @@ public class BeschavingskaartGereedschapFiche extends UnicastRemoteObject implem
 		tableau.notifyObservers();
 	}
 
-	@Override
+	/**{@inheritDoc} */
 	public BeschavingskaartStatus getStatus() {
 		return status;
 	}
 
 	@Override
+	/**{@inheritDoc} */
 	public void setStatus(BeschavingskaartStatus status) {
 		this.status = status;
 	}
 
 	@Override
+	/**{@inheritDoc} */
 	public String getAsset() {
 		return asset;
 	}
 
 	@Override
+	/**{@inheritDoc} */
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}

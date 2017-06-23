@@ -6,16 +6,13 @@ import java.rmi.server.UnicastRemoteObject;
 import domainlayer.skeleton.IDobbelsteen;
 
 /**
- * Dobbelsteen.java<br>
- * Het model van de dobbelsteen.
+ * Het model van een losse dobbelsteen.
  *
  * @author Erwin Olie, s1103026
- * @version 1.0
+ * @version 3.0
  */
 public class Dobbelsteen extends UnicastRemoteObject implements IDobbelsteen {
-	private static final long serialVersionUID = 1L;
-
-	/** De waarde van de dobbelsteen */
+	
 	private int ogen;
 
 	/** Maak een lege dobbelsteen aan. */
@@ -23,20 +20,20 @@ public class Dobbelsteen extends UnicastRemoteObject implements IDobbelsteen {
 		reset();
 	}
 
-	/** {@inheritDoc} */
 	@Override
+	/** {@inheritDoc} */
 	public void reset() {
 		ogen = 0;
 	}
 
-	/** Werp de dobbelsteen naar een willekeurig getal tussen 1 en 6. */
 	@Override
+	/** Werp de dobbelsteen naar een willekeurig getal tussen 1 en 6. */
 	public void werp() {
 		ogen = (int) (Math.random() * 6) + 1;
 	}
 
-	/** {@inheritDoc} */
 	@Override
+	/** {@inheritDoc} */
 	public int getOgen() {
 		return ogen;
 	}

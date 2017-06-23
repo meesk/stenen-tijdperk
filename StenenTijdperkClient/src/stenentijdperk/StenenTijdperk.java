@@ -37,16 +37,20 @@ import proceslayer.LobbyController;
 import proceslayer.SpelController;
 
 /**
- * StenenTijdperk.java
- * Een simpele Main-klasse waar de client word opgezet.
+ * Een simpele Main-klasse waar de RMI client word opgezet.
  *
  * @author Erwin Olie, s1103026
  * @author Enzo Campfens, s1102421
  * @author Mees Kluivers, s1102358
+ * @author Alex de Bruin, s1103096
  * @author Tristan Caspers, s1102755
+<<<<<<< HEAD
  *
  * @version	1.0
  *
+=======
+ * @version 3.0
+>>>>>>> 457339db35ed5762b4ad7d028b48ea5741f6e687
  */
 public class StenenTijdperk extends Application {
 
@@ -54,41 +58,49 @@ public class StenenTijdperk extends Application {
 	private static ISpeler speler;
 	private static String ip;
 
+<<<<<<< HEAD
 	/**
 	 * De main method dies de JavaFX applicatie opstart.
 	 * @param args
 	 */
+=======
+	/** Hier word de applicatie klaargezet. */
+>>>>>>> 457339db35ed5762b4ad7d028b48ea5741f6e687
 	public static void main(String[] args) {
 	//	ip = args[0];
 		launch(args);
 	}
 
 	@Override
-	/** {@inheritDoc} */
+	/** Hier word de client opgezet. */
 	public void start(Stage primaryStage) throws Exception {
+<<<<<<< HEAD
 		// Het definieren van het model
 
 		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
 		// ...
+=======
+		
+		// Het definiëren van het model
+		spel = (ISpel) Naming.lookup("rmi://" + ip + "/Spel");
+		
+>>>>>>> 457339db35ed5762b4ad7d028b48ea5741f6e687
 		HandleidingView handleidingPane = new HandleidingView();
 
-		// Het definieren van de controllers
+		// Het definiëren van enkele controllers
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(spel.getDobbelsteenWorp());
 		SpelController spelController = new SpelController(handleidingPane, spel);
 		LobbyController lobbyController = new LobbyController(spel);
 
-		// Het definieren van de views
+		// Het definiëren van enkele views
 		LobbyView lobbyView = new LobbyView(lobbyController, spel);
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, spel.getDobbelsteenWorp(), spel);
-
-		//lobbyController.registerSpelView(spelView);
-
-		// Het voorbereiden en tonen van de stage.
+		
+		// Het voorbereiden en tonen van de client
 		lobbyView.setResizable(false);
 		lobbyView.show();
-
 	}
 
 
