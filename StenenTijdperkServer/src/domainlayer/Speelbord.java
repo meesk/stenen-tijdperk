@@ -41,7 +41,11 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 //	private List<IBeschavingskaart> alleKaarten;
 //	int index;
 
-
+	/**
+	 * Het initialiseren van het model speelbord
+	 * @param spel  Het model spel
+	 * @throws RemoteException
+	 */
 	public Speelbord(Spel spel) throws RemoteException {
 		this.spel = spel;
 		locaties = LocatieFactory.getInstance().getLocaties();
@@ -56,9 +60,6 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 	}
 	
 	/**
-	 * @author Mees Kluivers, s1102358
-	 * @version 0.1
-	 * 
 	 * Maakt een nieuwe lijst aan met beschavingskaarten
 	 */
 	private void initBeschavingskaarten(){

@@ -62,6 +62,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	private List<ISpelObserver> observers;
 
+	/**
+	 * Het initialiseren van het model Spel
+	 * @throws RemoteException
+	 */
 	public Spel() throws RemoteException {
 		spelers = new ArrayList<ISpeler>();
 		speelbord = new Speelbord(this);
@@ -71,6 +75,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		observers = new ArrayList<>();
 	}
 
+	/**
+	 * Functie voor de telling van het einde van het spel
+	 */
 	public void eindeSpel() { // Wordt gedaan als het spel is afgelopen.
 
 		Map<String, Integer> spelerPuntenTotaal = new HashMap();
@@ -94,6 +101,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 	}
 
+	/**
+	 * Punten geschiedenis bijhouden
+	 * @throws RemoteException
+	 */
 	public void vulPuntenGeschiedenis() throws RemoteException {
 
 		for(int i = 0; i < spelers.size(); i++) {
@@ -107,6 +118,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return this.puntenGeschiedenis;
 	}
 
+	/**
+	 * Bepalen van de winnaar
+	 * @param spelerPuntenTotaal
+	 * @return boolean  winnaar wel of niet bepaald
+	 * @throws RemoteException
+	 */
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
 
 		boolean winnaarBepaald 	= false;
