@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 
 import domainlayer.skeleton.ITableau;
 
-
 /**
  * De interface voor de view over de tableau observer.
  *
