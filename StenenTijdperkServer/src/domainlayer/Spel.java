@@ -90,7 +90,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	public Speelbord getSpeelbord() {
 		return speelbord;
 	}
-	
+
 	/**
 	 * Punten geschiedenis bijhouden.
 	 * @throws RemoteException
@@ -244,7 +244,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			observer.modelChanged(this);
 		}
 	}
-	
+
 	/** Geef de beurt voor naar de volgende speler. */
 	private void volgendeBeurt() {
 		beurtSpeler = spelers.get((spelers.indexOf(beurtSpeler) + 1) % spelers.size());
@@ -291,7 +291,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/** Het uitvoeren van de fase voeden stameden. */
 	private void faseVoedenStamleden() throws RemoteException {
-		
+
 		for(ISpeler speler : spelers) {
 			speler.setLaatsteLocatie(null);
 		}
@@ -312,6 +312,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				e.printStackTrace();
 			}
 			this.getSpeelbord().doorschuiven();
+			System.out.println(this.getSpeelbord().getKaarten().size());
 			status = status.PLAATSEN_STAMLEDEN;
 
 		} else {
