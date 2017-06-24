@@ -2,6 +2,7 @@ package domainlayer.beschavingskaart;
 
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
+import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
@@ -11,6 +12,7 @@ import java.rmi.server.UnicastRemoteObject;
 import domainlayer.Tableau;
 
 /**
+ * BeschavingskaartDobbelen.java
  * De klasse waar deze specifieke kaart wordt aangemaakt
  * @author Alex de Bruin, s1103096
  * @version 3.0
@@ -56,9 +58,16 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-		// TODO
-		//ontvangen middelen aan de hand van de gegooide ogen.
-		//int in gebruik gereedschap aanpassen
+
+		speler.getSpel().getDobbelsteenWorp().werp(2);
+		System.out.println("1");
+		System.out.println(this.getMiddel());
+		System.out.println("2");
+		System.out.println(speler.getSpel().getDobbelsteenWorp().getTotaal());
+		System.out.println("3");
+		System.out.println(middel.getWaarde());
+		speler.getTableau().ontvangMiddelen(this.getMiddel(), speler.getSpel().getDobbelsteenWorp().getTotaal() / middel.getWaarde());
+		speler.getTableau().ontvangenBeschavingskaarten(this);
 	}
 
 	@Override
@@ -89,5 +98,6 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	public Middel getMiddel() {
 		return middel;
 	}
+
 
 }

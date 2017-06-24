@@ -6,11 +6,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import domainlayer.Speelbord;
 import domainlayer.Stamlid;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.locaties.ILocatie;
+import presentationlayer.LocatieView;
 import presentationlayer.skeleton.ILocatieObserver;
 
 /**
@@ -153,16 +153,6 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		notifyObservers();
 	}
 
-	@Override
-	/** {@inheritDoc} */
-	public void resetBeschavingskaarten(Speelbord speelbord) {
-		for (int i = 0; i < 4; i++) {
-			if (speelbord.beschavingskaarten[i] != null) {
-				speelbord.beschavingskaarten[i] = null;
-			}
-		}
-	}
-	
 	@Override
 	/** {@inheritDoc} */
 	public void verwijderStamlid(IStamlid stamlid) throws RemoteException {

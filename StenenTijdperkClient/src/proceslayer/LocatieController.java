@@ -25,8 +25,8 @@ public class LocatieController {
 	private ILocatie model;
 	private LocatieView view;
 
-	/** 
-	 * Het setten van het model. 
+	/**
+	 * Het setten van het model.
 	 * @param model  Het model ILocatie
 	 */
 	public LocatieController(ILocatie model) {

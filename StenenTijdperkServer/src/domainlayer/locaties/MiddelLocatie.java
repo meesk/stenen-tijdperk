@@ -3,13 +3,15 @@ package domainlayer.locaties;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.util.List;
+
+import domainlayer.Speelbord;
 import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 
 /**
  * Deze klasse wordt gebruikt om een middel-locatie aan te maken.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @version 3.0
  */
@@ -44,4 +46,5 @@ public class MiddelLocatie extends Locatie {
 	public boolean isWorpNodig() throws RemoteException {
 		return true;
 	}
+
 }

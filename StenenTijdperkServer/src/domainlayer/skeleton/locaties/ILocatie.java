@@ -74,12 +74,4 @@ public interface ILocatie extends Remote {
 	/** @return Een boolean die aangeeft of er met dobbelstenen
 	 * moet worden geworpen. */
 	public boolean isWorpNodig() throws RemoteException;
-
-
-	/**
-	 * Reset de beschavingskaarten op het speelbord.
-	 * @param speelbord  Het relevante speelbord.
-	 */
-	public void resetBeschavingskaarten(Speelbord speelbord) throws RemoteException;
-
 }

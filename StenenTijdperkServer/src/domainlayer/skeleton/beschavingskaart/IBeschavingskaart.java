@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 
+
 /**
  * De interface voor alle beschavingskaarten in het spel.
  * @author Mees Kluivers

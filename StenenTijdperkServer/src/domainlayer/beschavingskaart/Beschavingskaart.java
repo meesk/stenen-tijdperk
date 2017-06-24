@@ -25,6 +25,7 @@ public class Beschavingskaart extends Locatie {
 	protected BeschavingskaartStatus status;
 	protected int kosten;
 	private int index;
+	private boolean betalen;
 	/**
 	 * Deze beschavingskaart constructoor wordt gebruikt om een locatie aan te maken van het type beschavingskaart
 	 * @param x  De horizontale waarde van de beschavingskaart op het speelbord
@@ -53,7 +54,7 @@ public class Beschavingskaart extends Locatie {
 		this.status = status;
 		this.kosten = kosten;
 	}
-	
+
 	/** @return De wachtergrond van de beschavingskaart. */
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
@@ -64,15 +65,35 @@ public class Beschavingskaart extends Locatie {
 		return asset;
 	}
 
+	public void setKosten(int kosten) {
+		this.kosten = kosten;
+	}
+
+	public int getKosten() {
+		return kosten;
+	}
+
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+
+		betalen(kosten);
+		betalen = true;
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		// Betaalview om de kaart te kopen van een x (1, 2, 3 of 4) aantal grondstoffen
 		speler.getTableau().geefBeschavingskaart(beschavingskaart);
 		beschavingskaart.uitvoerenActie(speler);
 		StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		super.notifyObservers();
+
+	}
+
+	private void betalen(int kosten) {
+		if (betalen == true) {
+
+		}
+
+
 
 	}
 

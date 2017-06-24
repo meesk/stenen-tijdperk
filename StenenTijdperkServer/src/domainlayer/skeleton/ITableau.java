@@ -13,7 +13,7 @@ import presentationlayer.skeleton.ITableauObserver;
 
 /**
  * De interface voor het persoonlijke tableau.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @version 3.0
  */
@@ -91,6 +91,8 @@ public interface ITableau extends Remote {
 	 * @return Of het voeden succesvol verlopen is.
 	 */
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException;
+
+	// public boolean betalenBeschavingskaart(Map<Middel, Integer> middelen, ISpeler speler) throws RemoteException;
 
 	/** @return Een lijst van alle huttegels in bezit. */
 	public List<IHuttegel> getHuttegels() throws RemoteException;

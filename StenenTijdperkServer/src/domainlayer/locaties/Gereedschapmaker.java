@@ -3,12 +3,14 @@ package domainlayer.locaties;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.util.List;
+
+import domainlayer.Speelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 
 /**
  * Deze klasse wordt gebruikt om een gereedschapmaker-locatie aan te maken.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @version 3.0
  */

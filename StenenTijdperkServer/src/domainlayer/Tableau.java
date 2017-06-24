@@ -194,26 +194,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	 * @return  of het betalen van de kaart succesvol was of niet
 	 *
 	 */
-	public boolean betalenBeschavingskaart(Map<Middel, Integer> middelen, int Kosten) throws RemoteException {
-		Integer aantalMiddelen = 0;
 
-		for (Entry<Middel, Integer> entry : this.middelen.entrySet()) {
-			if (entry.getValue() < middelen.get(entry.getKey())) {
-				return false;
-			}
-			aantalMiddelen += middelen.get(entry.getKey());
-		}
-
-		int kosten = Kosten;
-		if (kosten != aantalMiddelen) {
-			return false;
-		}
-
-		verwijderMiddelen(middelen);
-
-		notifyObservers();
-		return true;
-	}
 
 	@Override
 	/**{@inheritDoc}*/
