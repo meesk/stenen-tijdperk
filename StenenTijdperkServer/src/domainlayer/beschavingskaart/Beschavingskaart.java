@@ -3,12 +3,18 @@ package domainlayer.beschavingskaart;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import domainlayer.Speler;
 import domainlayer.enums.BeschavingskaartStatus;
+import domainlayer.enums.Middel;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
+import domainlayer.skeleton.locaties.ILocatie;
+import presentationlayer.BetaalView;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -70,13 +76,16 @@ public class Beschavingskaart extends Locatie {
 	}
 
 	public int getKosten() {
-		return kosten;
+		return index + 1;
 	}
+
 
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+	//	speler.getTableau().betaalKaart(null, speler, getKosten());
 
+		System.out.println("Kosten zijn: " + this.getKosten());
 		betalen(kosten);
 		betalen = true;
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
@@ -85,6 +94,7 @@ public class Beschavingskaart extends Locatie {
 		beschavingskaart.uitvoerenActie(speler);
 		StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		super.notifyObservers();
+		// Betaalview view = new BetaalView(shitdiejenodighebt.get());
 
 	}
 

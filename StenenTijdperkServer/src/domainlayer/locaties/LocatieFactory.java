@@ -98,10 +98,10 @@ public class LocatieFactory {
 		locaties.add(new HuttegelLocatie(343, 476, 82, 90, Arrays.asList(new Point(26, 18)), 3));
 
 		// Dit zijn de Beschavingskaarten
-		locaties.add(new Beschavingskaart(463, 438, 85, 145, Arrays.asList(new Point(47, 31)), 0));
-		locaties.add(new Beschavingskaart(560, 438, 85, 145, Arrays.asList(new Point(47, 31)), 1));
-		locaties.add(new Beschavingskaart(653, 438, 85, 145, Arrays.asList(new Point(47, 32)), 2));
-		locaties.add(new Beschavingskaart(749, 438, 85, 145, Arrays.asList(new Point(47, 31)), 3));
+		locaties.add(new Beschavingskaart(463, 438, 85, 145, Arrays.asList(new Point(47, 31)), 3));
+		locaties.add(new Beschavingskaart(560, 438, 85, 145, Arrays.asList(new Point(47, 31)), 2));
+		locaties.add(new Beschavingskaart(653, 438, 85, 145, Arrays.asList(new Point(47, 32)), 1));
+		locaties.add(new Beschavingskaart(749, 438, 85, 145, Arrays.asList(new Point(47, 31)), 0));
 	}
 
 

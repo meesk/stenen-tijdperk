@@ -62,9 +62,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		kaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
 		Collections.shuffle(kaarten);
 		beschavingskaarten = new IBeschavingskaart[4];
-		if(beschavingskaarten[1] == null) {
-			doorschuiven();
-		}
+		doorschuiven();
 	}
 
 	/** Schuift de beschavingskaarten door op het speelbord */
