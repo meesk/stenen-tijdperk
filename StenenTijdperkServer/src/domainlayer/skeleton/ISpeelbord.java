@@ -11,7 +11,7 @@ import domainlayer.skeleton.spoor.ISpoor;
 
 /**
  * De interface voor het RMI voor het speelbord.
- * 
+ *
  * @author Mees Kluivers, s1102358
  * @version 3.0
  */
@@ -65,4 +65,5 @@ public interface ISpeelbord extends Remote {
 	 */
 	public IHuttegel getHuttegel(int index) throws RemoteException;
 
+	public List<IBeschavingskaart> getKaarten() throws RemoteException;
 }

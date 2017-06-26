@@ -47,7 +47,7 @@ public class StenenTijdperk {
 	/** Hier word de server opgezet. */
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		spel = new Spel();
-		
+
 		// Het opzetten van het RMI register.
 		LocateRegistry.createRegistry(1099);
 		Naming.rebind("Spel", spel);

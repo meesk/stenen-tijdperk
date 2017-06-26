@@ -19,7 +19,7 @@
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-//			    ä½›ç¥–ä¿�ä½‘ æ°¸æ— BUG
+//			   佛祖保佑 永无BUG
 package stenentijdperk;
 
 import java.rmi.Naming;
@@ -28,7 +28,6 @@ import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
 import presentationlayer.LobbyView;
 import presentationlayer.SpelView;
@@ -44,13 +43,7 @@ import proceslayer.SpelController;
  * @author Mees Kluivers, s1102358
  * @author Alex de Bruin, s1103096
  * @author Tristan Caspers, s1102755
-<<<<<<< HEAD
- *
- * @version	1.0
- *
-=======
  * @version 3.0
->>>>>>> 457339db35ed5762b4ad7d028b48ea5741f6e687
  */
 public class StenenTijdperk extends Application {
 
@@ -79,12 +72,12 @@ public class StenenTijdperk extends Application {
 
 		HandleidingView handleidingPane = new HandleidingView();
 
-		// Het definiëren van enkele controllers
+		// Het definiÃ«ren van enkele controllers
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(spel.getDobbelsteenWorp());
 		SpelController spelController = new SpelController(handleidingPane, spel);
 		LobbyController lobbyController = new LobbyController(spel);
 
-		// Het definiëren van enkele views
+		// Het definiÃ«ren van enkele views
 		LobbyView lobbyView = new LobbyView(lobbyController, spel);
 		SpelView spelView = new SpelView(spel.getSpeelbord(), spelController, dobbelsteenWorpController, spel.getDobbelsteenWorp(), spel);
 
@@ -110,7 +103,6 @@ public class StenenTijdperk extends Application {
 	public static ISpeler getSpeler() {
 		return speler;
 	}
-
 
 	/**
 	 * Geeft de client een specifieke speler.

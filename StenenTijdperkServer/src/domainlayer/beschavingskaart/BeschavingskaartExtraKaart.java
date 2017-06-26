@@ -44,7 +44,9 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
-		speler.getTableau().geefBeschavingskaarten(speler.getSpel().getSpeelbord().getBeschavingskaarten()[1]);
+		speler.getTableau().ontvangenBeschavingskaarten(this);
+		speler.getSpel().getSpeelbord().getKaarten().get(speler.getSpel().getSpeelbord().getKaarten().size() - 1);
+		System.out.println("Kaart is toegevoegd, denk ik!");
 	}
 
 	@Override
@@ -57,7 +59,6 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 	/**{@inheritDoc}*/
 	public void setStatus(BeschavingskaartStatus status) {
 		this.status = status;
-
 	}
 
 	@Override
