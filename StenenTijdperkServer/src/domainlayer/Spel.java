@@ -78,12 +78,10 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					spelerPuntenTotaal.put(spelers.get(k).getKleur(), temp);
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 
 	@Override
 	/**{@inheritDoc}*/
@@ -308,15 +306,16 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			try {
 				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			this.getSpeelbord().doorschuiven();
+			System.out.println("Aantal kaarten over");
 			System.out.println(this.getSpeelbord().getKaarten().size());
 			status = status.PLAATSEN_STAMLEDEN;
 
 		} else {
 			status = status.BEPALEN_WINNAAR;
+
 		}
 
 		// reset de status van het gereedschap
@@ -369,11 +368,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		case VOEDEN_STAMLEDEN:
 			faseVoedenStamleden();
 			break;
+		case BEPALEN_WINNAAR:
+			eindeSpel();
+
 		}
 
 		updateStatussen();
 		notifyEverything();
-
 	}
 
 	/**

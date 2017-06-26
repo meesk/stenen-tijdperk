@@ -51,7 +51,6 @@ public class StenenTijdperk extends Application {
 	private static ISpeler speler;
 	private static String ip;
 
-
 	/**
 	 * De main method dies de JavaFX applicatie opstart.
 	 * @param args
@@ -66,7 +65,6 @@ public class StenenTijdperk extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		// Het definieren van het model
-
 		spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 		//spel = (ISpel) Naming.lookup("rmi://localhost/Spel");
 
@@ -86,7 +84,6 @@ public class StenenTijdperk extends Application {
 		lobbyView.show();
 	}
 
-
 	/**
 	 * getter voor het spel dat geinitializeerd is door de server.
 	 * @return ISpel  het model ISpel
@@ -94,7 +91,6 @@ public class StenenTijdperk extends Application {
 	public static ISpel getSpel() {
 		return spel;
 	}
-
 
 	/**
 	 * getter voor het speler ophalen van de huidige client.
