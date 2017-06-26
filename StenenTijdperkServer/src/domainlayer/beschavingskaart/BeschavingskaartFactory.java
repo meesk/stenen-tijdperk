@@ -3,6 +3,7 @@ package domainlayer.beschavingskaart;
 import java.util.ArrayList;
 import java.util.List;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import domainlayer.enums.Beschaving;
 import domainlayer.enums.BeschavingskaartStatus;
@@ -18,7 +19,7 @@ import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
  * @version 3.0
  */
 
-public class BeschavingskaartFactory {
+public class BeschavingskaartFactory extends UnicastRemoteObject{
 
 	private static BeschavingskaartFactory instance;
 	private List<IBeschavingskaart> beschavingskaarten;

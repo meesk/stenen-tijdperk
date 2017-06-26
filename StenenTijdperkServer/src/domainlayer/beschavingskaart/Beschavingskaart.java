@@ -88,13 +88,14 @@ public class Beschavingskaart extends Locatie {
 		System.out.println("Kosten zijn: " + this.getKosten());
 		betalen(kosten);
 		betalen = true;
+
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		// Betaalview om de kaart te kopen van een x (1, 2, 3 of 4) aantal grondstoffen
 		speler.getTableau().geefBeschavingskaart(beschavingskaart);
 		beschavingskaart.uitvoerenActie(speler);
 		StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		super.notifyObservers();
-		// Betaalview view = new BetaalView(shitdiejenodighebt.get());
+
 
 	}
 
