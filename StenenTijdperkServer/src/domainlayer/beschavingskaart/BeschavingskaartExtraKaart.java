@@ -58,6 +58,7 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 		System.out.println("6");
 		System.out.println("HOI");
 
+
 		speler.getSpel().getSpeelbord().getKaarten().get(speler.getSpel().getSpeelbord().getKaarten().size() - 1);
 		System.out.println("Kaart is toegevoegd, denk ik!");
 

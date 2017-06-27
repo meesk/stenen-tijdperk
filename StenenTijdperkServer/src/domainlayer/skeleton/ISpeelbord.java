@@ -66,4 +66,6 @@ public interface ISpeelbord extends Remote {
 	public IHuttegel getHuttegel(int index) throws RemoteException;
 
 	public List<IBeschavingskaart> getKaarten() throws RemoteException;
+
+	public void doorschuiven() throws RemoteException;
 }

@@ -16,6 +16,7 @@ import domainlayer.dobbelstenen.DobbelsteenWorp;
 import domainlayer.enums.Middel;
 import domainlayer.enums.SpelStatus;
 import domainlayer.enums.SpelerStatus;
+import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.locaties.ILocatie;
@@ -85,7 +86,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	@Override
 	/**{@inheritDoc}*/
-	public Speelbord getSpeelbord() {
+	public ISpeelbord getSpeelbord() {
 		return speelbord;
 	}
 

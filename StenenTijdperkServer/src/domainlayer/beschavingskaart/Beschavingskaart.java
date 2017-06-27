@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
+import proceslayer.LocatieController;
 import domainlayer.Speler;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.enums.Middel;
@@ -32,6 +32,7 @@ public class Beschavingskaart extends Locatie {
 	protected int kosten;
 	private int index;
 	private boolean betalen;
+	private LocatieController controller;
 	/**
 	 * Deze beschavingskaart constructoor wordt gebruikt om een locatie aan te maken van het type beschavingskaart
 	 * @param x  De horizontale waarde van de beschavingskaart op het speelbord
@@ -83,11 +84,26 @@ public class Beschavingskaart extends Locatie {
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+
+		betalen = false;
+//		Map<Middel, Integer> middelen = speler.getTableau().getMiddelen();
+		if (index == 0) {
+			kosten = 4;
+		} else if (index == 1) {
+			kosten = 3;
+		} else if (index == 2) {
+			kosten = 2;
+		} else if (index == 3) {
+			kosten = 1;
+		}
+		while (betalen == false) {
+			controller.betaalKaart(speler, kosten);
+		}
 	//	speler.getTableau().betaalKaart(null, speler, getKosten());
 
-		System.out.println("Kosten zijn: " + this.getKosten());
-		betalen(kosten);
-		betalen = true;
+
+
+		System.out.println("kosten voor deze kaart bedraagt " + kosten);
 
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		// Betaalview om de kaart te kopen van een x (1, 2, 3 of 4) aantal grondstoffen
@@ -97,16 +113,9 @@ public class Beschavingskaart extends Locatie {
 		super.notifyObservers();
 
 
-	}
-
-	private void betalen(int kosten) {
-		if (betalen == true) {
-
-		}
-
-
 
 	}
+
 
 	@Override
 	/**{@inheritDoc}*/
