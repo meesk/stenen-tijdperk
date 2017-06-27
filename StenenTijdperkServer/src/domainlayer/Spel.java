@@ -21,7 +21,9 @@ import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.locaties.ILocatie;
 import domainlayer.skeleton.spoor.ISpoor;
+import presentationlayer.EindView;
 import presentationlayer.skeleton.ISpelObserver;
+import proceslayer.SpelController;
 
 /**
  * De klasse waar alle elementen tot 1 spel worden gevoegd.
@@ -39,16 +41,18 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	private ISpeler beurtSpeler;
 	private Speelbord speelbord;
 	private DobbelsteenWorp dobbelsteenWorp;
+	private SpelController controller;
+
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
 	private SpelStatus status;
 	private boolean laatsteRonde = false;
 	private boolean klaarVoorStart = false;
 	private boolean voeden;
-
 	private Map<String, List<Integer>> puntenGeschiedenis;
-
 	private List<ISpelObserver> observers;
+
+	private String winnaar;
 
 	/** Het initialiseren van het model Spel. */
 	public Spel() throws RemoteException {
@@ -71,6 +75,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				// per speler het totaal aantal punten eerste telling, weg
 				// gestopt onder naam.
 				spelerPuntenTotaal.put(spelers.get(i).getKleur(), spelers.get(i).ophalenGegevens());
+				System.out.println(spelers.get(i).getKleur() + " heeft " + spelers.get(i).ophalenGegevens() + " aantal punten.");
 			}
 
 			// Als bepaalWinnaar false is dan wordt hieronder de 2de telling
@@ -81,6 +86,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					spelerPuntenTotaal.put(spelers.get(k).getKleur(), temp);
 				}
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -128,6 +134,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 					|| spelerPuntenTotaal.get(spelers.get(i).getKleur()) == highest) {
 				secondHighest = highest;
 				highest = spelerPuntenTotaal.get(spelers.get(i).getKleur());
+				winnaar = spelers.get(i).getKleur();
 			}
 		}
 
@@ -297,8 +304,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/** Het uitvoeren van de fase voeden stameden. */
 	private void faseVoedenStamleden() throws RemoteException {
-
-		for (ISpeler speler : spelers) {
+		for(ISpeler speler : spelers) {
 			speler.setLaatsteLocatie(null);
 		}
 
@@ -380,6 +386,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			break;
 		case BEPALEN_WINNAAR:
 			eindeSpel();
+			notifyObservers();
 
 		}
 
@@ -428,6 +435,15 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	public ISpeler getStartSpeler() {
 		return startSpeler;
+	}
+
+	public String getWinnaar() throws RemoteException {
+		for(ISpeler speler : spelers) {
+			if(speler.getKleur().trim().equals(winnaar)) {
+				return speler.getNaam();
+			}
+		}
+		return "";
 	}
 
 }

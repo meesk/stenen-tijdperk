@@ -28,9 +28,9 @@ public class SpelController {
 	 * Het initialiseren van de controller
 	 * @param handleidingPane  De pane om te tonen in het spelview
 	 * @param spel  het model van het spel (ISpel)
+	 * @throws RemoteException
 	 */
-	public SpelController(HandleidingView handleidingPane, ISpel spel) {
-		handleiding = handleidingPane;
+	public SpelController(ISpel spel) throws RemoteException {
 		model = spel;
 	}
 
@@ -40,6 +40,10 @@ public class SpelController {
 	 */
 	public void registerView(EindView view) {
 		this.view = view;
+	}
+
+	public void registerHandleiding(HandleidingView handleidingPane) {
+		handleiding = handleidingPane;
 	}
 
 	/** Toont de handleiding als er op de knop is gedrukt. */
@@ -52,4 +56,17 @@ public class SpelController {
 		// TODO
 		//model.opslaan();
 	}
+
+
+	public void openEindView() {
+		try {
+			view = new EindView(model);
+			view.setResizable(false);
+			view.show();
+		} catch(Exception e) {
+
+		}
+	}
+
+
 }

@@ -81,8 +81,8 @@ public class BetaalView extends Stage implements ITableauObserver {
 		if (minPunten) {
 			Button punten = new Button("-10 Punten");
 			punten.setOnAction(e -> {
-			this.minPunten = true;
-			this.close();
+				this.minPunten = true;
+				this.close();
 			});
 			buttonBox.getChildren().add(punten);
 		}
