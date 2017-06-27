@@ -8,6 +8,7 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
+import proceslayer.LocatieController;
 
 
 /**
@@ -82,5 +83,4 @@ public class BeschavingskaartMiddel extends UnicastRemoteObject implements IBesc
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
 	}
-
 }

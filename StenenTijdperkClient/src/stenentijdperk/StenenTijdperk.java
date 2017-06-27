@@ -53,7 +53,7 @@ public class StenenTijdperk extends Application {
 	private static String ip;
 
 	/**
-	 * De main method dies de JavaFX applicatie opstart.
+	 * De main method die de JavaFX applicatie opstart.
 	 * @param args
 */
 	public static void main(String[] args) {
@@ -73,7 +73,8 @@ public class StenenTijdperk extends Application {
 
 		// Het definiÃ«ren van enkele controllers
 		DobbelsteenWorpController dobbelsteenWorpController = new DobbelsteenWorpController(spel.getDobbelsteenWorp());
-		SpelController spelController = new SpelController(handleidingPane, spel);
+		SpelController spelController = new SpelController(spel);
+		spelController.registerHandleiding(handleidingPane);
 		LobbyController lobbyController = new LobbyController(spel);
 
 		// Het definiÃ«ren van enkele views

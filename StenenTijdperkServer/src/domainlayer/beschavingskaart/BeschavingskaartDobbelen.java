@@ -6,6 +6,7 @@ import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
+import proceslayer.LocatieController;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -92,6 +93,5 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	public Middel getMiddel() {
 		return middel;
 	}
-
 
 }

@@ -30,8 +30,7 @@ public class SpelController {
 	 * @param spel  het model van het spel (ISpel)
 	 * @throws RemoteException
 	 */
-	public SpelController(HandleidingView handleidingPane, ISpel spel) throws RemoteException {
-		handleiding = handleidingPane;
+	public SpelController(ISpel spel) throws RemoteException {
 		model = spel;
 	}
 
@@ -41,6 +40,10 @@ public class SpelController {
 	 */
 	public void registerView(EindView view) {
 		this.view = view;
+	}
+
+	public void registerHandleiding(HandleidingView handleidingPane) {
+		handleiding = handleidingPane;
 	}
 
 	/** Toont de handleiding als er op de knop is gedrukt. */
@@ -55,13 +58,7 @@ public class SpelController {
 	}
 
 	public void openEindView() {
-		try {
-			view = new EindView(model, model.getWinnaar());
-			view.setResizable(false);
-			view.show();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+
 	}
 
 	public void betalenBeschavingskaart(ISpeler speler) throws RemoteException {

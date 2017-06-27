@@ -187,15 +187,8 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		    this.middelen.replace(entry.getKey(), this.middelen.get(entry.getKey()), this.middelen.get(entry.getKey()) - entry.getValue());
 		}
 	}
-	/**
-	 * Het betalen van een beschavingskaart
-	 * @param  middelen  de gekozen middelen om te betalen
-	 * @param  Kosten  de kosten van de kaart
-	 * @return  of het betalen van de kaart succesvol was of niet
-	 *
-	 */
-
-
+	
+	
 	@Override
 	/**{@inheritDoc}*/
 	public boolean voedenStamleden(Map<Middel, Integer> middelen) throws RemoteException{
@@ -210,15 +203,15 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		    aantalMiddelen += middelen.get(entry.getKey());
 		}
 
-
-
 	    // Check of er genoeg middelen zijn ingevult
 		int aantal = stamleden.size() - speler.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(speler);
+		
 		if (aantal < 0) {
 			if (aantal == 0) {
 				return true;
 			}
 	    }
+		
 		if (aantal != aantalMiddelen){
 	    	return false;
 	    }
@@ -236,6 +229,16 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		try {
 			Puntenspoor puntenSpoor = (Puntenspoor)speler.getSpel().getSpeelbord().getPuntenspoor();
 			puntenSpoor.verwijderPunten(speler, 10);
+			
+			if(this.middelen.get(Middel.VOEDSEL) >= stamleden.size()){
+				Map<Middel, Integer> middelen = new HashMap<Middel, Integer>();
+				middelen.put(Middel.VOEDSEL, stamleden.size());
+				verwijderMiddelen(middelen);
+			}else{
+				Map<Middel, Integer> middelen = new HashMap<Middel, Integer>();
+				middelen.put(Middel.VOEDSEL, this.middelen.get(Middel.VOEDSEL));
+				verwijderMiddelen(middelen);				
+			}
 
 		} catch (RemoteException e) {
 			return false;

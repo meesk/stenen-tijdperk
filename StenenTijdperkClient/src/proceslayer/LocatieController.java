@@ -75,36 +75,26 @@ public class LocatieController {
 	}
 
 
-	public boolean betaalKaart(Map<Middel, Integer> middelen, ISpeler speler, int Kosten) throws RemoteException {
+	public boolean betaalKaart(ISpeler speler, int kosten) throws RemoteException {
+		System.out.println("1");
+		int aantal = 0;
+		System.out.println("2");
+		System.out.println(aantal);
+		BetaalView betaalview = new BetaalView(speler.getTableau(), "De kosten voor de kaart is: " + kosten, false, true, false, false);
+		System.out.println("Betaalview gemaakt");
+		betaalview.showAndWait();
+		System.out.println("show and wait bereikt");
+		aantal += betaalview.getHout() + betaalview.getLeem() + betaalview.getSteen() + betaalview.getGoud();
 
-		int aantalGrondstoffen = 0;
-		//checked of middelen die aangegeven worden niet te veel is
-		for (Entry<Middel, Integer> entry : middelen.entrySet()) {
-			 if(entry.getValue() < middelen.get(entry.getKey())){
-			    	return false;
-			 }
-			 aantalGrondstoffen += middelen.get(entry.getKey());
-		}
-		// checked of middelen die aangegeven worden niet te weinig is
-		if (Kosten != aantalGrondstoffen) {
+		if (aantal > kosten){
+			System.out.println("teveel grondstoffen ingevuld");
 			return false;
 		}
-
-		speler.getTableau().verwijderMiddelen(middelen);
+		if (aantal < kosten) {
+			System.out.println("Te weinig Grondstoffen ingevuld");
+			return false;
+		}
 		return true;
-
-	}
-
-	private void betaalKaart(ISpeler speler) throws RemoteException {
-
-		model.uitvoerenActie(speler);
-		BetaalView bv = new BetaalView(speler.getTableau(),"Betaal de beschavingskaart ", false, true, false, false);
-		bv.showAndWait();
-		bv.getHout();
-		bv.getLeem();
-		bv.getSteen();
-		bv.getGoud();
-
 	}
 
 	/**

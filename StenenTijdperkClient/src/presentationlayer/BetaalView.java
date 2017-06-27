@@ -130,28 +130,48 @@ public class BetaalView extends Stage implements ITableauObserver {
 	}
 
 	/** @return De geselecteerde hoeveelheid voedsel. */
-	public int getVoedsel() {
-		return spinners.get("voedsel").getValue();
+	public Integer getVoedsel() {
+		try{
+			return spinners.get("voedsel").getValue();
+		}catch(NullPointerException ex){
+			return 0;
+		}
 	}
 
 	/** @return De geselecteerde hoeveelheid hot. */
-	public int getHout() {
-		return spinners.get("hout").getValue();
+	public Integer getHout() {
+		try{
+			return spinners.get("hout").getValue();
+		}catch(NullPointerException ex){
+			return 0;
+		}
 	}
 
 	/** @return De geselecteerde hoeveelheid leem. */
-	public int getLeem() {
-		return spinners.get("leem").getValue();
+	public Integer getLeem() {
+		try{
+			return spinners.get("leem").getValue();
+		}catch(NullPointerException ex){
+			return 0;
+		}
 	}
 
 	/** @return De geselecteerde hoeveelheid steen. */
-	public int getSteen() {
-		return spinners.get("steen").getValue();
+	public Integer getSteen() {
+		try{
+			return spinners.get("steen").getValue();
+		}catch(NullPointerException ex){
+			return 0;
+		}
 	}
 
 	/** @return De geselecteerde hoeveelheid goud. */
-	public int getGoud() {
-		return spinners.get("goud").getValue();
+	public Integer getGoud() {
+		try{
+			return spinners.get("goud").getValue();
+		}catch(NullPointerException ex){
+			return 0;
+		}
 	}
 
 	/** @return Of dat er de -10 punten knop is gebruikt. */

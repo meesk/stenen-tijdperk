@@ -108,8 +108,23 @@ public class SpelView extends Stage implements ISpelObserver {
 	 * @param spel Het model van de view
 	 */
 	private void toonBetaalView(ISpel spel) throws RemoteException { 
+		
+		BetaalView bv = null;
 		int betalen = StenenTijdperk.getSpeler().getTableau().getStamleden().size() - StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
-		BetaalView bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen om te betalen : " + betalen, true, true, false, true);
+		
+		if(StenenTijdperk.getSpeler().getTableau().getMiddelen().get(Middel.VOEDSEL) >= StenenTijdperk.getSpeler().getTableau().getStamleden().size()){
+			// View opstarten zonder grondstoffen
+			bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen om te betalen : " + betalen, true, false, false, true);
+			
+		} else if (betalen <= 0){
+			// Verander betalen in een positive int en voeg het aantal toe aan het voedsel van de speler
+			StenenTijdperk.getSpeler().getTableau().ontvangMiddelen(Middel.VOEDSEL, Math.abs(betalen));
+			StenenTijdperk.getSpel().notifyEverything();
+			return;
+		} else {
+			// View opstarten met grondstoffen
+			bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen om te betalen : " + betalen, true, true, false, true);
+		}
 		Map<Middel, Integer> middelen;
 		boolean min;
 		do {
