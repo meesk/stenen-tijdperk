@@ -3,12 +3,12 @@ package domainlayer.beschavingskaart;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.util.List;
-import proceslayer.LocatieController;
 import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
+import presentationlayer.BetaalView;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -26,7 +26,7 @@ public class Beschavingskaart extends Locatie {
 	protected int kosten;
 	private int index;
 	private boolean betalen;
-	private LocatieController controller;
+
 	/**
 	 * Deze beschavingskaart constructoor wordt gebruikt om een locatie aan te maken van het type beschavingskaart
 	 * @param x  De horizontale waarde van de beschavingskaart op het speelbord
@@ -56,6 +56,7 @@ public class Beschavingskaart extends Locatie {
 		this.kosten = kosten;
 	}
 
+
 	/** @return De wachtergrond van de beschavingskaart. */
 	public IBeschavingskaartAchtergrond getAchtergrond() {
 		return achtergrond;
@@ -72,10 +73,6 @@ public class Beschavingskaart extends Locatie {
 
 	public int getKosten() {
 		return index + 1;
-	}
-
-	public LocatieController getController() {
-		return controller;
 	}
 
 
@@ -107,8 +104,7 @@ public class Beschavingskaart extends Locatie {
 
 		while (betalen == false) {
 			System.out.println("4 Beschavingskaart");
-			System.out.println(getController());
-			if (controller.betaalKaart(speler, kosten) == true) {
+			if (betaalKaart(speler, kosten) == true) {
 				betalen = true;
 			}
 		}
@@ -134,6 +130,28 @@ public class Beschavingskaart extends Locatie {
 	/**{@inheritDoc}*/
 	public boolean isWorpNodig() throws RemoteException {
 		return false;
+	}
+
+	public boolean betaalKaart(ISpeler speler, int kosten) throws RemoteException {
+		System.out.println("1");
+		int aantal = 0;
+		System.out.println("2");
+		System.out.println(aantal);
+		BetaalView betaalview = new BetaalView(speler.getTableau(), "De kosten voor de kaart is: " + kosten, false, true, false, false);
+		System.out.println("Betaalview gemaakt");
+		betaalview.showAndWait();
+		System.out.println("show and wait bereikt");
+		aantal += betaalview.getHout() + betaalview.getLeem() + betaalview.getSteen() + betaalview.getGoud();
+
+		if (aantal > kosten){
+			System.out.println("teveel grondstoffen ingevuld");
+			return false;
+		}
+		if (aantal < kosten) {
+			System.out.println("Te weinig Grondstoffen ingevuld");
+			return false;
+		}
+		return true;
 	}
 }
 

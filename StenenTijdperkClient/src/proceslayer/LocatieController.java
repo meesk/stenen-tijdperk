@@ -3,17 +3,12 @@ package proceslayer;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
-import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.BetaalView;
 import presentationlayer.GereedschapView;
-//import presentationlayer.GereedschapView;
 import presentationlayer.LocatieView;
 import stenentijdperk.StenenTijdperk;
 
@@ -72,29 +67,6 @@ public class LocatieController {
 		model.plaatsStamleden(speler, aantal);
 		speler.setLaatsteLocatie(model);
 		spel.fases();
-	}
-
-
-	public boolean betaalKaart(ISpeler speler, int kosten) throws RemoteException {
-		System.out.println("1");
-		int aantal = 0;
-		System.out.println("2");
-		System.out.println(aantal);
-		BetaalView betaalview = new BetaalView(speler.getTableau(), "De kosten voor de kaart is: " + kosten, false, true, false, false);
-		System.out.println("Betaalview gemaakt");
-		betaalview.showAndWait();
-		System.out.println("show and wait bereikt");
-		aantal += betaalview.getHout() + betaalview.getLeem() + betaalview.getSteen() + betaalview.getGoud();
-
-		if (aantal > kosten){
-			System.out.println("teveel grondstoffen ingevuld");
-			return false;
-		}
-		if (aantal < kosten) {
-			System.out.println("Te weinig Grondstoffen ingevuld");
-			return false;
-		}
-		return true;
 	}
 
 	/**

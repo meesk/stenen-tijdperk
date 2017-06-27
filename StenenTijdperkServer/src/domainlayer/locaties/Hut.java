@@ -11,7 +11,6 @@ import domainlayer.skeleton.locaties.ILocatie;
 
 /**
  * Deze klasse wordt gebruikt om een hut-locatie aan te maken.
- * 
  * @author Mees Kluivers, s1102358
  * @version 3.0
  */
@@ -38,7 +37,7 @@ public class Hut extends Locatie {
 		List<IStamlid> stamleden = new ArrayList<IStamlid>();
 		int aantalStamleden = 0;
 		int aantalleden = 0;
-		
+
 		// Pak alle stamleden van het bord
 		for(ILocatie l : locaties){
 			stamleden.addAll(l.getStamleden());
@@ -49,19 +48,19 @@ public class Hut extends Locatie {
 					if(s.getSpeler().getKleur().equals(speler.getKleur())){
 						aantalleden++;
 					}
-					
+
 				}
 			}
 		}
-		
+
 		for(IStamlid s : stamleden){
 			if(s.getSpeler().getKleur().equals(speler.getKleur())){
 				aantalStamleden++;
 			}
 		}
-		
+
 		aantalStamleden += tableau.getStamleden().size();
-		
+
 		if (aantalStamleden < 10 && aantalleden == 2) {
 			tableau.krijgStamlid();
 		}

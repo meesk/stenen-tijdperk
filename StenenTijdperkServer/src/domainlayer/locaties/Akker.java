@@ -10,7 +10,7 @@ import stenentijdperk.StenenTijdperk;
 
 /**
  * Deze klasse wordt gebruikt om een akker-locatie aan te maken.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @version 3.0
  */

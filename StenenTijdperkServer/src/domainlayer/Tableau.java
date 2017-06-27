@@ -215,7 +215,7 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	    // Check of er genoeg middelen zijn ingevult
 		int aantal = stamleden.size() - speler.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(speler);
 		if (aantal < 0) {
-			if (aantal == 0) {
+			if (aantalMiddelen == 0) {
 				return true;
 			}
 	    }
