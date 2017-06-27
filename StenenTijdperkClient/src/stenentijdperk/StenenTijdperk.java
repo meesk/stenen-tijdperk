@@ -52,7 +52,7 @@ public class StenenTijdperk extends Application {
 	private static String ip;
 
 	/**
-	 * De main method dies de JavaFX applicatie opstart.
+	 * De main method die de JavaFX applicatie opstart.
 	 * @param args
 */
 	public static void main(String[] args) {
