@@ -28,8 +28,9 @@ public class SpelController {
 	 * Het initialiseren van de controller
 	 * @param handleidingPane  De pane om te tonen in het spelview
 	 * @param spel  het model van het spel (ISpel)
+	 * @throws RemoteException
 	 */
-	public SpelController(HandleidingView handleidingPane, ISpel spel) {
+	public SpelController(HandleidingView handleidingPane, ISpel spel) throws RemoteException {
 		handleiding = handleidingPane;
 		model = spel;
 	}
@@ -53,6 +54,16 @@ public class SpelController {
 		//model.opslaan();
 	}
 
+	public void openEindView() {
+		try {
+			view = new EindView(model, model.getWinnaar());
+			view.setResizable(false);
+			view.show();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void betalenBeschavingskaart(ISpeler speler) throws RemoteException {
 		int i = speler.getTableau().getKaarten().size() - 1;
 		IBeschavingskaart beschavingskaart = null;
@@ -62,7 +73,7 @@ public class SpelController {
 			}
 		}
 		if (beschavingskaart != null) {
-		int Kosten = beschavingskaart.getKosten();
+			int Kosten = beschavingskaart.getKosten();
 		}
 
 		BetaalView bv = new BetaalView(speler.getTableau(), "Betalen voor de beschavingskaart", false, true, false, false);

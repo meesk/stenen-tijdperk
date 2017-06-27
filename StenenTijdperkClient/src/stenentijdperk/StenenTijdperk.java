@@ -28,6 +28,7 @@ import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.ISpeler;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import presentationlayer.EindView;
 import presentationlayer.HandleidingView;
 import presentationlayer.LobbyView;
 import presentationlayer.SpelView;

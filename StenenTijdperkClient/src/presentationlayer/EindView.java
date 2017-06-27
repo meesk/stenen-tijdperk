@@ -35,14 +35,15 @@ public class EindView extends Stage {
 	 * @param model  Het model van het spel.
 	 * @throws RemoteException
 	 */
-	public EindView(SpelController spelController, ISpel model) throws RemoteException {
+	public EindView(ISpel model, String spelerNaam) throws RemoteException {
 
-		spelController.registerView(this);
+		//SpelController spelController,
+		//spelController.registerView(this);
 		VBox vbox = new VBox(15);
 
 		// De prijsuitreiking
 		Label uitreiking = new Label();
-		uitreiking.setText("Speler ... heeft gewonnen!"); // Nog maken
+		uitreiking.setText("Speler "+ spelerNaam +" heeft gewonnen!"); // Nog maken
 		uitreiking.setStyle("-fx-font-size: 22px");
 		uitreiking.setTextFill(Color.WHITE);
 

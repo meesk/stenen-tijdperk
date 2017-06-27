@@ -9,6 +9,7 @@ import java.util.Map;
 
 import domainlayer.enums.SpelStatus;
 import presentationlayer.skeleton.ISpelObserver;
+import proceslayer.SpelController;
 
 /**
  * Een interface voor het spel aan de server kant.
@@ -78,4 +79,7 @@ public interface ISpel extends Remote {
 
 	/** @return De behaalde punten geschiedenis, hoeveelheid per ronde per speler. */
 	public Map<String, List<Integer>> getPuntenGeschiedenis() throws RemoteException;
+
+	/** @return geeft de naam van de speler met de hoogste punten terug. */
+	public String getWinnaar() throws RemoteException;
 }
