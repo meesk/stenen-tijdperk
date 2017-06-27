@@ -6,6 +6,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 import domainlayer.skeleton.spoor.ISpoor;
+import proceslayer.LocatieController;
 import stenentijdperk.StenenTijdperk;
 
 import java.rmi.RemoteException;
@@ -90,6 +91,5 @@ public class BeschavingskaartSpoor extends UnicastRemoteObject implements IBesch
 	public int getWaarde() {
 		return waarde;
 	}
-
 
 }

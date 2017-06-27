@@ -76,10 +76,14 @@ public class LocatieController {
 
 
 	public boolean betaalKaart(ISpeler speler, int kosten) throws RemoteException {
-
+		System.out.println("1");
 		int aantal = 0;
-		BetaalView betaalview = new BetaalView(speler.getTableau(), "" + kosten, false, true, false, false);
+		System.out.println("2");
+		System.out.println(aantal);
+		BetaalView betaalview = new BetaalView(speler.getTableau(), "De kosten voor de kaart is: " + kosten, false, true, false, false);
+		System.out.println("Betaalview gemaakt");
 		betaalview.showAndWait();
+		System.out.println("show and wait bereikt");
 		aantal += betaalview.getHout() + betaalview.getLeem() + betaalview.getSteen() + betaalview.getGoud();
 
 		if (aantal > kosten){

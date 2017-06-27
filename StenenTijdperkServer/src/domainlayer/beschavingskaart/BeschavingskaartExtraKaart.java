@@ -7,6 +7,7 @@ import domainlayer.enums.BeschavingskaartStatus;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
+import proceslayer.LocatieController;
 
 /**
 * De klasse waarin deze specifieke kaart wordt aangemaakt.
@@ -45,7 +46,7 @@ public class BeschavingskaartExtraKaart extends UnicastRemoteObject implements I
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 
-		System.out.println("Beschavingskaart \n _______________________________________________");
+		System.out.println("Beschavingskaart \n ___________________________________________________________");
 		System.out.println("1");
 		System.out.println(speler.getSpel());
 		System.out.println("2");

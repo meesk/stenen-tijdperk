@@ -68,11 +68,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 		try {
 			for (int i = 0; i < spelers.size(); i++) {
-				// per speler het totaal aantal punten eerste telling, weg gestopt onder naam.
+				// per speler het totaal aantal punten eerste telling, weg
+				// gestopt onder naam.
 				spelerPuntenTotaal.put(spelers.get(i).getKleur(), spelers.get(i).ophalenGegevens());
 			}
 
-			// Als bepaalWinnaar false is dan wordt hieronder de 2de telling gedaan.
+			// Als bepaalWinnaar false is dan wordt hieronder de 2de telling
+			// gedaan.
 			if (!bepaalWinnaar(spelerPuntenTotaal)) {
 				for (int k = 0; k < spelers.size(); k++) {
 					int temp = spelerPuntenTotaal.get(spelers.get(k).getKleur()) + spelers.get(k).extraGegevens();
@@ -85,18 +87,19 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	}
 
 	@Override
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	public ISpeelbord getSpeelbord() {
 		return speelbord;
 	}
 
 	/**
 	 * Punten geschiedenis bijhouden.
+	 * 
 	 * @throws RemoteException
 	 */
 	public void vulPuntenGeschiedenis() throws RemoteException {
 
-		for(int i = 0; i < spelers.size(); i++) {
+		for (int i = 0; i < spelers.size(); i++) {
 			System.out.println("spelers gegevens : " + spelers.get(i).ophalenGegevens());
 			System.out.println("Spelers naam : " + spelers.get(i).getKleur());
 			puntenGeschiedenis.get(spelers.get(i).getKleur()).add(spelers.get(i).ophalenGegevens());
@@ -109,24 +112,26 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/**
 	 * Bepalen van de winnaar
+	 * 
 	 * @param spelerPuntenTotaal
-	 * @return boolean  winnaar wel of niet bepaald.
+	 * @return boolean winnaar wel of niet bepaald.
 	 */
 	public boolean bepaalWinnaar(Map<String, Integer> spelerPuntenTotaal) throws RemoteException {
 
-		boolean winnaarBepaald 	= false;
+		boolean winnaarBepaald = false;
 
-		int highest 			= Integer.MIN_VALUE;
-		int secondHighest		= Integer.MIN_VALUE;
+		int highest = Integer.MIN_VALUE;
+		int secondHighest = Integer.MIN_VALUE;
 
 		for (int i = 0; i < spelers.size(); i++) {
-			if (spelerPuntenTotaal.get(spelers.get(i).getKleur()) > highest || spelerPuntenTotaal.get(spelers.get(i).getKleur()) == highest) {
+			if (spelerPuntenTotaal.get(spelers.get(i).getKleur()) > highest
+					|| spelerPuntenTotaal.get(spelers.get(i).getKleur()) == highest) {
 				secondHighest = highest;
 				highest = spelerPuntenTotaal.get(spelers.get(i).getKleur());
 			}
 		}
 
-		if(highest != secondHighest && highest > secondHighest) {
+		if (highest != secondHighest && highest > secondHighest) {
 			winnaarBepaald = true;
 		}
 
@@ -143,11 +148,12 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	/** {@inheritDoc} */
 	public void opslaan() throws IOException {
 		// TODO
-		//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("spel.ser")));
-		//		oos.writeObject(this);
-		//		oos.close();
+		// ObjectOutputStream oos = new ObjectOutputStream(new
+		// FileOutputStream(new File("spel.ser")));
+		// oos.writeObject(this);
+		// oos.close();
 
-		for(int k = 0; k < this.spelers.size(); k++ ) {
+		for (int k = 0; k < this.spelers.size(); k++) {
 			System.out.println(spelers.get(k).getTableau().getMiddelen());
 		}
 	}
@@ -163,8 +169,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	@Override
 	/** {@inheritDoc} */
-	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch, String kleur)
-			throws RemoteException {
+	public ISpeler maakSpeler(ISpelObserver view, String naam, LocalDate geboorteDatum, boolean isSpastisch,
+			String kleur) throws RemoteException {
 
 		Speler speler = new Speler(this, view, naam, geboorteDatum, isSpastisch, kleur);
 
@@ -292,7 +298,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	/** Het uitvoeren van de fase voeden stameden. */
 	private void faseVoedenStamleden() throws RemoteException {
 
-		for(ISpeler speler : spelers) {
+		for (ISpeler speler : spelers) {
 			speler.setLaatsteLocatie(null);
 		}
 
@@ -301,8 +307,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		setVoeden(true);
 		vulPuntenGeschiedenis();
 
-		for(ISpeler speler : spelers) {
-			System.out.println("Het aantal kaarten van " + speler.getNaam() + " is: "+speler.getTableau().getKaarten().size());
+		for (ISpeler speler : spelers) {
+			System.out.println(
+					"Het aantal kaarten van " + speler.getNaam() + " is: " + speler.getTableau().getKaarten().size());
 		}
 
 		if (this.getSpeelbord().getKaarten().size() >= 4) {
@@ -382,7 +389,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/**
 	 * Update of dat de er nog gevoed moet worden of niet.
-	 * @param b  Of dat de stamleden gevoed moeten worden.
+	 * 
+	 * @param b
+	 *            Of dat de stamleden gevoed moeten worden.
 	 */
 	public void setVoeden(boolean b) {
 		voeden = b;
@@ -421,4 +430,3 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		return startSpeler;
 	}
 }
-

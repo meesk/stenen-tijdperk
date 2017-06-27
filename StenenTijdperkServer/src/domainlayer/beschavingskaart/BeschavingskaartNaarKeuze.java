@@ -8,6 +8,7 @@ import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
+import proceslayer.LocatieController;
 
 
 /**
@@ -94,5 +95,6 @@ public class BeschavingskaartNaarKeuze extends UnicastRemoteObject implements IB
 	public Middel getMiddelen() {
 		return middelen;
 	}
+
 }
 

@@ -8,6 +8,7 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
+import proceslayer.LocatieController;
 
 /**
 * De klasse waar deze specifieke kaart wordt aangemaakt

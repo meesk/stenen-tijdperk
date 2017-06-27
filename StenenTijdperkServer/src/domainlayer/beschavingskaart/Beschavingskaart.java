@@ -3,18 +3,12 @@ package domainlayer.beschavingskaart;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import proceslayer.LocatieController;
-import domainlayer.Speler;
 import domainlayer.enums.BeschavingskaartStatus;
-import domainlayer.enums.Middel;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
-import domainlayer.skeleton.locaties.ILocatie;
-import presentationlayer.BetaalView;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -80,24 +74,43 @@ public class Beschavingskaart extends Locatie {
 		return index + 1;
 	}
 
+	public LocatieController getController() {
+		return controller;
+	}
+
 
 	@Override
 	/**{@inheritDoc}*/
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 
 		betalen = false;
+		System.out.println("1 Beschavingskaart");
+		System.out.println(betalen);
 //		Map<Middel, Integer> middelen = speler.getTableau().getMiddelen();
+		System.out.println("2 Beschavingskaart");
+		System.out.println(index);
+		System.out.println("3 Beschavingskaart");
 		if (index == 0) {
 			kosten = 4;
+			System.out.println("Kosten zijn " + kosten);
 		} else if (index == 1) {
 			kosten = 3;
+			System.out.println("Kosten zijn " + kosten);
 		} else if (index == 2) {
 			kosten = 2;
+			System.out.println("Kosten zijn " + kosten);
 		} else if (index == 3) {
 			kosten = 1;
+			System.out.println("Kosten zijn " + kosten);
 		}
+
+
 		while (betalen == false) {
-			controller.betaalKaart(speler, kosten);
+			System.out.println("4 Beschavingskaart");
+			System.out.println(getController());
+			if (controller.betaalKaart(speler, kosten) == true) {
+				betalen = true;
+			}
 		}
 	//	speler.getTableau().betaalKaart(null, speler, getKosten());
 
