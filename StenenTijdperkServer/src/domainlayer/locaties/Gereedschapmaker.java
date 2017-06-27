@@ -7,6 +7,8 @@ import java.util.List;
 import domainlayer.Speelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.ITableau;
+import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 
 /**
  * Deze klasse wordt gebruikt om een gereedschapmaker-locatie aan te maken.
@@ -30,7 +32,7 @@ public class Gereedschapmaker extends Locatie {
 
 	@Override
 	/** {@inheritDoc} */
-	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+	public void uitvoerenActie(ISpeler speler, ILocatieController lController) throws RemoteException {
 		// ontvangen gereedschap
 		ITableau tableau = speler.getTableau();
 		int gereedschap = tableau.getTotaalGereedschap();

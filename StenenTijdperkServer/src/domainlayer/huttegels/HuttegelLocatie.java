@@ -7,6 +7,8 @@ import java.util.List;
 import domainlayer.locaties.Locatie;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.huttegels.IHuttegel;
+import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -35,7 +37,7 @@ public class HuttegelLocatie extends Locatie {
 
 	@Override
 	/** {@inheritDoc} */
-	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+	public void uitvoerenActie(ISpeler speler, ILocatieController lController) throws RemoteException {
 		IHuttegel huttegel = StenenTijdperk.getSpel().getSpeelbord().getHuttegel(index);
 		if (huttegel.uitvoerenActie(speler)) {
 			// Indien de huttegel gekocht is, geef deze aan de speler.

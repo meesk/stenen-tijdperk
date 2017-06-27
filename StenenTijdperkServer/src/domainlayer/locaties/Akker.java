@@ -6,6 +6,8 @@ import java.util.List;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.spoor.ISpoor;
+import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -30,7 +32,7 @@ public class Akker extends Locatie {
 
 	@Override
 	/** {@inheritDoc} */
-	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+	public void uitvoerenActie(ISpeler speler, ILocatieController lController) throws RemoteException {
 		// Verhogen Voedselspoor
 		ISpeelbord speelbord = StenenTijdperk.getSpel().getSpeelbord();
 		ISpoor voedselspoor = speelbord.getVoedselspoor();

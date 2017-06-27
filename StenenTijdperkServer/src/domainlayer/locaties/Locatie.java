@@ -12,10 +12,12 @@ import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.LocatieView;
 import presentationlayer.skeleton.ILocatieObserver;
+import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 
 /**
  * Deze klasse wordt gebruikt om locaties op het speelbord te definiëren en te gebruiken.
- * 
+ *
  * @author Erwin Olie, s1103026
  * @author Tristan Caspers, s1102755
  * @version 3.0
@@ -45,7 +47,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 		stamleden = new ArrayList<>();
 		observers = new ArrayList<>();
 	}
-	
+
 	/**
 	 * Het plaatsen van een stamlid op de locatie.
 	 * @param stamlid  De stamlid die geplaatst moet worden.
@@ -66,7 +68,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 
 	@Override
 	/** {@inheritDoc} */
-	public abstract void uitvoerenActie(ISpeler speler) throws RemoteException;
+	public abstract void uitvoerenActie(ISpeler speler, ILocatieController lController) throws RemoteException;
 
 	@Override
 	/** {@inheritDoc} */
@@ -89,7 +91,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 			this.stamleden.remove(stamlid);
 		}
 	}
-	
+
 	@Override
 	/** {@inheritDoc} */
 	public List<IStamlid> getStamleden() {
@@ -138,7 +140,7 @@ public abstract class Locatie extends UnicastRemoteObject implements ILocatie {
 	public List<Point> getCirkels() {
 		return cirkels;
 	}
-	
+
 	private void plaatsStamlid(ISpeler speler) throws RemoteException {
 		IStamlid stamlid = speler.getTableau().popStamlid();
 		stamleden.add(stamlid);

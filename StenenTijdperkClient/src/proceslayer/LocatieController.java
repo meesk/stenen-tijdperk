@@ -1,16 +1,20 @@
 package proceslayer;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
+import javafx.application.Platform;
 import presentationlayer.BetaalView;
 import presentationlayer.GereedschapView;
 import presentationlayer.LocatieView;
+import proceslayer.skeleton.ILocatieController;
 import stenentijdperk.StenenTijdperk;
+
 
 /**
  * De controller voor de locatie.
@@ -18,16 +22,19 @@ import stenentijdperk.StenenTijdperk;
  * @author Tristan Caspers, s1102755
  * @version 3.0
  */
-public class LocatieController {
+public class LocatieController extends UnicastRemoteObject implements ILocatieController {
 
 	private ILocatie model;
 	private LocatieView view;
+	private LocatieController lController = this;
+	boolean betaald = false;
+	int aantal = 0;
 
 	/**
 	 * Het setten van het model.
 	 * @param model  Het model ILocatie
 	 */
-	public LocatieController(ILocatie model) {
+	public LocatieController(ILocatie model) throws RemoteException{
 		this.model = model;
 	}
 
@@ -69,13 +76,51 @@ public class LocatieController {
 		spel.fases();
 	}
 
+
+	public boolean betaalKaart(ISpeler speler, int kosten) throws RemoteException {
+//		System.out.println("Ik kom hier");
+//
+//
+//					System.out.println("1 BetalenBeschavingskaart");
+//					System.out.println(aantal);
+//					Platform.runLater(() -> {
+//					try {
+//						aantal = -1;
+//						while (aantal == -1) {
+//						BetaalView betaalview = new BetaalView(speler.getTableau(), "De kosten voor de kaart is: " + kosten, false, true, false, false);
+//						betaalview.showAndWait();
+//						aantal += betaalview.getHout() + betaalview.getLeem() + betaalview.getSteen() + betaalview.getGoud();
+//						}
+//						if (aantal > kosten){
+//							System.out.println("te veel grondstoffen ingevuld");
+//							betaald = false;
+//						}
+//						if (aantal < kosten) {
+//							System.out.println("Te weinig Grondstoffen ingevuld");
+//							betaald = false;
+//						}
+//					} catch (RemoteException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					betaald = true;
+//					});
+//					System.out.println("show and wait bereikt");
+//
+//
+//
+			return betaald;
+	}
+
+
 	/**
 	 * De functie om een actie uit te voeren op het spel
 	 * @param spel  Het model Spel
 	 * @param speler  Het model Speler
+	 * @param controller  de controller van de locatie die mee wordt gegeven
 	 * @throws RemoteException
 	 */
-	private void uitvoerenActie(ISpel spel, ISpeler speler) throws RemoteException {
+	private void uitvoerenActie(ISpel spel, ISpeler speler, ILocatieController controller) throws RemoteException {
 		List<IStamlid> stamleden = new ArrayList<>();
 		for (IStamlid stamlid : model.getStamleden()) {
 			if (stamlid.getSpeler().equals(StenenTijdperk.getSpeler())) {
@@ -92,7 +137,9 @@ public class LocatieController {
 				gereedschapView.showAndWait();
 			}
 		}
-		model.uitvoerenActie(speler);
+
+
+		model.uitvoerenActie(speler, lController);
 		for (IStamlid stamlid : stamleden) {
 			model.verwijderStamlid(stamlid);
 		}
@@ -116,7 +163,7 @@ public class LocatieController {
 				plaatsenStamleden(spel, speler);
 				break;
 			case UITVOEREN_ACTIE:
-				uitvoerenActie(spel, speler);
+				uitvoerenActie(spel, speler, lController);
 				break;
 			}
 		} catch (RemoteException e) {

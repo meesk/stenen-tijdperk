@@ -9,6 +9,8 @@ import domainlayer.Speelbord;
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import presentationlayer.skeleton.ILocatieObserver;
+import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 
 /**
  * Deze interface kan door de RMI worden gebruikt om locatie-gegevens
@@ -52,8 +54,9 @@ public interface ILocatie extends Remote {
 	/**
 	 * Het uitvoeren van een speciale actie die hoort bij de locatie.
 	 * @param speler  De speler wiens actie word uitgevoerd.
+	 * @param lController
 	 */
-	public void uitvoerenActie(ISpeler speler) throws RemoteException;
+	public void uitvoerenActie(ISpeler speler, ILocatieController lController) throws RemoteException;
 
 	/**
 	 * Het plaatsen van stamleden op deze locatie.
@@ -74,4 +77,7 @@ public interface ILocatie extends Remote {
 	/** @return Een boolean die aangeeft of er met dobbelstenen
 	 * moet worden geworpen. */
 	public boolean isWorpNodig() throws RemoteException;
+
+
+
 }

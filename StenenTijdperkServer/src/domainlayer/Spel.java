@@ -94,7 +94,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/**
 	 * Punten geschiedenis bijhouden.
-	 * 
+	 *
 	 * @throws RemoteException
 	 */
 	public void vulPuntenGeschiedenis() throws RemoteException {
@@ -112,7 +112,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/**
 	 * Bepalen van de winnaar
-	 * 
+	 *
 	 * @param spelerPuntenTotaal
 	 * @return boolean winnaar wel of niet bepaald.
 	 */
@@ -389,7 +389,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/**
 	 * Update of dat de er nog gevoed moet worden of niet.
-	 * 
+	 *
 	 * @param b
 	 *            Of dat de stamleden gevoed moeten worden.
 	 */
@@ -429,4 +429,5 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	public ISpeler getStartSpeler() {
 		return startSpeler;
 	}
+
 }

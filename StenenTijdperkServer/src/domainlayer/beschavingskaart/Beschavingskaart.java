@@ -9,6 +9,9 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaart;
 import domainlayer.skeleton.beschavingskaart.IBeschavingskaartAchtergrond;
 import presentationlayer.BetaalView;
+import presentationlayer.skeleton.ITableauObserver;
+import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -78,42 +81,34 @@ public class Beschavingskaart extends Locatie {
 
 	@Override
 	/**{@inheritDoc}*/
-	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+	public void uitvoerenActie(ISpeler speler, ILocatieController lController) throws RemoteException {
 
-		betalen = false;
-		System.out.println("1 Beschavingskaart");
-		System.out.println(betalen);
-//		Map<Middel, Integer> middelen = speler.getTableau().getMiddelen();
-		System.out.println("2 Beschavingskaart");
-		System.out.println(index);
-		System.out.println("3 Beschavingskaart");
-		if (index == 0) {
-			kosten = 4;
-			System.out.println("Kosten zijn " + kosten);
-		} else if (index == 1) {
-			kosten = 3;
-			System.out.println("Kosten zijn " + kosten);
-		} else if (index == 2) {
-			kosten = 2;
-			System.out.println("Kosten zijn " + kosten);
-		} else if (index == 3) {
-			kosten = 1;
-			System.out.println("Kosten zijn " + kosten);
-		}
-
-
-		while (betalen == false) {
-			System.out.println("4 Beschavingskaart");
-			if (betaalKaart(speler, kosten) == true) {
-				betalen = true;
-			}
-		}
-	//	speler.getTableau().betaalKaart(null, speler, getKosten());
-
-
-
-		System.out.println("kosten voor deze kaart bedraagt " + kosten);
-
+//		betalen = false;
+//		System.out.println("1 Beschavingskaart");
+//		System.out.println(betalen);
+////		Map<Middel, Integer> middelen = speler.getTableau().getMiddelen();
+//		System.out.println("2 Beschavingskaart");
+//		System.out.println(index);
+//		System.out.println("3 Beschavingskaart");
+//		if (index == 0) {
+//			kosten = 4;
+//			System.out.println("Kosten zijn " + kosten);
+//		} else if (index == 1) {
+//			kosten = 3;
+//			System.out.println("Kosten zijn " + kosten);
+//		} else if (index == 2) {
+//			kosten = 2;
+//			System.out.println("Kosten zijn " + kosten);
+//		} else if (index == 3) {
+//			kosten = 1;
+//			System.out.println("Kosten zijn " + kosten);
+//		}
+//
+//
+//		while (betalen == false) {
+//			betalen = lController.betaalKaart(speler, kosten);
+//
+//		}
 		IBeschavingskaart beschavingskaart = StenenTijdperk.getSpel().getSpeelbord().popBeschavingskaart(index);
 		// Betaalview om de kaart te kopen van een x (1, 2, 3 of 4) aantal grondstoffen
 		speler.getTableau().geefBeschavingskaart(beschavingskaart);
@@ -132,26 +127,6 @@ public class Beschavingskaart extends Locatie {
 		return false;
 	}
 
-	public boolean betaalKaart(ISpeler speler, int kosten) throws RemoteException {
-		System.out.println("1");
-		int aantal = 0;
-		System.out.println("2");
-		System.out.println(aantal);
-		BetaalView betaalview = new BetaalView(speler.getTableau(), "De kosten voor de kaart is: " + kosten, false, true, false, false);
-		System.out.println("Betaalview gemaakt");
-		betaalview.showAndWait();
-		System.out.println("show and wait bereikt");
-		aantal += betaalview.getHout() + betaalview.getLeem() + betaalview.getSteen() + betaalview.getGoud();
 
-		if (aantal > kosten){
-			System.out.println("teveel grondstoffen ingevuld");
-			return false;
-		}
-		if (aantal < kosten) {
-			System.out.println("Te weinig Grondstoffen ingevuld");
-			return false;
-		}
-		return true;
-	}
 }
 

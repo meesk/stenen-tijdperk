@@ -8,6 +8,8 @@ import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
 import domainlayer.skeleton.ITableau;
 import domainlayer.skeleton.locaties.ILocatie;
+import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 
 /**
  * Deze klasse wordt gebruikt om een hut-locatie aan te maken.
@@ -30,7 +32,7 @@ public class Hut extends Locatie {
 
 	@Override
 	/** {@inheritDoc} */
-	public void uitvoerenActie(ISpeler speler) throws RemoteException {
+	public void uitvoerenActie(ISpeler speler, ILocatieController lController) throws RemoteException {
 		// Verhogen aantal stamleden
 		ITableau tableau = speler.getTableau();
 		List<ILocatie> locaties = speler.getSpel().getSpeelbord().getLocaties();

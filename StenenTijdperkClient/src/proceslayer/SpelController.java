@@ -52,20 +52,4 @@ public class SpelController {
 		// TODO
 		//model.opslaan();
 	}
-
-	public void betalenBeschavingskaart(ISpeler speler) throws RemoteException {
-		int i = speler.getTableau().getKaarten().size() - 1;
-		IBeschavingskaart beschavingskaart = null;
-		while (i > -1) {
-			if (speler.getTableau().getKaarten().get(i) != null) {
-				beschavingskaart = speler.getTableau().getKaarten().get(i);
-			}
-		}
-		if (beschavingskaart != null) {
-		int Kosten = beschavingskaart.getKosten();
-		}
-
-		BetaalView bv = new BetaalView(speler.getTableau(), "Betalen voor de beschavingskaart", false, true, false, false);
-		bv.showAndWait();
-	}
 }

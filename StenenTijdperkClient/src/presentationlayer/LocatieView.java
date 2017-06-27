@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import presentationlayer.skeleton.ILocatieObserver;
-import proceslayer.LocatieController;
+import proceslayer.skeleton.ILocatieController;
 import stenentijdperk.StenenTijdperk;
 
 /**
@@ -37,16 +37,23 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 	 * @param model  Het model van de view (ILocatie)
 	 * @param controller  De controller van de view (LocatieController)
 	 */
-	public LocatieView(ILocatie model, LocatieController controller) throws RemoteException {
+	public LocatieView(ILocatie model, ILocatieController controller) throws RemoteException {
 		UnicastRemoteObject.exportObject(this, 0);
 
 		// Het aanmaken van de overlay als locatie-markering.
 		Rectangle rectangle = new Rectangle(model.getWidth(), model.getHeight());
 		rectangle.setFill(Color.DARKGOLDENROD);
 		rectangle.setOpacity(0.0);
-		rectangle.setOnMouseMoved(e -> rectangle.setOpacity(0.85));
+		rectangle.setOnMouseMoved(e -> rectangle.setOpacity(0.70));
 		rectangle.setOnMouseExited(e -> rectangle.setOpacity(0.0));
-		rectangle.setOnMouseClicked(e -> controller.onKiesLocatie());
+		rectangle.setOnMouseClicked(e -> {
+			try {
+				controller.onKiesLocatie();
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 
 		// Het toevoegen van de onderdelen aan de hoofdpane.
 		pane = new StackPane();
@@ -70,7 +77,7 @@ public class LocatieView extends StackPane implements ILocatieObserver {
 				List<IStamlid> stamleden = model.getStamleden();
 
 				pane.getChildren().clear();
-				
+
 				// Het tekenen van de juiste huttegel afbeelding op de locatie (indien relevant)
 				int[] loc = new int[] { 91, 175, 259, 343 };
 				for (int i = 0; i < loc.length; i++) {
