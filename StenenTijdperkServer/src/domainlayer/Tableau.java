@@ -211,17 +211,24 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 		}
 
 
+
 	    // Check of er genoeg middelen zijn ingevult
 		int aantal = stamleden.size() - speler.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(speler);
+		if (aantal < 0) {
+			if (aantal == 0) {
+				return true;
+			}
+	    }
 		if (aantal != aantalMiddelen){
 	    	return false;
 	    }
 
 	    verwijderMiddelen(middelen);
-
 	    notifyObservers();
 		return true;
 	}
+
+
 
 	@Override
 	/**{@inheritDoc}*/
@@ -322,4 +329,6 @@ public class Tableau extends UnicastRemoteObject implements ITableau {
 	public void ontvangenBeschavingskaarten(IBeschavingskaart kaart) throws RemoteException {
 		// TODO
 	}
+
+
 }

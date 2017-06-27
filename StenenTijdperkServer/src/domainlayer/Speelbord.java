@@ -40,7 +40,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	/**
 	 * Het initialiseren van het model speelbord
-	 * 
+	 *
 	 * @param spel
 	 *            Het model spel
 	 */
@@ -63,9 +63,11 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 		kaarten = BeschavingskaartFactory.getInstance().getBeschavingskaarten();
 		Collections.shuffle(kaarten);
 		beschavingskaarten = new IBeschavingskaart[4];
+
 		if (beschavingskaarten[1] == null) {
 			doorschuiven();
 		}
+
 	}
 
 	/** Schuift de beschavingskaarten door op het speelbord */
@@ -114,7 +116,7 @@ public class Speelbord extends UnicastRemoteObject implements ISpeelbord {
 
 	/**
 	 * Verander de laatst gekozen locatie van de speler.
-	 * 
+	 *
 	 * @param locatie
 	 *            De laatste locatie.
 	 */

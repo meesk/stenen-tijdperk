@@ -60,12 +60,6 @@ public class BeschavingskaartDobbelen extends UnicastRemoteObject implements IBe
 	public void uitvoerenActie(ISpeler speler) throws RemoteException {
 
 		speler.getSpel().getDobbelsteenWorp().werp(2);
-		System.out.println("1");
-		System.out.println(this.getMiddel());
-		System.out.println("2");
-		System.out.println(speler.getSpel().getDobbelsteenWorp().getTotaal());
-		System.out.println("3");
-		System.out.println(middel.getWaarde());
 		speler.getTableau().ontvangMiddelen(this.getMiddel(), speler.getSpel().getDobbelsteenWorp().getTotaal() / middel.getWaarde());
 		speler.getTableau().ontvangenBeschavingskaarten(this);
 	}

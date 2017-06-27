@@ -34,9 +34,9 @@ import presentationlayer.skeleton.ISpelObserver;
  */
 public class Spel extends UnicastRemoteObject implements ISpel {
 
+	private ISpeler startSpeler;
 	private ISpeler beurtSpeler;
 	private Speelbord speelbord;
-
 	private DobbelsteenWorp dobbelsteenWorp;
 	private List<ISpeler> spelers;
 	private int aangegevenSpelers;
@@ -224,7 +224,8 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				for (int i = 0; i < spelers.size(); i++) {
 					if (spelers.get(i).getGeboorteDatum().isAfter(jongsteSpeler)) {
 						jongsteSpeler = spelers.get(i).getGeboorteDatum();
-						beurtSpeler = spelers.get(i);
+						startSpeler = spelers.get(i);
+						beurtSpeler = startSpeler;
 						System.out.println("beurtspeler = " + beurtSpeler.getNaam());
 					}
 				}
@@ -256,7 +257,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 		if (aantalStamleden == 0) {
 			status = SpelStatus.UITVOEREN_ACTIE;
-			volgendeBeurt();
+			beurtSpeler = startSpeler;
 			return;
 		}
 
@@ -275,7 +276,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 		}
 		if (aantalStamleden == 0) {
 			status = SpelStatus.VOEDEN_STAMLEDEN;
-			volgendeBeurt();
+			beurtSpeler = startSpeler;
 			faseVoedenStamleden();
 			return;
 		} else {
@@ -294,11 +295,13 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			speler.setLaatsteLocatie(null);
 		}
 
+		startSpeler = spelers.get((spelers.indexOf(startSpeler) + 1) % spelers.size());
+		beurtSpeler = startSpeler;
 		setVoeden(true);
 		vulPuntenGeschiedenis();
 
 		for(ISpeler speler : spelers) {
-			System.out.println(speler.getTableau().getKaarten().size());
+			System.out.println("Het aantal kaarten van " + speler.getNaam() + " is: "+speler.getTableau().getKaarten().size());
 		}
 
 		if (this.getSpeelbord().getKaarten().size() >= 4) {
@@ -308,7 +311,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				e.printStackTrace();
 			}
 			this.getSpeelbord().doorschuiven();
-			System.out.println("Aantal kaarten over");
+			System.out.println("Aantal kaarten over: ");
 			System.out.println(this.getSpeelbord().getKaarten().size());
 			status = status.PLAATSEN_STAMLEDEN;
 
@@ -407,6 +410,14 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	/** {@inheritDoc} */
 	public SpelStatus getStatus() throws RemoteException {
 		return status;
+	}
+
+	public void setStartSpeler(ISpeler speler) {
+		this.startSpeler = speler;
+	}
+
+	public ISpeler getStartSpeler() {
+		return startSpeler;
 	}
 }
 

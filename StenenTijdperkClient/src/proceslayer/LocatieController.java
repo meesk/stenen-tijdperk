@@ -3,9 +3,12 @@ package proceslayer;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import domainlayer.skeleton.ISpeler;
 import domainlayer.skeleton.IStamlid;
+import domainlayer.enums.Middel;
 import domainlayer.skeleton.ISpel;
 import domainlayer.skeleton.locaties.ILocatie;
 import presentationlayer.BetaalView;
@@ -69,6 +72,39 @@ public class LocatieController {
 		model.plaatsStamleden(speler, aantal);
 		speler.setLaatsteLocatie(model);
 		spel.fases();
+	}
+
+
+	public boolean betaalKaart(Map<Middel, Integer> middelen, ISpeler speler, int Kosten) throws RemoteException {
+
+		int aantalGrondstoffen = 0;
+		//checked of middelen die aangegeven worden niet te veel is
+		for (Entry<Middel, Integer> entry : middelen.entrySet()) {
+			 if(entry.getValue() < middelen.get(entry.getKey())){
+			    	return false;
+			 }
+			 aantalGrondstoffen += middelen.get(entry.getKey());
+		}
+		// checked of middelen die aangegeven worden niet te weinig is
+		if (Kosten != aantalGrondstoffen) {
+			return false;
+		}
+
+		speler.getTableau().verwijderMiddelen(middelen);
+		return true;
+
+	}
+
+	private void betaalKaart(ISpeler speler) throws RemoteException {
+
+		model.uitvoerenActie(speler);
+		BetaalView bv = new BetaalView(speler.getTableau(),"Betaal de beschavingskaart ", false, true, false, false);
+		bv.showAndWait();
+		bv.getHout();
+		bv.getLeem();
+		bv.getSteen();
+		bv.getGoud();
+
 	}
 
 	/**
