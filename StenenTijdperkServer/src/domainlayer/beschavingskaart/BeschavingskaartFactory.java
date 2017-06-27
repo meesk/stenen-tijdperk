@@ -27,7 +27,6 @@ public class BeschavingskaartFactory extends UnicastRemoteObject{
 	/** Het initialiseren van dit model. */
 	public BeschavingskaartFactory() throws RemoteException{
 		beschavingskaarten = new ArrayList<IBeschavingskaart>() {{
-
 			// Alle dobbel kaarten
 //			add(new BeschavingskaartDobbeltabel("dobbel/01.png", new BeschavingskaartGras(Symbool.SCHRIFT), BeschavingskaartStatus.VRIJ, 0));
 //			add(new BeschavingskaartDobbeltabel("dobbel/02.png", new BeschavingskaartGras(Symbool.ZONNEWIJZER), BeschavingskaartStatus.VRIJ, 0));
@@ -65,7 +64,7 @@ public class BeschavingskaartFactory extends UnicastRemoteObject{
 //			add(new BeschavingskaartMiddel("voedsel/06.png", 1, new BeschavingskaartGras(Symbool.WEEFGETOUW), BeschavingskaartStatus.VRIJ, 0, Middel.VOEDSEL));
 //			add(new BeschavingskaartMiddel("voedsel/07.png", 3, new BeschavingskaartGras(Symbool.WEEFGETOUW), BeschavingskaartStatus.VRIJ, 0, Middel.VOEDSEL));
 
-			// Alle extra-kaart kaarten
+			// Extra kaart kaart
 			add(new BeschavingskaartExtraKaart("kaart/01.png", new BeschavingskaartGras(Symbool.SCHRIFT), BeschavingskaartStatus.VRIJ, 0));
 
 			// Alle worp kaarten
@@ -78,7 +77,7 @@ public class BeschavingskaartFactory extends UnicastRemoteObject{
 			add(new BeschavingskaartGereedschap("gereedschap/02.png", 3, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 			add(new BeschavingskaartGereedschap("gereedschap/03.png", 4, new BeschavingskaartZand(1, Beschaving.GEREEDSCHAPMAKERS), BeschavingskaartStatus.VRIJ, 0, false));
 
-			// Alle grondstof-naar-keuze kaarten
+			// Grondstof-naar-keuze kaart
 			add(new BeschavingskaartNaarKeuze("grondstof/keuze/01.png", new BeschavingskaartGras(Symbool.MEDICIJNEN), BeschavingskaartStatus.VRIJ, 0, false, null));
 		}};
 	}
