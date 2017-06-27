@@ -87,10 +87,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 				}
 			}
 
-			EindView view = new EindView(this);
-			view.setResizable(false);
-			view.show();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -308,8 +304,6 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 
 	/** Het uitvoeren van de fase voeden stameden. */
 	private void faseVoedenStamleden() throws RemoteException {
-		eindeSpel();
-
 		for(ISpeler speler : spelers) {
 			speler.setLaatsteLocatie(null);
 		}
@@ -392,6 +386,7 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 			break;
 		case BEPALEN_WINNAAR:
 			eindeSpel();
+			notifyObservers();
 
 		}
 

@@ -58,7 +58,13 @@ public class SpelController {
 	}
 
 	public void openEindView() {
+		try {
+			view = new EindView(model);
+			view.setResizable(false);
+			view.show();
+		} catch(Exception e) {
 
+		}
 	}
 
 	public void betalenBeschavingskaart(ISpeler speler) throws RemoteException {

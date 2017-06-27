@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import domainlayer.enums.Middel;
+import domainlayer.enums.SpelStatus;
 import domainlayer.skeleton.IDobbelsteenWorp;
 import domainlayer.skeleton.ISpeelbord;
 import domainlayer.skeleton.ISpel;
@@ -33,11 +34,12 @@ import stenentijdperk.StenenTijdperk;
 public class SpelView extends Stage implements ISpelObserver {
 
 	private GridPane grid;
+	private SpelController controller;
 
 	/**
 	 * Het initaliseren van de view van het spel<br>
 	 * Deze view bevat alle elementen die op het scherm staan met het spele van het spel.
-	 * @param speelbord  Het model van het speelbord 
+	 * @param speelbord  Het model van het speelbord
 	 * @param spelController De controller van de view
 	 * @param dobbelsteenWorpController De controller voor het afhandelen van de worp
 	 * @param dobbelsteenWorp Het model voor het werpen van dobbelstenen
@@ -49,6 +51,7 @@ public class SpelView extends Stage implements ISpelObserver {
 
 		UnicastRemoteObject.exportObject(this, 0);
 		model.registerObserver(this);
+		controller = spelController;
 
 		Pane pane = new Pane();
 
@@ -83,7 +86,7 @@ public class SpelView extends Stage implements ISpelObserver {
 		Scene scene = new Scene(pane);
 		this.setScene(scene);
 	}
-	
+
 	/**
 	 * Deze functie weergeeft alle TableauViews
 	 * @param spel Het model van de view
@@ -102,20 +105,20 @@ public class SpelView extends Stage implements ISpelObserver {
 		this.show();
 		this.sizeToScene();
 	}
-	
+
 	/**
 	 * Deze functie toont de BetaalView voor het voeden van stamleden
 	 * @param spel Het model van de view
 	 */
-	private void toonBetaalView(ISpel spel) throws RemoteException { 
-		
+	private void toonBetaalView(ISpel spel) throws RemoteException {
+
 		BetaalView bv = null;
 		int betalen = StenenTijdperk.getSpeler().getTableau().getStamleden().size() - StenenTijdperk.getSpel().getSpeelbord().getVoedselspoor().getMarkeerSteen(StenenTijdperk.getSpeler());
-		
+
 		if(StenenTijdperk.getSpeler().getTableau().getMiddelen().get(Middel.VOEDSEL) >= StenenTijdperk.getSpeler().getTableau().getStamleden().size()){
 			// View opstarten zonder grondstoffen
 			bv = new BetaalView(StenenTijdperk.getSpeler().getTableau(), "Aantal middelen om te betalen : " + betalen, true, false, false, true);
-			
+
 		} else if (betalen <= 0){
 			// Verander betalen in een positive int en voeg het aantal toe aan het voedsel van de speler
 			StenenTijdperk.getSpeler().getTableau().ontvangMiddelen(Middel.VOEDSEL, Math.abs(betalen));
@@ -131,27 +134,27 @@ public class SpelView extends Stage implements ISpelObserver {
 			min = false;
 			middelen = new HashMap<Middel, Integer>();
 			middelen.clear();
-			
+
 			bv.showAndWait();
-			
-			
-			int aantalVoedsel = bv.getVoedsel();	
+
+
+			int aantalVoedsel = bv.getVoedsel();
 			int aantalHout = bv.getHout();
 			int aantalLeem = bv.getLeem();
 			int aantalSteen = bv.getSteen();
 			int aantalGoud = bv.getGoud();
 
-			 middelen = new HashMap<Middel, Integer>();	
-			 middelen.put(Middel.VOEDSEL, aantalVoedsel);	
+			 middelen = new HashMap<Middel, Integer>();
+			 middelen.put(Middel.VOEDSEL, aantalVoedsel);
 			 middelen.put(Middel.HOUT, aantalHout);
-			 middelen.put(Middel.LEEM, aantalLeem);	
+			 middelen.put(Middel.LEEM, aantalLeem);
 			 middelen.put(Middel.STEEN, aantalSteen);
 			 middelen.put(Middel.GOUD, aantalGoud);
-			 
+
 			 if(bv.isMinPunten()){
 				 min = StenenTijdperk.getSpeler().getTableau().verliesPunten();
 			 }
-			 
+
 		}while((min == false) && (StenenTijdperk.getSpeler().getTableau().voedenStamleden(middelen) == false));
 		StenenTijdperk.getSpeler().getTableau().registerObserver(bv);
 		StenenTijdperk.getSpel().notifyEverything();
@@ -170,6 +173,9 @@ public class SpelView extends Stage implements ISpelObserver {
 				}
 				if (spel.getVoeden()) {
 					toonBetaalView(spel);
+				}
+				if(spel.getStatus() == SpelStatus.BEPALEN_WINNAAR) {
+					controller.openEindView();
 				}
 
 			} catch (RemoteException e) {
