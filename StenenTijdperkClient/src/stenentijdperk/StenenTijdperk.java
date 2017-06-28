@@ -57,7 +57,7 @@ public class StenenTijdperk extends Application {
 	 * @param args
 */
 	public static void main(String[] args) {
-	//	ip = args[0];
+//		ip = args[0];
 		launch(args);
 	}
 
