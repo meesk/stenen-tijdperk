@@ -374,6 +374,9 @@ public class Spel extends UnicastRemoteObject implements ISpel {
 	@Override
 	/** {@inheritDoc} */
 	public void fases() throws RemoteException {
+		
+		System.out.println(status);
+		
 		switch (status) {
 		case PLAATSEN_STAMLEDEN:
 			fasePlaatsenStamleden();

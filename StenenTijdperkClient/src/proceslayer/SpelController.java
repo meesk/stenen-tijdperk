@@ -62,6 +62,7 @@ public class SpelController {
 		try {
 			view = new EindView(model);
 			view.setResizable(false);
+			view.setAlwaysOnTop(true);
 			view.show();
 		} catch(Exception e) {
 
